@@ -1,8 +1,8 @@
 Package: brandseyer2
-Version: 0.0.0.9000
+Version: 0.0.1
 Title: What the Package Does (One Line, Title Case)
 Description: What the package does (one paragraph).
-Authors@R: person("First", "Last", , "first.last@example.com", c("aut", "cre"))
+Authors@R: person("Constance", "Neeser", email = "connie@brandseye.com", role = c("aut", "cre"))
 License: What license it uses
 Encoding: UTF-8
 LazyData: true

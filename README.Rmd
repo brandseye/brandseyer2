@@ -20,5 +20,9 @@ from your BrandsEye account, using our API.
 This version of the library is still in its early stages, and you should definitely be 
 using the first version instead, which is available from [GitHub][brandseyer].
 
+# License
+
+This library is licensed under the MIT, and is copyright BrandsEye. 
+
 
 [brandseyer]: https://github.com/brandseye/brandseyer  "The original brandseyer library"

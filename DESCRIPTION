@@ -7,3 +7,9 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
+Imports: 
+    httr,
+    jsonlite,
+    tibble,
+    assertthat
+RoxygenNote: 6.0.1

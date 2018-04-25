@@ -1,0 +1,24 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# BrandsEyeR2
+
+This is the second version of the BrandsEyeR library, a library for receiving data
+from your BrandsEye account, using our API.
+
+This version of the library is still in its early stages, and you should definitely be 
+using the first version instead, which is available from [GitHub][brandseyer].
+
+
+[brandseyer]: https://github.com/brandseye/brandseyer  "The original brandseyer library"

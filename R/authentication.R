@@ -135,6 +135,7 @@ save_key <- function(key) {
 getUserImpl <- function(key) {
   url <- paste0("https://mash.brandseye.com/rest/users/me")
   data <- httr::GET(url, httr::authenticate("API_KEY", key))
+  check_errors(data)
   results <- jsonlite::fromJSON(httr::content(data, "text"))
 
   results

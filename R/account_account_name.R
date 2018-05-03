@@ -19,23 +19,16 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' Read arbitrary data from mash.
+#' Get an account's name
 #'
-#' This reads data from mash, and performs authentication validation
-#' and so on.
+#' @param account The account object.
 #'
-#' @param endpoint The endpoint that you would like to access
-#' @param query An httr query list
-#'
-#' @return the json content
-#'
-#' @author Constance Neeser
-read_mash <- function(endpoint, query = list()) {
-  assertthat::is.string(endpoint)
-  auth = whoami(raise_error = TRUE)
+#' @return A string holding the account's name
+#' @export
+account_name <- function(account) {
+  UseMethod("account_name")
+}
 
-  url = paste0("https://mash.brandseye.com/rest/", endpoint)
-  data <- httr::GET(url, httr::authenticate("API_KEY", auth$key), query = query)
-  check_errors(data)
-  return(httr::content(data))
+account_name.brandseyer2.account <- function(account) {
+  account$data$name
 }

@@ -18,6 +18,10 @@ Returns \code{NULL} if you are not logged in,
 \description{
 Returns your current authentication credentials.
 }
+\details{
+If you need to authenticate yourself, you can do this
+with the \code{\link{authenticate}} function.
+}
 \author{
 Constance Neeser
 }

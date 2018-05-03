@@ -80,6 +80,10 @@ print.brandseye.auth <- function(auth) {
 
 #' Returns your current authentication credentials.
 #'
+#' @details
+#' If you need to authenticate yourself, you can do this
+#' with the \code{\link{authenticate}} function.
+#'
 #' @param raise_error If this is set to \code{TRUE}, the function
 #'                    will raise an error instead of returning NULL if you
 #'                    are not authenticated.

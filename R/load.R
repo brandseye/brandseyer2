@@ -20,3 +20,14 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 pkg.env <- new.env()
+
+.onLoad <- function(libname, pkgname) {
+  # Reads in default authentication information
+  auth_file <- authentication_filename()
+  if (file.exists(auth_file)) {
+    auth_data <- jsonlite::fromJSON(txt = auth_file)
+    pkg.env$defaultAuthentication <- authenticate(auth_data$key)
+  }
+
+  invisible()
+}

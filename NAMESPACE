@@ -2,6 +2,7 @@
 
 export("%>%")
 export(account)
+export(account_api_version)
 export(account_code)
 export(account_name)
 export(authenticate)

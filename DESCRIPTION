@@ -19,4 +19,5 @@ Imports:
     magrittr
 RoxygenNote: 6.0.1
 Suggests: 
-    testthat
+    testthat,
+    covr

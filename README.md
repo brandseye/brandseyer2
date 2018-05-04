@@ -3,7 +3,7 @@
 BrandsEyeR2
 ===========
 
-[![Travis build status](https://travis-ci.com/brandseye/brandseyer2.svg?branch=master)](https://travis-ci.com/brandseye/brandseyer2)
+[![Travis build status](https://travis-ci.com/brandseye/brandseyer2.svg?branch=master)](https://travis-ci.com/brandseye/brandseyer2) [![Coverage status](https://codecov.io/gh/brandseye/brandseyer2/branch/master/graph/badge.svg)](https://codecov.io/github/brandseye/brandseyer2?branch=master)
 
 BrandsEyeR2 is a library for handling data in your BrandsEye account.
 

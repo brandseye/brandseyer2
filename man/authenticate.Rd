@@ -7,6 +7,8 @@
 authenticate(key, save = FALSE)
 }
 \arguments{
+\item{key}{Your API key. If you don't know this, your account manager can give you one.}
+
 \item{save}{Set to true if you would like this key to be saved to disc and loaded
 automatically the next time that you use this library.}
 }
@@ -15,11 +17,11 @@ Your authentication details
 }
 \description{
 Provides a means to authenticate yourself with the BrandsEye API. This is done
-using an API key that your client service representative has provided for you.
+using an API key that your account manager representative has provided for you.
 }
 \details{
 All authentication with the BrandsEye API is done via a special, user specific
-key. This key can be provided to you by your client service representative.
+key. This key can be provided to you by your account manager.
 
 It's possible to also have your key saved to disc and automatically loaded
 for you when you next use the library. Set the \code{save} parameter to \code{TRUE}

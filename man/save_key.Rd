@@ -6,6 +6,9 @@
 \usage{
 save_key(key)
 }
+\arguments{
+\item{key}{The API_KEY}
+}
 \description{
 Saves a key to file.
 }

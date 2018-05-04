@@ -22,15 +22,16 @@
 #' Authenticate yourself with BrandsEye
 #'
 #' Provides a means to authenticate yourself with the BrandsEye API. This is done
-#' using an API key that your client service representative has provided for you.
+#' using an API key that your account manager representative has provided for you.
 #'
+#' @param key Your API key. If you don't know this, your account manager can give you one.
 #' @param save Set to true if you would like this key to be saved to disc and loaded
 #'             automatically the next time that you use this library.
 #' @return Your authentication details
 #'
 #' @details
 #' All authentication with the BrandsEye API is done via a special, user specific
-#' key. This key can be provided to you by your client service representative.
+#' key. This key can be provided to you by your account manager.
 #'
 #' It's possible to also have your key saved to disc and automatically loaded
 #' for you when you next use the library. Set the \code{save} parameter to \code{TRUE}
@@ -107,6 +108,8 @@ authentication_filename <- function() {
 
 
 #' Saves a key to file.
+#'
+#' @param key The API_KEY
 save_key <- function(key) {
   assertthat::assert_that(is.character(key))
   contents <- paste0('{ "key": "', key, '" }')
@@ -132,6 +135,8 @@ save_key <- function(key) {
 }
 
 #' Low level function to access user information.
+#'
+#' @param key The API key
 getUserImpl <- function(key) {
   url <- paste0("https://mash.brandseye.com/rest/users/me")
   data <- httr::GET(url, httr::authenticate("API_KEY", key))

@@ -6,6 +6,9 @@
 \usage{
 getUserImpl(key)
 }
+\arguments{
+\item{key}{The API key}
+}
 \description{
 Low level function to access user information.
 }

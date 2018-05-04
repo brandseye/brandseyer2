@@ -26,10 +26,14 @@
 #' @return An account object.
 #' @export
 account <- function(code) {
-  data <- read_account(code)
-  storage_class <- paste0("brandseyer2.account.", tolower(data$storage))
+  read_account(code) %>%
+    create_account()
+}
 
-  structure(list(data = data),
+# Given a data list, this will create the appropriate data structure.
+create_account <- function(data) {
+  storage_class <- paste0("brandseyer2.account.", tolower(data$storage))
+  structure(data,
             class = c("brandseyer2.account", storage_class))
 }
 

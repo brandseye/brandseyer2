@@ -7,9 +7,14 @@ v3_data <- list(
   code = "BETE01AA"
 )
 
-v3_account <- structure(
-  list(data = v3_data),
-  class = c("brandseyer2.account", "brandseyer2.account.v3"))
+# -----------------------------------------------
+
+test_that("Can create an account structure", {
+  v3_account <<- create_account(v3_data)
+  classes <- class(v3_account)
+  expect_equal(classes[1], "brandseyer2.account")
+  expect_equal(classes[2], "brandseyer2.account.v3")
+})
 
 # -----------------------------------------------
 

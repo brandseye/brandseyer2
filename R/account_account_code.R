@@ -30,5 +30,5 @@ account_code <- function(account) {
 }
 
 account_code.brandseyer2.account <- function(account) {
-  account$data$code
+  account$code
 }

@@ -30,5 +30,5 @@ account_name <- function(account) {
 }
 
 account_name.brandseyer2.account <- function(account) {
-  account$data$name
+  account$name
 }

@@ -27,9 +27,10 @@
 #' @export
 account <- function(code) {
   data <- read_account(code)
+  storage_class <- paste0("brandseyer2.account.", stringr::str_to_lower(data$storage))
 
   structure(list(data = data),
-            class = "brandseyer2.account")
+            class = c("brandseyer2.account", storage_class))
 }
 
 # Print out readable account information.

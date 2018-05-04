@@ -3,7 +3,9 @@
 BrandsEyeR2
 ===========
 
-This is the second version of the BrandsEyeR library, a library for receiving data from your BrandsEye account, using our API.
+BrandsEyeR2 is a library for handling data in your BrandsEye account.
+
+[BrandsEye](http://www.brandseye.com) is an opinion mining company. We use public social media to discover what people are talking about, and the sentiment towards these topics. While we have an analytics suite, and reporting service, we also providean extensive API to access to the data that makes up your various BrandsEye accounts, and makes it easy to access the data outside of the BrandsEye application in any [R](http://www.r-project.org/) analyses that you might want to perform.
 
 This version of the library is still in its early stages, and you should definitely be using the first version instead, which is available from [GitHub](https://github.com/brandseye/brandseyer "The original brandseyer library").
 
@@ -15,4 +17,4 @@ Please note that this project is released with a [Contributor Code of Conduct](C
 License
 =======
 
-This library is licensed under the MIT, and is copyright BrandsEye.
+This library is licensed under the MIT, and is copyright Brandseye PTY (LTD).

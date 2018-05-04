@@ -23,4 +23,4 @@ Please note that this project is released with a [Contributor Code of Conduct](C
 License
 =======
 
-This library is licensed under the MIT, and is copyright Brandseye PTY (LTD).
+This library is licensed under the MIT license, and is copyright Brandseye PTY (LTD). See the license files for details.

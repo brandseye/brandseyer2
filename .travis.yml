@@ -4,4 +4,4 @@ language: R
 sudo: false
 cache: packages
 after_success:
-    - Rscript -e 'covr::codecov()'
+    - Rscript -e "covr::codecov(token = '8bf43bea-4299-4637-b646-1564e3549536')"

@@ -1,7 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-BrandsEyeR2 [![Travis build status](https://travis-ci.com/brandseye/brandseyer2.svg?branch=master)](https://travis-ci.com/brandseye/brandseyer2)
-================================================================================================================================================
+BrandsEyeR2
+===========
+
+[![Travis build status](https://travis-ci.com/brandseye/brandseyer2.svg?branch=master)](https://travis-ci.com/brandseye/brandseyer2)
 
 BrandsEyeR2 is a library for handling data in your BrandsEye account.
 

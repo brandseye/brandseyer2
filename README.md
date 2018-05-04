@@ -9,6 +9,12 @@ BrandsEyeR2 is a library for handling data in your BrandsEye account.
 
 This version of the library is still in its early stages, and you should definitely be using the first version instead, which is available from [GitHub](https://github.com/brandseye/brandseyer "The original brandseyer library").
 
+The goal of this version of the library is:
+
+-   to fully support our new API,
+-   to better support the tidy universe of libraries
+-   and to have a test suite.
+
 Code of Conduct
 ===============
 

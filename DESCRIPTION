@@ -16,7 +16,8 @@ Imports:
     jsonlite,
     tibble,
     assertthat,
-    magrittr
+    magrittr,
+    purrr
 RoxygenNote: 6.0.1
 Suggests: 
     testthat,

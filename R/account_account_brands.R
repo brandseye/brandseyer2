@@ -27,20 +27,21 @@ account_brands.brandseyer2.account <- function(account) {
   
   recurse <- function(brands, parent = NA) {
     parents <- brands %>%
-      purrr::map_df(function(brand) {
-        tibble::tibble(
+      map_df(function(brand) {
+        
+        tibble(
           id = brand$id,
           parent = parent,
           name = brand$name,
-          tier = ifelse(is.null(brand$tier), NA, brand$tier),
-          schema = ifelse(is.null(brand$schema), NA, brand$schema),
-          filter = ifelse(is.null(brand$mentionFilter), NA, brand$mentionFilter),
-          sentimentRate = ifelse(is.null(brand$crowdSamplePercentage), NA, brand$crowdSamplePercentage),
-          topicRate = ifelse(is.null(brand$crowdTopicPercentage), NA, brand$crowdTopicPercentage)
+          tier = brand$tier %||% NA,
+          schema = brand$schema %||% NA,
+          filter = brand$mentionFilter %||% NA,
+          sentimentRate = brand$crowdSamplePercentage %||% NA,
+          topicRate = brand$crowdTopicPercentage %||% NA
         )
       })
     
-    dplyr::bind_rows(parents)
+    bind_rows(parents)
   }
   
   recurse(account$brands)

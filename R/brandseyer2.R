@@ -26,10 +26,8 @@
 #' @seealso \code{\link{list_account_codes}} Find out what accounts you have access to.
 #' @seealso \code{\link{account_count}} Query your account.
 #' @seealso \code{\link{account}} Find out about general account queries.
-#'
+#' 
 #' @docType package
 #' @name brandseyer2
 #' @aliases brandseye BrandsEye BrandsEyeR2
-#' @import tibble
-#' @import dplyr
 #' NULL

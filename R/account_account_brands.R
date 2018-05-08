@@ -19,6 +19,36 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#' Fetch account brands
+#'
+#' Fetches brand information, returned as a tibble, for the given
+#' account. It includes brand names, associated phrases, and so on.
+#'
+#' @param account An account object.
+#'
+#' @return A tibble of brand information
+#' @export
+#'
+#' @examples
+#'
+#' \dontrun{
+#' # Fetch brand information
+#' account("TEST01AA") %>%
+#'   account_brands()
+#'
+#' # Find deleted parent brands
+#' account("TEST01AA") %>%
+#'   account_brands() %>%
+#'   dplyr::filter(is.na(parent), deleted)
+#'
+#' # Fetch phrases without using account_phrases
+#' account("TEST01AA") %>%
+#'   account_brands() %>%
+#'   dplyr::select(id, phrases) %>%
+#'   dplyr::rename(brand.id = id) %>%
+#'   tidyr::unnest(phrases) %>%
+#'   dplyr::rename(phrase.id = id)
+#' }
 account_brands <- function(account) {
   UseMethod("account_brands")
 }

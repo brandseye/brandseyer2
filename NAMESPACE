@@ -3,6 +3,7 @@
 export("%>%")
 export(account)
 export(account_api_version)
+export(account_brands)
 export(account_code)
 export(account_name)
 export(authenticate)

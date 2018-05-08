@@ -19,51 +19,50 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' Fetch tags for an account
+
+#' See your account manager
 #'
-#' Fetches tag information information, returned as a tibble, for the given
-#' account.
+#' This provides the name and email address of your
+#' account manager. You can contact this person if you have any questions
+#' concerning your account.
 #'
-#' @param account An account object.
+#' The returned object provides two fields:
 #'
-#' @return A tibble of tag information. Includes the name, namespace, and description of the
-#' tags. Note that topics are stored in the 'topics' namespace.
+#' \enumerate{
+#'   \item \code{$name} Holds your account manager's name
+#'   \item \code{$email} Holds your account manager's email address
+#' }
+#'
+#' @param account An account object
+#'
+#' @return A list containing the name and email address of your account manager.
 #' @export
 #'
 #' @examples
 #' \dontrun{
+#' ac <- account("TEST01AA")
+#' manager <- account_manager(ac)
 #'
-#' # See what namespaces are in your account
-#' account("TEST01AA") %>%
-#'   account_tags() %>%
-#'   dplyr::select(namespace) %>%
-#'   table()
-#'
-#' # Find topics
-#' account("TEST01AA") %>%
-#'   account_tags() %>%
-#'   dplyr::filter(namespace == "topic")
+#' manager$name
+#' manager$email
 #' }
 #'
-account_tags <- function(account) {
-  UseMethod("account_tags")
+account_manager <- function(account) {
+  UseMethod("account_manager")
 }
 
-account_tags.brandseyer2.account <- function(account) {
-  # Handle devtools::check notes
-  children <- NULL
-  is_parent <- NULL
+account_manager.brandseyer2.account <- function(account) {
+  structure(
+    list(name = paste(account$clientService$firstName, account$clientService$lastName),
+         email = account$clientService$email),
+    class = "brandseyer2.manager"
+  )
+}
 
-  account$tags %>%
-    map_df(function(d) {
-      tibble(id = d$id,
-             name = d$name,
-             namespace = d$namespace,
-             description = d$description %||% NA,
-             deleted = d$deleted %||% FALSE
-      )
-    }) %>%
-    mutate(children = map(account$tags, "children"),
-           is_parent = map(children, ~length(.x) > 0)) %>%
-    tidyr::unnest(is_parent)
+print.brandseyer2.manager <- function(manager) {
+  display <- matrix(c(manager$name, manager$email), 2, 1)
+  rownames(display) <- c("name:", "email:")
+  colnames(display) <- ""
+  cat("BrandsEye Client Service")
+  print(display, quote = FALSE)
 }

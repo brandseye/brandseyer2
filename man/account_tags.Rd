@@ -18,7 +18,7 @@ Fetches tag information information, returned as a tibble, for the given
 account.
 }
 \examples{
-\donturn {
+\dontrun{
 
 # See what namespaces are in your account
 account("TEST01AA") \%>\%

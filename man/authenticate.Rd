@@ -38,6 +38,9 @@ authenticate("adfd42345f534fgdfgd")
 }
 
 }
+\seealso{
+\code{\link{account_manager}}
+}
 \author{
 Constance Neeser
 }

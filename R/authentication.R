@@ -40,6 +40,8 @@
 #' If you would like to see who you are currently logged in as, see the
 #' \code{\link{whoami}} function.
 #'
+#' @seealso \code{\link{account_manager}}
+#'
 #' @examples
 #' \dontrun{
 #'

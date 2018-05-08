@@ -22,7 +22,7 @@
 #' Fetch account phrases
 #'
 #' Fetches phrase information, returned as a tibble, for the given
-#' account. All of this information is included in \link{\code{account_brands}}
+#' account. All of this information is included in \code{\link{account_brands}}
 #'
 #' @param account An account object.
 #'
@@ -34,6 +34,11 @@ account_phrases <- function(account) {
 }
 
 account_phrases.brandseyer2.account <- function(account) {
+  # Handle devtools::check notes
+  phrases <- NULL
+  brand.id <- NULL
+  phrase.id <- NULL
+
   account %>%
     account_brands() %>%
     select(id, phrases) %>%

@@ -14,5 +14,5 @@ A tibble of phrase information.
 }
 \description{
 Fetches phrase information, returned as a tibble, for the given
-account. All of this information is included in \link{\code{account_brands}}
+account. All of this information is included in \code{\link{account_brands}}
 }

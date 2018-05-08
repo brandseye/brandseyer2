@@ -28,5 +28,5 @@
 #'
 #' @author Constance Neeser
 read_account <- function(code) {
-  read_mash(paste0("accounts/", code), list(include="tags,brands"))
+  read_mash(paste0("accounts/", code), list(include="tags,brands", includeDeleted="true"))
 }

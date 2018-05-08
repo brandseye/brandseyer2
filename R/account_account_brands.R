@@ -1,5 +1,5 @@
-# Copyright (c) 2018, Brandseye PTY (LTD) 
-# 
+# Copyright (c) 2018, Brandseye PTY (LTD)
+#
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
 # "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
 # distribute, sublicense, and/or sell copies of the Software, and to
 # permit persons to whom the Software is furnished to do so, subject to
 # the following conditions:
-#     
+#
 # The above copyright notice and this permission notice shall be
 # included in all copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 # EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -24,25 +24,43 @@ account_brands <- function(account) {
 }
 
 account_brands.brandseyer2.account <- function(account) {
-  
+
+  # Brands are stored in a recursive tree, so we need a recursive function.
   recurse <- function(brands, parent = NA) {
     parents <- brands %>%
       map_df(function(brand) {
-        
+
+        # Gather the phrases together
+        phrases <- brand$phrases %>%
+          map_df(function(phrase) {
+            tibble(
+              id = phrase$id,
+              query = phrase$q,
+              inactive = phrase$inactive %||% FALSE,
+              deleted = phrase$deleted %||% FALSE
+            )
+          })
+
         tibble(
           id = brand$id,
           parent = parent,
           name = brand$name,
           tier = brand$tier %||% NA,
+          deleted = brand$deleted %||% FALSE,
           schema = brand$schema %||% NA,
           filter = brand$mentionFilter %||% NA,
+          topic_tree_id = brand$topicTreeId %||% NA,
           sentimentRate = brand$crowdSamplePercentage %||% NA,
-          topicRate = brand$crowdTopicPercentage %||% NA
+          topicRate = brand$crowdTopicPercentage %||% NA,
+          phrases = list(phrases)
         )
       })
-    
-    bind_rows(parents)
+
+    children <- brands %>%
+      map(~recurse(.x$children, parent = .x$id))
+
+    bind_rows(parents, children)
   }
-  
+
   recurse(account$brands)
 }

@@ -18,7 +18,8 @@ Imports:
     assertthat,
     magrittr,
     purrr,
-    dplyr
+    dplyr,
+    tidyr
 RoxygenNote: 6.0.1
 Suggests: 
     testthat,

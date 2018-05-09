@@ -21,13 +21,30 @@
 
 #' Access account information
 #'
-#' @param code The account code
+#' @param codes A vector of one or more account codes.
 #'
-#' @return An account object.
+#' @return An account object if one account code is given, or a list of account objects,
+#'         one for each code given, in the same order as the codes were given.
 #' @export
+#' @examples
+#'
+#' \dontrun{
+#'
+#' # Read one account
+#' account("TEST01AA")
+#'
+#' # Read two accounts, returned as a list.
+#' account(c("TEST01AA", "TEST02AA"))
+#' }
 account <- function(code) {
-  read_account(code) %>%
-    create_account()
+  if (length(code) == 1) {
+    read_account(code) %>%
+      create_account()
+  } else {
+    code %>%
+      map(read_account) %>%
+      map(create_account)
+  }
 }
 
 # Given a data list, this will create the appropriate data structure.

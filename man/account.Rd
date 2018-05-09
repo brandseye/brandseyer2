@@ -7,11 +7,23 @@
 account(code)
 }
 \arguments{
-\item{code}{The account code}
+\item{codes}{A vector of one or more account codes.}
 }
 \value{
-An account object.
+An account object if one account code is given, or a list of account objects,
+        one for each code given, in the same order as the codes were given.
 }
 \description{
 Access account information
+}
+\examples{
+
+\dontrun{
+
+# Read one account
+account("TEST01AA")
+
+# Read two accounts, returned as a list.
+account(c("TEST01AA", "TEST02AA"))
+}
 }

@@ -60,7 +60,7 @@ accounts <- account
 create_account <- function(data) {
   storage_class <- paste0("brandseyer2.account.", tolower(data$storage))
   structure(data,
-            class = c("brandseyer2.account", storage_class))
+            class = c(storage_class, "brandseyer2.account"))
 }
 
 # Print out readable account information.

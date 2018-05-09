@@ -12,8 +12,8 @@ v3_data <- list(
 test_that("Can create an account structure", {
   v3_account <<- create_account(v3_data)
   classes <- class(v3_account)
-  expect_equal(classes[1], "brandseyer2.account")
-  expect_equal(classes[2], "brandseyer2.account.v3")
+  expect_equal(classes[1], "brandseyer2.account.v3")
+  expect_equal(classes[2], "brandseyer2.account")
 })
 
 # -----------------------------------------------

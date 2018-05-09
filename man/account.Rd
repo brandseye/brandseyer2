@@ -3,15 +3,22 @@
 \name{account}
 \alias{account}
 \alias{accounts}
-\alias{accounts}
+\alias{account.character}
+\alias{account.brandseyer2.account_list}
 \title{Access account information}
 \usage{
-account(codes)
+account(code)
 
-accounts(codes)
+\method{account}{character}(code)
+
+\method{account}{brandseyer2.account_list}(codes)
 }
 \arguments{
-\item{codes}{A vector of one or more account codes.}
+\item{code}{A vector of one or more account codes.}
+
+\item{codes}{A tibble provided by \code{\link{account_list}}
+
+Get account information from the list of accounts available to from \code{\link{account_list}}}
 }
 \value{
 An account object if one account code is given, or a list of account objects,
@@ -20,9 +27,11 @@ An account object if one account code is given, or a list of account objects,
 \description{
 Access account information
 }
-\section{Functions}{
+\section{Methods (by class)}{
 \itemize{
-\item \code{accounts}: An alternative name for the \code{account}
+\item \code{character}: Fetch counts for one or more account codes given as a character vector.
+
+\item \code{brandseyer2.account_list}: 
 }}
 
 \examples{
@@ -35,4 +44,7 @@ account("TEST01AA")
 # Read two accounts, returned as a list.
 accounts(c("TEST01AA", "TEST02AA"))
 }
+}
+\seealso{
+\code{\link{accounts}} is a synonym for \code{account}.
 }

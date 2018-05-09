@@ -1,5 +1,7 @@
 url: https://brandseye.github.io/brandseyer2/
 
+development:
+  mode: unreleased
 
 reference:
   - title: "Authenticating"

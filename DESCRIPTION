@@ -6,7 +6,9 @@ Description: BrandsEye is an opinion mining company. We track
   people are feeling about this things. This 
   library provides access to the data stored in BrandsEye account directly
   from R itself.
-Authors@R: person("Constance", "Neeser", email = "connie@brandseye.com", role = c("aut", "cre"))
+Authors@R: c(
+  person("Constance", "Neeser", email = "connie@brandseye.com", role = c("aut", "cre")),
+  person("BrandsEye", role = c("cph")))
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

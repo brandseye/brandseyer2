@@ -36,9 +36,10 @@ account_topics.brandseyer2.account <- function(account) {
   # Taking devtools::check() notes in to discussion.
   namespace <- NULL
   children <- NULL
+  name <- NULL
 
   account %>%
     account_tags() %>%
     dplyr::filter(namespace == "topic") %>%
-    dplyr::arrange(desc(map_int(children, length)))
+    dplyr::arrange(desc(map_lgl(children, ~ length(.x) > 0)), name)
 }

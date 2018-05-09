@@ -25,12 +25,17 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="List all accounts available to you. — account_list" />
 
 <meta property="og:description" content="These accounts are provided as a tibble. The tibble can be
 passed to some other functions, such as account,
 to return information from across all accounts available to you." />
 <meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -53,8 +58,12 @@ to return information from across all accounts available to you." />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">brandseyer2</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">brandseyer2</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.1</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -69,8 +78,14 @@ to return information from across all accounts available to you." />
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/brandseye/brandseyer2">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -78,17 +93,21 @@ to return information from across all accounts available to you." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>List all accounts available to you.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/account_list.R'><code>R/account_list.R</code></a></small>
+    <div class="hidden name"><code>account_list.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>These accounts are provided as a tibble. The tibble can be
 passed to some other functions, such as <code><a href='account.html'>account</a></code>,
 to return information from across all accounts available to you.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>account_list</span>()</pre>
         
@@ -128,6 +147,8 @@ to return information from across all accounts available to you.</p>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

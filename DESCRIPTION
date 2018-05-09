@@ -10,6 +10,8 @@ Authors@R: c(
   person("Constance", "Neeser", email = "connie@brandseye.com", role = c("aut", "cre")),
   person("BrandsEye", role = c("cph")))
 License: MIT + file LICENSE
+URL: https://brandseye.github.io/brandseyer2/, https://github.com/brandseye/brandseyer2
+BugReports: https://github.com/brandseye/brandseyer2/issues
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true

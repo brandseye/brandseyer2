@@ -1,5 +1,8 @@
 pandoc: 1.19.2.1
-pkgdown: 0.1.0.9000
-pkgdown_sha: 79d78248dc50a0c845039db6331574fafb1f86de
+pkgdown: 1.0.0
+pkgdown_sha: ~
 articles: []
+urls:
+  reference: https://brandseye.github.io/brandseyer2//reference
+  article: https://brandseye.github.io/brandseyer2//articles
 

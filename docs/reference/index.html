@@ -25,7 +25,12 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Function reference" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -48,8 +53,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">brandseyer2</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">brandseyer2</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.1</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -64,8 +73,14 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/brandseye/brandseyer2">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -73,142 +88,137 @@
       
       </header>
 
-      <div class="row">
-  <div class="col-md-9">
+<div class="row">
+  <div class="contents col-md-9">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.0.1</small>
-      </h1>
+      <h1>Reference</h1>
     </div>
 
-    <div class="contents">
-      <table class="ref-index">
+    <table class="ref-index">
 
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
+    <colgroup>
+      <col class="alias" />
+      <col class="title" />
+    </colgroup>
 
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="account.html">account</a></code> </p>
-          </td>
-          <td><p>Access account information</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="account_api_version.html">account_api_version</a></code> </p>
-          </td>
-          <td><p>Get the version of the API the account uses.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="account_brands.html">account_brands</a></code> </p>
-          </td>
-          <td><p>Fetch account brands</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="account_code.html">account_code</a></code> </p>
-          </td>
-          <td><p>Get an account's code</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="account_list.html">account_list</a></code> </p>
-          </td>
-          <td><p>List all accounts available to you.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="account_manager.html">account_manager</a></code> </p>
-          </td>
-          <td><p>See your account manager</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="account_name.html">account_name</a></code> </p>
-          </td>
-          <td><p>Get an account's name</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="account_phrases.html">account_phrases</a></code> </p>
-          </td>
-          <td><p>Fetch account phrases</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="account_tags.html">account_tags</a></code> </p>
-          </td>
-          <td><p>Fetch tags for an account</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="account_topics.html">account_topics</a></code> </p>
-          </td>
-          <td><p>Fetch topics for an account</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="authenticate.html">authenticate</a></code> </p>
-          </td>
-          <td><p>Authenticate yourself with BrandsEye</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="authentication_filename.html">authentication_filename</a></code> </p>
-          </td>
-          <td><p>Returns the file name in which you can save your authentication information.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="check_errors.html">check_errors</a></code> </p>
-          </td>
-          <td><p>Checking for errors</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="getUserImpl.html">getUserImpl</a></code> </p>
-          </td>
-          <td><p>Low level function to access user information.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="read_account.html">read_account</a></code> </p>
-          </td>
-          <td><p>Read account information</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="read_mash.html">read_mash</a></code> </p>
-          </td>
-          <td><p>Read arbitrary data from mash.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="save_key.html">save_key</a></code> </p>
-          </td>
-          <td><p>Saves a key to file.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="whoami.html">whoami</a></code> </p>
-          </td>
-          <td><p>Returns your current authentication credentials.</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+    <tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        <!--  -->
+        <td>
+          <p><code><a href="account.html">account()</a></code> </p>
+        </td>
+        <td><p>Access account information</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="account_api_version.html">account_api_version()</a></code> </p>
+        </td>
+        <td><p>Get the version of the API the account uses.</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="account_brands.html">account_brands()</a></code> </p>
+        </td>
+        <td><p>Fetch account brands</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="account_code.html">account_code()</a></code> </p>
+        </td>
+        <td><p>Get an account's code</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="account_list.html">account_list()</a></code> </p>
+        </td>
+        <td><p>List all accounts available to you.</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="account_manager.html">account_manager()</a></code> </p>
+        </td>
+        <td><p>See your account manager</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="account_name.html">account_name()</a></code> </p>
+        </td>
+        <td><p>Get an account's name</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="account_phrases.html">account_phrases()</a></code> </p>
+        </td>
+        <td><p>Fetch account phrases</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="account_tags.html">account_tags()</a></code> </p>
+        </td>
+        <td><p>Fetch tags for an account</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="account_topics.html">account_topics()</a></code> </p>
+        </td>
+        <td><p>Fetch topics for an account</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="authenticate.html">authenticate()</a></code> </p>
+        </td>
+        <td><p>Authenticate yourself with BrandsEye</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="authentication_filename.html">authentication_filename()</a></code> </p>
+        </td>
+        <td><p>Returns the file name in which you can save your authentication information.</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="check_errors.html">check_errors()</a></code> </p>
+        </td>
+        <td><p>Checking for errors</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="getUserImpl.html">getUserImpl()</a></code> </p>
+        </td>
+        <td><p>Low level function to access user information.</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="read_account.html">read_account()</a></code> </p>
+        </td>
+        <td><p>Read account information</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="read_mash.html">read_mash()</a></code> </p>
+        </td>
+        <td><p>Read arbitrary data from mash.</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="save_key.html">save_key()</a></code> </p>
+        </td>
+        <td><p>Saves a key to file.</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="whoami.html">whoami()</a></code> </p>
+        </td>
+        <td><p>Returns your current authentication credentials.</p></td>
+      </tr>
+    </tbody>
+    </table>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -230,6 +240,8 @@
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

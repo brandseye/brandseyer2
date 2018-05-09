@@ -66,6 +66,5 @@ account_tags.brandseyer2.account <- function(account) {
       )
     }) %>%
     mutate(children = map(account$tags, "children"),
-           is_parent = map(children, ~length(.x) > 0)) %>%
-    tidyr::unnest(is_parent)
+           is_parent = map_lgl(children, ~length(.x) > 0))
 }

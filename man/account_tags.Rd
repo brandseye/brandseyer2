@@ -33,3 +33,6 @@ account("TEST01AA") \%>\%
 }
 
 }
+\seealso{
+\code{\link{account_topics}} to see just a list of topics.
+}

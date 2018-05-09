@@ -25,6 +25,9 @@
 #'
 #' @return An account object if one account code is given, or a list of account objects,
 #'         one for each code given, in the same order as the codes were given.
+#'
+#' @aliases accounts
+#'
 #' @export
 #' @examples
 #'
@@ -34,18 +37,24 @@
 #' account("TEST01AA")
 #'
 #' # Read two accounts, returned as a list.
-#' account(c("TEST01AA", "TEST02AA"))
+#' accounts(c("TEST01AA", "TEST02AA"))
 #' }
-account <- function(code) {
-  if (length(code) == 1) {
-    read_account(code) %>%
+account <- function(codes) {
+  if (length(codes) == 1) {
+    read_account(codes) %>%
       create_account()
   } else {
-    code %>%
+    codes %>%
       map(read_account) %>%
       map(create_account)
   }
 }
+
+#' @describeIn account
+#'
+#' An alternative name for the \code{account}
+#' @export
+accounts <- account
 
 # Given a data list, this will create the appropriate data structure.
 create_account <- function(data) {

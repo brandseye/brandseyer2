@@ -51,6 +51,9 @@ account_tags <- function(account) {
   UseMethod("account_tags")
 }
 
+#' @describeIn account_tags
+#'
+#' Get tags from an account object.
 account_tags.brandseyer2.account <- function(account) {
   # Handle devtools::check notes
   children <- NULL
@@ -67,4 +70,24 @@ account_tags.brandseyer2.account <- function(account) {
     }) %>%
     mutate(children = map(account$tags, "children"),
            is_parent = map_lgl(children, ~length(.x) > 0))
+}
+
+#' @describeIn account_tags
+#'
+#' Create a table of tags for the list of accounts given
+#'
+#' @param accounts A list of account objects
+#'
+#' @examples
+#'
+#' \dontrun{
+#' accounts(c("TEST01AA", "TEST02AA")) %>%
+#'   account_tags()
+#' }
+account_tags.list <- function(accounts) {
+  accounts %>%
+    map_df(~ .x %>%
+             account_tags %>%
+             mutate(account = account_code(.x)) %>%
+             select(account, everything()))
 }

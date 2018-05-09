@@ -2,12 +2,20 @@
 % Please edit documentation in R/account_account_tags.R
 \name{account_tags}
 \alias{account_tags}
+\alias{account_tags.brandseyer2.account}
+\alias{account_tags.list}
 \title{Fetch tags for an account}
 \usage{
 account_tags(account)
+
+\method{account_tags}{brandseyer2.account}(account)
+
+\method{account_tags}{list}(accounts)
 }
 \arguments{
 \item{account}{An account object.}
+
+\item{accounts}{A list of account objects}
 }
 \value{
 A tibble of tag information. Includes the name, namespace, and description of the
@@ -17,6 +25,13 @@ tags. Note that topics are stored in the 'topics' namespace.
 Fetches tag information information, returned as a tibble, for the given
 account.
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{brandseyer2.account}: Get tags from an account object.
+
+\item \code{list}: Create a table of tags for the list of accounts given
+}}
+
 \examples{
 \dontrun{
 
@@ -32,6 +47,11 @@ account("TEST01AA") \%>\%
   dplyr::filter(namespace == "topic")
 }
 
+
+\dontrun{
+accounts(c("TEST01AA", "TEST02AA")) \%>\%
+  account_tags()
+}
 }
 \seealso{
 \code{\link{account_topics}} to see just a list of topics.

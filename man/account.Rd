@@ -2,9 +2,13 @@
 % Please edit documentation in R/account_account.R
 \name{account}
 \alias{account}
+\alias{accounts}
+\alias{accounts}
 \title{Access account information}
 \usage{
-account(code)
+account(codes)
+
+accounts(codes)
 }
 \arguments{
 \item{codes}{A vector of one or more account codes.}
@@ -16,6 +20,11 @@ An account object if one account code is given, or a list of account objects,
 \description{
 Access account information
 }
+\section{Functions}{
+\itemize{
+\item \code{accounts}: An alternative name for the \code{account}
+}}
+
 \examples{
 
 \dontrun{
@@ -24,6 +33,6 @@ Access account information
 account("TEST01AA")
 
 # Read two accounts, returned as a list.
-account(c("TEST01AA", "TEST02AA"))
+accounts(c("TEST01AA", "TEST02AA"))
 }
 }

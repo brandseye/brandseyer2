@@ -1,1 +1,18 @@
 url: https://brandseye.github.io/brandseyer2/
+
+
+reference:
+  - title: "Authenticating"
+    desc: >
+      Functions for authenticating yourself with BrandsEye, and
+      for discovering who you are.
+    contents:
+      - authenticate
+      - whoami
+  - title: "Accounts"
+    desc: >
+      How to discover what accounts you have access to, and how to
+      ask for information about those accounts.
+    contents:
+      - account
+      - starts_with("account_")

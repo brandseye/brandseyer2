@@ -7,18 +7,15 @@
 \alias{account.brandseyer2.account_list}
 \title{Access account information}
 \usage{
-account(code)
+account(codes)
 
-\method{account}{character}(code)
+\method{account}{character}(codes)
 
 \method{account}{brandseyer2.account_list}(codes)
 }
 \arguments{
-\item{code}{A vector of one or more account codes.}
-
-\item{codes}{A tibble provided by \code{\link{account_list}}
-
-Get account information from the list of accounts available to from \code{\link{account_list}}}
+\item{codes}{A vector of one or more account codes, or possibly
+a tibble, as provided by \code{\link{account_list}}}
 }
 \value{
 An account object if one account code is given, or a list of account objects,
@@ -31,19 +28,19 @@ Access account information
 \itemize{
 \item \code{character}: Fetch counts for one or more account codes given as a character vector.
 
-\item \code{brandseyer2.account_list}: 
+\item \code{brandseyer2.account_list}: Get account information from the list of accounts available to from \code{\link{account_list}}
 }}
 
 \examples{
 
 \dontrun{
 
-# Read one account
-account("TEST01AA")
-
 # Read two accounts, returned as a list.
 accounts(c("TEST01AA", "TEST02AA"))
 }
+
+# Read one account
+brandseyer2::account("TEST01AA")
 }
 \seealso{
 \code{\link{accounts}} is a synonym for \code{account}.

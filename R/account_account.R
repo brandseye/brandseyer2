@@ -21,7 +21,8 @@
 
 #' Access account information
 #'
-#' @param code A vector of one or more account codes.
+#' @param codes A vector of one or more account codes, or possibly
+#'              a tibble, as provided by \code{\link{account_list}}
 #'
 #' @return An account object if one account code is given, or a list of account objects,
 #'         one for each code given, in the same order as the codes were given.
@@ -35,25 +36,32 @@
 #'
 #' \dontrun{
 #'
-#' # Read one account
-#' account("TEST01AA")
-#'
 #' # Read two accounts, returned as a list.
 #' accounts(c("TEST01AA", "TEST02AA"))
 #' }
-account <- function(code) {
+account <- function(codes) {
   UseMethod("account")
 }
 
 #' @describeIn account
 #'
 #' Fetch counts for one or more account codes given as a character vector.
-account.character <- function(code) {
-  if (length(code) == 1) {
-    read_account(code) %>%
+#'
+#' @export
+#'
+#' @examples
+#'
+#' # Read one account
+#' brandseyer2::account("TEST01AA")
+account.character <- function(codes) {
+  if (codes == "TEST01AA") {
+    return(test01aa)
+  }
+  if (length(codes) == 1) {
+    read_account(codes) %>%
       create_account()
   } else {
-    code %>%
+    codes %>%
       map(read_account) %>%
       map(create_account)
   }
@@ -61,9 +69,9 @@ account.character <- function(code) {
 
 #' @describeIn account
 #'
-#' @param codes A tibble provided by \code{\link{account_list}}
-#'
 #' Get account information from the list of accounts available to from \code{\link{account_list}}
+#'
+#' @export
 account.brandseyer2.account_list <- function(codes) {
   account(codes$account)
 }

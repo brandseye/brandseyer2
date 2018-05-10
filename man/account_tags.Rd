@@ -6,16 +6,14 @@
 \alias{account_tags.list}
 \title{Fetch tags for an account}
 \usage{
-account_tags(account)
+account_tags(accounts)
 
-\method{account_tags}{brandseyer2.account}(account)
+\method{account_tags}{brandseyer2.account}(accounts)
 
 \method{account_tags}{list}(accounts)
 }
 \arguments{
-\item{account}{An account object.}
-
-\item{accounts}{A list of account objects}
+\item{accounts}{One or more account objects.}
 }
 \value{
 A tibble of tag information. Includes the name, namespace, and description of the

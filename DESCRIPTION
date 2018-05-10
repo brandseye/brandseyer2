@@ -15,6 +15,8 @@ BugReports: https://github.com/brandseye/brandseyer2/issues
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
+Depends: 
+  R (>= 2.10)
 Imports: 
     httr,
     jsonlite,

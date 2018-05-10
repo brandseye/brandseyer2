@@ -24,7 +24,7 @@
 #' Fetches tag information information, returned as a tibble, for the given
 #' account.
 #'
-#' @param account An account object.
+#' @param accounts One or more account objects.
 #'
 #' @return A tibble of tag information. Includes the name, namespace, and description of the
 #' tags. Note that topics are stored in the 'topics' namespace.
@@ -47,19 +47,21 @@
 #'   dplyr::filter(namespace == "topic")
 #' }
 #'
-account_tags <- function(account) {
+account_tags <- function(accounts) {
   UseMethod("account_tags")
 }
 
 #' @describeIn account_tags
 #'
 #' Get tags from an account object.
-account_tags.brandseyer2.account <- function(account) {
+#'
+#' @export
+account_tags.brandseyer2.account <- function(accounts) {
   # Handle devtools::check notes
   children <- NULL
   is_parent <- NULL
 
-  account$tags %>%
+  accounts$tags %>%
     map_df(function(d) {
       tibble(id = d$id,
              name = d$name,
@@ -76,7 +78,7 @@ account_tags.brandseyer2.account <- function(account) {
 #'
 #' Create a table of tags for the list of accounts given
 #'
-#' @param accounts A list of account objects
+#' @export
 #'
 #' @examples
 #'

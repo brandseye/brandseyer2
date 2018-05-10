@@ -54,17 +54,21 @@ account <- function(codes) {
 #' # Read one account
 #' brandseyer2::account("TEST01AA")
 account.character <- function(codes) {
-  if (codes == "TEST01AA") {
-    return(test01aa)
+  if (length(codes) > 1) {
+    return(map(codes, account))
   }
-  if (length(codes) == 1) {
-    read_account(codes) %>%
-      create_account()
-  } else {
-    codes %>%
-      map(read_account) %>%
-      map(create_account)
+
+  # See if we have any internal data that we can load
+
+  if (startsWith(codes, "TEST") && nchar(codes) == 8) {
+    if (exists(tolower(codes))) {
+      result <- get(tolower(codes))
+      if (!is.null(result)) return(result)
+    }
   }
+
+  read_account(codes) %>%
+    create_account()
 }
 
 #' @describeIn account
@@ -86,11 +90,10 @@ create_account <- function(data) {
             class = c(storage_class, "brandseyer2.account"))
 }
 
-# Print out readable account information.
-print.brandseyer2.account <- function(account, ...) {
+#' @export
+print.brandseyer2.account <- function(x, ...) {
   cat("BrandsEye Account", "\n")
-  cat("Name: ", account_name(account), "\n")
-  cat("Code: ", account_code(account), "\n")
+  cat("Name: ", account_name(x), "\n")
+  cat("Code: ", account_code(x), "\n")
 }
-
 

@@ -2,8 +2,12 @@
 
 S3method(account,brandseyer2.account_list)
 S3method(account,character)
+S3method(account_manager,brandseyer2.account)
 S3method(account_tags,brandseyer2.account)
 S3method(account_tags,list)
+S3method(print,brandseye.auth)
+S3method(print,brandseyer2.account)
+S3method(print,brandseyer2.manager)
 export("%>%")
 export(account)
 export(account_api_version)

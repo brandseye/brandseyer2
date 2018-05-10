@@ -70,7 +70,7 @@ account_tags.brandseyer2.account <- function(accounts) {
              deleted = d$deleted %||% FALSE
       )
     }) %>%
-    mutate(children = map(account$tags, "children"),
+    mutate(children = map(accounts$tags, "children"),
            is_parent = map_lgl(children, ~length(.x) > 0))
 }
 

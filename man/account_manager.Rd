@@ -2,9 +2,12 @@
 % Please edit documentation in R/account_account_manager.R
 \name{account_manager}
 \alias{account_manager}
+\alias{account_manager.brandseyer2.account}
 \title{See your account manager}
 \usage{
 account_manager(account)
+
+\method{account_manager}{brandseyer2.account}(account)
 }
 \arguments{
 \item{account}{An account object}
@@ -25,6 +28,11 @@ The returned object provides two fields:
   \item \code{$email} Holds your account manager's email address
 }
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{brandseyer2.account}: Your manager for a particular account.
+}}
+
 \examples{
 \dontrun{
 ac <- account("TEST01AA")

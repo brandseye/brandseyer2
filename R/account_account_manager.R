@@ -51,6 +51,11 @@ account_manager <- function(account) {
   UseMethod("account_manager")
 }
 
+#' @describeIn account_manager
+#'
+#' Your manager for a particular account.
+#'
+#' @export
 account_manager.brandseyer2.account <- function(account) {
   structure(
     list(name = paste(account$clientService$firstName, account$clientService$lastName),
@@ -59,8 +64,9 @@ account_manager.brandseyer2.account <- function(account) {
   )
 }
 
-print.brandseyer2.manager <- function(manager) {
-  display <- matrix(c(manager$name, manager$email), 2, 1)
+#' @export
+print.brandseyer2.manager <- function(x, ...) {
+  display <- matrix(c(x$name, x$email), 2, 1)
   rownames(display) <- c("name:", "email:")
   colnames(display) <- ""
   cat("BrandsEye Client Service")

@@ -29,3 +29,10 @@ test_that("Can read account name", {
 test_that("Can read account api format", {
   expect_equal(account_api_version(v3_account), "V3")
 })
+
+test_that("Can fetch account tags", {
+  tags <- account("TEST01AA") %>%
+    account_tags()
+
+  expect_equal(nrow(tags), 5)
+})

@@ -19,8 +19,7 @@ knitr::opts_chunk$set(
 
 BrandsEyeR2 is a library for handling data in your BrandsEye account.
 
-[BrandsEye][brandseye] is an opinion mining company. We use public social media
-to discover what people are talking about, and the sentiment towards these topics.
+[BrandsEye][brandseye] is an opinion mining company. We use a proprietary mix of artificial intelligence and crowdsourcing to mine online conversations for sentiment.
 While we have an analytics suite, and reporting service, we also providean extensive API
 to access to the data that makes up your various BrandsEye accounts, and makes it easy to
 access the data outside of the BrandsEye application in any [R][R] analyses that you might want to

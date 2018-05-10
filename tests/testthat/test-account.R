@@ -35,4 +35,21 @@ test_that("Can fetch account tags", {
     account_tags()
 
   expect_equal(nrow(tags), 5)
+  expect_warning(tags$account)
+})
+
+test_that("Can fetch tags for multiple accounts", {
+  tags <- accounts(c("TEST01AA", "TEST02AA")) %>%
+    account_tags()
+
+  expect_equal(nrow(tags), 10)
+  expect_equal(length(tags$account), 10)
+})
+
+test_that("Can read an account's manager", {
+  manager <- account("TEST01AA") %>%
+    account_manager()
+
+  expect_equal(manager$name, "Your Manager")
+  expect_equal(manager$email, "noreply@brandseye.com")
 })

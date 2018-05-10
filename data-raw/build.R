@@ -6,6 +6,11 @@ test01aa_data <- list(
   storage = "V4",
   name = "Test 1",
   code = "TEST01AA",
+  clientService = list(
+    email = "noreply@brandseye.com",
+    firstName = "Your",
+    lastName = "Manager"
+  ),
   tags = list(
     list(id = 1,
          name = "tag1",

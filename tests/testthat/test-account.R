@@ -62,6 +62,14 @@ test_that("Can fetch topics for an account", {
   expect_equal(length(unlist(parent$children)), 2)
 })
 
+test_that("Can fetch topics for multiple accounts", {
+  topics <- accounts(c("TEST01AA", "TEST02AA")) %>%
+    account_topics()
+
+  expect_equal(nrow(topics), 6)
+  expect_equal(length(topics$account), 6)
+})
+
 test_that("Can read an account's manager", {
   manager <- account("TEST01AA") %>%
     account_manager()

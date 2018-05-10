@@ -2,12 +2,18 @@
 % Please edit documentation in R/account_account_topics.R
 \name{account_topics}
 \alias{account_topics}
+\alias{account_topics.brandseyer2.account}
+\alias{account_topics.list}
 \title{Fetch topics for an account}
 \usage{
-account_topics(account)
+account_topics(accounts)
+
+\method{account_topics}{brandseyer2.account}(accounts)
+
+\method{account_topics}{list}(accounts)
 }
 \arguments{
-\item{account}{An account object.}
+\item{accounts}{One or more account objects.}
 }
 \value{
 A tibble of topic information. Includes the name and topic description.
@@ -15,3 +21,10 @@ A tibble of topic information. Includes the name and topic description.
 \description{
 Fetches the topics that are used in an account.
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{brandseyer2.account}: Get topics for a single account.
+
+\item \code{list}: Get topics for a list of accounts
+}}
+

@@ -23,23 +23,41 @@
 #'
 #' Fetches the topics that are used in an account.
 #'
-#' @param account An account object.
+#' @param accounts One or more account objects.
 #'
 #' @return A tibble of topic information. Includes the name and topic description.
 #' @export
 #'
-account_topics <- function(account) {
+account_topics <- function(accounts) {
   UseMethod("account_topics")
 }
 
-account_topics.brandseyer2.account <- function(account) {
+#' @describeIn account_topics
+#'
+#' Get topics for a single account.
+#'
+#' @export
+account_topics.brandseyer2.account <- function(accounts) {
   # Taking devtools::check() notes in to discussion.
   namespace <- NULL
   children <- NULL
   name <- NULL
 
-  account %>%
+  accounts %>%
     account_tags() %>%
     dplyr::filter(namespace == "topic") %>%
     dplyr::arrange(desc(map_lgl(children, ~ length(.x) > 0)), name)
+}
+
+#' @describeIn account_topics
+#'
+#' Get topics for a list of accounts
+#'
+#' @export
+account_topics.list <- function(accounts) {
+  accounts %>%
+    map_df(~ .x %>%
+             account_topics %>%
+             mutate(account = account_code(.x)) %>%
+             select(account, everything()))
 }

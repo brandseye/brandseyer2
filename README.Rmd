@@ -34,6 +34,25 @@ The goal of this version of the library is:
 - to better support the tidy universe of libraries
 - and to have a test suite.
 
+# Installing
+
+You can install the development version of this library using the `devtools` package:
+
+```{r eval=FALSE}
+# Install the devtools package
+install.packages("devtools")
+library(devtools)
+
+# Install the library
+install_github("brandseye/brandseyer2")
+
+# Load the library
+library(brandseyer2)
+```
+
+When using the development version from github, you should make sure that the build
+is passing before installing it. Check the build badge on the library's github page.
+
 # Code of Conduct
 
 Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).

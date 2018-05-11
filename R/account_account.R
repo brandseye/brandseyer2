@@ -35,11 +35,8 @@
 #' @export
 #' @examples
 #'
-#' \dontrun{
-#'
 #' # Read two accounts, returned as a list.
 #' accounts(c("TEST01AA", "TEST02AA"))
-#' }
 account <- function(codes) {
   UseMethod("account")
 }
@@ -53,7 +50,7 @@ account <- function(codes) {
 #' @examples
 #'
 #' # Read one account
-#' brandseyer2::account("TEST01AA")
+#' account("TEST01AA")
 account.character <- function(codes) {
   if (length(codes) > 1) {
     return(map(codes, account))

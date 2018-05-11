@@ -33,14 +33,11 @@ Access account information
 
 \examples{
 
-\dontrun{
-
 # Read two accounts, returned as a list.
 accounts(c("TEST01AA", "TEST02AA"))
-}
 
 # Read one account
-brandseyer2::account("TEST01AA")
+account("TEST01AA")
 }
 \seealso{
 \code{\link{accounts}} is a synonym for \code{account}.

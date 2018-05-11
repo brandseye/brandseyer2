@@ -118,6 +118,27 @@ test02aa_data <- list(
          name = "Child topic 2",
          namespace = "topic",
          description = "I am also a child")
+  ),
+  brands = list(
+    list(
+      id = 100,
+      name = "The Best of Brands",
+      tier = "TOPICS",
+      crowdSamplePercentage = 0.8,
+      crowdTopicPercentage = 1,
+      description = "Who the Brand‽",
+      topicTreeId = 1001,
+      phrases = list(
+        list(
+          id = 101,
+          q = "brander"
+        ),
+        list(
+          id = 102,
+          q = "branded"
+        )
+      )
+    )
   )
 )
 

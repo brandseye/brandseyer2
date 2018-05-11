@@ -3,6 +3,7 @@
 S3method(account,brandseyer2.account_list)
 S3method(account,character)
 S3method(account_brands,brandseyer2.account)
+S3method(account_brands,list)
 S3method(account_manager,brandseyer2.account)
 S3method(account_phrases,brandseyer2.account)
 S3method(account_tags,brandseyer2.account)

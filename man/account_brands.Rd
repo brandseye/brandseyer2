@@ -3,14 +3,17 @@
 \name{account_brands}
 \alias{account_brands}
 \alias{account_brands.brandseyer2.account}
+\alias{account_brands.list}
 \title{Fetch account brands}
 \usage{
-account_brands(account)
+account_brands(accounts)
 
-\method{account_brands}{brandseyer2.account}(account)
+\method{account_brands}{brandseyer2.account}(accounts)
+
+\method{account_brands}{list}(accounts)
 }
 \arguments{
-\item{account}{An account object.}
+\item{accounts}{One or more account objects.}
 }
 \value{
 A tibble of brand information
@@ -22,6 +25,8 @@ account. It includes brand names, associated phrases, and so on.
 \section{Methods (by class)}{
 \itemize{
 \item \code{brandseyer2.account}: Read brands for only a single account
+
+\item \code{list}: Create a table of brands for the list of accounts given
 }}
 
 \examples{
@@ -44,4 +49,7 @@ account("TEST01AA") \%>\%
   tidyr::unnest(phrases) \%>\%
   dplyr::rename(phrase.id = id)
 }
+
+accounts(c("TEST01AA", "TEST02AA")) \%>\%
+  account_brands()
 }

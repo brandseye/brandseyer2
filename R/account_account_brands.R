@@ -24,7 +24,7 @@
 #' Fetches brand information, returned as a tibble, for the given
 #' account. It includes brand names, associated phrases, and so on.
 #'
-#' @param account An account object.
+#' @param accounts One or more account objects.
 #'
 #' @return A tibble of brand information
 #' @export
@@ -49,7 +49,7 @@
 #'   tidyr::unnest(phrases) %>%
 #'   dplyr::rename(phrase.id = id)
 #' }
-account_brands <- function(account) {
+account_brands <- function(accounts) {
   UseMethod("account_brands")
 }
 
@@ -58,7 +58,7 @@ account_brands <- function(account) {
 #' Read brands for only a single account
 #'
 #' @export
-account_brands.brandseyer2.account <- function(account) {
+account_brands.brandseyer2.account <- function(accounts) {
 
   # Brands are stored in a recursive tree, so we need a recursive function.
   recurse <- function(brands, parent = NA) {
@@ -97,5 +97,24 @@ account_brands.brandseyer2.account <- function(account) {
     bind_rows(parents, children)
   }
 
-  recurse(account$brands)
+  recurse(accounts$brands)
 }
+
+#' @describeIn account_brands
+#'
+#' Create a table of brands for the list of accounts given
+#'
+#' @export
+#'
+#' @examples
+#'
+#' accounts(c("TEST01AA", "TEST02AA")) %>%
+#'   account_brands()
+account_brands.list <- function(accounts) {
+  accounts %>%
+    map_df(~ .x %>%
+             account_brands %>%
+             mutate(account = account_code(.x)) %>%
+             select(account, everything()))
+}
+

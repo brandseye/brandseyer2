@@ -17,4 +17,5 @@ reference:
       ask for information about those accounts.
     contents:
       - account
+      - is.account
       - starts_with("account_")

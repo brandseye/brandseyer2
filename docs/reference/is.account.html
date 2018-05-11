@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Access account information — account • brandseyer2</title>
+<title>See if an object is a BrandsEyeR account object. — is.account • brandseyer2</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,9 +28,9 @@
 
 
 
-<meta property="og:title" content="Access account information — account" />
+<meta property="og:title" content="See if an object is a BrandsEyeR account object. — is.account" />
 
-<meta property="og:description" content="Access account information" />
+<meta property="og:description" content="See if an object is a BrandsEyeR account object." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -94,70 +94,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Access account information</h1>
-    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/account_account.R'><code>R/account_account.R</code></a></small>
-    <div class="hidden name"><code>account.Rd</code></div>
+    <h1>See if an object is a BrandsEyeR account object.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/account_is_account.R'><code>R/account_is_account.R</code></a></small>
+    <div class="hidden name"><code>is.account.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Access account information</p>
+    <p>See if an object is a BrandsEyeR account object.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>account</span>(<span class='no'>codes</span>)
-
-<span class='co'># S3 method for character</span>
-<span class='fu'>account</span>(<span class='no'>codes</span>)
-
-<span class='co'># S3 method for brandseyer2.account_list</span>
-<span class='fu'>account</span>(<span class='no'>codes</span>)</pre>
+    <pre class="usage"><span class='fu'>is.account</span>(<span class='no'>x</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>codes</th>
-      <td><p>A vector of one or more account codes, or possibly
-a tibble, as provided by <code><a href='account_list.html'>account_list</a></code></p></td>
+      <th>x</th>
+      <td><p>A possible BrandsEyeR account object.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An account object if one account code is given, or a list of account objects,
-        one for each code given, in the same order as the codes were given.</p>
-    
-    <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
-
-    <ul>
-<li><p><code>character</code>: Fetch counts for one or more account codes given as a character vector.</p></li>
-<li><p><code>brandseyer2.account_list</code>: Get account information from the list of accounts available to from <code><a href='account_list.html'>account_list</a></code></p></li>
-</ul>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code>accounts</code> is a synonym for <code>account</code>.</p>
-<p><code>is.account</code> to test if an object is an account object.</p></div>
+    <p>TRUE if this is an account object, otherwise false.</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># Read two accounts, returned as a list.</span>
-<span class='fu'>accounts</span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>))</div><div class='output co'>#&gt; [[1]]
-#&gt; BrandsEye Account 
-#&gt;   Name:  Test 1 
-#&gt;   Code:  TEST01AA 
-#&gt; 
-#&gt; [[2]]
-#&gt; BrandsEye Account 
-#&gt;   Name:  Test 2 — Best Account 
-#&gt;   Code:  TEST02AA 
-#&gt; </div><div class='input'>
-<span class='co'># Read one account</span>
-<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>)</div><div class='output co'>#&gt; BrandsEye Account 
-#&gt;   Name:  Test 1 
-#&gt;   Code:  TEST01AA </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -165,13 +128,7 @@ a tibble, as provided by <code><a href='account_list.html'>account_list</a></cod
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#methods-by-class-">Methods (by class)</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>

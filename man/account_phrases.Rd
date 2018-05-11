@@ -3,14 +3,17 @@
 \name{account_phrases}
 \alias{account_phrases}
 \alias{account_phrases.brandseyer2.account}
+\alias{account_phrases.list}
 \title{Fetch account phrases}
 \usage{
-account_phrases(account)
+account_phrases(accounts)
 
-\method{account_phrases}{brandseyer2.account}(account)
+\method{account_phrases}{brandseyer2.account}(accounts)
+
+\method{account_phrases}{list}(accounts)
 }
 \arguments{
-\item{account}{An account object.}
+\item{accounts}{One or more account objects.}
 }
 \value{
 A tibble of phrase information.
@@ -22,5 +25,12 @@ account. All of this information is included in \code{\link{account_brands}}
 \section{Methods (by class)}{
 \itemize{
 \item \code{brandseyer2.account}: Read phrases for only a single account
+
+\item \code{list}: Create a table of phrases for the list of accounts given
 }}
 
+\examples{
+
+accounts(c("TEST01AA", "TEST02AA")) \%>\%
+  account_phrases()
+}

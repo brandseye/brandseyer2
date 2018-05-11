@@ -24,12 +24,12 @@
 #' Fetches phrase information, returned as a tibble, for the given
 #' account. All of this information is included in \code{\link{account_brands}}
 #'
-#' @param account An account object.
+#' @param accounts One or more account objects.
 #'
 #' @return A tibble of phrase information.
 #' @export
 #'
-account_phrases <- function(account) {
+account_phrases <- function(accounts) {
   UseMethod("account_phrases")
 }
 
@@ -38,17 +38,38 @@ account_phrases <- function(account) {
 #' Read phrases for only a single account
 #'
 #' @export
-account_phrases.brandseyer2.account <- function(account) {
+account_phrases.brandseyer2.account <- function(accounts) {
   # Handle devtools::check notes
   phrases <- NULL
   brand.id <- NULL
   phrase.id <- NULL
 
-  account %>%
-    account_brands() %>%
+  brands <- accounts %>% account_brands()
+  if (nrow(brands) == 0) return(tibble())
+
+  brands %>%
     select(id, phrases) %>%
     rename(brand.id = id) %>%
     unnest(phrases) %>%
     rename(phrase.id = id) %>%
     select(phrase.id, everything())
+}
+
+
+#' @describeIn account_phrases
+#'
+#' Create a table of phrases for the list of accounts given
+#'
+#' @export
+#'
+#' @examples
+#'
+#' accounts(c("TEST01AA", "TEST02AA")) %>%
+#'   account_phrases()
+account_phrases.list <- function(accounts) {
+  accounts %>%
+    map_df(~ .x %>%
+             account_phrases() %>%
+             mutate(account = account_code(.x)) %>%
+             select(account, everything()))
 }

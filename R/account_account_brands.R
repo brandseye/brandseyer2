@@ -113,7 +113,7 @@ account_brands.brandseyer2.account <- function(accounts) {
 account_brands.list <- function(accounts) {
   accounts %>%
     map_df(~ .x %>%
-             account_brands %>%
+             account_brands() %>%
              mutate(account = account_code(.x)) %>%
              select(account, everything()))
 }

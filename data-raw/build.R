@@ -33,11 +33,64 @@ test01aa_data <- list(
          name = "Child topic 2",
          namespace = "topic",
          description = "I am also a child")
+  ),
+  brands = list(
+    list(
+      id = 1,
+      name = "Your Brand Here",
+      tier = "ESSENTIALS",
+      crowdSamplePercentage = 0,
+      crowdTopicPercentage = 0,
+      description = "Your Brand is the Best of Brands™",
+      phrases = list(
+        list(
+          id = 1,
+          q = "brand",
+          deleted = TRUE
+        ),
+        list(
+          id = 2,
+          q = "your brand"
+        )
+      )
+    ),
+    list(
+      id = 2,
+      name = "Sibling Brand",
+      mentionFilter = "location is 'ZA'",
+      tier = "TOPICS",
+      crowdSamplePercentage = 0.8,
+      crowdTopicPercentage = 0.5,
+      description = "Where your brand goes, this brand follows",
+      schema = "b00000001",
+      topicTreeId = 100,
+      phrases = list(
+        list(
+          id = 3,
+          q = "sibling"
+        ),
+        list(
+          id = 4,
+          q = "oh wow",
+          inactive = TRUE
+        )
+      ),
+      children = list(
+        list(
+          id = 3,
+          name = "Niece Brand",
+          phrases = list(
+            list(
+              id = 5,
+              q = "niece"
+            )
+          )
+        )
+      )
+    )
   )
 )
-
 test01aa <- brandseyer2:::create_account(test01aa_data)
-
 
 test02aa_data <- list(
   storage = "V2",

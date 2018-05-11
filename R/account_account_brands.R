@@ -53,6 +53,11 @@ account_brands <- function(account) {
   UseMethod("account_brands")
 }
 
+#' @describeIn account_brands
+#'
+#' Read brands for only a single account
+#'
+#' @export
 account_brands.brandseyer2.account <- function(account) {
 
   # Brands are stored in a recursive tree, so we need a recursive function.

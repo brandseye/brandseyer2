@@ -2,9 +2,12 @@
 % Please edit documentation in R/account_account_brands.R
 \name{account_brands}
 \alias{account_brands}
+\alias{account_brands.brandseyer2.account}
 \title{Fetch account brands}
 \usage{
 account_brands(account)
+
+\method{account_brands}{brandseyer2.account}(account)
 }
 \arguments{
 \item{account}{An account object.}
@@ -16,6 +19,11 @@ A tibble of brand information
 Fetches brand information, returned as a tibble, for the given
 account. It includes brand names, associated phrases, and so on.
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{brandseyer2.account}: Read brands for only a single account
+}}
+
 \examples{
 
 \dontrun{

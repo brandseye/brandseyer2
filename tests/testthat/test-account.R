@@ -77,3 +77,20 @@ test_that("Can read an account's manager", {
   expect_equal(manager$name, "Your Manager")
   expect_equal(manager$email, "noreply@brandseye.com")
 })
+
+test_that("Can read brand information for an account", {
+  brands <- account("TEST01AA") %>%
+    account_brands()
+
+  expect_equal(nrow(brands), 3)
+  expect_equal(brands$id, 1:3)
+})
+
+test_that("Can read phrase information for an account", {
+  phrases <- account("TEST01AA") %>%
+    account_phrases()
+
+  expect_equal(nrow(phrases), 5)
+  expect_equal(phrases$phrase.id, 1:5)
+  expect_equal(phrases$brand.id, c(1, 1, 2, 2, 3))
+})

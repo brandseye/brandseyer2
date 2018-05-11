@@ -33,6 +33,11 @@ account_phrases <- function(account) {
   UseMethod("account_phrases")
 }
 
+#' @describeIn account_phrases
+#'
+#' Read phrases for only a single account
+#'
+#' @export
 account_phrases.brandseyer2.account <- function(account) {
   # Handle devtools::check notes
   phrases <- NULL

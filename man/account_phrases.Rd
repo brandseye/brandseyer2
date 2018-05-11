@@ -2,9 +2,12 @@
 % Please edit documentation in R/account_account_phrases.R
 \name{account_phrases}
 \alias{account_phrases}
+\alias{account_phrases.brandseyer2.account}
 \title{Fetch account phrases}
 \usage{
 account_phrases(account)
+
+\method{account_phrases}{brandseyer2.account}(account)
 }
 \arguments{
 \item{account}{An account object.}
@@ -16,3 +19,8 @@ A tibble of phrase information.
 Fetches phrase information, returned as a tibble, for the given
 account. All of this information is included in \code{\link{account_brands}}
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{brandseyer2.account}: Read phrases for only a single account
+}}
+

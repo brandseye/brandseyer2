@@ -107,14 +107,20 @@ account. All of this information is included in <code><a href='account_brands.ht
     
     </div>
 
-    <pre class="usage"><span class='fu'>account_phrases</span>(<span class='no'>account</span>)</pre>
+    <pre class="usage"><span class='fu'>account_phrases</span>(<span class='no'>accounts</span>)
+
+<span class='co'># S3 method for brandseyer2.account</span>
+<span class='fu'>account_phrases</span>(<span class='no'>accounts</span>)
+
+<span class='co'># S3 method for list</span>
+<span class='fu'>account_phrases</span>(<span class='no'>accounts</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>account</th>
-      <td><p>An account object.</p></td>
+      <th>accounts</th>
+      <td><p>One or more account objects.</p></td>
     </tr>
     </table>
     
@@ -122,7 +128,25 @@ account. All of this information is included in <code><a href='account_brands.ht
 
     <p>A tibble of phrase information.</p>
     
+    <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
 
+    <ul>
+<li><p><code>brandseyer2.account</code>: Read phrases for only a single account</p></li>
+<li><p><code>list</code>: Create a table of phrases for the list of accounts given</p></li>
+</ul>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'>account_phrases</span>()</div><div class='output co'>#&gt; # A tibble: 5 x 6
+#&gt;   account  phrase.id brand.id query      inactive deleted
+#&gt;   &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;lgl&gt;  
+#&gt; 1 TEST01AA         1        1 brand      FALSE    TRUE   
+#&gt; 2 TEST01AA         2        1 your brand FALSE    FALSE  
+#&gt; 3 TEST01AA         3        2 sibling    FALSE    FALSE  
+#&gt; 4 TEST01AA         4        2 oh wow     TRUE     FALSE  
+#&gt; 5 TEST01AA         5        3 niece      FALSE    FALSE  </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -130,7 +154,11 @@ account. All of this information is included in <code><a href='account_brands.ht
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+
+      <li><a href="#methods-by-class-">Methods (by class)</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

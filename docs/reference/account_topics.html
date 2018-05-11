@@ -105,20 +105,33 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>account_topics</span>(<span class='no'>account</span>)</pre>
+    <pre class="usage"><span class='fu'>account_topics</span>(<span class='no'>accounts</span>)
+
+<span class='co'># S3 method for brandseyer2.account</span>
+<span class='fu'>account_topics</span>(<span class='no'>accounts</span>)
+
+<span class='co'># S3 method for list</span>
+<span class='fu'>account_topics</span>(<span class='no'>accounts</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>account</th>
-      <td><p>An account object.</p></td>
+      <th>accounts</th>
+      <td><p>One or more account objects.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A tibble of topic information. Includes the name and topic description.</p>
+    
+    <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
+
+    <ul>
+<li><p><code>brandseyer2.account</code>: Get topics for a single account.</p></li>
+<li><p><code>list</code>: Get topics for a list of accounts</p></li>
+</ul>
     
 
   </div>
@@ -128,6 +141,8 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#methods-by-class-">Methods (by class)</a></li>
           </ul>
 
   </div>

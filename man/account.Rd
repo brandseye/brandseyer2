@@ -44,4 +44,6 @@ brandseyer2::account("TEST01AA")
 }
 \seealso{
 \code{\link{accounts}} is a synonym for \code{account}.
+
+\code{\link{is.account}} to test if an object is an account object.
 }

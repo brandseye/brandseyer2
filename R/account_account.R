@@ -30,6 +30,7 @@
 #' @aliases accounts
 #'
 #' @seealso \code{\link{accounts}} is a synonym for \code{account}.
+#' @seealso \code{\link{is.account}} to test if an object is an account object.
 #'
 #' @export
 #' @examples
@@ -102,6 +103,5 @@ format.brandseyer2.account <- function(x, ...) {
     " Name: ", account_name(x), "\n",
     " Code: ", account_code(x)
   ))
-
 }
 

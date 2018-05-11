@@ -78,8 +78,13 @@ authenticate <- function(key, save = FALSE) {
 
 #' @export
 print.brandseye.auth <- function(x, ...) {
-  cat("login: ", x$name, "\n")
-  cat("email: ", x$email, "\n")
+  cat(format(x), "\n")
+}
+
+#' @export
+format.brandseye.auth <- function(x, ...) {
+  format(paste0("login: ", x$name, "\n",
+         "email: ", x$email))
 }
 
 #' Returns your current authentication credentials.

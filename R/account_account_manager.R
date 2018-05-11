@@ -66,9 +66,15 @@ account_manager.brandseyer2.account <- function(account) {
 
 #' @export
 print.brandseyer2.manager <- function(x, ...) {
+  cat(format(x), "\n")
+}
+
+#' @export
+format.brandseyer2.manager <- function(x, ...) {
   display <- matrix(c(x$name, x$email), 2, 1)
-  rownames(display) <- c("name:", "email:")
-  colnames(display) <- ""
-  cat("BrandsEye Client Service")
-  print(display, quote = FALSE)
+  format(paste0(
+    "BrandsEye Client Service\n",
+    " name: ", x$name, "\n",
+    " email: ", x$email
+  ))
 }

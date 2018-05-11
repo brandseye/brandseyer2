@@ -92,8 +92,16 @@ create_account <- function(data) {
 
 #' @export
 print.brandseyer2.account <- function(x, ...) {
-  cat("BrandsEye Account", "\n")
-  cat("Name: ", account_name(x), "\n")
-  cat("Code: ", account_code(x), "\n")
+  cat(format(x), "\n")
+}
+
+#' @export
+format.brandseyer2.account <- function(x, ...) {
+  format(paste(
+    "BrandsEye Account", "\n",
+    " Name: ", account_name(x), "\n",
+    " Code: ", account_code(x)
+  ))
+
 }
 

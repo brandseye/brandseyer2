@@ -22,3 +22,12 @@ reference:
       - account
       - is.account
       - starts_with("account_")
+  - title: "Accessing mentions"
+    desc: >
+      Mentions make up the raw data that we store for you. Sentiment
+      information and topic information are stored against individual
+      mentions. These functions allow you to query for particular
+      kinds of mentions using a filter language, to count mentions
+      matching particular parameters, and to update the information
+      stored on mentions.
+

@@ -6,15 +6,18 @@ development:
 reference:
   - title: "Authenticating"
     desc: >
-      Functions for authenticating yourself with BrandsEye, and
-      for discovering who you are.
+      Authentication is the first thing that you should do when
+      using the library. It allows you to identify yourself
+      with our API, and lets you know what accounts and brands you have
+      access to.
     contents:
       - authenticate
       - whoami
   - title: "Accounts"
     desc: >
-      How to discover what accounts you have access to, and how to
-      ask for information about those accounts.
+      These functions allow you to determine what accounts you have
+      access to, and to query information about them, such as the brands
+      that you are tracking, and the tags and topics in each account.
     contents:
       - account
       - is.account

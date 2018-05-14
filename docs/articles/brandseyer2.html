@@ -81,17 +81,57 @@
     
 <div id="who-is-brandseye-and-what-is-brandseyer2" class="section level1">
 <h1 class="hasAnchor">
-<a href="#who-is-brandseye-and-what-is-brandseyer2" class="anchor"></a>Who is BrandsEye and what is BrandsEyeR2?</h1>
+<a href="#who-is-brandseye-and-what-is-brandseyer2" class="anchor"></a>Who is BrandsEye and what is brandseyer2?</h1>
 </div>
 <div id="authenticating-yourself" class="section level1">
 <h1 class="hasAnchor">
 <a href="#authenticating-yourself" class="anchor"></a>Authenticating yourself</h1>
-<p>Using the authenticate function.</p>
+<p>brandseyer2 provides API access to the BrandsEye API. In order to identify who you are, we provide our users with API keys on request. API keys are strings of randomly generated characters and numbers — they are difficult to guess, and very secure.</p>
+<p>You can contact your account manager to get your API key. Once you have your API key, the first step to using brandseyer2 is to authenticate yourself, which you can do as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(brandseyer2)
+<span class="kw"><a href="../reference/authenticate.html">authenticate</a></span>(<span class="dt">key =</span> <span class="st">"&lt;my api key&gt;"</span>)</code></pre></div>
+<p>This will let brandseyer2 know who you are. If you don’t want to type this in every time that you use brandseyer2, you can tell brandseyer2 to save your api key.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/authenticate.html">authenticate</a></span>(<span class="dt">key =</span> <span class="st">"&lt;my api key&gt;"</span>, <span class="dt">save =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>Now, every time the library is loaded, brandseyer2 will immediately start using the saved API key.</p>
+<p>Along with the <code>authenticate</code> function, you can also find out whose API key brandseyer2 is using:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/whoami.html">whoami</a></span>()
+<span class="co">#&gt; login:  Constance Neeser </span>
+<span class="co">#&gt; email:  noreply@brandseye.com</span></code></pre></div>
+<p>Now that you have authenticated yourself, you can begin to access your account information and mentions.</p>
+<div id="protecting-your-api-key" class="section level2">
+<h2 class="hasAnchor">
+<a href="#protecting-your-api-key" class="anchor"></a>Protecting your API key</h2>
+<ul>
+<li>Don’t share with others</li>
+<li>Don’t submit them to source code repositories.</li>
+</ul>
+</div>
+<div id="what-to-do-if-things-go-bad" class="section level2">
+<h2 class="hasAnchor">
+<a href="#what-to-do-if-things-go-bad" class="anchor"></a>What to do if things go bad?</h2>
+<p>Contact your account manager. They’ll provide you with a new API key. Your previous API key will stop working.</p>
+</div>
 </div>
 <div id="working-with-accounts" class="section level1">
 <h1 class="hasAnchor">
 <a href="#working-with-accounts" class="anchor"></a>Working with accounts</h1>
-<p>Seeing what accounts you have access to. Seeing brands and topics and tags. Creating new tags.</p>
+<p>What is an account?</p>
+<div id="what-accounts-do-i-have-access-to" class="section level2">
+<h2 class="hasAnchor">
+<a href="#what-accounts-do-i-have-access-to" class="anchor"></a>What accounts do I have access to?</h2>
+</div>
+<div id="brands" class="section level2">
+<h2 class="hasAnchor">
+<a href="#brands" class="anchor"></a>Brands</h2>
+</div>
+<div id="tags" class="section level2">
+<h2 class="hasAnchor">
+<a href="#tags" class="anchor"></a>Tags</h2>
+</div>
+<div id="topics" class="section level2">
+<h2 class="hasAnchor">
+<a href="#topics" class="anchor"></a>Topics</h2>
+</div>
 </div>
   </div>
 
@@ -100,9 +140,21 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#who-is-brandseye-and-what-is-brandseyer2">Who is BrandsEye and what is BrandsEyeR2?</a></li>
-      <li><a href="#authenticating-yourself">Authenticating yourself</a></li>
-      <li><a href="#working-with-accounts">Working with accounts</a></li>
+<li><a href="#who-is-brandseye-and-what-is-brandseyer2">Who is BrandsEye and what is brandseyer2?</a></li>
+      <li>
+<a href="#authenticating-yourself">Authenticating yourself</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#protecting-your-api-key">Protecting your API key</a></li>
+      <li><a href="#what-to-do-if-things-go-bad">What to do if things go bad?</a></li>
+      </ul>
+</li>
+      <li>
+<a href="#working-with-accounts">Working with accounts</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#what-accounts-do-i-have-access-to">What accounts do I have access to?</a></li>
+      <li><a href="#brands">Brands</a></li>
+      <li><a href="#tags">Tags</a></li>
+      <li><a href="#topics">Topics</a></li>
+      </ul>
+</li>
       </ul>
 </div>
       </div>

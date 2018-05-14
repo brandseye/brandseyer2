@@ -14,15 +14,71 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+library(brandseyer2)
+
 ```
 
 # Who is BrandsEye and what is brandseyer2?
 
 # Authenticating yourself
 
-Using the authenticate function. 
+brandseyer2 provides API access to the BrandsEye API. In order to identify who you 
+are, we provide our users with API keys on request. API keys are strings of randomly
+generated characters and numbers — they are difficult to guess, and very secure. 
+
+You can contact your account manager to get your API key. Once you have your API key,
+the first step to using brandseyer2 is to authenticate yourself, which you can
+do as follows:
+
+```{r eval=FALSE}
+library(brandseyer2)
+authenticate(key = "<my api key>")
+```
+
+This will let brandseyer2 know who you are. If you don't want to type this in
+every time that you use brandseyer2, you can tell brandseyer2 to save your api
+key.
+
+```{r eval=FALSE}
+authenticate(key = "<my api key>", save = TRUE)
+```
+
+Now, every time the library is loaded, brandseyer2 will immediately start using
+the saved API key.
+
+Along with the `authenticate` function, you can also find out whose API key
+brandseyer2 is using:
+
+```{r eval=FALSE}
+whoami()
+#> login:  Constance Neeser 
+#> email:  noreply@brandseye.com
+```
+
+Now that you have authenticated yourself, you can begin to access your
+account information and mentions.
+
+## Protecting your API key
+
+- Don't share with others
+- Don't submit them to source code repositories.
+
+## What to do if things go bad?
+
+Contact your account manager. They'll provide you with a new API key.
+Your previous API key will stop working. 
 
 # Working with accounts
 
-Seeing what accounts you have access to. Seeing brands and topics and tags. Creating
-new tags.
+What is an account?
+
+## What accounts do I have access to?
+
+## Brands
+
+## Tags
+
+## Topics
+
+

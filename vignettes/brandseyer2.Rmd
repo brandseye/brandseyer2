@@ -1,0 +1,28 @@
+---
+title: "brandseyer2"
+author: "Constance Neeser"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{brandseyer2}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Who is BrandsEye and what is brandseyer2?
+
+# Authenticating yourself
+
+Using the authenticate function. 
+
+# Working with accounts
+
+Seeing what accounts you have access to. Seeing brands and topics and tags. Creating
+new tags.

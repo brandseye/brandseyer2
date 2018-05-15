@@ -54,3 +54,12 @@ newer BrandsEye accounts. Older accounts can still be read
 using this function if you have the old \code{brandseyer}
 library installed.
 }
+\examples{
+
+\dontrun{
+
+account("TEST01AA") \%>\%
+  mentions(filter = "published inthelast week and brand isorchldof 1")
+
+}
+}

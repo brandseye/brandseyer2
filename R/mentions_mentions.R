@@ -34,6 +34,14 @@
 #' @param ... Further arguments passed to or from other methods.
 #'
 #' @return A tibble of mentions.
+#' @examples
+#'
+#' \dontrun{
+#'
+#' account("TEST01AA") %>%
+#'   mentions(filter = "published inthelast week and brand isorchldof 1")
+#'
+#' }
 #' @export
 mentions <- function(x, filter, ...) {
   UseMethod("mentions")

@@ -69,9 +69,15 @@ account information and mentions.
 Contact your account manager. They'll provide you with a new API key.
 Your previous API key will stop working. 
 
+# Overview
+
+What is an account? What are mentions? What is the crowd, and sentiment and topics. 
+
+Some simple examples of pulling mentions for accounts, grouping, updating.
+
 # Working with accounts
 
-What is an account?
+What are accounts,
 
 ## What accounts do I have access to?
 
@@ -81,4 +87,4 @@ What is an account?
 
 ## Topics
 
-
+# Working with mentions

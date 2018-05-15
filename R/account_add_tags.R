@@ -19,23 +19,19 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' Read arbitrary data from mash.
-#'
-#' This reads data from mash, and performs authentication validation
-#' and so on.
-#'
-#' @param endpoint The endpoint that you would like to access
-#' @param query An httr query list
-#'
-#' @return the json content
-#'
-#' @author Constance Neeser
-read_mash <- function(endpoint, query = list()) {
-  assertthat::assert_that(assertthat::is.string(endpoint))
-  auth = whoami(raise_error = TRUE)
 
-  url = paste0("https://mash.brandseye.com/rest/", endpoint)
-  data <- httr::GET(url, httr::authenticate("API_KEY", auth$key), query = query)
-  check_errors(data)
-  return(httr::content(data))
+account_add_tags <- function(account, name, description) {
+  UseMethod("account_add_tags")
+}
+
+
+account_add_tags.brandseyer2.account <- function(account, name, description) {
+  assertthat::assert_that(assertthat::is.string(name))
+  assertthat::assert_that(missing(description) || assertthat::is.string(description))
+
+  new.name <- name
+
+  account %>%
+    account_tags() %>%
+    filter(trimws(tolower(name)) == trimws(tolower(new.name)), !deleted)
 }

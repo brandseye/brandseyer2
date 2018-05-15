@@ -10,8 +10,9 @@ mentions(x, filter, ...)
 
 \method{mentions}{brandseyer2.account.v4}(x, filter, ...)
 
-\method{mentions}{brandseyer2.account.v3}(x, filter, ..., limit = 30,
-  offset = 0, include, select, all = FALSE)
+\method{mentions}{brandseyer2.account.v3}(x, filter, ...,
+  use.brandseyer = FALSE, limit = 30, offset = 0, include, select,
+  all = FALSE)
 }
 \arguments{
 \item{x}{An account object}
@@ -19,6 +20,9 @@ mentions(x, filter, ...)
 \item{filter}{A query to match mentions against. See the filter vignette for details.}
 
 \item{...}{Further arguments passed to or from other methods.}
+
+\item{use.brandseyer}{Set to TRUE if the old brandseyer library is installed,
+and you would like to read from an account still using the old V3 API.}
 
 \item{limit}{The maximum number of mentions to be returned}
 
@@ -49,10 +53,11 @@ function had been called.
 }}
 
 \note{
-This function is mostly meant to read mentions from
-newer BrandsEye accounts. Older accounts can still be read
-using this function if you have the old \code{brandseyer}
-library installed.
+It is possible to read mentions from older accounts still
+using the V3 API. Using the older brandseyer library is the most
+convenient way of doing this, but if the brandseyer library is installed,
+the \code{mentions} function will automatically fall back to the appropriate
+function calls in \code{brandseyer} to read mentions for you.
 }
 \examples{
 

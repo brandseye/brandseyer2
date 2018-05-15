@@ -30,6 +30,7 @@ account_add_tags.brandseyer2.account <- function(account, name, description) {
   assertthat::assert_that(missing(description) || assertthat::is.string(description))
 
   new.name <- name
+  deleted <- NULL # For devtools::check
 
   account %>%
     account_tags() %>%

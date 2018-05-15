@@ -46,10 +46,8 @@ account("TEST01AA") \%>\%
 }
 
 
-\dontrun{
 accounts(c("TEST01AA", "TEST02AA")) \%>\%
   account_tags()
-}
 }
 \seealso{
 \code{\link{account_topics}} to see just a list of topics.

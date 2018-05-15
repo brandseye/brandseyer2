@@ -31,7 +31,7 @@ check_errors <- function(data) {
   if (httr::status_code(data) == 401) stop("You have bad authentication details. Try authenticating again.")
   if (httr::status_code(data) != 200) {
     message = jsonlite::fromJSON(httr::content(data, "text"))$error
-    stop("BrandsEye API error: ", message, call. = FALSE)
+    abort(paste("BrandsEye API error: ", message))
   }
 
   invisible()

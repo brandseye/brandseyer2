@@ -25,11 +25,13 @@ Imports:
     magrittr,
     purrr,
     dplyr,
-    tidyr
+    tidyr,
+    rlang
 RoxygenNote: 6.0.1
 Suggests: 
     testthat,
     covr,
     knitr,
-    rmarkdown
+    rmarkdown,
+    brandseyer
 VignetteBuilder: knitr

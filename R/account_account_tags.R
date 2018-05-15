@@ -82,10 +82,8 @@ account_tags.brandseyer2.account <- function(accounts) {
 #'
 #' @examples
 #'
-#' \dontrun{
 #' accounts(c("TEST01AA", "TEST02AA")) %>%
 #'   account_tags()
-#' }
 account_tags.list <- function(accounts) {
   accounts %>%
     map_df(~ .x %>%

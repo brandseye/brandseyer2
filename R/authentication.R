@@ -103,7 +103,7 @@ format.brandseye.auth <- function(x, ...) {
 #'
 whoami <- function(raise_error = FALSE) {
   if (raise_error && is.null(pkg.env$authentication))
-    stop("You are not authenticated. Use the authenticate function to do so.")
+    abort("You are not authenticated. Use the authenticate function to do so.")
 
   pkg.env$authentication
 }
@@ -137,7 +137,7 @@ save_key <- function(key) {
     }
 
   }
-  else stop("Authentication file already exists")
+  else abort("Authentication file already exists")
 
   invisible()
 }

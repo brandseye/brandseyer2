@@ -30,4 +30,7 @@ reference:
       kinds of mentions using a filter language, to count mentions
       matching particular parameters, and to update the information
       stored on mentions.
+    contents:
+      - "mentions"
+      - starts_with("mentions_")
 

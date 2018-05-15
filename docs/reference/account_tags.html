@@ -158,10 +158,20 @@ tags. Note that topics are stored in the 'topics' namespace.</p>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>namespace</span> <span class='kw'>==</span> <span class='st'>"topic"</span>)
 <span class='co'># }</span><div class='input'>
 
-</div><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'>account_tags</span>()
-<span class='co'># }</span></pre>
+  <span class='fu'>account_tags</span>()</div><div class='output co'>#&gt; # A tibble: 10 x 8
+#&gt;    account     id name      namespace description    deleted children is_parent
+#&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;          &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;    
+#&gt;  1 TEST01AA     1 tag1      tag       &lt;NA&gt;           FALSE   &lt;NULL&gt;   FALSE    
+#&gt;  2 TEST01AA     2 tag2      tag       Deleted        TRUE    &lt;NULL&gt;   FALSE    
+#&gt;  3 TEST01AA    10 Parent t… topic     Has children   FALSE   &lt;list [… TRUE     
+#&gt;  4 TEST01AA    11 Child to… topic     I am a child   FALSE   &lt;NULL&gt;   FALSE    
+#&gt;  5 TEST01AA    12 Child to… topic     I am also a c… FALSE   &lt;NULL&gt;   FALSE    
+#&gt;  6 TEST02AA   101 tag1      tag       &lt;NA&gt;           FALSE   &lt;NULL&gt;   FALSE    
+#&gt;  7 TEST02AA   102 tag2      tag       Deleted        TRUE    &lt;NULL&gt;   FALSE    
+#&gt;  8 TEST02AA  1010 Parent t… topic     Has children   FALSE   &lt;list [… TRUE     
+#&gt;  9 TEST02AA  1011 Child to… topic     I am a child   FALSE   &lt;NULL&gt;   FALSE    
+#&gt; 10 TEST02AA  1012 Child to… topic     I am also a c… FALSE   &lt;NULL&gt;   FALSE    </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

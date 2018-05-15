@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Access account information — account • brandseyer2</title>
+<title>Fetch mentions from an account — mentions • brandseyer2</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,9 +28,9 @@
 
 
 
-<meta property="og:title" content="Access account information — account" />
+<meta property="og:title" content="Fetch mentions from an account — mentions" />
 
-<meta property="og:description" content="Access account information" />
+<meta property="og:description" content="This will give you access to mentions in an account." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -97,70 +97,87 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Access account information</h1>
-    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/account_account.R'><code>R/account_account.R</code></a></small>
-    <div class="hidden name"><code>account.Rd</code></div>
+    <h1>Fetch mentions from an account</h1>
+    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/mentions_mentions.R'><code>R/mentions_mentions.R</code></a></small>
+    <div class="hidden name"><code>mentions.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Access account information</p>
+    <p>This will give you access to mentions in an account.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>account</span>(<span class='no'>codes</span>)
+    <pre class="usage"><span class='fu'>mentions</span>(<span class='no'>x</span>, <span class='no'>filter</span>, <span class='no'>...</span>)
 
-<span class='co'># S3 method for character</span>
-<span class='fu'>account</span>(<span class='no'>codes</span>)
+<span class='co'># S3 method for brandseyer2.account.v4</span>
+<span class='fu'>mentions</span>(<span class='no'>x</span>, <span class='no'>filter</span>, <span class='no'>...</span>)
 
-<span class='co'># S3 method for brandseyer2.account_list</span>
-<span class='fu'>account</span>(<span class='no'>codes</span>)</pre>
+<span class='co'># S3 method for brandseyer2.account.v3</span>
+<span class='fu'>mentions</span>(<span class='no'>x</span>, <span class='no'>filter</span>, <span class='no'>...</span>, <span class='kw'>limit</span> <span class='kw'>=</span> <span class='fl'>30</span>,
+  <span class='kw'>offset</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>include</span>, <span class='no'>select</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>codes</th>
-      <td><p>A vector of one or more account codes, or possibly
-a tibble, as provided by <code><a href='account_list.html'>account_list</a></code></p></td>
+      <th>x</th>
+      <td><p>An account object</p></td>
+    </tr>
+    <tr>
+      <th>filter</th>
+      <td><p>A query to match mentions against. See the filter vignette for details.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Further arguments passed to or from other methods.</p></td>
+    </tr>
+    <tr>
+      <th>limit</th>
+      <td><p>The maximum number of mentions to be returned</p></td>
+    </tr>
+    <tr>
+      <th>offset</th>
+      <td><p>Mentions are returned in an order. Offset says how many of the
+first mentions should be skipped.</p></td>
+    </tr>
+    <tr>
+      <th>include</th>
+      <td><p>A character vector of extra information to include in the mentions</p></td>
+    </tr>
+    <tr>
+      <th>select</th>
+      <td><p>A character vector of the mention fields to be returned.</p></td>
+    </tr>
+    <tr>
+      <th>all</th>
+      <td><p>Set to true if you would like to return all mentions from the account.
+This overides the <code>limit</code> parameter.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An account object if one account code is given, or a list of account objects,
-        one for each code given, in the same order as the codes were given.</p>
+    <p>A tibble of mentions.</p>
     
     <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
 
     <ul>
-<li><p><code>character</code>: Fetch counts for one or more account codes given as a character vector.</p></li>
-<li><p><code>brandseyer2.account_list</code>: Get account information from the list of accounts available to from <code><a href='account_list.html'>account_list</a></code></p></li>
+<li><p><code>brandseyer2.account.v4</code>: Reads V4 accounts. Returns a tibble of mentions.</p></li>
+<li><p><code>brandseyer2.account.v3</code>: Reads older, V3 accounts. To use this function, please ensure that
+the older <code>brandseyer</code> library is installed as well. Returns
+old <code>brandseyer</code> data structures, as though the <code><a href='http://www.rdocumentation.org/packages/brandseyer/topics/account_mentions'>brandseyer::account_mentions</a></code>
+function had been called.</p></li>
 </ul>
     
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <div class='dont-index'><p><code>accounts</code> is a synonym for <code>account</code>.</p>
-<p><code><a href='is.account.html'>is.account</a></code> to test if an object is an account object.</p></div>
+    <p>This function is mostly meant to read mentions from
+newer BrandsEye accounts. Older accounts can still be read
+using this function if you have the old <code>brandseyer</code>
+library installed.</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># Read two accounts, returned as a list.</span>
-<span class='fu'>accounts</span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>))</div><div class='output co'>#&gt; [[1]]
-#&gt; BrandsEye Account 
-#&gt;   Name:  Test 1 
-#&gt;   Code:  TEST01AA 
-#&gt; 
-#&gt; [[2]]
-#&gt; BrandsEye Account 
-#&gt;   Name:  Test 2 — Best Account 
-#&gt;   Code:  TEST02AA 
-#&gt; </div><div class='input'>
-<span class='co'># Read one account</span>
-<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>)</div><div class='output co'>#&gt; BrandsEye Account 
-#&gt;   Name:  Test 1 
-#&gt;   Code:  TEST01AA </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -171,10 +188,8 @@ a tibble, as provided by <code><a href='account_list.html'>account_list</a></cod
 
       <li><a href="#methods-by-class-">Methods (by class)</a></li>
 
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+      <li><a href="#note">Note</a></li>
+          </ul>
 
   </div>
 </div>

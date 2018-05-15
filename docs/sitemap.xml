@@ -49,10 +49,16 @@
     <loc>https://brandseye.github.io/brandseyer2//reference/is.account.html</loc>
   </url>
   <url>
+    <loc>https://brandseye.github.io/brandseyer2//reference/mentions.html</loc>
+  </url>
+  <url>
     <loc>https://brandseye.github.io/brandseyer2//reference/pipe.html</loc>
   </url>
   <url>
     <loc>https://brandseye.github.io/brandseyer2//reference/read_account.html</loc>
+  </url>
+  <url>
+    <loc>https://brandseye.github.io/brandseyer2//reference/read_api.html</loc>
   </url>
   <url>
     <loc>https://brandseye.github.io/brandseyer2//reference/read_mash.html</loc>

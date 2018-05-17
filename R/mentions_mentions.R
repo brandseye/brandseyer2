@@ -58,9 +58,69 @@ mentions.brandseyer2.account.v4 <- function(x, filter, ...) {
   assertthat::assert_that(nchar(filter) > 0,
                           msg = "filter cannot be an empty character vector")
 
-  query <- list(filter = filter)
-  read_api(endpoint = paste0("v4/accounts/", account_code(x), "/mentions"),
-           query = query)
+  query <- list(filter = filter, limit=100)
+  data <- read_api(endpoint = paste0("v4/accounts/", account_code(x), "/mentions"),
+                   query = query)
+
+  # We want to figure out a list of fields.
+  fields = new.env(hash = TRUE)
+
+  for (mention in data) {
+    keys <- names(mention)
+    for (key in keys) {
+      if (!exists(key, envir = fields, inherits = FALSE)) {
+        assign(key, list(), envir = fields)
+      }
+    }
+  }
+
+  # assign("id", c(), envir = fields)
+  list.fields <- c("brands", "tags")
+
+  for (mention in data) {
+    seen <- new.env(hash = TRUE)
+    is.list.field <- FALSE
+    imap(mention, function(value, key) {
+      if (key %in% list.fields) {
+        value = map(value, "id")
+      } else if (rlang::is_list(value)) {
+        value <- pluck(value, "id") %||% NA
+        if (is.na(value)) rlang::warn(paste("Unable to find ID for compositive field", key))
+      }
+      l <- get(key, envir = fields)
+      l[[length(l) + 1]] <- value
+      assign(key, l, envir = fields)
+      assign(key, TRUE, envir = seen)
+    })
+
+    # Now we add NAs for the fields that we have not seen.
+    for (field in ls(fields)) {
+      if (!exists(field, envir = seen, inherits = FALSE)) {
+        l <- get(field, envir = fields)
+        if (field %in% list.fields) length(l) <- length(l) + 1
+        else l[[length(l) + 1]] <- NA
+        assign(field, l, envir = fields)
+      }
+    }
+  }
+
+  final <- list()
+  for (field in ls(fields)) {
+    data <- get(field, envir = fields)
+    if (!(field %in% list.fields)) data <- c(data, recursive = TRUE)
+    final[[field]] <- data
+  }
+
+  # Set up things for devtools::check
+  uri <- NULL
+  link <- NULL
+  published <- NULL
+  sentiment <- NULL
+  brands <- NULL
+
+  # Sort in to a slightly better order
+  as_tibble(final) %>%
+    select(id, uri, link, published, sentiment, brands, everything())
 }
 
 #' @describeIn mentions

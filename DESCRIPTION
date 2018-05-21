@@ -26,7 +26,8 @@ Imports:
     purrr,
     dplyr,
     tidyr,
-    rlang
+    rlang,
+    lubridate
 RoxygenNote: 6.0.1
 Suggests: 
     testthat,
@@ -35,5 +36,5 @@ Suggests:
     rmarkdown,
     brandseyer
 VignetteBuilder: knitr
-Remotes:  
+Remotes: 
     brandseye/brandseyer

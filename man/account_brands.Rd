@@ -53,3 +53,9 @@ account("TEST01AA") \%>\%
 accounts(c("TEST01AA", "TEST02AA")) \%>\%
   account_brands()
 }
+\seealso{
+\code{\link{root_brands}} for filtering to only the root brands of an account.
+}
+\author{
+Constance Neeser
+}

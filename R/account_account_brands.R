@@ -29,6 +29,10 @@
 #' @return A tibble of brand information
 #' @export
 #'
+#' @author Constance Neeser
+#'
+#' @seealso \code{\link{root_brands}} for filtering to only the root brands of an account.
+#'
 #' @examples
 #'
 #' \dontrun{

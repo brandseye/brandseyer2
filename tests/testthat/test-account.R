@@ -101,6 +101,24 @@ test_that("Can read brands from more than one account", {
   expect_equal(brands$id, c(1, 2, 3, 100))
 })
 
+test_that("Can read root brand info for accounts", {
+  rb <- account("TEST01AA") %>% root_brands()
+  expect_equal(nrow(rb), 2)
+
+  rb <- account(c("TEST01AA", "TEST02AA")) %>% root_brands()
+  expect_equal(nrow(rb), 3)
+
+  rb <- tibble::tribble(
+    ~id, ~parent, ~deleted,
+    1,   NA,      FALSE,
+    2,   NA,      TRUE,
+    3,   1,       FALSE
+  )
+
+  expect_equal(nrow(rb %>% root_brands()), 1)
+  expect_equal(nrow(rb %>% root_brands(includeDeleted = TRUE)), 2)
+})
+
 test_that("Can read phrase information for an account", {
   phrases <- account("TEST01AA") %>%
     account_phrases()

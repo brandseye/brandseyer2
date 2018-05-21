@@ -74,14 +74,15 @@ mentions.brandseyer2.account.v4 <- function(x, filter, ...) {
     }
   }
 
-  # assign("id", c(), envir = fields)
-  list.fields <- c("brands", "tags")
+  list.fields <- c("brands", "tags", "mediaLinks")
 
   for (mention in data) {
     seen <- new.env(hash = TRUE)
     is.list.field <- FALSE
     imap(mention, function(value, key) {
-      if (key %in% list.fields) {
+      if (key == "mediaLinks") {
+        value = map_df(value, ~tibble(url = .x$url, mimeType = .x$mimeType))
+      } else if (key %in% c("brands", "tags")) {
         value = map(value, "id")
       } else if (rlang::is_list(value)) {
         value <- pluck(value, "id") %||% NA
@@ -112,15 +113,37 @@ mentions.brandseyer2.account.v4 <- function(x, filter, ...) {
   }
 
   # Set up things for devtools::check
-  uri <- NULL
-  link <- NULL
-  published <- NULL
-  sentiment <- NULL
-  brands <- NULL
+  uri <- NULL;                link <- NULL;                   published <- NULL
+  sentiment <- NULL;          brands <- NULL;                 authorBio <- NULL
+  authorHandle <- NULL;       authorId <- NULL;               authorName <- NULL
+  authorPictureLink <- NULL;  authorProfileLink <- NULL;      authorTimezone <- NULL
+  crowdVerified <- NULL;      extract <- NULL;                pickedUp <- NULL
+  postExtract <- NULL;        relevancy <- NULL;              relevancyVerified <- NULL
+  replyToId <- NULL;          replyToUri <- NULL;             reshareOfId <- NULL
+  reshareOfUri <- NULL;       sentimentVerified <- NULL;      toHandle <- NULL
+  toHandleId <- NULL;         toId <- NULL;  toName <- NULL;  updated <- NULL
+
 
   # Sort in to a slightly better order
   as_tibble(final) %>%
-    select(id, uri, link, published, sentiment, brands, everything())
+    mutate(published = lubridate::ymd_hms(published),
+           pickedUp = lubridate::ymd_hms(pickedUp),
+           updated = lubridate::ymd_hms(updated)) %>%
+    select(id, uri, link,
+           published, pickedUp, updated,
+           extract,
+           postExtract,
+           replyToUri, replyToId,
+           reshareOfUri, reshareOfId,
+           brands,
+           sentiment, relevancy,
+           crowdVerified,
+           relevancyVerified,
+           sentimentVerified,
+           authorId, authorName, authorHandle, authorPictureLink, authorProfileLink, authorBio, authorTimezone,
+           toId,
+           toName, toHandle, toHandleId,
+           everything())
 }
 
 #' @describeIn mentions

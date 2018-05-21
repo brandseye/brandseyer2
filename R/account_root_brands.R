@@ -42,7 +42,7 @@
 #'   root_brands()
 #'
 #' # Get root brands from a tibble or data.frame
-#' account("TEST01AA") %>%
+#' account(c("TEST01AA", "TEST02AA")) %>%
 #'   account_brands() %>%
 #'   root_brands()
 root_brands <- function(x, includeDeleted) {

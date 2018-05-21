@@ -54,9 +54,9 @@ mentions <- function(x, filter, ...) {
 #'
 #' @export
 mentions.brandseyer2.account.v4 <- function(x, filter, ...) {
-  assertthat::assert_that(assertthat::is.string(filter))
-  assertthat::assert_that(nchar(filter) > 0,
-                          msg = "filter cannot be an empty character vector")
+  assert_that(assertthat::is.string(filter))
+  assert_that(nchar(filter) > 0,
+              msg = "filter cannot be an empty character vector")
 
   query <- list(filter = filter, limit=100)
   data <- read_api(endpoint = paste0("v4/accounts/", account_code(x), "/mentions"),

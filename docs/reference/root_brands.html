@@ -165,14 +165,16 @@ the tibble returned from <code><a href='account_brands.html'>account_brands</a><
 #&gt; 2     2     NA Siblin… TOPI… FALSE   b0000… locati…           100           0.8
 #&gt; # ... with 2 more variables: topicRate &lt;dbl&gt;, phrases &lt;list&gt;</div><div class='input'>
 <span class='co'># Get root brands from a tibble or data.frame</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='account_brands.html'>account_brands</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>root_brands</span>()</div><div class='output co'>#&gt; # A tibble: 2 x 11
-#&gt;      id parent name    tier  deleted schema filter  topic_tree_id sentimentRate
-#&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;lgl&gt;   &lt;chr&gt;  &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;
-#&gt; 1     1     NA Your B… ESSE… FALSE   &lt;NA&gt;   &lt;NA&gt;               NA           0  
-#&gt; 2     2     NA Siblin… TOPI… FALSE   b0000… locati…           100           0.8
-#&gt; # ... with 2 more variables: topicRate &lt;dbl&gt;, phrases &lt;list&gt;</div></pre>
+  <span class='fu'>root_brands</span>()</div><div class='output co'>#&gt; # A tibble: 3 x 12
+#&gt;   account     id parent name      tier    deleted schema filter   topic_tree_id
+#&gt;   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;lgl&gt;   &lt;chr&gt;  &lt;chr&gt;            &lt;dbl&gt;
+#&gt; 1 TEST01AA     1     NA Your Bra… ESSENT… FALSE   &lt;NA&gt;   &lt;NA&gt;                NA
+#&gt; 2 TEST01AA     2     NA Sibling … TOPICS  FALSE   b0000… locatio…           100
+#&gt; 3 TEST02AA   100     NA The Best… TOPICS  FALSE   &lt;NA&gt;   &lt;NA&gt;              1001
+#&gt; # ... with 3 more variables: sentimentRate &lt;dbl&gt;, topicRate &lt;dbl&gt;,
+#&gt; #   phrases &lt;list&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

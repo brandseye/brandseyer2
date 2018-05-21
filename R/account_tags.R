@@ -37,26 +37,26 @@
 #'
 #' # See what namespaces are in your account
 #' account("TEST01AA") %>%
-#'   account_tags() %>%
+#'   tags() %>%
 #'   dplyr::select(namespace) %>%
 #'   table()
 #'
 #' # Find topics
 #' account("TEST01AA") %>%
-#'   account_tags() %>%
+#'   tags() %>%
 #'   dplyr::filter(namespace == "topic")
 #' }
 #'
-account_tags <- function(accounts) {
-  UseMethod("account_tags")
+tags <- function(accounts) {
+  UseMethod("tags")
 }
 
-#' @describeIn account_tags
+#' @describeIn tags
 #'
 #' Get tags from an account object.
 #'
 #' @export
-account_tags.brandseyer2.account <- function(accounts) {
+tags.brandseyer2.account <- function(accounts) {
   # Handle devtools::check notes
   children <- NULL
   is_parent <- NULL
@@ -74,7 +74,7 @@ account_tags.brandseyer2.account <- function(accounts) {
            is_parent = map_lgl(children, ~length(.x) > 0))
 }
 
-#' @describeIn account_tags
+#' @describeIn tags
 #'
 #' Create a table of tags for the list of accounts given
 #'
@@ -83,11 +83,11 @@ account_tags.brandseyer2.account <- function(accounts) {
 #' @examples
 #'
 #' accounts(c("TEST01AA", "TEST02AA")) %>%
-#'   account_tags()
-account_tags.list <- function(accounts) {
+#'   tags()
+tags.list <- function(accounts) {
   accounts %>%
     map_df(~ .x %>%
-             account_tags %>%
+             tags %>%
              mutate(account = account_code(.x)) %>%
              select(account, everything()))
 }

@@ -33,7 +33,7 @@
 #' \dontrun{
 #' # Fetch the tags from all accounts available to you.
 #' account_list() %>%
-#'   account_tags()
+#'   tags()
 #' }
 account_list <- function() {
   accounts <- read_mash("accounts") %>%

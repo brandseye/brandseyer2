@@ -33,6 +33,6 @@ account_add_tags.brandseyer2.account <- function(account, name, description) {
   deleted <- NULL # For devtools::check
 
   account %>%
-    account_tags() %>%
+    tags() %>%
     filter(trimws(tolower(name)) == trimws(tolower(new.name)), !deleted)
 }

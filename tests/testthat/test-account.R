@@ -39,7 +39,7 @@ test_that("Can read account api format", {
 
 test_that("Can fetch account tags", {
   tags <- account("TEST01AA") %>%
-    account_tags()
+    tags()
 
   expect_equal(nrow(tags), 5)
   expect_warning(tags$account)
@@ -52,7 +52,7 @@ test_that("Can fetch account tags", {
 
 test_that("Can fetch tags for multiple accounts", {
   tags <- accounts(c("TEST01AA", "TEST02AA")) %>%
-    account_tags()
+    tags()
 
   expect_equal(nrow(tags), 10)
   expect_equal(length(tags$account), 10)

@@ -21,6 +21,8 @@ reference:
     contents:
       - account
       - is.account
+      - account_brands
+      - root_brands
       - starts_with("account_")
   - title: "Accessing mentions"
     desc: >

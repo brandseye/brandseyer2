@@ -121,18 +121,18 @@ test_that("Can read root brand info for accounts", {
 
 test_that("Can read phrase information for an account", {
   phrases <- account("TEST01AA") %>%
-    account_phrases()
+    phrases()
 
   expect_equal(nrow(phrases), 5)
-  expect_equal(phrases$phrase.id, 1:5)
-  expect_equal(phrases$brand.id, c(1, 1, 2, 2, 3))
+  expect_equal(phrases$phrase.id, c(5, 3, 2, 4, 1))
+  expect_equal(phrases$brand.id, c(3, 2, 1, 2, 1))
 })
 
 test_that("Can read phrase information for multiple accounts", {
   phrases <- account(c("TEST01AA", "TEST02AA")) %>%
-    account_phrases()
+    phrases()
 
   expect_equal(nrow(phrases), 7)
-  expect_equal(phrases$phrase.id, c(1:5, 101:102))
-  expect_equal(phrases$brand.id, c(1, 1, 2, 2, 3, 100, 100))
+  expect_equal(phrases$phrase.id, c(5, 3, 2, 4, 1, 102, 101))
+  expect_equal(phrases$brand.id, c(3, 2, 1, 2, 1, 100, 100))
 })

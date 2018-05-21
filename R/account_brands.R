@@ -44,7 +44,7 @@
 #'   brands() %>%
 #'   dplyr::filter(is.na(parent), deleted)
 #'
-#' # Fetch phrases without using account_phrases
+#' # Fetch phrases without using `phrases``
 #' account("TEST01AA") %>%
 #'   brands() %>%
 #'   dplyr::select(id, phrases) %>%

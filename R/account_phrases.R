@@ -29,20 +29,23 @@
 #' @return A tibble of phrase information.
 #' @export
 #'
-account_phrases <- function(accounts) {
-  UseMethod("account_phrases")
+phrases <- function(accounts) {
+  UseMethod("phrases")
 }
 
-#' @describeIn account_phrases
+#' @describeIn phrases
 #'
 #' Read phrases for only a single account
 #'
 #' @export
-account_phrases.brandseyer2.account <- function(accounts) {
+phrases.brandseyer2.account <- function(accounts) {
   # Handle devtools::check notes
   phrases <- NULL
   brand.id <- NULL
   phrase.id <- NULL
+  deleted <- NULL
+  inactive <- NULL
+  query <- NULL
 
   brands <- accounts %>% brands()
   if (nrow(brands) == 0) return(tibble())
@@ -52,11 +55,12 @@ account_phrases.brandseyer2.account <- function(accounts) {
     rename(brand.id = id) %>%
     unnest(phrases) %>%
     rename(phrase.id = id) %>%
-    select(phrase.id, everything())
+    select(phrase.id, everything()) %>%
+    arrange(deleted, inactive, query)
 }
 
 
-#' @describeIn account_phrases
+#' @describeIn phrases
 #'
 #' Create a table of phrases for the list of accounts given
 #'
@@ -65,11 +69,11 @@ account_phrases.brandseyer2.account <- function(accounts) {
 #' @examples
 #'
 #' accounts(c("TEST01AA", "TEST02AA")) %>%
-#'   account_phrases()
-account_phrases.list <- function(accounts) {
+#'   phrases()
+phrases.list <- function(accounts) {
   accounts %>%
     map_df(~ .x %>%
-             account_phrases() %>%
+             phrases() %>%
              mutate(account = account_code(.x)) %>%
              select(account, everything()))
 }

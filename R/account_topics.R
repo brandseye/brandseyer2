@@ -28,16 +28,16 @@
 #' @return A tibble of topic information. Includes the name and topic description.
 #' @export
 #'
-account_topics <- function(accounts) {
-  UseMethod("account_topics")
+topics <- function(accounts) {
+  UseMethod("topics")
 }
 
-#' @describeIn account_topics
+#' @describeIn topics
 #'
 #' Get topics for a single account.
 #'
 #' @export
-account_topics.brandseyer2.account <- function(accounts) {
+topics.brandseyer2.account <- function(accounts) {
   # Taking devtools::check() notes in to discussion.
   namespace <- NULL
   children <- NULL
@@ -49,15 +49,15 @@ account_topics.brandseyer2.account <- function(accounts) {
     dplyr::arrange(desc(map_lgl(children, ~ length(.x) > 0)), name)
 }
 
-#' @describeIn account_topics
+#' @describeIn topics
 #'
 #' Get topics for a list of accounts
 #'
 #' @export
-account_topics.list <- function(accounts) {
+topics.list <- function(accounts) {
   accounts %>%
     map_df(~ .x %>%
-             account_topics %>%
+             topics %>%
              mutate(account = account_code(.x)) %>%
              select(account, everything()))
 }

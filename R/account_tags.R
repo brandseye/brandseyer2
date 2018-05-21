@@ -30,7 +30,7 @@
 #' tags. Note that topics are stored in the 'topics' namespace.
 #' @export
 #'
-#' @seealso \code{\link{account_topics}} to see just a list of topics.
+#' @seealso \code{\link{topics}} to see just a list of topics.
 #'
 #' @examples
 #' \dontrun{

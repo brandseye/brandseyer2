@@ -60,7 +60,7 @@ test_that("Can fetch tags for multiple accounts", {
 
 test_that("Can fetch topics for an account", {
   topics <- account("TEST01AA") %>%
-    account_topics()
+    topics()
 
   expect_equal(nrow(topics), 3)
 
@@ -71,7 +71,7 @@ test_that("Can fetch topics for an account", {
 
 test_that("Can fetch topics for multiple accounts", {
   topics <- accounts(c("TEST01AA", "TEST02AA")) %>%
-    account_topics()
+    topics()
 
   expect_equal(nrow(topics), 6)
   expect_equal(length(topics$account), 6)

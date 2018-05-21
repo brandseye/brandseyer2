@@ -19,6 +19,6 @@ to return information from across all accounts available to you.
 \dontrun{
 # Fetch the tags from all accounts available to you.
 account_list() \%>\%
-  account_tags()
+  tags()
 }
 }

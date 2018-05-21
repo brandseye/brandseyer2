@@ -50,5 +50,5 @@ accounts(c("TEST01AA", "TEST02AA")) \%>\%
   tags()
 }
 \seealso{
-\code{\link{account_topics}} to see just a list of topics.
+\code{\link{topics}} to see just a list of topics.
 }

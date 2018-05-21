@@ -145,18 +145,23 @@ tags. Note that topics are stored in the 'topics' namespace.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
+    <pre class="examples"><div class='input'>
 <span class='co'># See what namespaces are in your account</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>tags</span>() <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>namespace</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>table</span>()
-
+  <span class='fu'>table</span>()</div><div class='output co'>#&gt; .
+#&gt;   tag topic 
+#&gt;     2     3 </div><div class='input'>
 <span class='co'># Find topics</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>tags</span>() <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>namespace</span> <span class='kw'>==</span> <span class='st'>"topic"</span>)
-<span class='co'># }</span><div class='input'>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>namespace</span> <span class='kw'>==</span> <span class='st'>"topic"</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 7
+#&gt;      id name          namespace description       deleted children   is_parent
+#&gt;   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;             &lt;lgl&gt;   &lt;list&gt;     &lt;lgl&gt;    
+#&gt; 1    10 Parent topic  topic     Has children      FALSE   &lt;list [2]&gt; TRUE     
+#&gt; 2    11 Child topic 1 topic     I am a child      FALSE   &lt;NULL&gt;     FALSE    
+#&gt; 3    12 Child topic 2 topic     I am also a child FALSE   &lt;NULL&gt;     FALSE    </div><div class='input'>
 
 <span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'>tags</span>()</div><div class='output co'>#&gt; # A tibble: 10 x 8

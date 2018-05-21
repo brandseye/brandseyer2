@@ -39,13 +39,11 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' ac <- account("TEST01AA")
 #' manager <- account_manager(ac)
 #'
 #' manager$name
 #' manager$email
-#' }
 #'
 account_manager <- function(account) {
   UseMethod("account_manager")

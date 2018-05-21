@@ -31,7 +31,6 @@ account.
 }}
 
 \examples{
-\dontrun{
 
 # See what namespaces are in your account
 account("TEST01AA") \%>\%
@@ -43,7 +42,6 @@ account("TEST01AA") \%>\%
 account("TEST01AA") \%>\%
   tags() \%>\%
   dplyr::filter(namespace == "topic")
-}
 
 
 accounts(c("TEST01AA", "TEST02AA")) \%>\%

@@ -33,7 +33,6 @@
 #' @seealso \code{\link{topics}} to see just a list of topics.
 #'
 #' @examples
-#' \dontrun{
 #'
 #' # See what namespaces are in your account
 #' account("TEST01AA") %>%
@@ -45,7 +44,6 @@
 #' account("TEST01AA") %>%
 #'   tags() %>%
 #'   dplyr::filter(namespace == "topic")
-#' }
 #'
 tags <- function(accounts) {
   UseMethod("tags")

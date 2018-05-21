@@ -161,7 +161,7 @@ account. It includes brand names, associated phrases, and so on.</p>
 #&gt; # ... with 11 variables: id &lt;dbl&gt;, parent &lt;dbl&gt;, name &lt;chr&gt;, tier &lt;chr&gt;,
 #&gt; #   deleted &lt;lgl&gt;, schema &lt;chr&gt;, filter &lt;chr&gt;, topic_tree_id &lt;dbl&gt;,
 #&gt; #   sentimentRate &lt;dbl&gt;, topicRate &lt;dbl&gt;, phrases &lt;list&gt;</div><div class='input'>
-<span class='co'># Fetch phrases without using account_phrases</span>
+<span class='co'># Fetch phrases without using `phrases``</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>brands</span>() <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>id</span>, <span class='no'>phrases</span>) <span class='kw'>%&gt;%</span>

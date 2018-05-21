@@ -23,6 +23,7 @@ reference:
       - is.account
       - brands
       - root_brands
+      - phrases
       - tags
       - topics
       - starts_with("account_")

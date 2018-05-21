@@ -59,9 +59,12 @@ mentions.brandseyer2.account.v4 <- function(x, filter, ...) {
               msg = "filter cannot be an empty character vector")
 
   result <- NULL
+  limit <- 10000
+  list.fields <- c("brands", "tags", "mediaLinks")
 
   repeat {
-    query <- list(filter = filter, limit=5000, offset = nrow(result) %||% 0)
+    query <- list(filter = filter, limit=limit, offset = nrow(result) %||% 0)
+    message("Again")
     data <- read_api(endpoint = paste0("v4/accounts/", account_code(x), "/mentions"),
                      query = query)
 
@@ -74,47 +77,39 @@ mentions.brandseyer2.account.v4 <- function(x, filter, ...) {
       keys <- names(mention)
       for (key in keys) {
         if (!exists(key, envir = fields, inherits = FALSE)) {
-          assign(key, list(), envir = fields)
+          assign(key, if(key %in% list.fields) list() else c(), envir = fields)
         }
       }
     }
 
-    message("Fields done")
+    columns <- new.env(hash = TRUE)
 
-    list.fields <- c("brands", "tags", "mediaLinks")
+    # Now we want to collect the fields from the mentions.
+    for (field in ls(fields)) {
+      assign(field, value = map(data, function(mention) {
+        value <- pluck(mention, field)
 
-    for (mention in data) {
-      seen <- new.env(hash = TRUE)
-      is.list.field <- FALSE
-      imap(mention, function(value, key) {
-        if (key == "mediaLinks") {
+        # There are some special fields that are lists we need to handle
+        # If they're not present, lists are NULL. Everything else is NA.
+        if (field == "mediaLinks") {
           value = map_df(value, ~tibble(url = .x$url, mimeType = .x$mimeType))
-        } else if (key %in% c("brands", "tags")) {
-          value = map(value, "id")
-        } else if (rlang::is_list(value)) {
-          value <- pluck(value, "id") %||% NA
+          if (rlang::is_empty(value)) value <- NULL
+        } else if (field %in% c("tags", "brands")) {
+          value <- map(value, "id")
+          if (rlang::is_empty(value)) value <- NULL
+        } else if (is.list(value)) {
+          value = pluck(value, "id") %||% NA
           if (is.na(value)) rlang::warn(paste("Unable to find ID for compositive field", key))
-        }
-        l <- get(key, envir = fields)
-        l[[length(l) + 1]] <- value
-        assign(key, l, envir = fields)
-        assign(key, TRUE, envir = seen)
-      })
+        } else value <- value %||% NA
 
-      # Now we add NAs for the fields that we have not seen.
-      for (field in ls(fields)) {
-        if (!exists(field, envir = seen, inherits = FALSE)) {
-          l <- get(field, envir = fields)
-          if (field %in% list.fields) length(l) <- length(l) + 1
-          else l[[length(l) + 1]] <- NA
-          assign(field, l, envir = fields)
-        }
-      }
+        value
+      }), envir = columns)
     }
 
+    # Now we w ant to convert to a tibble
     final <- list()
     for (field in ls(fields)) {
-      data <- get(field, envir = fields)
+      data <- get(field, envir = columns)
       if (!(field %in% list.fields)) data <- c(data, recursive = TRUE)
       final[[field]] <- data
     }
@@ -129,7 +124,6 @@ mentions.brandseyer2.account.v4 <- function(x, filter, ...) {
     replyToId <- NULL;          replyToUri <- NULL;             reshareOfId <- NULL
     reshareOfUri <- NULL;       sentimentVerified <- NULL;      toHandle <- NULL
     toHandleId <- NULL;         toId <- NULL;  toName <- NULL;  updated <- NULL
-
 
     # Sort in to a slightly better order
     m <- as_tibble(final) %>%
@@ -152,8 +146,9 @@ mentions.brandseyer2.account.v4 <- function(x, filter, ...) {
              toName, toHandle, toHandleId,
              everything())
 
-    if (nrow(m) == 0) break
     result <- dplyr::bind_rows(result, m)
+
+    if (nrow(m) < limit) break
   }
 
   result

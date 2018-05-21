@@ -62,11 +62,16 @@ root_brands.data.frame <- function(x, includeDeleted = FALSE) {
   assert_that(x %has_name% "deleted", msg = "data.frame has no `deleted` column")
 
   # For devtools::check
-  deleted <- NULL; parent <- NULL
+  deleted <- NULL; parent <- NULL; name <- NULL; tier <- NULL
 
-  x %>%
-    filter(is.na(parent), includeDeleted | !deleted) %>%
-    tibble::as_tibble()
+  result <- x %>%
+    filter(is.na(parent), includeDeleted | !deleted)
+
+  if (x %has_name% "tier" && x %has_name% "name") {
+    result <- result %>% arrange(desc(tier), name)
+  }
+
+  tibble::as_tibble(result)
 }
 
 #' @describeIn root_brands

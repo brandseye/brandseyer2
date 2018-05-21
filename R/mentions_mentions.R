@@ -58,92 +58,105 @@ mentions.brandseyer2.account.v4 <- function(x, filter, ...) {
   assert_that(nchar(filter) > 0,
               msg = "filter cannot be an empty character vector")
 
-  query <- list(filter = filter, limit=100)
-  data <- read_api(endpoint = paste0("v4/accounts/", account_code(x), "/mentions"),
-                   query = query)
+  result <- NULL
 
-  # We want to figure out a list of fields.
-  fields = new.env(hash = TRUE)
+  repeat {
+    query <- list(filter = filter, limit=5000, offset = nrow(result) %||% 0)
+    data <- read_api(endpoint = paste0("v4/accounts/", account_code(x), "/mentions"),
+                     query = query)
 
-  for (mention in data) {
-    keys <- names(mention)
-    for (key in keys) {
-      if (!exists(key, envir = fields, inherits = FALSE)) {
-        assign(key, list(), envir = fields)
+    if (length(data) == 0) break
+
+    # We want to figure out a list of fields.
+    fields = new.env(hash = TRUE)
+
+    for (mention in data) {
+      keys <- names(mention)
+      for (key in keys) {
+        if (!exists(key, envir = fields, inherits = FALSE)) {
+          assign(key, list(), envir = fields)
+        }
       }
     }
-  }
 
-  list.fields <- c("brands", "tags", "mediaLinks")
+    message("Fields done")
 
-  for (mention in data) {
-    seen <- new.env(hash = TRUE)
-    is.list.field <- FALSE
-    imap(mention, function(value, key) {
-      if (key == "mediaLinks") {
-        value = map_df(value, ~tibble(url = .x$url, mimeType = .x$mimeType))
-      } else if (key %in% c("brands", "tags")) {
-        value = map(value, "id")
-      } else if (rlang::is_list(value)) {
-        value <- pluck(value, "id") %||% NA
-        if (is.na(value)) rlang::warn(paste("Unable to find ID for compositive field", key))
+    list.fields <- c("brands", "tags", "mediaLinks")
+
+    for (mention in data) {
+      seen <- new.env(hash = TRUE)
+      is.list.field <- FALSE
+      imap(mention, function(value, key) {
+        if (key == "mediaLinks") {
+          value = map_df(value, ~tibble(url = .x$url, mimeType = .x$mimeType))
+        } else if (key %in% c("brands", "tags")) {
+          value = map(value, "id")
+        } else if (rlang::is_list(value)) {
+          value <- pluck(value, "id") %||% NA
+          if (is.na(value)) rlang::warn(paste("Unable to find ID for compositive field", key))
+        }
+        l <- get(key, envir = fields)
+        l[[length(l) + 1]] <- value
+        assign(key, l, envir = fields)
+        assign(key, TRUE, envir = seen)
+      })
+
+      # Now we add NAs for the fields that we have not seen.
+      for (field in ls(fields)) {
+        if (!exists(field, envir = seen, inherits = FALSE)) {
+          l <- get(field, envir = fields)
+          if (field %in% list.fields) length(l) <- length(l) + 1
+          else l[[length(l) + 1]] <- NA
+          assign(field, l, envir = fields)
+        }
       }
-      l <- get(key, envir = fields)
-      l[[length(l) + 1]] <- value
-      assign(key, l, envir = fields)
-      assign(key, TRUE, envir = seen)
-    })
+    }
 
-    # Now we add NAs for the fields that we have not seen.
+    final <- list()
     for (field in ls(fields)) {
-      if (!exists(field, envir = seen, inherits = FALSE)) {
-        l <- get(field, envir = fields)
-        if (field %in% list.fields) length(l) <- length(l) + 1
-        else l[[length(l) + 1]] <- NA
-        assign(field, l, envir = fields)
-      }
+      data <- get(field, envir = fields)
+      if (!(field %in% list.fields)) data <- c(data, recursive = TRUE)
+      final[[field]] <- data
     }
+
+    # Set up things for devtools::check
+    uri <- NULL;                link <- NULL;                   published <- NULL
+    sentiment <- NULL;          brands <- NULL;                 authorBio <- NULL
+    authorHandle <- NULL;       authorId <- NULL;               authorName <- NULL
+    authorPictureLink <- NULL;  authorProfileLink <- NULL;      authorTimezone <- NULL
+    crowdVerified <- NULL;      extract <- NULL;                pickedUp <- NULL
+    postExtract <- NULL;        relevancy <- NULL;              relevancyVerified <- NULL
+    replyToId <- NULL;          replyToUri <- NULL;             reshareOfId <- NULL
+    reshareOfUri <- NULL;       sentimentVerified <- NULL;      toHandle <- NULL
+    toHandleId <- NULL;         toId <- NULL;  toName <- NULL;  updated <- NULL
+
+
+    # Sort in to a slightly better order
+    m <- as_tibble(final) %>%
+      mutate(published = lubridate::ymd_hms(published),
+             pickedUp = lubridate::ymd_hms(pickedUp),
+             updated = lubridate::ymd_hms(updated)) %>%
+      select(id, uri, link,
+             published, pickedUp, updated,
+             extract,
+             postExtract,
+             replyToUri, replyToId,
+             reshareOfUri, reshareOfId,
+             brands,
+             sentiment, relevancy,
+             crowdVerified,
+             relevancyVerified,
+             sentimentVerified,
+             authorId, authorName, authorHandle, authorPictureLink, authorProfileLink, authorBio, authorTimezone,
+             toId,
+             toName, toHandle, toHandleId,
+             everything())
+
+    if (nrow(m) == 0) break
+    result <- dplyr::bind_rows(result, m)
   }
 
-  final <- list()
-  for (field in ls(fields)) {
-    data <- get(field, envir = fields)
-    if (!(field %in% list.fields)) data <- c(data, recursive = TRUE)
-    final[[field]] <- data
-  }
-
-  # Set up things for devtools::check
-  uri <- NULL;                link <- NULL;                   published <- NULL
-  sentiment <- NULL;          brands <- NULL;                 authorBio <- NULL
-  authorHandle <- NULL;       authorId <- NULL;               authorName <- NULL
-  authorPictureLink <- NULL;  authorProfileLink <- NULL;      authorTimezone <- NULL
-  crowdVerified <- NULL;      extract <- NULL;                pickedUp <- NULL
-  postExtract <- NULL;        relevancy <- NULL;              relevancyVerified <- NULL
-  replyToId <- NULL;          replyToUri <- NULL;             reshareOfId <- NULL
-  reshareOfUri <- NULL;       sentimentVerified <- NULL;      toHandle <- NULL
-  toHandleId <- NULL;         toId <- NULL;  toName <- NULL;  updated <- NULL
-
-
-  # Sort in to a slightly better order
-  as_tibble(final) %>%
-    mutate(published = lubridate::ymd_hms(published),
-           pickedUp = lubridate::ymd_hms(pickedUp),
-           updated = lubridate::ymd_hms(updated)) %>%
-    select(id, uri, link,
-           published, pickedUp, updated,
-           extract,
-           postExtract,
-           replyToUri, replyToId,
-           reshareOfUri, reshareOfId,
-           brands,
-           sentiment, relevancy,
-           crowdVerified,
-           relevancyVerified,
-           sentimentVerified,
-           authorId, authorName, authorHandle, authorPictureLink, authorProfileLink, authorBio, authorTimezone,
-           toId,
-           toName, toHandle, toHandleId,
-           everything())
+  result
 }
 
 #' @describeIn mentions

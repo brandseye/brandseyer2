@@ -35,7 +35,6 @@
 #'
 #' @examples
 #'
-#' \dontrun{
 #' # Fetch brand information
 #' account("TEST01AA") %>%
 #'   brands()
@@ -52,7 +51,6 @@
 #'   dplyr::rename(brand.id = id) %>%
 #'   tidyr::unnest(phrases) %>%
 #'   dplyr::rename(phrase.id = id)
-#' }
 brands <- function(accounts) {
   UseMethod("brands")
 }

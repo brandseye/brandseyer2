@@ -10,9 +10,6 @@
     <loc>https://brandseye.github.io/brandseyer2//reference/account_api_version.html</loc>
   </url>
   <url>
-    <loc>https://brandseye.github.io/brandseyer2//reference/account_brands.html</loc>
-  </url>
-  <url>
     <loc>https://brandseye.github.io/brandseyer2//reference/account_code.html</loc>
   </url>
   <url>
@@ -28,16 +25,13 @@
     <loc>https://brandseye.github.io/brandseyer2//reference/account_phrases.html</loc>
   </url>
   <url>
-    <loc>https://brandseye.github.io/brandseyer2//reference/account_tags.html</loc>
-  </url>
-  <url>
-    <loc>https://brandseye.github.io/brandseyer2//reference/account_topics.html</loc>
-  </url>
-  <url>
     <loc>https://brandseye.github.io/brandseyer2//reference/authenticate.html</loc>
   </url>
   <url>
     <loc>https://brandseye.github.io/brandseyer2//reference/authentication_filename.html</loc>
+  </url>
+  <url>
+    <loc>https://brandseye.github.io/brandseyer2//reference/brands.html</loc>
   </url>
   <url>
     <loc>https://brandseye.github.io/brandseyer2//reference/check_errors.html</loc>
@@ -68,6 +62,12 @@
   </url>
   <url>
     <loc>https://brandseye.github.io/brandseyer2//reference/save_key.html</loc>
+  </url>
+  <url>
+    <loc>https://brandseye.github.io/brandseyer2//reference/tags.html</loc>
+  </url>
+  <url>
+    <loc>https://brandseye.github.io/brandseyer2//reference/topics.html</loc>
   </url>
   <url>
     <loc>https://brandseye.github.io/brandseyer2//reference/whoami.html</loc>

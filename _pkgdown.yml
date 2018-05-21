@@ -23,6 +23,8 @@ reference:
       - is.account
       - brands
       - root_brands
+      - tags
+      - topics
       - starts_with("account_")
   - title: "Accessing mentions"
     desc: >

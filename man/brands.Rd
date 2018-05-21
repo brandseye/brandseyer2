@@ -31,7 +31,6 @@ account. It includes brand names, associated phrases, and so on.
 
 \examples{
 
-\dontrun{
 # Fetch brand information
 account("TEST01AA") \%>\%
   brands()
@@ -48,7 +47,6 @@ account("TEST01AA") \%>\%
   dplyr::rename(brand.id = id) \%>\%
   tidyr::unnest(phrases) \%>\%
   dplyr::rename(phrase.id = id)
-}
 
 accounts(c("TEST01AA", "TEST02AA")) \%>\%
   brands()

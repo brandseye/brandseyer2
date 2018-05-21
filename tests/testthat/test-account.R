@@ -87,7 +87,7 @@ test_that("Can read an account's manager", {
 
 test_that("Can read brand information for an account", {
   brands <- account("TEST01AA") %>%
-    account_brands()
+    brands()
 
   expect_equal(nrow(brands), 3)
   expect_equal(brands$id, 1:3)
@@ -95,7 +95,7 @@ test_that("Can read brand information for an account", {
 
 test_that("Can read brands from more than one account", {
   brands <- account(c("TEST01AA", "TEST02AA")) %>%
-    account_brands()
+    brands()
 
   expect_equal(nrow(brands), 4)
   expect_equal(brands$id, c(1, 2, 3, 100))

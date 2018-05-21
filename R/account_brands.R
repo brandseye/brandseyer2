@@ -38,31 +38,31 @@
 #' \dontrun{
 #' # Fetch brand information
 #' account("TEST01AA") %>%
-#'   account_brands()
+#'   brands()
 #'
 #' # Find deleted parent brands
 #' account("TEST01AA") %>%
-#'   account_brands() %>%
+#'   brands() %>%
 #'   dplyr::filter(is.na(parent), deleted)
 #'
 #' # Fetch phrases without using account_phrases
 #' account("TEST01AA") %>%
-#'   account_brands() %>%
+#'   brands() %>%
 #'   dplyr::select(id, phrases) %>%
 #'   dplyr::rename(brand.id = id) %>%
 #'   tidyr::unnest(phrases) %>%
 #'   dplyr::rename(phrase.id = id)
 #' }
-account_brands <- function(accounts) {
-  UseMethod("account_brands")
+brands <- function(accounts) {
+  UseMethod("brands")
 }
 
-#' @describeIn account_brands
+#' @describeIn brands
 #'
 #' Read brands for only a single account
 #'
 #' @export
-account_brands.brandseyer2.account <- function(accounts) {
+brands.brandseyer2.account <- function(accounts) {
 
   # Brands are stored in a recursive tree, so we need a recursive function.
   recurse <- function(brands, parent = NA) {
@@ -104,7 +104,7 @@ account_brands.brandseyer2.account <- function(accounts) {
   recurse(accounts$brands)
 }
 
-#' @describeIn account_brands
+#' @describeIn brands
 #'
 #' Create a table of brands for the list of accounts given
 #'
@@ -113,11 +113,11 @@ account_brands.brandseyer2.account <- function(accounts) {
 #' @examples
 #'
 #' accounts(c("TEST01AA", "TEST02AA")) %>%
-#'   account_brands()
-account_brands.list <- function(accounts) {
+#'   brands()
+brands.list <- function(accounts) {
   accounts %>%
     map_df(~ .x %>%
-             account_brands() %>%
+             brands() %>%
              mutate(account = account_code(.x)) %>%
              select(account, everything()))
 }

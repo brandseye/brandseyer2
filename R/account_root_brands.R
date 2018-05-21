@@ -28,12 +28,12 @@
 #' @param includeDeleted Whether to include deleted root brands.
 #'
 #' @return A tibble containing rows only for the root brands of an account. Otherwise,
-#'         like the table returned in \code{\link{account_brands}}.
+#'         like the table returned in \code{\link{brands}}.
 #' @export
 #'
 #' @author Constance Neeser
 #'
-#' @seealso \code{\link{account_brands}} for returning all brands in an account.
+#' @seealso \code{\link{brands}} for returning all brands in an account.
 #'
 #' @examples
 #'
@@ -43,7 +43,7 @@
 #'
 #' # Get root brands from a tibble or data.frame
 #' account(c("TEST01AA", "TEST02AA")) %>%
-#'   account_brands() %>%
+#'   brands() %>%
 #'   root_brands()
 root_brands <- function(x, includeDeleted) {
   UseMethod("root_brands")
@@ -53,7 +53,7 @@ root_brands <- function(x, includeDeleted) {
 #'
 #' Find root brands from a \code{tibble} or \code{data.frame}. The data.frame
 #' should have  \code{id}, \code{parent}, and \code{deleted} columns, just as
-#' the tibble returned from \code{\link{account_brands}} does.
+#' the tibble returned from \code{\link{brands}} does.
 #'
 #' @export
 root_brands.data.frame <- function(x, includeDeleted = FALSE) {
@@ -81,7 +81,7 @@ root_brands.data.frame <- function(x, includeDeleted = FALSE) {
 #' @export
 root_brands.brandseyer2.account <- function(x, includeDeleted = FALSE) {
   x %>%
-    account_brands() %>%
+    brands() %>%
     root_brands(includeDeleted = includeDeleted)
 }
 
@@ -92,6 +92,6 @@ root_brands.brandseyer2.account <- function(x, includeDeleted = FALSE) {
 #' @export
 root_brands.list <- function(x, includeDeleted = FALSE) {
   x %>%
-    account_brands() %>%
+    brands() %>%
     root_brands(includeDeleted = includeDeleted)
 }

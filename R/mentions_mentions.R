@@ -52,9 +52,11 @@ mentions <- function(x, filter, select, ...) {
 #' @describeIn mentions
 #'
 #' Reads V4 accounts. Returns a tibble of mentions.
+#' 
+#' @param orderBy Fields to order the returned data by. Defaults to published
 #'
 #' @export
-mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL, ...) {
+mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL, ..., orderBy = NULL) {
   assert_that(assertthat::is.string(filter))
   assert_that(nchar(filter) > 0,
               msg = "filter cannot be an empty character vector")
@@ -74,6 +76,11 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL, ...) {
     if (!is.null(select)) {
       assert_that(is.character(select))
       query$select = paste0(select, collapse = ',')
+    }
+    
+    if (!is.null(orderBy)) {
+      assert_that(is.character(orderBy))
+      query$orderBy = paste0(orderBy, collapse = ',')
     }
     
     data <- read_api(endpoint = paste0("v4/accounts/", account_code(x), "/mentions"),

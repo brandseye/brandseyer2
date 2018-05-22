@@ -8,7 +8,8 @@
 \usage{
 mentions(x, filter, select, ...)
 
-\method{mentions}{brandseyer2.account.v4}(x, filter, select = NULL, ...)
+\method{mentions}{brandseyer2.account.v4}(x, filter, select = NULL, ...,
+  orderBy = NULL)
 
 \method{mentions}{brandseyer2.account.v3}(x, filter, select, ...,
   use.brandseyer = FALSE, limit = 30, offset = 0, include, all = FALSE)
@@ -21,6 +22,8 @@ mentions(x, filter, select, ...)
 \item{select}{A character vector of the mention fields to be returned.}
 
 \item{...}{Further arguments passed to or from other methods.}
+
+\item{orderBy}{Fields to order the returned data by. Defaults to published}
 
 \item{use.brandseyer}{Set to TRUE if the old brandseyer library is installed,
 and you would like to read from an account still using the old V3 API.}

@@ -58,13 +58,15 @@ mentions.brandseyer2.account.v4 <- function(x, filter, ...) {
   assert_that(nchar(filter) > 0,
               msg = "filter cannot be an empty character vector")
 
+  restricted.filter <- add_pickedup(filter, account_timezone(x))
   result <- NULL
-  limit <- 10000
+  limit <- 20000
   list.fields <- c("brands", "tags", "mediaLinks")
 
   repeat {
-    query <- list(filter = filter, limit=limit, offset = nrow(result) %||% 0)
-    message("Again")
+    query <- list(filter = restricted.filter,
+                  limit=limit,
+                  offset = nrow(result) %||% 0)
     data <- read_api(endpoint = paste0("v4/accounts/", account_code(x), "/mentions"),
                      query = query)
 

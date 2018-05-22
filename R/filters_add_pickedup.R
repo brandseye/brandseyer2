@@ -19,6 +19,13 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#' Add a pickedup date restriction to a filter.
+#'
+#' @param filter The filter to amend.
+#' @param timezone The timezone that the time is given in
+#' @param time An optional time to use. Otherwise uses the current time.
+#'
+#' @return The ammended filter.
 add_pickedup <- function(filter, timezone, time = Sys.time()) {
   assert_that(is.string(filter))
   assert_that(assertthat::is.time(time))

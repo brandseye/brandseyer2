@@ -37,6 +37,11 @@ test_that("Can read account api format", {
   expect_equal(account_api_version(v3_account), "V3")
 })
 
+test_that("Can read an account's timezone", {
+  expect_equal(account("TEST01AA") %>% account_timezone(), "Africa/Johannesburg")
+  expect_equal(account("TEST02AA") %>% account_timezone(), "UTC")
+})
+
 test_that("Can fetch account tags", {
   tags <- account("TEST01AA") %>%
     tags()

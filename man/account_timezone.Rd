@@ -7,7 +7,7 @@
 account_timezone(account)
 }
 \arguments{
-\item{account}{The account object.}
+\item{account}{An account object.}
 }
 \value{
 A string holding the timezone that account data is reported in.

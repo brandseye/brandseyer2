@@ -6,18 +6,19 @@
 \alias{mentions.brandseyer2.account.v3}
 \title{Fetch mentions from an account}
 \usage{
-mentions(x, filter, ...)
+mentions(x, filter, select, ...)
 
-\method{mentions}{brandseyer2.account.v4}(x, filter, ...)
+\method{mentions}{brandseyer2.account.v4}(x, filter, select = NULL, ...)
 
-\method{mentions}{brandseyer2.account.v3}(x, filter, ...,
-  use.brandseyer = FALSE, limit = 30, offset = 0, include, select,
-  all = FALSE)
+\method{mentions}{brandseyer2.account.v3}(x, filter, select, ...,
+  use.brandseyer = FALSE, limit = 30, offset = 0, include, all = FALSE)
 }
 \arguments{
 \item{x}{An account object}
 
 \item{filter}{A query to match mentions against. See the filter vignette for details.}
+
+\item{select}{A character vector of the mention fields to be returned.}
 
 \item{...}{Further arguments passed to or from other methods.}
 
@@ -30,8 +31,6 @@ and you would like to read from an account still using the old V3 API.}
 first mentions should be skipped.}
 
 \item{include}{A character vector of extra information to include in the mentions}
-
-\item{select}{A character vector of the mention fields to be returned.}
 
 \item{all}{Set to true if you would like to return all mentions from the account.
 This overides the \code{limit} parameter.}

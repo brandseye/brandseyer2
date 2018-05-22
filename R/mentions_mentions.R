@@ -32,6 +32,7 @@
 #'
 #' @param x An account object
 #' @param filter A query to match mentions against. See the filter vignette for details.
+#' @param select A character vector of the mention fields to be returned.
 #' @param ... Further arguments passed to or from other methods.
 #'
 #' @return A tibble of mentions.
@@ -44,7 +45,7 @@
 #'
 #' }
 #' @export
-mentions <- function(x, filter, ...) {
+mentions <- function(x, filter, select, ...) {
   UseMethod("mentions")
 }
 
@@ -53,20 +54,28 @@ mentions <- function(x, filter, ...) {
 #' Reads V4 accounts. Returns a tibble of mentions.
 #'
 #' @export
-mentions.brandseyer2.account.v4 <- function(x, filter, ...) {
+mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL, ...) {
   assert_that(assertthat::is.string(filter))
   assert_that(nchar(filter) > 0,
               msg = "filter cannot be an empty character vector")
 
   restricted.filter <- add_pickedup(filter, account_timezone(x))
   result <- NULL
-  limit <- 20000
+  limit <- 100000
   list.fields <- c("brands", "tags", "mediaLinks")
 
   repeat {
+    # The sprintf is to avoid scientific notation for large numbers without
+    # globally setting scipen in options.
     query <- list(filter = restricted.filter,
-                  limit=limit,
-                  offset = nrow(result) %||% 0)
+                  limit= sprintf("%d", limit),
+                  offset = sprintf("%d", nrow(result) %||% 0))
+    
+    if (!is.null(select)) {
+      assert_that(is.character(select))
+      query$select = paste0(select, collapse = ',')
+    }
+    
     data <- read_api(endpoint = paste0("v4/accounts/", account_code(x), "/mentions"),
                      query = query)
 
@@ -127,33 +136,33 @@ mentions.brandseyer2.account.v4 <- function(x, filter, ...) {
     reshareOfUri <- NULL;       sentimentVerified <- NULL;      toHandle <- NULL
     toHandleId <- NULL;         toId <- NULL;  toName <- NULL;  updated <- NULL
 
-    # Sort in to a slightly better order
-    m <- as_tibble(final) %>%
-      mutate(published = lubridate::ymd_hms(published),
-             pickedUp = lubridate::ymd_hms(pickedUp),
-             updated = lubridate::ymd_hms(updated)) %>%
-      select(id, uri, link,
-             published, pickedUp, updated,
-             extract,
-             postExtract,
-             replyToUri, replyToId,
-             reshareOfUri, reshareOfId,
-             brands,
-             sentiment, relevancy,
-             crowdVerified,
-             relevancyVerified,
-             sentimentVerified,
-             authorId, authorName, authorHandle, authorPictureLink, authorProfileLink, authorBio, authorTimezone,
-             toId,
-             toName, toHandle, toHandleId,
-             everything())
-
+    m <- as_tibble(final)
     result <- dplyr::bind_rows(result, m)
 
     if (nrow(m) < limit) break
   }
-
-  result
+  
+  if (result %has_name% "published") result <- result %>% mutate(published = lubridate::ymd_hms(published))
+  if (result %has_name% "pickedUp") result <- result %>% mutate(published = lubridate::ymd_hms(published))  
+  if (result %has_name% "updated") result <- result %>% mutate(published = lubridate::ymd_hms(published))  
+  
+  result %>% 
+    select(id, uri, link,
+           published, pickedUp, updated,
+           extract,
+           postExtract,
+           replyToUri, replyToId,
+           reshareOfUri, reshareOfId,
+           brands,
+           sentiment, relevancy,
+           crowdVerified,
+           relevancyVerified,
+           sentimentVerified,
+           authorId, authorName, authorHandle, authorPictureLink, authorProfileLink, authorBio, authorTimezone,
+           toId,
+           toName, toHandle, toHandleId,
+           everything())
+  
 }
 
 #' @describeIn mentions
@@ -169,16 +178,15 @@ mentions.brandseyer2.account.v4 <- function(x, filter, ...) {
 #' @param offset Mentions are returned in an order. Offset says how many of the
 #'   first mentions should be skipped.
 #' @param include A character vector of extra information to include in the mentions
-#' @param select A character vector of the mention fields to be returned.
 #' @param all Set to true if you would like to return all mentions from the account.
 #'            This overides the \code{limit} parameter.
 
 #'
 #' @export
-mentions.brandseyer2.account.v3 <- function(x, filter, ...,
+mentions.brandseyer2.account.v3 <- function(x, filter, select, ...,
                                             use.brandseyer = FALSE,
                                             limit = 30, offset = 0,
-                                            include, select,
+                                            include, 
                                             all = FALSE) {
   if (!is_installed("brandseyer") || !use.brandseyer) {
     abort("brandseyer2 only supports V4 accounts.")

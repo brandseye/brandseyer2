@@ -19,17 +19,21 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' Get an account's name
+#' Get an account's timezone
 #'
-#' @param account The account object.
+#' An account's data is reported in a particular timezone, set for that account.
+#' All dates provided in filters are assumed to be given in that timezone.
 #'
-#' @return A string holding the account's name
+#' @param account An account object.
+#'
+#' @return A string holding the timezone that account data is reported in.
 #' @export
-account_name <- function(account) {
-  UseMethod("account_name")
+#' @author Constance Neeser
+account_timezone <- function(account) {
+  UseMethod("account_timezone")
 }
 
 #' @export
-account_name.brandseyer2.account <- function(account) {
-  account$name
+account_timezone.brandseyer2.account <- function(account) {
+  account$timezone
 }

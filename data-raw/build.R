@@ -6,6 +6,7 @@ test01aa_data <- list(
   storage = "V4",
   name = "Test 1",
   code = "TEST01AA",
+  timezone = "Africa/Johannesburg",
   clientService = list(
     email = "noreply@brandseye.com",
     firstName = "Your",
@@ -96,6 +97,7 @@ test02aa_data <- list(
   storage = "V2",
   name = "Test 2 — Best Account",
   code = "TEST02AA",
+  timezone = "UTC",
   tags = list(
     list(id = 101,
          name = "tag1",

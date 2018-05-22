@@ -19,17 +19,12 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' Get an account's name
-#'
-#' @param account The account object.
-#'
-#' @return A string holding the account's name
-#' @export
-account_name <- function(account) {
-  UseMethod("account_name")
-}
+add_pickedup <- function(filter, timezone, time = Sys.time()) {
+  assert_that(is.string(filter))
+  assert_that(assertthat::is.time(time))
 
-#' @export
-account_name.brandseyer2.account <- function(account) {
-  account$name
+  pickedUpRestriction <- format(lubridate::with_tz(time, timezone),
+                                "pickedUp before '%F %R'")
+
+  paste0(filter, " and (", pickedUpRestriction, ")")
 }

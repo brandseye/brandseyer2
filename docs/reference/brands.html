@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fetch account brands — brands • brandseyer2</title>
+<title>Fetch brand information — brands.brandseyer2.account • brandseyer2</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,10 +28,12 @@
 
 
 
-<meta property="og:title" content="Fetch account brands — brands" />
+<meta property="og:title" content="Fetch brand information — brands.brandseyer2.account" />
 
-<meta property="og:description" content="Fetches brand information, returned as a tibble, for the given
-account. It includes brand names, associated phrases, and so on." />
+<meta property="og:description" content="Fetches brand information for accounts and for mention data.
+This is returned returned as a tibble. For account objects,
+this returns the brands that make up the account. For mention data,
+this returns the brands that are associated with the mention." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -98,32 +100,46 @@ account. It includes brand names, associated phrases, and so on." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fetch account brands</h1>
-    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/account_brands.R'><code>R/account_brands.R</code></a></small>
+    <h1>Fetch brand information</h1>
+    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/account_brands.R'><code>R/account_brands.R</code></a>, <a href='https://github.com/brandseye/brandseyer2/blob/master/R/brands.R'><code>R/brands.R</code></a>, <a href='https://github.com/brandseye/brandseyer2/blob/master/R/mention_brands.R'><code>R/mention_brands.R</code></a></small>
     <div class="hidden name"><code>brands.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Fetches brand information, returned as a tibble, for the given
-account. It includes brand names, associated phrases, and so on.</p>
+    <p>Fetches brand information for accounts and for mention data.
+This is returned returned as a tibble. For account objects,
+this returns the brands that make up the account. For mention data,
+this returns the brands that are associated with the mention.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>brands</span>(<span class='no'>accounts</span>)
-
-<span class='co'># S3 method for brandseyer2.account</span>
-<span class='fu'>brands</span>(<span class='no'>accounts</span>)
+    <pre class="usage"><span class='co'># S3 method for brandseyer2.account</span>
+<span class='fu'>brands</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for list</span>
-<span class='fu'>brands</span>(<span class='no'>accounts</span>)</pre>
+<span class='fu'>brands</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='fu'>brands</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for data.frame</span>
+<span class='fu'>brands</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>ac</span> <span class='kw'>=</span> <span class='fu'>attr</span>(<span class='no'>x</span>, <span class='st'>"account"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>accounts</th>
-      <td><p>One or more account objects.</p></td>
+      <th>x</th>
+      <td><p>An object to fetch brand data for, such as an <code><a href='account.html'>account</a></code>
+or tibble of mention data.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional parameters for functions.</p></td>
+    </tr>
+    <tr>
+      <th>ac</th>
+      <td><p>An optional account object from which to take tag information.</p></td>
     </tr>
     </table>
     
@@ -135,7 +151,8 @@ account. It includes brand names, associated phrases, and so on.</p>
 
     <ul>
 <li><p><code>brandseyer2.account</code>: Read brands for only a single account</p></li>
-<li><p><code>list</code>: Create a table of brands for the list of accounts given</p></li>
+<li><p><code>list</code>: Create a table of brands for the list of x given</p></li>
+<li><p><code>data.frame</code>: Fetch brand information from a tibble of mention data.</p></li>
 </ul>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>

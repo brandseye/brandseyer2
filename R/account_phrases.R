@@ -53,7 +53,7 @@ phrases.brandseyer2.account <- function(accounts) {
   brands %>%
     select(id, phrases) %>%
     rename(brand.id = id) %>%
-    unnest(phrases) %>%
+    unnest(phrases = map(phrases, ~ .x %||% NA)) %>%
     rename(phrase.id = id) %>%
     select(phrase.id, everything()) %>%
     arrange(deleted, inactive, query)

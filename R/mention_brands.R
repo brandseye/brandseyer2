@@ -19,27 +19,27 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' @describeIn tags
+#' @describeIn brands
 #'
-#' Fetch tag information from a tibble of mention data.
+#' Fetch brand information from a tibble of mention data.
 #'
 #' @param ac An optional account object from which to take tag information.
 #'
 #' @export
-tags.data.frame <- function(x, ..., ac = attr(x, "account")) {
+brands.data.frame <- function(x, ..., ac = attr(x, "account")) {
   assert_that(x %has_name% "id", msg = "data.frame has no mention id column")
-  assert_that(x %has_name% "tags", msg = "data.frame has no tags column")
+  assert_that(x %has_name% "brands", msg = "data.frame has no brands column")
 
   ts <- x %>%
-    select(id, tags) %>%
-    arrange(desc(map_int(tags, ~length(.x)))) %>%
-    unnest(tags = map(tags, ~ .x %||% NA))
+    select(id, brands) %>%
+    unnest(brands = map(brands, ~ .x %||% NA))
 
   if (!is.null(ac)) {
     ts <- ts %>%
-      left_join(ac %>% tags(), by = c("tags" = "id")) %>%
-      rename(tag.id = tags)
-  }else rlang::warn("No account information to use - see `ac` argument to `tags()`")
+      left_join(ac %>% brands(), by = c("brands" = "id")) %>%
+      select(id, brands, parent, name, deleted) %>%
+      rename(brand.id = brands)
+  } else rlang::warn("No account information to use - see `ac` argument to `brands()`")
 
   ts
 }

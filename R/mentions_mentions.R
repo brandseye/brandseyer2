@@ -114,7 +114,7 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL, ..., order
           if (rlang::is_empty(value)) value <- tibble(url = NA, mimeType = NA)
         } else if (field %in% c("tags", "brands")) {
           value <- map_int(value, "id")
-          if (rlang::is_empty(value)) value <- NA
+          if (rlang::is_empty(value)) value <- NULL
         } else if (is.list(value)) {
           value = pluck(value, "id") %||% NA
           if (is.na(value)) rlang::warn(paste("Unable to find ID for compositive field", key))
@@ -153,7 +153,7 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL, ..., order
   if (result %has_name% "pickedUp") result <- result %>% mutate(published = lubridate::ymd_hms(published))
   if (result %has_name% "updated") result <- result %>% mutate(published = lubridate::ymd_hms(published))
 
-  result %>%
+  result <- result %>%
     select(id, uri, link,
            published, pickedUp, updated,
            extract,
@@ -170,6 +170,8 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL, ..., order
            toName, toHandle, toHandleId,
            everything())
 
+  attr(result, "account") <- x
+  result
 }
 
 #' @describeIn mentions

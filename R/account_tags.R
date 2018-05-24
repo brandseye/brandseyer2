@@ -19,19 +19,11 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' Fetch tags for an account
+#' @describeIn tags
 #'
-#' Fetches tag information information, returned as a tibble, for the given
-#' account.
+#' Get tags from an account object.
 #'
-#' @param accounts One or more account objects.
-#'
-#' @return A tibble of tag information. Includes the name, namespace, and description of the
-#' tags. Note that topics are stored in the 'topics' namespace.
 #' @export
-#'
-#' @seealso \code{\link{topics}} to see just a list of topics.
-#'
 #' @examples
 #'
 #' # See what namespaces are in your account
@@ -45,21 +37,12 @@
 #'   tags() %>%
 #'   dplyr::filter(namespace == "topic")
 #'
-tags <- function(accounts) {
-  UseMethod("tags")
-}
-
-#' @describeIn tags
-#'
-#' Get tags from an account object.
-#'
-#' @export
-tags.brandseyer2.account <- function(accounts) {
+tags.brandseyer2.account <- function(x, ...) {
   # Handle devtools::check notes
   children <- NULL
   is_parent <- NULL
 
-  accounts$tags %>%
+  x$tags %>%
     map_df(function(d) {
       tibble(id = d$id,
              name = d$name,
@@ -68,24 +51,26 @@ tags.brandseyer2.account <- function(accounts) {
              deleted = d$deleted %||% FALSE
       )
     }) %>%
-    mutate(children = map(accounts$tags, "children"),
+    mutate(children = map(x$tags, ~c(pluck(.x, "children"), recursive = TRUE)),
            is_parent = map_lgl(children, ~length(.x) > 0))
 }
 
 #' @describeIn tags
 #'
-#' Create a table of tags for the list of accounts given
+#' Create a table of tags for the list of x given
 #'
 #' @export
 #'
 #' @examples
 #'
+#' # See the tags for multiple accounts at a time.
 #' accounts(c("TEST01AA", "TEST02AA")) %>%
 #'   tags()
-tags.list <- function(accounts) {
-  accounts %>%
+tags.list <- function(x, ...) {
+  x %>%
     map_df(~ .x %>%
              tags %>%
-             mutate(account = account_code(.x)) %>%
-             select(account, everything()))
+             mutate(account = account_code(.x),
+                    ac = list(.x)) %>%
+             select(account, -ac, everything()))
 }

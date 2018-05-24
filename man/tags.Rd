@@ -5,7 +5,7 @@
 \alias{tags.list}
 \alias{tags.data.frame}
 \alias{tags}
-\title{Fetch tags for an account}
+\title{Fetch tags for accounts and mention data}
 \usage{
 \method{tags}{brandseyer2.account}(x, ...)
 
@@ -28,8 +28,9 @@ A tibble of tag information. Includes the name, namespace, and description of th
 tags. Note that topics are stored in the 'topics' namespace.
 }
 \description{
-Fetches tag information information, returned as a tibble, for the given
-account.
+Fetches tag information, returned as a tibble, for the given
+account. This can be done for both account information, as well as
+mentions.
 }
 \section{Methods (by class)}{
 \itemize{
@@ -59,7 +60,11 @@ accounts(c("TEST01AA", "TEST02AA")) \%>\%
   tags()
 }
 \seealso{
+\code{\link{account}}() to fetch account data.
+
 \code{\link{topics}}() to see just a list of topics.
+
+\code{\link{mentions}}() to query mention data.
 }
 \author{
 Constance Neeser

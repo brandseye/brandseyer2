@@ -19,10 +19,11 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' Fetch tags for an account
+#' Fetch tags for accounts and mention data
 #'
-#' Fetches tag information information, returned as a tibble, for the given
-#' account.
+#' Fetches tag information, returned as a tibble, for the given
+#' account. This can be done for both account information, as well as
+#' mentions.
 #'
 #' @param x An object to find tag information for, such as an \code{\link{account}}
 #'          or a tibble of mention data.
@@ -32,7 +33,9 @@
 #' tags. Note that topics are stored in the 'topics' namespace.
 #' @export
 #'
+#' @seealso \code{\link{account}}() to fetch account data.
 #' @seealso \code{\link{topics}}() to see just a list of topics.
+#' @seealso \code{\link{mentions}}() to query mention data.
 #'
 #' @author Constance Neeser
 tags <- function(x, ...) {

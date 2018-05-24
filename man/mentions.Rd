@@ -70,3 +70,6 @@ account("TEST01AA") \%>\%
 
 }
 }
+\seealso{
+\code{\link{tags}}() to fetch tag information from mentions.
+}

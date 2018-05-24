@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fetch tags for an account — tags • brandseyer2</title>
+<title>Fetch tags for accounts and mention data — tags.brandseyer2.account • brandseyer2</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,10 +28,11 @@
 
 
 
-<meta property="og:title" content="Fetch tags for an account — tags" />
+<meta property="og:title" content="Fetch tags for accounts and mention data — tags.brandseyer2.account" />
 
-<meta property="og:description" content="Fetches tag information information, returned as a tibble, for the given
-account." />
+<meta property="og:description" content="Fetches tag information, returned as a tibble, for the given
+account. This can be done for both account information, as well as
+mentions." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -98,32 +99,45 @@ account." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fetch tags for an account</h1>
-    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/account_tags.R'><code>R/account_tags.R</code></a></small>
+    <h1>Fetch tags for accounts and mention data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/account_tags.R'><code>R/account_tags.R</code></a>, <a href='https://github.com/brandseye/brandseyer2/blob/master/R/mention_tags.R'><code>R/mention_tags.R</code></a>, <a href='https://github.com/brandseye/brandseyer2/blob/master/R/tags.R'><code>R/tags.R</code></a></small>
     <div class="hidden name"><code>tags.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Fetches tag information information, returned as a tibble, for the given
-account.</p>
+    <p>Fetches tag information, returned as a tibble, for the given
+account. This can be done for both account information, as well as
+mentions.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>tags</span>(<span class='no'>accounts</span>)
-
-<span class='co'># S3 method for brandseyer2.account</span>
-<span class='fu'>tags</span>(<span class='no'>accounts</span>)
+    <pre class="usage"><span class='co'># S3 method for brandseyer2.account</span>
+<span class='fu'>tags</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for list</span>
-<span class='fu'>tags</span>(<span class='no'>accounts</span>)</pre>
+<span class='fu'>tags</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for data.frame</span>
+<span class='fu'>tags</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>ac</span> <span class='kw'>=</span> <span class='fu'>attr</span>(<span class='no'>x</span>, <span class='st'>"account"</span>))
+
+<span class='fu'>tags</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>accounts</th>
-      <td><p>One or more account objects.</p></td>
+      <th>x</th>
+      <td><p>An object to find tag information for, such as an <code><a href='account.html'>account</a></code>
+or a tibble of mention data.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Extra arguments passed to functions.</p></td>
+    </tr>
+    <tr>
+      <th>ac</th>
+      <td><p>An optional account object from which to take tag information.</p></td>
     </tr>
     </table>
     
@@ -136,12 +150,15 @@ tags. Note that topics are stored in the 'topics' namespace.</p>
 
     <ul>
 <li><p><code>brandseyer2.account</code>: Get tags from an account object.</p></li>
-<li><p><code>list</code>: Create a table of tags for the list of accounts given</p></li>
+<li><p><code>list</code>: Create a table of tags for the list of x given</p></li>
+<li><p><code>data.frame</code>: Fetch tag information from a tibble of mention data.</p></li>
 </ul>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='topics.html'>topics</a></code> to see just a list of topics.</p></div>
+    <div class='dont-index'><p><code><a href='account.html'>account</a></code>() to fetch account data.</p>
+<p><code><a href='topics.html'>topics</a></code>() to see just a list of topics.</p>
+<p><code><a href='mentions.html'>mentions</a></code>() to query mention data.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -157,26 +174,27 @@ tags. Note that topics are stored in the 'topics' namespace.</p>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>tags</span>() <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>namespace</span> <span class='kw'>==</span> <span class='st'>"topic"</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 7
-#&gt;      id name          namespace description       deleted children   is_parent
-#&gt;   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;             &lt;lgl&gt;   &lt;list&gt;     &lt;lgl&gt;    
-#&gt; 1    10 Parent topic  topic     Has children      FALSE   &lt;list [2]&gt; TRUE     
-#&gt; 2    11 Child topic 1 topic     I am a child      FALSE   &lt;NULL&gt;     FALSE    
-#&gt; 3    12 Child topic 2 topic     I am also a child FALSE   &lt;NULL&gt;     FALSE    </div><div class='input'>
+#&gt;      id name          namespace description       deleted children  is_parent
+#&gt;   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;             &lt;lgl&gt;   &lt;list&gt;    &lt;lgl&gt;    
+#&gt; 1    10 Parent topic  topic     Has children      FALSE   &lt;dbl [2]&gt; TRUE     
+#&gt; 2    11 Child topic 1 topic     I am a child      FALSE   &lt;NULL&gt;    FALSE    
+#&gt; 3    12 Child topic 2 topic     I am also a child FALSE   &lt;NULL&gt;    FALSE    </div><div class='input'>
 
+<span class='co'># See the tags for multiple accounts at a time.</span>
 <span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'>tags</span>()</div><div class='output co'>#&gt; # A tibble: 10 x 8
-#&gt;    account     id name      namespace description    deleted children is_parent
-#&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;          &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;    
-#&gt;  1 TEST01AA     1 tag1      tag       &lt;NA&gt;           FALSE   &lt;NULL&gt;   FALSE    
-#&gt;  2 TEST01AA     2 tag2      tag       Deleted        TRUE    &lt;NULL&gt;   FALSE    
-#&gt;  3 TEST01AA    10 Parent t… topic     Has children   FALSE   &lt;list [… TRUE     
-#&gt;  4 TEST01AA    11 Child to… topic     I am a child   FALSE   &lt;NULL&gt;   FALSE    
-#&gt;  5 TEST01AA    12 Child to… topic     I am also a c… FALSE   &lt;NULL&gt;   FALSE    
-#&gt;  6 TEST02AA   101 tag1      tag       &lt;NA&gt;           FALSE   &lt;NULL&gt;   FALSE    
-#&gt;  7 TEST02AA   102 tag2      tag       Deleted        TRUE    &lt;NULL&gt;   FALSE    
-#&gt;  8 TEST02AA  1010 Parent t… topic     Has children   FALSE   &lt;list [… TRUE     
-#&gt;  9 TEST02AA  1011 Child to… topic     I am a child   FALSE   &lt;NULL&gt;   FALSE    
-#&gt; 10 TEST02AA  1012 Child to… topic     I am also a c… FALSE   &lt;NULL&gt;   FALSE    </div></pre>
+  <span class='fu'>tags</span>()</div><div class='output co'>#&gt; # A tibble: 10 x 9
+#&gt;    account     id name   namespace description deleted children is_parent ac   
+#&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;       &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;     &lt;lis&gt;
+#&gt;  1 TEST01AA     1 tag1   tag       &lt;NA&gt;        FALSE   &lt;NULL&gt;   FALSE     &lt;S3:…
+#&gt;  2 TEST01AA     2 tag2   tag       Deleted     TRUE    &lt;NULL&gt;   FALSE     &lt;S3:…
+#&gt;  3 TEST01AA    10 Paren… topic     Has childr… FALSE   &lt;dbl [2… TRUE      &lt;S3:…
+#&gt;  4 TEST01AA    11 Child… topic     I am a chi… FALSE   &lt;NULL&gt;   FALSE     &lt;S3:…
+#&gt;  5 TEST01AA    12 Child… topic     I am also … FALSE   &lt;NULL&gt;   FALSE     &lt;S3:…
+#&gt;  6 TEST02AA   101 tag1   tag       &lt;NA&gt;        FALSE   &lt;NULL&gt;   FALSE     &lt;S3:…
+#&gt;  7 TEST02AA   102 tag2   tag       Deleted     TRUE    &lt;NULL&gt;   FALSE     &lt;S3:…
+#&gt;  8 TEST02AA  1010 Paren… topic     Has childr… FALSE   &lt;dbl [2… TRUE      &lt;S3:…
+#&gt;  9 TEST02AA  1011 Child… topic     I am a chi… FALSE   &lt;NULL&gt;   FALSE     &lt;S3:…
+#&gt; 10 TEST02AA  1012 Child… topic     I am also … FALSE   &lt;NULL&gt;   FALSE     &lt;S3:…</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -191,6 +209,10 @@ tags. Note that topics are stored in the 'topics' namespace.</p>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
+
+    <h2>Author</h2>
+    
+Constance Neeser
 
   </div>
 </div>

@@ -36,6 +36,9 @@
 #' @param ... Further arguments passed to or from other methods.
 #'
 #' @return A tibble of mentions.
+#'
+#' @seealso \code{\link{tags}}() to fetch tag information from mentions.
+#'
 #' @examples
 #'
 #' \dontrun{

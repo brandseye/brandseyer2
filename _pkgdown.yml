@@ -37,5 +37,6 @@ reference:
       stored on mentions.
     contents:
       - "mentions"
+      - "tags"
       - starts_with("mentions_")
 

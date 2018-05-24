@@ -108,15 +108,15 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>mentions</span>(<span class='no'>x</span>, <span class='no'>filter</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>mentions</span>(<span class='no'>x</span>, <span class='no'>filter</span>, <span class='no'>select</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for brandseyer2.account.v4</span>
-<span class='fu'>mentions</span>(<span class='no'>x</span>, <span class='no'>filter</span>, <span class='no'>...</span>)
+<span class='fu'>mentions</span>(<span class='no'>x</span>, <span class='no'>filter</span>, <span class='kw'>select</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>,
+  <span class='kw'>orderBy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S3 method for brandseyer2.account.v3</span>
-<span class='fu'>mentions</span>(<span class='no'>x</span>, <span class='no'>filter</span>, <span class='no'>...</span>,
-  <span class='kw'>use.brandseyer</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>limit</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>offset</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>include</span>, <span class='no'>select</span>,
-  <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>mentions</span>(<span class='no'>x</span>, <span class='no'>filter</span>, <span class='no'>select</span>, <span class='no'>...</span>,
+  <span class='kw'>use.brandseyer</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>limit</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>offset</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>include</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -130,8 +130,16 @@
       <td><p>A query to match mentions against. See the filter vignette for details.</p></td>
     </tr>
     <tr>
+      <th>select</th>
+      <td><p>A character vector of the mention fields to be returned.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Further arguments passed to or from other methods.</p></td>
+    </tr>
+    <tr>
+      <th>orderBy</th>
+      <td><p>Fields to order the returned data by. Defaults to published</p></td>
     </tr>
     <tr>
       <th>use.brandseyer</th>
@@ -150,10 +158,6 @@ first mentions should be skipped.</p></td>
     <tr>
       <th>include</th>
       <td><p>A character vector of extra information to include in the mentions</p></td>
-    </tr>
-    <tr>
-      <th>select</th>
-      <td><p>A character vector of the mention fields to be returned.</p></td>
     </tr>
     <tr>
       <th>all</th>
@@ -184,6 +188,10 @@ convenient way of doing this, but if the brandseyer library is installed,
 the <code>mentions</code> function will automatically fall back to the appropriate
 function calls in <code>brandseyer</code> to read mentions for you.</p>
     
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='tags.html'>tags</a></code>() to fetch tag information from mentions.</p></div>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -203,6 +211,8 @@ function calls in <code>brandseyer</code> to read mentions for you.</p>
       <li><a href="#methods-by-class-">Methods (by class)</a></li>
 
       <li><a href="#note">Note</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

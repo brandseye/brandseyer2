@@ -19,20 +19,11 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' Fetch account brands
+#' @describeIn brands
 #'
-#' Fetches brand information, returned as a tibble, for the given
-#' account. It includes brand names, associated phrases, and so on.
+#' Read brands for only a single account
 #'
-#' @param accounts One or more account objects.
-#'
-#' @return A tibble of brand information
 #' @export
-#'
-#' @author Constance Neeser
-#'
-#' @seealso \code{\link{root_brands}} for filtering to only the root brands of an account.
-#'
 #' @examples
 #'
 #' # Fetch brand information
@@ -51,16 +42,7 @@
 #'   dplyr::rename(brand.id = id) %>%
 #'   tidyr::unnest(phrases) %>%
 #'   dplyr::rename(phrase.id = id)
-brands <- function(accounts) {
-  UseMethod("brands")
-}
-
-#' @describeIn brands
-#'
-#' Read brands for only a single account
-#'
-#' @export
-brands.brandseyer2.account <- function(accounts) {
+brands.brandseyer2.account <- function(x, ...) {
 
   # Brands are stored in a recursive tree, so we need a recursive function.
   recurse <- function(brands, parent = NA) {
@@ -99,12 +81,12 @@ brands.brandseyer2.account <- function(accounts) {
     bind_rows(parents, children)
   }
 
-  recurse(accounts$brands)
+  recurse(x$brands)
 }
 
 #' @describeIn brands
 #'
-#' Create a table of brands for the list of accounts given
+#' Create a table of brands for the list of x given
 #'
 #' @export
 #'
@@ -112,8 +94,8 @@ brands.brandseyer2.account <- function(accounts) {
 #'
 #' accounts(c("TEST01AA", "TEST02AA")) %>%
 #'   brands()
-brands.list <- function(accounts) {
-  accounts %>%
+brands.list <- function(x, ...) {
+  x %>%
     map_df(~ .x %>%
              brands() %>%
              mutate(account = account_code(.x)) %>%

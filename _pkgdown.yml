@@ -36,7 +36,8 @@ reference:
       matching particular parameters, and to update the information
       stored on mentions.
     contents:
-      - "mentions"
-      - "tags"
+      - mentions
+      - tags
+      - brands
       - starts_with("mentions_")
 

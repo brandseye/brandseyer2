@@ -36,7 +36,7 @@ mentions.
 \itemize{
 \item \code{brandseyer2.account}: Get tags from an account object.
 
-\item \code{list}: Create a table of tags for the list of x given
+\item \code{list}: Create a table of tags for the list of given accounts.
 
 \item \code{data.frame}: Fetch tag information from a tibble of mention data.
 }}

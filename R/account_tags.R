@@ -57,7 +57,7 @@ tags.brandseyer2.account <- function(x, ...) {
 
 #' @describeIn tags
 #'
-#' Create a table of tags for the list of x given
+#' Create a table of tags for the list of given accounts.
 #'
 #' @export
 #'

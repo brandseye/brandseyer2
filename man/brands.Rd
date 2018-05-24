@@ -37,7 +37,7 @@ this returns the brands that are associated with the mention.
 \itemize{
 \item \code{brandseyer2.account}: Read brands for only a single account
 
-\item \code{list}: Create a table of brands for the list of x given
+\item \code{list}: Create a table of brands for the list of accounts given
 
 \item \code{data.frame}: Fetch brand information from a tibble of mention data.
 }}

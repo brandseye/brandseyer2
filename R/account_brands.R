@@ -86,7 +86,7 @@ brands.brandseyer2.account <- function(x, ...) {
 
 #' @describeIn brands
 #'
-#' Create a table of brands for the list of x given
+#' Create a table of brands for the list of accounts given
 #'
 #' @export
 #'

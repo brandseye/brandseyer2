@@ -111,7 +111,7 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL, ..., order
         # If they're not present, lists are NULL. Everything else is NA.
         if (field == "mediaLinks") {
           value = map_df(value, ~tibble(url = .x$url, mimeType = .x$mimeType))
-          if (rlang::is_empty(value)) value <- NULL
+          if (rlang::is_empty(value)) value <- tibble(url = NA, mimeType = NA)
         } else if (field %in% c("tags", "brands")) {
           value <- map_int(value, "id")
           if (rlang::is_empty(value)) value <- NA

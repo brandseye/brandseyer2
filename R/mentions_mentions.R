@@ -52,7 +52,7 @@ mentions <- function(x, filter, select, ...) {
 #' @describeIn mentions
 #'
 #' Reads V4 accounts. Returns a tibble of mentions.
-#' 
+#'
 #' @param orderBy Fields to order the returned data by. Defaults to published
 #'
 #' @export
@@ -72,17 +72,17 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL, ..., order
     query <- list(filter = restricted.filter,
                   limit= sprintf("%d", limit),
                   offset = sprintf("%d", nrow(result) %||% 0))
-    
+
     if (!is.null(select)) {
       assert_that(is.character(select))
       query$select = paste0(select, collapse = ',')
     }
-    
+
     if (!is.null(orderBy)) {
       assert_that(is.character(orderBy))
       query$orderBy = paste0(orderBy, collapse = ',')
     }
-    
+
     data <- read_api(endpoint = paste0("v4/accounts/", account_code(x), "/mentions"),
                      query = query)
 
@@ -113,8 +113,8 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL, ..., order
           value = map_df(value, ~tibble(url = .x$url, mimeType = .x$mimeType))
           if (rlang::is_empty(value)) value <- NULL
         } else if (field %in% c("tags", "brands")) {
-          value <- map(value, "id")
-          if (rlang::is_empty(value)) value <- NULL
+          value <- map_int(value, "id")
+          if (rlang::is_empty(value)) value <- NA
         } else if (is.list(value)) {
           value = pluck(value, "id") %||% NA
           if (is.na(value)) rlang::warn(paste("Unable to find ID for compositive field", key))
@@ -124,7 +124,7 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL, ..., order
       }), envir = columns)
     }
 
-    # Now we w ant to convert to a tibble
+    # Now we want to convert to a tibble
     final <- list()
     for (field in ls(fields)) {
       data <- get(field, envir = columns)
@@ -148,12 +148,12 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL, ..., order
 
     if (nrow(m) < limit) break
   }
-  
+
   if (result %has_name% "published") result <- result %>% mutate(published = lubridate::ymd_hms(published))
-  if (result %has_name% "pickedUp") result <- result %>% mutate(published = lubridate::ymd_hms(published))  
-  if (result %has_name% "updated") result <- result %>% mutate(published = lubridate::ymd_hms(published))  
-  
-  result %>% 
+  if (result %has_name% "pickedUp") result <- result %>% mutate(published = lubridate::ymd_hms(published))
+  if (result %has_name% "updated") result <- result %>% mutate(published = lubridate::ymd_hms(published))
+
+  result %>%
     select(id, uri, link,
            published, pickedUp, updated,
            extract,
@@ -169,7 +169,7 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL, ..., order
            toId,
            toName, toHandle, toHandleId,
            everything())
-  
+
 }
 
 #' @describeIn mentions
@@ -193,7 +193,7 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL, ..., order
 mentions.brandseyer2.account.v3 <- function(x, filter, select, ...,
                                             use.brandseyer = FALSE,
                                             limit = 30, offset = 0,
-                                            include, 
+                                            include,
                                             all = FALSE) {
   if (!is_installed("brandseyer") || !use.brandseyer) {
     abort("brandseyer2 only supports V4 accounts.")

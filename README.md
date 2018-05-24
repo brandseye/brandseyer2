@@ -1,11 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-BrandsEyeR2
+brandseyer2
 ===========
 
 [![Travis build status](https://travis-ci.com/brandseye/brandseyer2.svg?branch=master)](https://travis-ci.com/brandseye/brandseyer2) [![Coverage status](https://codecov.io/gh/brandseye/brandseyer2/branch/master/graph/badge.svg)](https://codecov.io/github/brandseye/brandseyer2?branch=master)
 
-BrandsEyeR2 is a library for handling data in your BrandsEye account.
+brandseyer2 is a library for handling data in your BrandsEye account.
 
 [BrandsEye](http://www.brandseye.com) is an opinion mining company. We use a proprietary mix of artificial intelligence and crowdsourcing to mine online conversations for sentiment. While we have an analytics suite, and reporting service, we also provide an extensive API to access to the data that makes up your various BrandsEye accounts, and makes it easy to access the data outside of the BrandsEye application in any [R](http://www.r-project.org/) analyses that you might want to perform.
 

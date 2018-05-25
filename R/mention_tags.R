@@ -36,6 +36,9 @@ tags.data.frame <- function(x, ..., ac = attr(x, "account"), na.rm = TRUE) {
     arrange(desc(map_int(tags, ~length(.x)))) %>%
     unnest(tags = map(tags, ~ .x %||% NA))
 
+  # For devtools::check()
+  tag.id <- NULL;
+
   if (!is.null(ac)) {
     ts <- ts %>%
       left_join(ac %>% tags(), by = c("tags" = "id")) %>%

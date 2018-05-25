@@ -19,6 +19,8 @@ topics(x, ...)
 \arguments{
 \item{x}{Objects to return topic data from.}
 
+\item{...}{Additional arguments for other methods.}
+
 \item{ac}{An optional account object from which to take topic information.}
 
 \item{na.rm}{Whether to remove mentions that have no topics.}

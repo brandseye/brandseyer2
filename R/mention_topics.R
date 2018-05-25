@@ -36,6 +36,9 @@ topics.data.frame <- function(x, ..., ac = attr(x, "account"), na.rm = TRUE) {
     select(id, tags) %>%
     unnest(tags = map(tags, ~ .x %||% NA))
 
+  # For devtools::check()
+  namespace <- NULL; topic.id <- NULL;
+
   if (!is.null(ac)) {
     ts <- ts %>%
       left_join(ac %>% topics(), by = c("tags" = "id")) %>%

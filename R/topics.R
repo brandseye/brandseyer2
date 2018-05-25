@@ -25,6 +25,7 @@
 #' that appear on a tibble of mentions.
 #'
 #' @param x Objects to return topic data from.
+#' @param ... Additional arguments for other methods.
 #'
 #' @return A tibble of topic information. Includes the name and topic description.
 #' @export

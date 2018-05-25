@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fetch topics for an account — topics • brandseyer2</title>
+<title>Fetch topics for an account or tibble of mentions — topics.brandseyer2.account • brandseyer2</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,9 +28,10 @@
 
 
 
-<meta property="og:title" content="Fetch topics for an account — topics" />
+<meta property="og:title" content="Fetch topics for an account or tibble of mentions — topics.brandseyer2.account" />
 
-<meta property="og:description" content="Fetches the topics that are used in an account." />
+<meta property="og:description" content="Fetches the topics that are used in an account, or those
+that appear on a tibble of mentions." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -97,31 +98,47 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fetch topics for an account</h1>
-    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/account_topics.R'><code>R/account_topics.R</code></a></small>
+    <h1>Fetch topics for an account or tibble of mentions</h1>
+    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/account_topics.R'><code>R/account_topics.R</code></a>, <a href='https://github.com/brandseye/brandseyer2/blob/master/R/mention_topics.R'><code>R/mention_topics.R</code></a>, <a href='https://github.com/brandseye/brandseyer2/blob/master/R/topics.R'><code>R/topics.R</code></a></small>
     <div class="hidden name"><code>topics.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Fetches the topics that are used in an account.</p>
+    <p>Fetches the topics that are used in an account, or those
+that appear on a tibble of mentions.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>topics</span>(<span class='no'>accounts</span>)
-
-<span class='co'># S3 method for brandseyer2.account</span>
-<span class='fu'>topics</span>(<span class='no'>accounts</span>)
+    <pre class="usage"><span class='co'># S3 method for brandseyer2.account</span>
+<span class='fu'>topics</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for list</span>
-<span class='fu'>topics</span>(<span class='no'>accounts</span>)</pre>
+<span class='fu'>topics</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for data.frame</span>
+<span class='fu'>topics</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>ac</span> <span class='kw'>=</span> <span class='fu'>attr</span>(<span class='no'>x</span>, <span class='st'>"account"</span>), <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+<span class='fu'>topics</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>accounts</th>
-      <td><p>One or more account objects.</p></td>
+      <th>x</th>
+      <td><p>Objects to return topic data from.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments for other methods.</p></td>
+    </tr>
+    <tr>
+      <th>ac</th>
+      <td><p>An optional account object from which to take topic information.</p></td>
+    </tr>
+    <tr>
+      <th>na.rm</th>
+      <td><p>Whether to remove mentions that have no topics.</p></td>
     </tr>
     </table>
     
@@ -134,9 +151,29 @@
     <ul>
 <li><p><code>brandseyer2.account</code>: Get topics for a single account.</p></li>
 <li><p><code>list</code>: Get topics for a list of accounts</p></li>
+<li><p><code>data.frame</code>: Fetch topic information from a tibble of mention data.</p></li>
 </ul>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>topics</span>()</div><div class='output co'>#&gt; # A tibble: 3 x 7
+#&gt;      id name          namespace description       deleted children  is_parent
+#&gt;   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;             &lt;lgl&gt;   &lt;list&gt;    &lt;lgl&gt;    
+#&gt; 1    10 Parent topic  topic     Has children      FALSE   &lt;dbl [2]&gt; TRUE     
+#&gt; 2    11 Child topic 1 topic     I am a child      FALSE   &lt;NULL&gt;    FALSE    
+#&gt; 3    12 Child topic 2 topic     I am also a child FALSE   &lt;NULL&gt;    FALSE    </div><div class='input'>
+<span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'>topics</span>()</div><div class='output co'>#&gt; # A tibble: 6 x 8
+#&gt;   account     id name          namespace description deleted children is_parent
+#&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;       &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;    
+#&gt; 1 TEST01AA    10 Parent topic  topic     Has childr… FALSE   &lt;dbl [2… TRUE     
+#&gt; 2 TEST01AA    11 Child topic 1 topic     I am a chi… FALSE   &lt;NULL&gt;   FALSE    
+#&gt; 3 TEST01AA    12 Child topic 2 topic     I am also … FALSE   &lt;NULL&gt;   FALSE    
+#&gt; 4 TEST02AA  1010 Parent topic  topic     Has childr… FALSE   &lt;dbl [2… TRUE     
+#&gt; 5 TEST02AA  1011 Child topic 1 topic     I am a chi… FALSE   &lt;NULL&gt;   FALSE    
+#&gt; 6 TEST02AA  1012 Child topic 2 topic     I am also … FALSE   &lt;NULL&gt;   FALSE    </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -146,7 +183,9 @@
       <li><a href="#value">Value</a></li>
 
       <li><a href="#methods-by-class-">Methods (by class)</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

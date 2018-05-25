@@ -119,7 +119,7 @@ mentions.</p>
 <span class='fu'>tags</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for data.frame</span>
-<span class='fu'>tags</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>ac</span> <span class='kw'>=</span> <span class='fu'>attr</span>(<span class='no'>x</span>, <span class='st'>"account"</span>))
+<span class='fu'>tags</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>ac</span> <span class='kw'>=</span> <span class='fu'>attr</span>(<span class='no'>x</span>, <span class='st'>"account"</span>), <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
 <span class='fu'>tags</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
     
@@ -138,6 +138,10 @@ or a tibble of mention data.</p></td>
     <tr>
       <th>ac</th>
       <td><p>An optional account object from which to take tag information.</p></td>
+    </tr>
+    <tr>
+      <th>na.rm</th>
+      <td><p>Whether to keep mentions that have no tags.</p></td>
     </tr>
     </table>
     

@@ -22,7 +22,7 @@ or tibble of mention data.}
 
 \item{...}{Additional parameters for functions.}
 
-\item{ac}{An optional account object from which to take tag information.}
+\item{ac}{An optional account object from which to take brand information.}
 }
 \value{
 A tibble of brand information

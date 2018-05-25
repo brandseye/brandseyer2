@@ -23,7 +23,7 @@
 #'
 #' Fetch brand information from a tibble of mention data.
 #'
-#' @param ac An optional account object from which to take tag information.
+#' @param ac An optional account object from which to take brand information.
 #'
 #' @export
 brands.data.frame <- function(x, ..., ac = attr(x, "account")) {

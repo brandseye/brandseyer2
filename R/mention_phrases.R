@@ -19,18 +19,32 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' Fetch phrases for an accounts and mentions
+#' @describeIn phrases
 #'
-#' Fetches phrase information, returned as a tibble, for the given
-#' account. All of this information is included in \code{\link{brands}}
+#' Fetch phrase information from a tibble of mention data.
 #'
-#' @param x An object to read phrases from, such as an \code{\link{account}}
-#'          object, or a tibble of mentions.
+#' @param ac An optional account object from which to take phrase information.
 #'
-#' @return A tibble of phrase information.
-#' @author Constance Neeser
+#' @note \code{\link{mentions}} should be called with \code{select = "phrases"}
+#' to ensure that phrase information is returned with the mentions.
+#'
 #' @export
-#'
-phrases <- function(x, ...) {
-  UseMethod("phrases")
+phrases.data.frame <- function(x, ..., ac = attr(x, "account")) {
+  assert_that(x %has_name% "id", msg = "data.frame has no mention id column")
+  assert_that(x %has_name% "phrases", msg = "data.frame has no `phrases` column. See the `select` argument of `mentions()`")
+
+  ts <- x %>%
+    select(id, phrases) %>%
+    unnest(phrases = map(phrases, ~ .x %||% NA))
+
+  # For devtool::check
+
+
+  if (!is.null(ac)) {
+    ts <- ts %>%
+      left_join(ac %>% phrases(), by = c("phrases" = "phrase.id")) %>%
+      rename(phrase.id = phrases)
+  } else rlang::warn("No account information to use - see `ac` argument to `phrases()`")
+
+  ts
 }

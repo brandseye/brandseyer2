@@ -71,7 +71,7 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL,
   restricted.filter <- add_pickedup(filter, account_timezone(x))
   result <- NULL
   limit <- if (fetchGraph) 100 else 100000
-  list.fields <- c("brands", "tags", "mediaLinks")
+  list.fields <- c("brands", "tags", "mediaLinks", "phrases")
 
   repeat {
     # The sprintf is to avoid scientific notation for large numbers without
@@ -123,7 +123,7 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL,
         if (field == "mediaLinks") {
           value = map_df(value, ~tibble(url = .x$url, mimeType = .x$mimeType))
           if (rlang::is_empty(value)) value <- tibble(url = NA, mimeType = NA)
-        } else if (field %in% c("tags", "brands")) {
+        } else if (field %in% c("tags", "brands", "phrases")) {
           value <- map_int(value, "id")
           if (rlang::is_empty(value)) value <- NULL
         } else if (is.list(value)) {

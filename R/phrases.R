@@ -19,53 +19,18 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' @describeIn phrases
+#' Fetch account phrases
 #'
-#' Read phrases for only a single account
+#' Fetches phrase information, returned as a tibble, for the given
+#' account. All of this information is included in \code{\link{brands}}
 #'
+#' @param x An object to read phrases from, such as an \code{\link{account}}
+#'          object, or a tibble of mentions.
+#'
+#' @return A tibble of phrase information.
+#' @author Constance Neeser
 #' @export
 #'
-#' @examples
-#'
-#' # Fetch phrases for a single account
-#' account("TEST01AA") %>%
-#'   phrases()
-phrases.brandseyer2.account <- function(x) {
-  # Handle devtools::check notes
-  phrases <- NULL
-  brand.id <- NULL
-  phrase.id <- NULL
-  deleted <- NULL
-  inactive <- NULL
-  query <- NULL
-
-  brands <- x %>% brands()
-  if (nrow(brands) == 0) return(tibble())
-
-  brands %>%
-    select(id, phrases) %>%
-    rename(brand.id = id) %>%
-    unnest(phrases = map(phrases, ~ .x %||% NA)) %>%
-    rename(phrase.id = id) %>%
-    select(phrase.id, everything()) %>%
-    arrange(deleted, inactive, query)
-}
-
-
-#' @describeIn phrases
-#'
-#' Create a table of phrases for the list of accounts given
-#'
-#' @export
-#'
-#' @examples
-#'
-#' accounts(c("TEST01AA", "TEST02AA")) %>%
-#'   phrases()
-phrases.list <- function(x) {
-  x %>%
-    map_df(~ .x %>%
-             phrases() %>%
-             mutate(account = account_code(.x)) %>%
-             select(account, everything()))
+phrases <- function(x, ...) {
+  UseMethod("phrases")
 }

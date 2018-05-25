@@ -34,6 +34,9 @@ brands.data.frame <- function(x, ..., ac = attr(x, "account")) {
     select(id, brands) %>%
     unnest(brands = map(brands, ~ .x %||% NA))
 
+  # For devtool::check
+  parent <- NULL; name <- NULL; deleted <- NULL;
+
   if (!is.null(ac)) {
     ts <- ts %>%
       left_join(ac %>% brands(), by = c("brands" = "id")) %>%

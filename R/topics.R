@@ -19,42 +19,16 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' @describeIn topics
+#' Fetch topics for an account or tibble of mentions
 #'
-#' Get topics for a single account.
+#' Fetches the topics that are used in an account, or those
+#' that appear on a tibble of mentions.
 #'
+#' @param x Objects to return topic data from.
+#'
+#' @return A tibble of topic information. Includes the name and topic description.
 #' @export
 #'
-#' @examples
-#'
-#' account("TEST01AA") %>%
-#'   topics()
-topics.brandseyer2.account <- function(x) {
-  # Taking devtools::check() notes in to discussion.
-  namespace <- NULL
-  children <- NULL
-  name <- NULL
-
-  x %>%
-    tags() %>%
-    dplyr::filter(namespace == "topic") %>%
-    dplyr::arrange(desc(map_lgl(children, ~ length(.x) > 0)), name)
-}
-
-#' @describeIn topics
-#'
-#' Get topics for a list of accounts
-#'
-#' @export
-#'
-#' @examples
-#'
-#' accounts(c("TEST01AA", "TEST02AA")) %>%
-#'   topics()
-topics.list <- function(x) {
-  x %>%
-    map_df(~ .x %>%
-             topics %>%
-             mutate(account = account_code(.x)) %>%
-             select(account, everything()))
+topics <- function(x) {
+  UseMethod("topics")
 }

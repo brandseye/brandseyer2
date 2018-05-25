@@ -26,7 +26,11 @@ pkg.env <- new.env()
   auth_file <- authentication_filename()
   if (file.exists(auth_file)) {
     auth_data <- jsonlite::fromJSON(txt = auth_file)
-    pkg.env$defaultAuthentication <- authenticate(auth_data$key)
+    if (is.string(auth_data$key)) {
+      pkg.env$defaultAuthentication <- authenticate(auth_data$key)
+    } else {
+      rlang::warn("Saved authentication details do not contain an API key")
+    }
   }
 
   invisible()

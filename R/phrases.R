@@ -26,6 +26,7 @@
 #'
 #' @param x An object to read phrases from, such as an \code{\link{account}}
 #'          object, or a tibble of mentions.
+#' @param ... Additional arguments for other methods.
 #'
 #' @return A tibble of phrase information.
 #' @author Constance Neeser

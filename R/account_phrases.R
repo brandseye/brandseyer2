@@ -30,7 +30,7 @@
 #' # Fetch phrases for a single account
 #' account("TEST01AA") %>%
 #'   phrases()
-phrases.brandseyer2.account <- function(x) {
+phrases.brandseyer2.account <- function(x, ...) {
   # Handle devtools::check notes
   phrases <- NULL
   brand.id <- NULL
@@ -62,7 +62,7 @@ phrases.brandseyer2.account <- function(x) {
 #'
 #' accounts(c("TEST01AA", "TEST02AA")) %>%
 #'   phrases()
-phrases.list <- function(x) {
+phrases.list <- function(x, ...) {
   x %>%
     map_df(~ .x %>%
              phrases() %>%

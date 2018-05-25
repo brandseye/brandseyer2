@@ -8,9 +8,9 @@
 \alias{phrases}
 \title{Fetch phrases for an accounts and mentions}
 \usage{
-\method{phrases}{brandseyer2.account}(x)
+\method{phrases}{brandseyer2.account}(x, ...)
 
-\method{phrases}{list}(x)
+\method{phrases}{list}(x, ...)
 
 \method{phrases}{data.frame}(x, ..., ac = attr(x, "account"))
 
@@ -19,6 +19,8 @@ phrases(x, ...)
 \arguments{
 \item{x}{An object to read phrases from, such as an \code{\link{account}}
 object, or a tibble of mentions.}
+
+\item{...}{Additional arguments for other methods.}
 
 \item{ac}{An optional account object from which to take phrase information.}
 }

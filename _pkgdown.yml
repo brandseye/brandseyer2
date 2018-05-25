@@ -40,5 +40,6 @@ reference:
       - tags
       - topics
       - brands
+      - phrases
       - starts_with("mentions_")
 

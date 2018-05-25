@@ -9,7 +9,7 @@
 mentions(x, filter, select, ...)
 
 \method{mentions}{brandseyer2.account.v4}(x, filter, select = NULL, ...,
-  orderBy = NULL)
+  orderBy = NULL, fetchGraph = FALSE)
 
 \method{mentions}{brandseyer2.account.v3}(x, filter, select, ...,
   use.brandseyer = FALSE, limit = 30, offset = 0, include, all = FALSE)
@@ -24,6 +24,8 @@ mentions(x, filter, select, ...)
 \item{...}{Further arguments passed to or from other methods.}
 
 \item{orderBy}{Fields to order the returned data by. Defaults to published}
+
+\item{fetchGraph}{Fetch other mentions that are part of the same conversation as this one.}
 
 \item{use.brandseyer}{Set to TRUE if the old brandseyer library is installed,
 and you would like to read from an account still using the old V3 API.}

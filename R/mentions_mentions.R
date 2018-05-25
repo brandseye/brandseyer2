@@ -57,16 +57,20 @@ mentions <- function(x, filter, select, ...) {
 #' Reads V4 accounts. Returns a tibble of mentions.
 #'
 #' @param orderBy Fields to order the returned data by. Defaults to published
+#' @param fetchGraph Fetch other mentions that are part of the same conversation as this one.
 #'
 #' @export
-mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL, ..., orderBy = NULL) {
+mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL,
+                                            ...,
+                                            orderBy = NULL, fetchGraph = FALSE) {
   assert_that(assertthat::is.string(filter))
   assert_that(nchar(filter) > 0,
               msg = "filter cannot be an empty character vector")
+  assert_that(is.logical(fetchGraph))
 
   restricted.filter <- add_pickedup(filter, account_timezone(x))
   result <- NULL
-  limit <- 100000
+  limit <- if (fetchGraph) 100 else 100000
   list.fields <- c("brands", "tags", "mediaLinks")
 
   repeat {
@@ -84,6 +88,10 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL, ..., order
     if (!is.null(orderBy)) {
       assert_that(is.character(orderBy))
       query$orderBy = paste0(orderBy, collapse = ',')
+    }
+
+    if (fetchGraph) {
+      query$fetchGraph = TRUE
     }
 
     data <- read_api(endpoint = paste0("v4/accounts/", account_code(x), "/mentions"),

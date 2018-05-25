@@ -19,16 +19,31 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' Fetch topics for an account or tibble of mentions
+#' @describeIn topics
 #'
-#' Fetches the topics that are used in an account, or those
-#' that appear on a tibble of mentions.
+#' Fetch topic information from a tibble of mention data.
 #'
-#' @param x Objects to return topic data from.
+#' @param ac An optional account object from which to take topic information.
+#' @param na.rm Whether to remove mentions that have no topics.
 #'
-#' @return A tibble of topic information. Includes the name and topic description.
 #' @export
-#'
-topics <- function(x, ...) {
-  UseMethod("topics")
+topics.data.frame <- function(x, ..., ac = attr(x, "account"), na.rm = TRUE) {
+  assert_that(x %has_name% "id", msg = "data.frame has no mention id column")
+  assert_that(x %has_name% "tags", msg = "data.frame has no tags / topics column")
+  assert_that(is.logical(na.rm))
+
+  ts <- x %>%
+    select(id, tags) %>%
+    unnest(tags = map(tags, ~ .x %||% NA))
+
+  if (!is.null(ac)) {
+    ts <- ts %>%
+      left_join(ac %>% topics(), by = c("tags" = "id")) %>%
+      rename(topic.id = tags) %>%
+      mutate(topic.id = map2_int(topic.id, namespace,
+                                 ~ ifelse(!is.na(.x) && !is.na(.y), .x, NA))) %>%
+      filter((namespace == "topic") | !na.rm)
+  } else rlang::warn("No account information to use - see `ac` argument to `topics()`")
+
+  ts
 }

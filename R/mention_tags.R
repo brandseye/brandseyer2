@@ -24,9 +24,10 @@
 #' Fetch tag information from a tibble of mention data.
 #'
 #' @param ac An optional account object from which to take tag information.
+#' @param na.rm Whether to keep mentions that have no tags.
 #'
 #' @export
-tags.data.frame <- function(x, ..., ac = attr(x, "account")) {
+tags.data.frame <- function(x, ..., ac = attr(x, "account"), na.rm = TRUE) {
   assert_that(x %has_name% "id", msg = "data.frame has no mention id column")
   assert_that(x %has_name% "tags", msg = "data.frame has no tags column")
 
@@ -38,7 +39,8 @@ tags.data.frame <- function(x, ..., ac = attr(x, "account")) {
   if (!is.null(ac)) {
     ts <- ts %>%
       left_join(ac %>% tags(), by = c("tags" = "id")) %>%
-      rename(tag.id = tags)
+      rename(tag.id = tags) %>%
+      filter(!is.na(tag.id) | !na.rm)
   }else rlang::warn("No account information to use - see `ac` argument to `tags()`")
 
   ts

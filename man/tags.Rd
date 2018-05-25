@@ -11,7 +11,7 @@
 
 \method{tags}{list}(x, ...)
 
-\method{tags}{data.frame}(x, ..., ac = attr(x, "account"))
+\method{tags}{data.frame}(x, ..., ac = attr(x, "account"), na.rm = TRUE)
 
 tags(x, ...)
 }
@@ -22,6 +22,8 @@ or a tibble of mention data.}
 \item{...}{Extra arguments passed to functions.}
 
 \item{ac}{An optional account object from which to take tag information.}
+
+\item{na.rm}{Whether to keep mentions that have no tags.}
 }
 \value{
 A tibble of tag information. Includes the name, namespace, and description of the

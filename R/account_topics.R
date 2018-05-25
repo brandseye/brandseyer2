@@ -29,7 +29,7 @@
 #'
 #' account("TEST01AA") %>%
 #'   topics()
-topics.brandseyer2.account <- function(x) {
+topics.brandseyer2.account <- function(x, ...) {
   # Taking devtools::check() notes in to discussion.
   namespace <- NULL
   children <- NULL
@@ -51,7 +51,7 @@ topics.brandseyer2.account <- function(x) {
 #'
 #' accounts(c("TEST01AA", "TEST02AA")) %>%
 #'   topics()
-topics.list <- function(x) {
+topics.list <- function(x, ...) {
   x %>%
     map_df(~ .x %>%
              topics %>%

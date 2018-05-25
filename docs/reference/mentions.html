@@ -112,7 +112,7 @@
 
 <span class='co'># S3 method for brandseyer2.account.v4</span>
 <span class='fu'>mentions</span>(<span class='no'>x</span>, <span class='no'>filter</span>, <span class='kw'>select</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>,
-  <span class='kw'>orderBy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+  <span class='kw'>orderBy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fetchGraph</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># S3 method for brandseyer2.account.v3</span>
 <span class='fu'>mentions</span>(<span class='no'>x</span>, <span class='no'>filter</span>, <span class='no'>select</span>, <span class='no'>...</span>,
@@ -140,6 +140,10 @@
     <tr>
       <th>orderBy</th>
       <td><p>Fields to order the returned data by. Defaults to published</p></td>
+    </tr>
+    <tr>
+      <th>fetchGraph</th>
+      <td><p>Fetch other mentions that are part of the same conversation as this one.</p></td>
     </tr>
     <tr>
       <th>use.brandseyer</th>

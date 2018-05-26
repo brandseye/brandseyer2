@@ -1,0 +1,31 @@
+---
+title: "Filtering"
+author: "Constance Neeser"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Filtering}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This will provide an introduction to filtering for data in BrandsEye
+
+BrandsEye's API supports a small language to help you select exactly the mentions
+that you want to select. You'll do this with the help of the `mentions()` function,
+which always expects a filter.
+
+```{r}
+library(brandseyer2)
+
+account("TEST01AA") %>% 
+  mentions(filter = "published inthelast week")  
+```
+

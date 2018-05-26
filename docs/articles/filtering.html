@@ -97,10 +97,11 @@
 
 <span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/mentions.html">mentions</a></span>(<span class="dt">filter =</span> <span class="st">"published inthelast week"</span>)  
-<span class="co">#&gt; # A tibble: 1 x 6</span>
-<span class="co">#&gt;   id    brands    sentiment mediaLinks       socialNetwork tags     </span>
-<span class="co">#&gt;   &lt;chr&gt; &lt;list&gt;        &lt;int&gt; &lt;list&gt;           &lt;chr&gt;         &lt;list&gt;   </span>
-<span class="co">#&gt; 1 one   &lt;int [2]&gt;         0 &lt;tibble [1 × 2]&gt; TWITTER       &lt;int [1]&gt;</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 1 x 7</span>
+<span class="co">#&gt;   id    published           brands   sentiment mediaLinks    socialNetwork</span>
+<span class="co">#&gt;   &lt;chr&gt; &lt;dttm&gt;              &lt;list&gt;       &lt;int&gt; &lt;list&gt;        &lt;chr&gt;        </span>
+<span class="co">#&gt; 1 2-1   2018-03-03 21:37:35 &lt;int [2…         0 &lt;tibble [1 ×… TWITTER      </span>
+<span class="co">#&gt; # ... with 1 more variable: tags &lt;list&gt;</span></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

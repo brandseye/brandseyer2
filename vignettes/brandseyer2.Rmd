@@ -21,6 +21,15 @@ library(brandseyer2)
 
 # Who is BrandsEye and what is brandseyer2?
 
+BrandsEye: opinion mining. Sentiment and topics. 
+
+What is sentiment? It's always towards somethings. And people 
+may be talking about particular topics. 
+
+## Data sources
+
+## The BrandsEye Crowd
+
 # Authenticating yourself
 
 brandseyer2 provides API access to the BrandsEye API. In order to identify who you 

@@ -71,7 +71,6 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL,
   restricted.filter <- add_pickedup(filter, account_timezone(x))
   result <- NULL
   limit <- if (fetchGraph) 100 else 100000
-  list.fields <- c("brands", "tags", "mediaLinks", "phrases")
 
   repeat {
     # The sprintf is to avoid scientific notation for large numbers without
@@ -98,68 +97,25 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL,
                      query = query)
 
     if (length(data) == 0) break
-
-    # We want to figure out a list of fields.
-    fields = new.env(hash = TRUE)
-
-    for (mention in data) {
-      keys <- names(mention)
-      for (key in keys) {
-        if (!exists(key, envir = fields, inherits = FALSE)) {
-          assign(key, if(key %in% list.fields) list() else c(), envir = fields)
-        }
-      }
-    }
-
-    columns <- new.env(hash = TRUE)
-
-    # Now we want to collect the fields from the mentions.
-    for (field in ls(fields)) {
-      assign(field, value = map(data, function(mention) {
-        value <- pluck(mention, field)
-
-        # There are some special fields that are lists we need to handle
-        # If they're not present, lists are NULL. Everything else is NA.
-        if (field == "mediaLinks") {
-          value = map_df(value, ~tibble(url = .x$url, mimeType = .x$mimeType))
-          if (rlang::is_empty(value)) value <- tibble(url = NA, mimeType = NA)
-        } else if (field %in% c("tags", "brands", "phrases")) {
-          value <- map_int(value, "id")
-          if (rlang::is_empty(value)) value <- NULL
-        } else if (is.list(value)) {
-          value = pluck(value, "id") %||% NA
-          if (is.na(value)) rlang::warn(paste("Unable to find ID for compositive field", key))
-        } else value <- value %||% NA
-
-        value
-      }), envir = columns)
-    }
-
-    # Now we want to convert to a tibble
-    final <- list()
-    for (field in ls(fields)) {
-      data <- get(field, envir = columns)
-      if (!(field %in% list.fields)) data <- c(data, recursive = TRUE)
-      final[[field]] <- data
-    }
-
-    # Set up things for devtools::check
-    uri <- NULL;                link <- NULL;                   published <- NULL
-    sentiment <- NULL;          brands <- NULL;                 authorBio <- NULL
-    authorHandle <- NULL;       authorId <- NULL;               authorName <- NULL
-    authorPictureLink <- NULL;  authorProfileLink <- NULL;      authorTimezone <- NULL
-    crowdVerified <- NULL;      extract <- NULL;                pickedUp <- NULL
-    postExtract <- NULL;        relevancy <- NULL;              relevancyVerified <- NULL
-    replyToId <- NULL;          replyToUri <- NULL;             reshareOfId <- NULL
-    reshareOfUri <- NULL;       sentimentVerified <- NULL;      toHandle <- NULL
-    toHandleId <- NULL;         toId <- NULL;  toName <- NULL;  updated <- NULL
-
-    m <- as_tibble(final)
+    m <- list_to_v4_mentions(data)
     result <- dplyr::bind_rows(result, m)
 
     if (nrow(m) < limit) break
   }
 
+  # Set up things for devtools::check
+  uri <- NULL;                link <- NULL;                   published <- NULL
+  sentiment <- NULL;          brands <- NULL;                 authorBio <- NULL
+  authorHandle <- NULL;       authorId <- NULL;               authorName <- NULL
+  authorPictureLink <- NULL;  authorProfileLink <- NULL;      authorTimezone <- NULL
+  crowdVerified <- NULL;      extract <- NULL;                pickedUp <- NULL
+  postExtract <- NULL;        relevancy <- NULL;              relevancyVerified <- NULL
+  replyToId <- NULL;          replyToUri <- NULL;             reshareOfId <- NULL
+  reshareOfUri <- NULL;       sentimentVerified <- NULL;      toHandle <- NULL
+  toHandleId <- NULL;         toId <- NULL;  toName <- NULL;  updated <- NULL
+  phrases <- NULL;
+
+  # Clean up the final tibble.
   if (result %has_name% "published") result <- result %>% mutate(published = lubridate::ymd_hms(published))
   if (result %has_name% "pickedUp") result <- result %>% mutate(published = lubridate::ymd_hms(published))
   if (result %has_name% "updated") result <- result %>% mutate(published = lubridate::ymd_hms(published))
@@ -172,6 +128,7 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL,
            replyToUri, replyToId,
            reshareOfUri, reshareOfId,
            brands,
+           phrases,
            sentiment, relevancy,
            crowdVerified,
            relevancyVerified,
@@ -214,4 +171,54 @@ mentions.brandseyer2.account.v3 <- function(x, filter, select, ...,
   brandseyer::account_mentions(account_code(x), filter = filter,
                                limit = 30, offset = 0,
                                include = include, select = select, all = all)
+}
+
+
+list_to_v4_mentions <- function(data) {
+  # We want to figure out a list of fields.
+  list.fields <- c("brands", "tags", "mediaLinks", "phrases")
+  fields = new.env(hash = TRUE)
+
+  for (mention in data) {
+    keys <- names(mention)
+    for (key in keys) {
+      if (!exists(key, envir = fields, inherits = FALSE)) {
+        assign(key, if(key %in% list.fields) list() else c(), envir = fields)
+      }
+    }
+  }
+
+  columns <- new.env(hash = TRUE)
+
+  # Now we want to collect the fields from the mentions.
+  for (field in ls(fields)) {
+    assign(field, value = map(data, function(mention) {
+      value <- pluck(mention, field)
+
+      # There are some special fields that are lists we need to handle
+      # If they're not present, lists are NULL. Everything else is NA.
+      if (field == "mediaLinks") {
+        value = map_df(value, ~tibble(url = .x$url, mimeType = .x$mimeType))
+        if (rlang::is_empty(value)) value <- tibble(url = NA, mimeType = NA)
+      } else if (field %in% c("tags", "brands", "phrases")) {
+        value <- map_int(value, "id")
+        if (rlang::is_empty(value)) value <- NULL
+      } else if (is.list(value)) {
+        value = pluck(value, "id") %||% NA
+        if (is.na(value)) rlang::warn(paste("Unable to find ID for compositive field", key))
+      } else value <- value %||% NA
+
+      value
+    }), envir = columns)
+  }
+
+  # Now we want to convert to a tibble
+  final <- list()
+  for (field in ls(fields)) {
+    data <- get(field, envir = columns)
+    if (!(field %in% list.fields)) data <- c(data, recursive = TRUE)
+    final[[field]] <- data
+  }
+
+  as_tibble(final)
 }

@@ -17,7 +17,8 @@ mentions(x, filter, select, ...)
 \arguments{
 \item{x}{An account object}
 
-\item{filter}{A query to match mentions against. See the filter vignette for details.}
+\item{filter}{A query to match mentions against. Always required.
+See the filter vignette for details.}
 
 \item{select}{A character vector of the mention fields to be returned.}
 
@@ -65,13 +66,16 @@ function calls in \code{brandseyer} to read mentions for you.
 }
 \examples{
 
-\dontrun{
-
+# Reading data from a single account
 account("TEST01AA") \%>\%
-  mentions(filter = "published inthelast week and brand isorchldof 1")
-
-}
+  mentions(filter = "published inthelast week and brand isorchildof 1") # Must always have a filter
 }
 \seealso{
 \code{\link{tags}}() to fetch tag information from mentions.
+
+\code{\link{topics}}() to fetch topic information from mentions.
+
+\code{\link{brands}}() to fetch brand information from mentions.
+
+\code{\link{phrases}}() to fetch phrase information from mentions.
 }

@@ -31,22 +31,18 @@
 #' function calls in \code{brandseyer} to read mentions for you.
 #'
 #' @param x An account object
-#' @param filter A query to match mentions against. See the filter vignette for details.
+#' @param filter A query to match mentions against. Always required.
+#'               See the filter vignette for details.
 #' @param select A character vector of the mention fields to be returned.
 #' @param ... Further arguments passed to or from other methods.
 #'
 #' @return A tibble of mentions.
 #'
 #' @seealso \code{\link{tags}}() to fetch tag information from mentions.
+#' @seealso \code{\link{topics}}() to fetch topic information from mentions.
+#' @seealso \code{\link{brands}}() to fetch brand information from mentions.
+#' @seealso \code{\link{phrases}}() to fetch phrase information from mentions.
 #'
-#' @examples
-#'
-#' \dontrun{
-#'
-#' account("TEST01AA") %>%
-#'   mentions(filter = "published inthelast week and brand isorchldof 1")
-#'
-#' }
 #' @export
 mentions <- function(x, filter, select, ...) {
   UseMethod("mentions")
@@ -60,6 +56,12 @@ mentions <- function(x, filter, select, ...) {
 #' @param fetchGraph Fetch other mentions that are part of the same conversation as this one.
 #'
 #' @export
+#'
+#' @examples
+#'
+#' # Reading data from a single account
+#' account("TEST01AA") %>%
+#'   mentions(filter = "published inthelast week and brand isorchildof 1") # Must always have a filter
 mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL,
                                             ...,
                                             orderBy = NULL, fetchGraph = FALSE) {
@@ -93,8 +95,7 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL,
       query$fetchGraph = TRUE
     }
 
-    data <- read_api(endpoint = paste0("v4/accounts/", account_code(x), "/mentions"),
-                     query = query)
+    data <- read_data(x, query)
 
     if (length(data) == 0) break
     m <- list_to_v4_mentions(data)
@@ -173,7 +174,14 @@ mentions.brandseyer2.account.v3 <- function(x, filter, select, ...,
                                include = include, select = select, all = all)
 }
 
-
+#' Format list data as a tibble
+#'
+#' This takes list data returned from the API and extracts
+#' information for the mention table.
+#'
+#' @param data List data, as possibly returned from \code{link{read_data}}().
+#'
+#' @return A tibble of mention data.
 list_to_v4_mentions <- function(data) {
   # We want to figure out a list of fields.
   list.fields <- c("brands", "tags", "mediaLinks", "phrases")
@@ -221,4 +229,33 @@ list_to_v4_mentions <- function(data) {
   }
 
   as_tibble(final)
+}
+
+#' Read mention data from the API.
+#'
+#' Given an account and a query, this reads data from grouse,
+#' or, if test data exists, returns the test data.
+#'
+#' Test data should be in the format `test01aa_mentions`.
+#'
+#' @param x An account object.
+#' @param query A list of query parameters
+#'
+#' @return A list of data from the API.
+read_data <- function(x, query) {
+  code <- account_code(x)
+
+  # See if we have any internal data that we can load
+  if (startsWith(code, "TEST") && nchar(code) == 8) {
+    ac_data <- paste0(code, "_mentions")
+    if (exists(tolower(ac_data))) {
+      result <- get(tolower(ac_data))
+      if (!is.null(result)) return(result)
+    }
+  }
+
+  # Read from a live account.
+
+  read_api(endpoint = paste0("v4/accounts/", code, "/mentions"),
+           query = query)
 }

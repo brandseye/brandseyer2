@@ -57,7 +57,6 @@ account.character <- function(codes) {
   }
 
   # See if we have any internal data that we can load
-
   if (startsWith(codes, "TEST") && nchar(codes) == 8) {
     if (exists(tolower(codes))) {
       result <- get(tolower(codes))

@@ -146,6 +146,29 @@ test02aa_data <- list(
 
 test02aa <- brandseyer2:::create_account(test02aa_data)
 
+# -------------------------------------------------------------
+# Build mention data
+
+test01aa_mentions <- list(
+  list(id = "one",
+       sentiment = as.integer(0),
+       brands = list(
+         list(id = as.integer(1), name = "one"),
+         list(id = as.integer(2), name = "two")
+       ),
+       tags = list(
+         list(id = as.integer(1), name = "one")
+       ),
+       mediaLinks = list(
+         list(url = "http://bob.com", mimeType = "application/json")
+       ),
+       socialNetwork = list(
+         id = "TWITTER",
+         label = "Twitter"
+       ))
+)
 
 
-usethis::use_data(test02aa, test01aa, internal = TRUE, overwrite = TRUE)
+usethis::use_data(test02aa, test01aa,
+                  test01aa_mentions,
+                  internal = TRUE, overwrite = TRUE)

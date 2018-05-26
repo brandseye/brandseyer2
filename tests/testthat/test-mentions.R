@@ -32,3 +32,15 @@ test_that("Can parse a minimal list of mention data", {
   expect_equal(m[[1, "mediaLinks"]]$mimeType, "application/json")
   expect_equal(m[[1, "socialNetwork"]], "TWITTER")
 })
+
+test_that("Always needs a filter to get mentions", {
+  testthat::expect_error(account("TEST01AA") %>% mentions(), "*filter*")
+  testthat::expect_error(account("TEST01AA") %>% mentions(filter = ""), "*filter*")
+})
+
+test_that("Can read mention data for an account", {
+  m <- account("TEST01AA") %>%
+    mentions("an arbitrary filter")
+
+  testthat::expect_gt(nrow(m), 0)
+})

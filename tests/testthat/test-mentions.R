@@ -34,13 +34,15 @@ test_that("Can parse a minimal list of mention data", {
 })
 
 test_that("Always needs a filter to get mentions", {
-  testthat::expect_error(account("TEST01AA") %>% mentions(), "*filter*")
-  testthat::expect_error(account("TEST01AA") %>% mentions(filter = ""), "*filter*")
+  expect_error(account("TEST01AA") %>% mentions(), "*filter*")
+  expect_error(account("TEST01AA") %>% mentions(filter = ""), "*filter*")
 })
 
 test_that("Can read mention data for an account", {
   m <- account("TEST01AA") %>%
     mentions("an arbitrary filter")
 
-  testthat::expect_gt(nrow(m), 0)
+  testthat::expect_s3_class(attr(m, "account"), "brandseyer2.account")
+  expect_gt(nrow(m), 0)
+
 })

@@ -150,11 +150,12 @@ test02aa <- brandseyer2:::create_account(test02aa_data)
 # Build mention data
 
 test01aa_mentions <- list(
-  list(id = "one",
+  list(id = "2-1",
        sentiment = as.integer(0),
+       published = "2018-03-03T21:37:35.000+0000",
        brands = list(
-         list(id = as.integer(1), name = "one"),
-         list(id = as.integer(2), name = "two")
+         list(id = as.integer(2), name = "text"),
+         list(id = as.integer(3), name = "other text")
        ),
        tags = list(
          list(id = as.integer(1), name = "one")

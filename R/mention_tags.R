@@ -27,6 +27,13 @@
 #' @param na.rm Whether to keep mentions that have no tags.
 #'
 #' @export
+#'
+#' @examples
+#'
+#' # Finding the tags that mentions matched.
+#' account("TEST01AA") %>%
+#'   mentions("published inthelast week") %>%
+#'   tags()
 tags.data.frame <- function(x, ..., ac = attr(x, "account"), na.rm = TRUE) {
   assert_that(x %has_name% "id", msg = "data.frame has no mention id column")
   assert_that(x %has_name% "tags", msg = "data.frame has no tags column")

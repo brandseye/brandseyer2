@@ -213,7 +213,16 @@ or tibble of mention data.</p></td>
 #&gt; 3 TEST01AA     3      2 Niece Br… &lt;NA&gt;    FALSE   &lt;NA&gt;   &lt;NA&gt;                NA
 #&gt; 4 TEST02AA   100     NA The Best… TOPICS  FALSE   &lt;NA&gt;   &lt;NA&gt;              1001
 #&gt; # ... with 3 more variables: sentimentRate &lt;dbl&gt;, topicRate &lt;dbl&gt;,
-#&gt; #   phrases &lt;list&gt;</div></pre>
+#&gt; #   phrases &lt;list&gt;</div><div class='input'>
+<span class='co'># Finding the brands and sub-brands that mentions matched.</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='mentions.html'>mentions</a></span>(<span class='st'>"published inthelast week"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>brands</span>()</div><div class='output co'>#&gt; # A tibble: 2 x 5
+#&gt;   id    brand.id parent name          deleted
+#&gt;   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;         &lt;lgl&gt;  
+#&gt; 1 2-1          2     NA Sibling Brand FALSE  
+#&gt; 2 2-1          3      2 Niece Brand   FALSE  </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

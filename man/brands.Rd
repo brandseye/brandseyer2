@@ -63,6 +63,12 @@ account("TEST01AA") \%>\%
 
 accounts(c("TEST01AA", "TEST02AA")) \%>\%
   brands()
+
+# Finding the brands and sub-brands that mentions matched.
+account("TEST01AA") \%>\%
+  mentions("published inthelast week") \%>\%
+  brands()
+
 }
 \seealso{
 \code{\link{root_brands}} for filtering to only the root brands of an account.

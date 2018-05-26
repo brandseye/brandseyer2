@@ -26,6 +26,14 @@
 #' @param ac An optional account object from which to take brand information.
 #'
 #' @export
+#'
+#' @examples
+#'
+#' # Finding the brands and sub-brands that mentions matched.
+#' account("TEST01AA") %>%
+#'   mentions("published inthelast week") %>%
+#'   brands()
+#'
 brands.data.frame <- function(x, ..., ac = attr(x, "account")) {
   assert_that(x %has_name% "id", msg = "data.frame has no mention id column")
   assert_that(x %has_name% "brands", msg = "data.frame has no brands column")

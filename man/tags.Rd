@@ -60,6 +60,11 @@ account("TEST01AA") \%>\%
 # See the tags for multiple accounts at a time.
 accounts(c("TEST01AA", "TEST02AA")) \%>\%
   tags()
+
+# Finding the tags that mentions matched.
+account("TEST01AA") \%>\%
+  mentions("published inthelast week") \%>\%
+  tags()
 }
 \seealso{
 \code{\link{account}}() to fetch account data.

@@ -210,7 +210,14 @@ tags. Note that topics are stored in the 'topics' namespace.</p>
 #&gt;  7 TEST02AA   102 tag2   tag       Deleted     TRUE    &lt;NULL&gt;   FALSE     &lt;S3:…
 #&gt;  8 TEST02AA  1010 Paren… topic     Has childr… FALSE   &lt;dbl [2… TRUE      &lt;S3:…
 #&gt;  9 TEST02AA  1011 Child… topic     I am a chi… FALSE   &lt;NULL&gt;   FALSE     &lt;S3:…
-#&gt; 10 TEST02AA  1012 Child… topic     I am also … FALSE   &lt;NULL&gt;   FALSE     &lt;S3:…</div></pre>
+#&gt; 10 TEST02AA  1012 Child… topic     I am also … FALSE   &lt;NULL&gt;   FALSE     &lt;S3:…</div><div class='input'>
+<span class='co'># Finding the tags that mentions matched.</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='mentions.html'>mentions</a></span>(<span class='st'>"published inthelast week"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>tags</span>()</div><div class='output co'>#&gt; # A tibble: 1 x 8
+#&gt;   id    tag.id name  namespace description deleted children is_parent
+#&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;    
+#&gt; 1 2-1        1 tag1  tag       &lt;NA&gt;        FALSE   &lt;NULL&gt;   FALSE    </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -29,6 +29,7 @@ account_code <- function(account) {
   UseMethod("account_code")
 }
 
+#' @export
 account_code.brandseyer2.account <- function(account) {
   account$code
 }

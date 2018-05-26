@@ -75,16 +75,141 @@ What is an account? What are mentions? What is the crowd, and sentiment and topi
 
 Some simple examples of pulling mentions for accounts, grouping, updating.
 
+An account collects and structures the data that BrandsEye collects and processes for you.
+The smallest bit of data that we collect is a _mention_. A _mention_ is a post
+on some social media network — for example, a tweet, or a facebook post, is a _mention_. 
+
+We collect mentions in _brands_. Brands define the point of interest of the mentions. 
+Example brands may be the name of your company, a competitor, a well known individual,
+and so on. The sentiment of a mention is always measured towards the brand that the 
+mention is collected in, and the brands also define what the _topics_ that a mention
+may be about are. 
+
+Brands also organise the search _phrases_ that we use to find mentions online for you.
+
+Brands themselves are collected in _accounts_. Accounts also store extra information,
+such as what people get to access the data, how much Crowd verification the data receives,
+and so on.
+
 # Working with accounts
 
-What are accounts,
+As someone who works with BrandsEye tools, you have a collection of accounts
+that you have access to. You can find this collection of accounts using
+`account_list()`, as follows:
 
-## What accounts do I have access to?
+```{r, eval=FALSE}
+account_list()
+```
+
+This returns a tibble of accounts that are available to you. Importantly, 
+it lets you find the account code (listed in the `account`, such as `TEST01AA` and `TEST02AA`) 
+column that brandseyer2
+uses to reference individual accounts.
+
+
+## Referencing an account
+
+Nearly all the functions in brandseyer2 needs an account reference. You can refer to any account
+using it's account code and the `account()` function. For example:
+
+```{r}
+# Get a reference to the account TEST01AA
+account("TEST01AA")
+```
+
+Many operations that you may want to perform will begin with finding an account
+reference, and then passing this on to other brandseyer2 functions using the pipe operator, `%>%`.
+
+Here are some examples to find the name, code, and account manager of your account:
+
+```{r}
+# Your account's name
+account("TEST01AA") %>% 
+  account_name()
+```
+
+```{r}
+# Your account code
+account("TEST01AA") %>% 
+  account_code()
+```
+
+```{r}
+# Your account manager.
+account("TEST01AA") %>% 
+  account_manager()
+```
+
 
 ## Brands
 
-## Tags
+Accounts are made up of _brands_. It is brands themselves that store individual _mentions_
+(such as tweets, facebook posts, and so on). 
+
+A brand is usually something that you would like to 
+track on social media, and measure sentiment towards. All sentiment on a mention is always
+towards the brand that the mention belongs to.
+
+You can find out what brands are in your account using the `brands()` function. Let's have
+a look at what brands are in _TEST01AA_:
+
+```{r}
+account("TEST01AA") %>% 
+  brands()
+```
+
+These tibbles can become a bit tight to display all of the data that you may want to see. 
+If you are using RStudio, you can always pipe the results in to View(). Otherwise, you can 
+subselect for the data you want using standard dplyr[^1] functions.
+
+```{r}
+# Find brand IDs and names
+library(dplyr)
+
+account("TEST01AA") %>% 
+  brands() %>% 
+  select(id, name, parent)
+```
+
+There, that's better. Now you can see that your _TEST01AA_ account is made out of three
+brands. We've also selected another column called `parent`. We've done this to show the
+hierarchical nature of brands: some brands are children of other brands. Setting up an
+account in this way can help you to organise the mentions that are collected in a brand
+around more specific themes. 
+
+You can also discover this information for all the accounts that you have
+access to. 
+
+```{r}
+# Example here
+```
+
+Notice that one of our accounts have old brands that are no longer being used,
+and have been deleted. Also, we often want to find the top level brands that
+make up the main collections of mentions in an account. These "top level" brands
+are called _root brands_. We have a convenient function that finds the root brands
+currently in use in your account:
+
+```{r}
+account("TEST01AA") %>% 
+  root_brands()
+```
+
 
 ## Topics
 
+## Tags
+
 # Working with mentions
+
+Mentions can be read using the `mentions()` function:
+
+
+```{r}
+account("TEST01AA") %>% 
+  mentions(filter = "published inthelast week")
+```
+
+
+
+[^1]: [dplyr](https://dplyr.tidyverse.org/) is a great library for working with and manipulating your data sets. brandseyer2 is built around some patterns that you will find in dplyr itself.

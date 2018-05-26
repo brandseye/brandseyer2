@@ -127,7 +127,8 @@
     </tr>
     <tr>
       <th>filter</th>
-      <td><p>A query to match mentions against. See the filter vignette for details.</p></td>
+      <td><p>A query to match mentions against. Always required.
+See the filter vignette for details.</p></td>
     </tr>
     <tr>
       <th>select</th>
@@ -194,16 +195,20 @@ function calls in <code>brandseyer</code> to read mentions for you.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='tags.html'>tags</a></code>() to fetch tag information from mentions.</p></div>
+    <div class='dont-index'><p><code><a href='tags.html'>tags</a></code>() to fetch tag information from mentions.</p>
+<p><code><a href='topics.html'>topics</a></code>() to fetch topic information from mentions.</p>
+<p><code><a href='brands.html'>brands</a></code>() to fetch brand information from mentions.</p>
+<p><code><a href='phrases.html'>phrases</a></code>() to fetch phrase information from mentions.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-</div><span class='co'># NOT RUN {</span>
+<span class='co'># Reading data from a single account</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>mentions</span>(<span class='kw'>filter</span> <span class='kw'>=</span> <span class='st'>"published inthelast week and brand isorchldof 1"</span>)
-
-<span class='co'># }</span></pre>
+  <span class='fu'>mentions</span>(<span class='kw'>filter</span> <span class='kw'>=</span> <span class='st'>"published inthelast week and brand isorchildof 1"</span>) <span class='co'># Must always have a filter</span></div><div class='output co'>#&gt; # A tibble: 1 x 6
+#&gt;   id    brands    sentiment mediaLinks       socialNetwork tags     
+#&gt;   &lt;chr&gt; &lt;list&gt;        &lt;int&gt; &lt;list&gt;           &lt;chr&gt;         &lt;list&gt;   
+#&gt; 1 one   &lt;int [2]&gt;         0 &lt;tibble [1 × 2]&gt; TWITTER       &lt;int [1]&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

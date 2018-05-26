@@ -42,7 +42,7 @@ test_that("Can read mention data for an account", {
   m <- account("TEST01AA") %>%
     mentions("an arbitrary filter")
 
-  testthat::expect_s3_class(attr(m, "account"), "brandseyer2.account")
+  expect_is(attr(m, "account"), "brandseyer2.account")
   expect_gt(nrow(m), 0)
 
 })

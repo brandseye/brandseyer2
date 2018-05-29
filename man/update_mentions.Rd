@@ -3,7 +3,7 @@
 \name{update_mentions}
 \alias{update_mentions}
 \alias{update_mentions.brandseyer2.account.v4}
-\title{Title}
+\title{Update data stored on a mention}
 \usage{
 update_mentions(x, filter, auto.confirm = FALSE, ...)
 
@@ -62,7 +62,8 @@ gender, language or media.}
 Nothing
 }
 \description{
-Title
+This function lets you update data that is stored on a mention.
+For instance, you can add and rmeove tags from mentions.
 
 Updates mentions for an account object
 }

@@ -40,6 +40,9 @@
     <loc>https://brandseye.github.io/brandseyer2//reference/check_errors.html</loc>
   </url>
   <url>
+    <loc>https://brandseye.github.io/brandseyer2//reference/confirm.html</loc>
+  </url>
+  <url>
     <loc>https://brandseye.github.io/brandseyer2//reference/getUserImpl.html</loc>
   </url>
   <url>
@@ -82,7 +85,13 @@
     <loc>https://brandseye.github.io/brandseyer2//reference/topics.html</loc>
   </url>
   <url>
+    <loc>https://brandseye.github.io/brandseyer2//reference/update_mentions.html</loc>
+  </url>
+  <url>
     <loc>https://brandseye.github.io/brandseyer2//reference/whoami.html</loc>
+  </url>
+  <url>
+    <loc>https://brandseye.github.io/brandseyer2//reference/write_api.html</loc>
   </url>
   <url>
     <loc>https://brandseye.github.io/brandseyer2//articles/brandseyer2.html</loc>

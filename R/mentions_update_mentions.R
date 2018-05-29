@@ -19,7 +19,10 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' Title
+#' Update data stored on a mention
+#'
+#' This function lets you update data that is stored on a mention.
+#' For instance, you can add and rmeove tags from mentions.
 #'
 #' @param x The account object.
 #' @param filter Defines the mentions to update.

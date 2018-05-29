@@ -19,23 +19,29 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' Read arbitrary data from our api.
+#' Write arbitrary data to our api.
 #'
 #' This reads arbitrary data from our api, including mention
 #' data.
 #'
 #' @param endpoint The endpoint that you would like to access
+#' @param method A string indicating the kind of write action. Possibly 'PUT' or 'POST'
+#' @param json An object to serialise as json.
 #' @param query An httr query list
 #'
 #' @return the json content
 #'
 #' @author Constance Neeser
-read_api <- function(endpoint, query = list()) {
+write_api <- function(endpoint, method = "PUT", json = NULL, query = list()) {
   assert_that(is.string(endpoint))
+  assert_that(method %in% c("PUT"))
   auth = whoami(raise_error = TRUE)
 
   url = paste0("https://api.brandseye.com/", endpoint)
-  data <- httr::GET(url, httr::authenticate("API_KEY", auth$key), query = query)
+  data <- httr::PUT(url,
+                    httr::authenticate("API_KEY", auth$key),
+                    query = query,
+                    body = json, encode="json")
   check_errors(data)
-  return(httr::content(data))
+  invisible()
 }

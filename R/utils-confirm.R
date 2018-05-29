@@ -1,4 +1,4 @@
-# Copyright (c) 2018, Brandseye PTY (LTD)
+# Copyright (c) 2015, 2018 Brandseye PTY (LTD)
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -19,23 +19,15 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' Read arbitrary data from our api.
+#' Confirm an action.
 #'
-#' This reads arbitrary data from our api, including mention
-#' data.
+#' Asks the user to answer Yes or No after prompting them with a message.
 #'
-#' @param endpoint The endpoint that you would like to access
-#' @param query An httr query list
-#'
-#' @return the json content
+#' @param message A message to display to the user.
 #'
 #' @author Constance Neeser
-read_api <- function(endpoint, query = list()) {
-  assert_that(is.string(endpoint))
-  auth = whoami(raise_error = TRUE)
-
-  url = paste0("https://api.brandseye.com/", endpoint)
-  data <- httr::GET(url, httr::authenticate("API_KEY", auth$key), query = query)
-  check_errors(data)
-  return(httr::content(data))
+confirm <- function(message) {
+  answer <- readline(paste(message, "Are you sure you want to proceed? [Y/N] "))
+  if (toupper(answer) != 'Y') return(FALSE)
+  TRUE
 }

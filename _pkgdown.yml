@@ -38,6 +38,7 @@ reference:
       - phrases
       - tags
       - topics
+      - create_tags
       - starts_with("account_")
   - title: "Accessing mentions"
     desc: >

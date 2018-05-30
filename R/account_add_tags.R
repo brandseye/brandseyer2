@@ -20,19 +20,73 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-account_add_tags <- function(account, name, description) {
-  UseMethod("account_add_tags")
+#' Add tags to an account
+#'
+#' This will add a new tag to an account. This tag will be added
+#' in the tag namespace. If a tag with the same name already exists,
+#' this will do nothing. If a tag with the same name exists, and is deleted,
+#' it will create a new tag with a new ID.
+#'
+#' @param x An account to add the tag to.
+#' @param name A vector of tag names.
+#' @param description An optional description for each tag. If given, must be
+#'                    the same length as \code{name}.
+#'
+#' @return A tibble containing the new tag's details, including the tag's ID.
+#' @export
+#'
+#' @examples
+#'
+#' \dontrun{
+#'
+#' # Create one tag
+#' account("TEST01AA") %>%
+#'   create_tags("tag1")
+#'
+#' # Create a tag with a description
+#' account("TEST01AA") %>%
+#'   create_tags("tag1", "A description")
+#'
+#' # Create multiple tags
+#' account("TEST01AA") %>%
+#'   create_tags(c("tag1", "tag2"))
+#'
+#' # Create multiple tags, with descriptions
+#' account("TEST01AA") %>%
+#'   create_tags(c("tag1", "tag2"),
+#'               c("description 1", "description2"))
+#'
+#' }
+create_tags <- function(x, name, description) {
+  UseMethod("create_tags")
 }
 
 
-account_add_tags.brandseyer2.account <- function(account, name, description) {
-  assertthat::assert_that(assertthat::is.string(name))
-  assertthat::assert_that(missing(description) || assertthat::is.string(description))
+#' @export
+create_tags.brandseyer2.account <- function(x, name, description) {
+  assert_that(is.character(name))
+  assert_that(missing(description) || is.character(description))
 
-  new.name <- name
-  deleted <- NULL # For devtools::check
+  json <- NULL
+  if (missing(description)){
+    json <- map(name, ~ list(name = jsonlite::unbox(.x)))
+  } else {
+    assert_that(length(name) == length(description),
+                msg = "`description` is not the same length as `name` ")
+    json <- map2(name, description, ~list(name = jsonlite::unbox(.x),
+                                          description = jsonlite::unbox(.y)))
+  }
 
-  account %>%
-    tags() %>%
-    filter(trimws(tolower(name)) == trimws(tolower(new.name)), !deleted)
+  data <- write_mash(paste0("rest/accounts/", account_code(x), "/tags"),
+                     method = "POST",
+                     json = json)
+
+  data %>%
+    map_df(~tibble(
+      id = .x$id,
+      name = .x$name,
+      description = .x$description %||% NA,
+      namespace = .x$namespace
+    ))
+
 }

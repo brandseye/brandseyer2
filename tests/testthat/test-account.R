@@ -114,14 +114,16 @@ test_that("Can read root brand info for accounts", {
   expect_equal(nrow(rb), 3)
 
   rb <- tibble::tribble(
-    ~id, ~parent, ~deleted,
-    1,   NA,      FALSE,
-    2,   NA,      TRUE,
-    3,   1,       FALSE
+    ~id, ~parent, ~deleted, ~archived,
+    1,   NA,      FALSE,    NA,
+    2,   NA,      TRUE,     NA,
+    3,   1,       FALSE,    NA,
+    4,   NA,      FALSE,    lubridate::ymd_hm("2018/01/01 00:00")
   )
 
   expect_equal(nrow(rb %>% root_brands()), 1)
   expect_equal(nrow(rb %>% root_brands(includeDeleted = TRUE)), 2)
+  expect_equal(nrow(rb %>% root_brands(includeDeleted = TRUE, includeArchived = TRUE)), 3)
 })
 
 test_that("Can read phrase information for an account", {

@@ -7,18 +7,23 @@
 \alias{root_brands.list}
 \title{Find root brands in an account.}
 \usage{
-root_brands(x, includeDeleted)
+root_brands(x, includeDeleted, includeArchived)
 
-\method{root_brands}{data.frame}(x, includeDeleted = FALSE)
+\method{root_brands}{data.frame}(x, includeDeleted = FALSE,
+  includeArchived = FALSE)
 
-\method{root_brands}{brandseyer2.account}(x, includeDeleted = FALSE)
+\method{root_brands}{brandseyer2.account}(x, includeDeleted = FALSE,
+  includeArchived = FALSE)
 
-\method{root_brands}{list}(x, includeDeleted = FALSE)
+\method{root_brands}{list}(x, includeDeleted = FALSE,
+  includeArchived = FALSE)
 }
 \arguments{
 \item{x}{The object to find root brands for.}
 
 \item{includeDeleted}{Whether to include deleted root brands.}
+
+\item{includeArchived}{Whether to include archived root brands.}
 }
 \value{
 A tibble containing rows only for the root brands of an account. Otherwise,

@@ -26,6 +26,7 @@
 #'
 #' @param x The object to find root brands for.
 #' @param includeDeleted Whether to include deleted root brands.
+#' @param includeArchived Whether to include archived root brands.
 #'
 #' @return A tibble containing rows only for the root brands of an account. Otherwise,
 #'         like the table returned in \code{\link{brands}}.
@@ -45,7 +46,7 @@
 #' account(c("TEST01AA", "TEST02AA")) %>%
 #'   brands() %>%
 #'   root_brands()
-root_brands <- function(x, includeDeleted) {
+root_brands <- function(x, includeDeleted, includeArchived) {
   UseMethod("root_brands")
 }
 
@@ -56,16 +57,17 @@ root_brands <- function(x, includeDeleted) {
 #' the tibble returned from \code{\link{brands}} does.
 #'
 #' @export
-root_brands.data.frame <- function(x, includeDeleted = FALSE) {
+root_brands.data.frame <- function(x, includeDeleted = FALSE, includeArchived = FALSE) {
   assert_that(x %has_name% "id", msg = "data.frame has no `id` column for brand IDs")
   assert_that(x %has_name% "parent", msg = "data.frame has no `parent` column")
   assert_that(x %has_name% "deleted", msg = "data.frame has no `deleted` column")
+  assert_that(x %has_name% "archived", msg = "data.frame has no `archived` column")
 
   # For devtools::check
-  deleted <- NULL; parent <- NULL; name <- NULL; tier <- NULL
+  deleted <- NULL; parent <- NULL; name <- NULL; tier <- NULL; archived <- NULL;
 
   result <- x %>%
-    filter(is.na(parent), includeDeleted | !deleted)
+    filter(is.na(parent), includeDeleted | !deleted, includeArchived | is.na(archived))
 
   if (x %has_name% "tier" && x %has_name% "name") {
     result <- result %>% arrange(desc(tier), name)
@@ -79,10 +81,11 @@ root_brands.data.frame <- function(x, includeDeleted = FALSE) {
 #' Returns root brand information from an account object.
 #'
 #' @export
-root_brands.brandseyer2.account <- function(x, includeDeleted = FALSE) {
+root_brands.brandseyer2.account <- function(x, includeDeleted = FALSE, includeArchived = FALSE) {
   x %>%
     brands() %>%
-    root_brands(includeDeleted = includeDeleted)
+    root_brands(includeDeleted = includeDeleted,
+                includeArchived = includeArchived)
 }
 
 #' @describeIn root_brands
@@ -90,8 +93,8 @@ root_brands.brandseyer2.account <- function(x, includeDeleted = FALSE) {
 #' Returns root brand information from a list of account objects.
 #'
 #' @export
-root_brands.list <- function(x, includeDeleted = FALSE) {
+root_brands.list <- function(x, includeDeleted = FALSE, includeArchived = FALSE) {
   x %>%
     brands() %>%
-    root_brands(includeDeleted = includeDeleted)
+    root_brands(includeDeleted = includeDeleted, includeArchived = includeArchived)
 }

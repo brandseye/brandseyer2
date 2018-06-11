@@ -71,6 +71,7 @@ brands.brandseyer2.account <- function(x, ...) {
           topic_tree_id = brand$topicTreeId %||% NA,
           sentimentRate = brand$crowdSamplePercentage %||% NA,
           topicRate = brand$crowdTopicPercentage %||% NA,
+          archived = lubridate::ymd_hms(brand$archived %||% NA),
           phrases = list(phrases)
         )
       })

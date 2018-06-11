@@ -21,9 +21,11 @@ root_brands(x, includeDeleted, includeArchived)
 \arguments{
 \item{x}{The object to find root brands for.}
 
-\item{includeDeleted}{Whether to include deleted root brands.}
+\item{includeDeleted}{Whether to include deleted root brands. By default, only
+shows non-deleted brands.}
 
-\item{includeArchived}{Whether to include archived root brands.}
+\item{includeArchived}{Whether to include archived root brands. By default, only
+shows non-archived brands.}
 }
 \value{
 A tibble containing rows only for the root brands of an account. Otherwise,

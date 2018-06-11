@@ -25,8 +25,10 @@
 #' determine sentiment. Sentiment is always towards the brand.
 #'
 #' @param x The object to find root brands for.
-#' @param includeDeleted Whether to include deleted root brands.
-#' @param includeArchived Whether to include archived root brands.
+#' @param includeDeleted Whether to include deleted root brands. By default, only
+#'        shows non-deleted brands.
+#' @param includeArchived Whether to include archived root brands. By default, only
+#'        shows non-archived brands.
 #'
 #' @return A tibble containing rows only for the root brands of an account. Otherwise,
 #'         like the table returned in \code{\link{brands}}.

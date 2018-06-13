@@ -7,6 +7,7 @@ test01aa_data <- list(
   name = "Test 1",
   code = "TEST01AA",
   timezone = "Africa/Johannesburg",
+  accountType = "PAID",
   clientService = list(
     email = "noreply@brandseye.com",
     firstName = "Your",
@@ -98,6 +99,7 @@ test02aa_data <- list(
   name = "Test 2 — Best Account",
   code = "TEST02AA",
   timezone = "UTC",
+  accountType = "PAID",
   tags = list(
     list(id = 101,
          name = "tag1",

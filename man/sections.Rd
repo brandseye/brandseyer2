@@ -9,7 +9,7 @@ sections(x, d)
 \arguments{
 \item{x}{A tibble to get section information for.}
 
-\item{d}{An optional value to subset the sections on. Can be a vector
+\item{d}{An optional value to filter the sections on. Can be a vector
 of integer IDs for the wanted sections, or a vector of
 characters giving words to perform partial string matches
 on section titles with.}

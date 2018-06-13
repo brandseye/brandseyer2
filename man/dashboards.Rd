@@ -9,7 +9,10 @@ dashboards(x, d)
 \arguments{
 \item{x}{An account object to query.}
 
-\item{d}{An optional filter}
+\item{d}{An optional value to filter the dashboards on. Can be a vector
+of integer IDs for the wanted dashboards, or a vector of
+characters giving words to perform partial string matches
+on dashboard names with.}
 }
 \value{
 A tibble of dashboard data.

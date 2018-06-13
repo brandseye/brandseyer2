@@ -19,5 +19,5 @@ Given an account and a query, this reads data from grouse,
 or, if test data exists, returns the test data.
 }
 \details{
-Test data should be in the format `test01aa_mentions`.
+Test data should be in the format \code{test01aa_mentions}.
 }

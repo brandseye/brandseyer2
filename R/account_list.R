@@ -22,7 +22,7 @@
 #' List all accounts available to you.
 #'
 #' These accounts are provided as a tibble. The tibble can be
-#' passed to some other functions, such as \code{\link{account}},
+#' passed to some other functions, such as [account()],
 #' to return information from across all accounts available to you.
 #'
 #' @return A tibble of accounts available to you.

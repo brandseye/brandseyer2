@@ -25,7 +25,7 @@
 #' account. This can be done for both account information, as well as
 #' mentions.
 #'
-#' @param x An object to find tag information for, such as an \code{\link{account}}
+#' @param x An object to find tag information for, such as an [account()]
 #'          or a tibble of mention data.
 #' @param ... Extra arguments passed to functions.
 #'
@@ -33,9 +33,9 @@
 #' tags. Note that topics are stored in the 'topics' namespace.
 #' @export
 #'
-#' @seealso \code{\link{account}}() to fetch account data.
-#' @seealso \code{\link{topics}}() to see just a list of topics.
-#' @seealso \code{\link{mentions}}() to query mention data.
+#' @seealso [account()]() to fetch account data.
+#' @seealso [topics()]() to see just a list of topics.
+#' @seealso [mentions()]() to query mention data.
 #'
 #' @author Constance Neeser
 tags <- function(x, ...) {

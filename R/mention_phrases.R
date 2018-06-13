@@ -25,7 +25,7 @@
 #'
 #' @param ac An optional account object from which to take phrase information.
 #'
-#' @note \code{\link{mentions}} should be called with \code{select = "phrases"}
+#' @note [mentions()] should be called with `select = "phrases"`
 #' to ensure that phrase information is returned with the mentions.
 #'
 #' @export

@@ -16,7 +16,7 @@
 tags(x, ...)
 }
 \arguments{
-\item{x}{An object to find tag information for, such as an \code{\link{account}}
+\item{x}{An object to find tag information for, such as an \code{\link[=account]{account()}}
 or a tibble of mention data.}
 
 \item{...}{Extra arguments passed to functions.}
@@ -67,11 +67,11 @@ account("TEST01AA") \%>\%
   tags()
 }
 \seealso{
-\code{\link{account}}() to fetch account data.
+\url{account()} to fetch account data.
 
-\code{\link{topics}}() to see just a list of topics.
+\url{topics()} to see just a list of topics.
 
-\code{\link{mentions}}() to query mention data.
+\url{mentions()} to query mention data.
 }
 \author{
 Constance Neeser

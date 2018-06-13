@@ -31,12 +31,12 @@
 #'        shows non-archived brands.
 #'
 #' @return A tibble containing rows only for the root brands of an account. Otherwise,
-#'         like the table returned in \code{\link{brands}}.
+#'         like the table returned in [brands()].
 #' @export
 #'
 #' @author Constance Neeser
 #'
-#' @seealso \code{\link{brands}} for returning all brands in an account.
+#' @seealso [brands()] for returning all brands in an account.
 #'
 #' @examples
 #'
@@ -54,9 +54,9 @@ root_brands <- function(x, includeDeleted, includeArchived) {
 
 #' @describeIn root_brands
 #'
-#' Find root brands from a \code{tibble} or \code{data.frame}. The data.frame
-#' should have  \code{id}, \code{parent}, and \code{deleted} columns, just as
-#' the tibble returned from \code{\link{brands}} does.
+#' Find root brands from a `tibble` or `data.frame`. The data.frame
+#' should have  `id`, `parent`, and `deleted` columns, just as
+#' the tibble returned from [brands()] does.
 #'
 #' @export
 root_brands.data.frame <- function(x, includeDeleted = FALSE, includeArchived = FALSE) {

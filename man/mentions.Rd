@@ -71,11 +71,11 @@ account("TEST01AA") \%>\%
   mentions(filter = "published inthelast week and brand isorchildof 1") # Must always have a filter
 }
 \seealso{
-\code{\link{tags}}() to fetch tag information from mentions.
+\url{tags()} to fetch tag information from mentions.
 
-\code{\link{topics}}() to fetch topic information from mentions.
+\url{topics()} to fetch topic information from mentions.
 
-\code{\link{brands}}() to fetch brand information from mentions.
+\url{brands()} to fetch brand information from mentions.
 
-\code{\link{phrases}}() to fetch phrase information from mentions.
+\url{phrases()} to fetch phrase information from mentions.
 }

@@ -15,11 +15,11 @@ account(codes)
 }
 \arguments{
 \item{codes}{A vector of one or more account codes, or possibly
-a tibble, as provided by \code{\link{account_list}}}
+a tibble, as provided by \code{\link[=account_list]{account_list()}}}
 }
 \value{
 An account object if one account code is given, or a list of account objects,
-        one for each code given, in the same order as the codes were given.
+one for each code given, in the same order as the codes were given.
 }
 \description{
 Access account information
@@ -28,7 +28,7 @@ Access account information
 \itemize{
 \item \code{character}: Fetch counts for one or more account codes given as a character vector.
 
-\item \code{brandseyer2.account_list}: Get account information from the list of accounts available to from \code{\link{account_list}}
+\item \code{brandseyer2.account_list}: Get account information from the list of accounts available to from \code{\link[=account_list]{account_list()}}
 }}
 
 \examples{
@@ -40,7 +40,7 @@ accounts(c("TEST01AA", "TEST02AA"))
 account("TEST01AA")
 }
 \seealso{
-\code{\link{accounts}} is a synonym for \code{account}.
+\code{\link[=accounts]{accounts()}} is a synonym for \code{account}.
 
-\code{\link{is.account}} to test if an object is an account object.
+\code{\link[=is.account]{is.account()}} to test if an object is an account object.
 }

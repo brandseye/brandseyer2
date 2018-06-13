@@ -17,7 +17,7 @@ brands(x, ...)
 \method{brands}{data.frame}(x, ..., ac = attr(x, "account"))
 }
 \arguments{
-\item{x}{An object to fetch brand data for, such as an \code{\link{account}}
+\item{x}{An object to fetch brand data for, such as an \code{\link[=account]{account()}}
 or tibble of mention data.}
 
 \item{...}{Additional parameters for functions.}
@@ -71,7 +71,7 @@ account("TEST01AA") \%>\%
 
 }
 \seealso{
-\code{\link{root_brands}} for filtering to only the root brands of an account.
+\code{\link[=root_brands]{root_brands()}} for filtering to only the root brands of an account.
 }
 \author{
 Constance Neeser

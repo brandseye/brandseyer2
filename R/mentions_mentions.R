@@ -27,8 +27,8 @@
 #' @note It is possible to read mentions from older accounts still
 #' using the V3 API. Using the older brandseyer library is the most
 #' convenient way of doing this, but if the brandseyer library is installed,
-#' the \code{mentions} function will automatically fall back to the appropriate
-#' function calls in \code{brandseyer} to read mentions for you.
+#' the `mentions` function will automatically fall back to the appropriate
+#' function calls in `brandseyer` to read mentions for you.
 #'
 #' @param x An account object
 #' @param filter A query to match mentions against. Always required.
@@ -38,10 +38,10 @@
 #'
 #' @return A tibble of mentions.
 #'
-#' @seealso \code{\link{tags}}() to fetch tag information from mentions.
-#' @seealso \code{\link{topics}}() to fetch topic information from mentions.
-#' @seealso \code{\link{brands}}() to fetch brand information from mentions.
-#' @seealso \code{\link{phrases}}() to fetch phrase information from mentions.
+#' @seealso [tags()]() to fetch tag information from mentions.
+#' @seealso [topics()]() to fetch topic information from mentions.
+#' @seealso [brands()]() to fetch brand information from mentions.
+#' @seealso [phrases()]() to fetch phrase information from mentions.
 #'
 #' @export
 mentions <- function(x, filter, select, ...) {
@@ -146,8 +146,8 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL,
 #' @describeIn mentions
 #'
 #' Reads older, V3 accounts. To use this function, please ensure that
-#' the older \code{brandseyer} library is installed as well. Returns
-#' old \code{brandseyer} data structures, as though the \code{brandseyer::account_mentions}
+#' the older `brandseyer` library is installed as well. Returns
+#' old `brandseyer` data structures, as though the `brandseyer::account_mentions`
 #' function had been called.
 #'
 #' @param use.brandseyer Set to TRUE if the old brandseyer library is installed,
@@ -157,7 +157,7 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL,
 #'   first mentions should be skipped.
 #' @param include A character vector of extra information to include in the mentions
 #' @param all Set to true if you would like to return all mentions from the account.
-#'            This overides the \code{limit} parameter.
+#'            This overides the `limit` parameter.
 
 #'
 #' @export

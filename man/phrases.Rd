@@ -17,7 +17,7 @@
 phrases(x, ...)
 }
 \arguments{
-\item{x}{An object to read phrases from, such as an \code{\link{account}}
+\item{x}{An object to read phrases from, such as an \code{\link[=account]{account()}}
 object, or a tibble of mentions.}
 
 \item{...}{Additional arguments for other methods.}
@@ -29,7 +29,7 @@ A tibble of phrase information.
 }
 \description{
 Fetches phrase information, returned as a tibble, for the given
-account. All of this information is included in \code{\link{brands}}
+account. All of this information is included in \code{\link[=brands]{brands()}}
 }
 \section{Methods (by class)}{
 \itemize{
@@ -41,7 +41,7 @@ account. All of this information is included in \code{\link{brands}}
 }}
 
 \note{
-\code{\link{mentions}} should be called with \code{select = "phrases"}
+\code{\link[=mentions]{mentions()}} should be called with \code{select = "phrases"}
 to ensure that phrase information is returned with the mentions.
 }
 \examples{

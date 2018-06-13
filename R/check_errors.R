@@ -24,7 +24,7 @@
 #' Pass the results from httr calls to the API to examine errors
 #' and report on them in a standard way.
 #'
-#' @param data Data returned from an \code{httr} call.
+#' @param data Data returned from an `httr` call.
 #'
 #' @author Constance Neeser
 check_errors <- function(data) {

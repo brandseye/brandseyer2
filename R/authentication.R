@@ -34,13 +34,13 @@
 #' key. This key can be provided to you by your account manager.
 #'
 #' It's possible to also have your key saved to disc and automatically loaded
-#' for you when you next use the library. Set the \code{save} parameter to \code{TRUE}
+#' for you when you next use the library. Set the `save` parameter to `TRUE`
 #' in order to do this.
 #'
 #' If you would like to see who you are currently logged in as, see the
-#' \code{\link{whoami}} function.
+#' [whoami()] function.
 #'
-#' @seealso \code{\link{account_manager}}
+#' @seealso [account_manager()]
 #'
 #' @examples
 #' \dontrun{
@@ -91,12 +91,12 @@ format.brandseye.auth <- function(x, ...) {
 #'
 #' @details
 #' If you need to authenticate yourself, you can do this
-#' with the \code{\link{authenticate}} function.
+#' with the [authenticate()] function.
 #'
-#' @param raise_error If this is set to \code{TRUE}, the function
+#' @param raise_error If this is set to `TRUE`, the function
 #'                    will raise an error instead of returning NULL if you
 #'                    are not authenticated.
-#' @return Returns \code{NULL} if you are not logged in,
+#' @return Returns `NULL` if you are not logged in,
 #'         otherwise returns your current authentication credentials.
 #' @author Constance Neeser
 #' @export

@@ -30,7 +30,7 @@
 #' @param x An account to add the tag to.
 #' @param name A vector of tag names.
 #' @param description An optional description for each tag. If given, must be
-#'                    the same length as \code{name}.
+#'                    the same length as `name`.
 #'
 #' @return A tibble containing the new tag's details, including the tag's ID.
 #' @export

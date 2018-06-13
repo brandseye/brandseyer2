@@ -13,14 +13,14 @@ are not authenticated.}
 }
 \value{
 Returns \code{NULL} if you are not logged in,
-        otherwise returns your current authentication credentials.
+otherwise returns your current authentication credentials.
 }
 \description{
 Returns your current authentication credentials.
 }
 \details{
 If you need to authenticate yourself, you can do this
-with the \code{\link{authenticate}} function.
+with the \code{\link[=authenticate]{authenticate()}} function.
 }
 \author{
 Constance Neeser

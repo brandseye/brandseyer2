@@ -28,7 +28,7 @@ for you when you next use the library. Set the \code{save} parameter to \code{TR
 in order to do this.
 
 If you would like to see who you are currently logged in as, see the
-\code{\link{whoami}} function.
+\code{\link[=whoami]{whoami()}} function.
 }
 \examples{
 \dontrun{
@@ -39,7 +39,7 @@ authenticate("adfd42345f534fgdfgd")
 
 }
 \seealso{
-\code{\link{account_manager}}
+\code{\link[=account_manager]{account_manager()}}
 }
 \author{
 Constance Neeser

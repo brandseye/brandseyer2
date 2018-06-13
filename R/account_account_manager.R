@@ -29,8 +29,8 @@
 #' The returned object provides two fields:
 #'
 #' \enumerate{
-#'   \item \code{$name} Holds your account manager's name
-#'   \item \code{$email} Holds your account manager's email address
+#'   \item `$name` Holds your account manager's name
+#'   \item `$email` Holds your account manager's email address
 #' }
 #'
 #' @param account An account object

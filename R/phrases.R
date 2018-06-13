@@ -22,9 +22,9 @@
 #' Fetch phrases for an accounts and mentions
 #'
 #' Fetches phrase information, returned as a tibble, for the given
-#' account. All of this information is included in \code{\link{brands}}
+#' account. All of this information is included in [brands()]
 #'
-#' @param x An object to read phrases from, such as an \code{\link{account}}
+#' @param x An object to read phrases from, such as an [account()]
 #'          object, or a tibble of mentions.
 #' @param ... Additional arguments for other methods.
 #'

@@ -26,7 +26,7 @@
 #' this returns the brands that make up the account. For mention data,
 #' this returns the brands that are associated with the mention.
 #'
-#' @param x An object to fetch brand data for, such as an \code{\link{account}}
+#' @param x An object to fetch brand data for, such as an [account()]
 #'          or tibble of mention data.
 #' @param ... Additional parameters for functions.
 #'
@@ -35,7 +35,7 @@
 #'
 #' @author Constance Neeser
 #'
-#' @seealso \code{\link{root_brands}} for filtering to only the root brands of an account.
+#' @seealso [root_brands()] for filtering to only the root brands of an account.
 brands <- function(x, ...) {
   UseMethod("brands")
 }

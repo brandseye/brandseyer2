@@ -15,7 +15,7 @@ dashboards(x, d)
 A tibble of dashboard data.
 }
 \description{
-In [Analyse](https://analyse.brandseye.com), BrandsEye's analysis tool,
+In \href{https://analyse.brandseye.com}{Analyse}, BrandsEye's analysis tool,
 people can set up dashboards to query our data. This function exposese those
 dashboards as a tibble, allowing you to query sections, metrics and their
 associated filters.

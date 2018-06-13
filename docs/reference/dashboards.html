@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Returns your current authentication credentials. — whoami • brandseyer2</title>
+<title>List the dashboards in an account — dashboards • brandseyer2</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,12 @@
 
 
 
-<meta property="og:title" content="Returns your current authentication credentials. — whoami" />
+<meta property="og:title" content="List the dashboards in an account — dashboards" />
 
-<meta property="og:description" content="Returns your current authentication credentials." />
+<meta property="og:description" content="In Analyse, BrandsEye's analysis tool,
+people can set up dashboards to query our data. This function exposese those
+dashboards as a tibble, allowing you to query sections, metrics and their
+associated filters." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -112,41 +115,64 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Returns your current authentication credentials.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/authentication.R'><code>R/authentication.R</code></a></small>
-    <div class="hidden name"><code>whoami.Rd</code></div>
+    <h1>List the dashboards in an account</h1>
+    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/dashboard_dashboards.R'><code>R/dashboard_dashboards.R</code></a></small>
+    <div class="hidden name"><code>dashboards.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Returns your current authentication credentials.</p>
+    <p>In <a href='https://analyse.brandseye.com'>Analyse</a>, BrandsEye's analysis tool,
+people can set up dashboards to query our data. This function exposese those
+dashboards as a tibble, allowing you to query sections, metrics and their
+associated filters.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>whoami</span>(<span class='kw'>raise_error</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>dashboards</span>(<span class='no'>x</span>, <span class='no'>d</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>raise_error</th>
-      <td><p>If this is set to <code>TRUE</code>, the function
-will raise an error instead of returning NULL if you
-are not authenticated.</p></td>
+      <th>x</th>
+      <td><p>An account object to query.</p></td>
+    </tr>
+    <tr>
+      <th>d</th>
+      <td><p>An optional filter</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Returns <code>NULL</code> if you are not logged in,
-otherwise returns your current authentication credentials.</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>If you need to authenticate yourself, you can do this
-with the <code><a href='authenticate.html'>authenticate()</a></code> function.</p>
+    <p>A tibble of dashboard data.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+</div><span class='co'># NOT RUN {</span>
+<span class='co'># Get all dashboards.</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>dashboards</span>()
+
+<span class='co'># Get the dashboard with ID 1.</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>dashboards</span>(<span class='fl'>1</span>)
+
+<span class='co'># Get dashboards 1 and 21.</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>dashboards</span>(<span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>21</span>))
+
+<span class='co'># Get dashboards whose name contains the string 'overview'.</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>dashboards</span>(<span class='st'>"overview"</span>)
+
+<span class='co'># Get dashboards whose name contains the string 'overview' or the string 'who'.</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>dashboards</span>(<span class='fu'>c</span>(<span class='st'>"overview"</span>, <span class='st'>"who"</span>))
+
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -154,13 +180,9 @@ with the <code><a href='authenticate.html'>authenticate()</a></code> function.</
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-          </ul>
-
-    <h2>Author</h2>
-    
-Constance Neeser
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

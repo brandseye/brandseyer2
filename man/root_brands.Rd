@@ -29,7 +29,7 @@ shows non-archived brands.}
 }
 \value{
 A tibble containing rows only for the root brands of an account. Otherwise,
-        like the table returned in \code{\link{brands}}.
+like the table returned in \code{\link[=brands]{brands()}}.
 }
 \description{
 Root brands are the brands around which we collect mentions, and
@@ -39,7 +39,7 @@ determine sentiment. Sentiment is always towards the brand.
 \itemize{
 \item \code{data.frame}: Find root brands from a \code{tibble} or \code{data.frame}. The data.frame
 should have  \code{id}, \code{parent}, and \code{deleted} columns, just as
-the tibble returned from \code{\link{brands}} does.
+the tibble returned from \code{\link[=brands]{brands()}} does.
 
 \item \code{brandseyer2.account}: Returns root brand information from an account object.
 
@@ -58,7 +58,7 @@ account(c("TEST01AA", "TEST02AA")) \%>\%
   root_brands()
 }
 \seealso{
-\code{\link{brands}} for returning all brands in an account.
+\code{\link[=brands]{brands()}} for returning all brands in an account.
 }
 \author{
 Constance Neeser

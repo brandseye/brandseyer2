@@ -4,7 +4,8 @@ library(brandseyer2)
 v3_data <- list(
   storage = "V3",
   name = "Test Account",
-  code = "BETE01AA"
+  code = "BETE01AA",
+  accountType = "INTERNAL"
 )
 
 # -----------------------------------------------
@@ -27,6 +28,11 @@ test_that("Can detect if something is an account object", {
 
 test_that("Can read account code", {
   expect_equal(account_code(v3_account), "BETE01AA")
+})
+
+test_that("Can read account type", {
+  expect_equal(account_type(v3_account), "INTERNAL")
+  expect_equal(account_type(account("TEST01AA")), "PAID")
 })
 
 test_that("Can read account name", {

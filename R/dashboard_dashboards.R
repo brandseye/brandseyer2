@@ -26,6 +26,13 @@
 #' dashboards as a tibble, allowing you to query sections, metrics and their
 #' associated filters.
 #'
+#' Dashboards can be filtered in various ways. The second argument, `d`, can be
+#' either an integer or list of integers, specifying the particular dashboard
+#' IDs that are wanted. The second argument can also be a character vector,
+#' to give partial matches against dashboard names. Case is ignored.
+#'
+#' @seealso [sections()]
+#'
 #' @param x An account object to query.
 #' @param d An optional filter
 #'

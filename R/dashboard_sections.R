@@ -19,10 +19,50 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#' Give section information for a dashboard.
+#'
+#' Given a tibble of dashboard information (from, for example, `dashboards()`),
+#' this adds the section information to the tibble.
+#'
+#' The second argument to this function, `d`, lets you search for specific
+#' mentions in a similar way that [dashboards()] does for dashboards. See
+#' the `dashboards()` documentation for more details.
+#'
+#' @param x A tibble to get section information for.
+#' @param d An optional value to subset the sections on. Can be a vector
+#'          of integer IDs for the wanted sections, or a vector of
+#'          characters giving words to perform partial string matches
+#'          on section titles with.
+#'
+#' @return The original tibble, but now with an additional section column.
+#' @export
+#'
+#' @seealso [dashboards()]
+#'
+#' @examples
+#'
+#' \dontrun{
+#'
+#' # Get all sections for the dashboard with ID 1
+#' account("TEST01AA") %>%
+#'   dashboards(1) %>%
+#'   sections()
+#'
+#' # Get the section with ID 5 for the dashboard with ID 1
+#' account("TEST01AA") %>%
+#'   dashboards(1) %>%
+#'   sections(5)
+#'
+#' # Get the sections whose title contain the string "where"
+#' account("TEST01AA") %>%
+#'   dashboards(1) %>%
+#'   sections("where")
+#' }
 sections <- function(x, d) {
   UseMethod("sections")
 }
 
+#' @export
 sections.data.frame <- function(x, d) {
   assert_that(x %has_name% "id", msg = "No dashboard `id` column present")
 

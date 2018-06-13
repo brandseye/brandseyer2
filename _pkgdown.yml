@@ -56,4 +56,13 @@ reference:
       - phrases
       - update_mentions
       - starts_with("mentions_")
+  - title: "Account dashboards"
+    desc: >
+      In [Analyse](https://analyse.brandseye.com), BrandsEye's analysis tool,
+      people can set up dashboards to query our data. We have various functions
+      that help you to read data from the dashboards, their various sub-sections,
+      an the metrics that they contain.
+    contents:
+      - dashboards
+      - sections
 

@@ -20,6 +20,12 @@ people can set up dashboards to query our data. This function exposese those
 dashboards as a tibble, allowing you to query sections, metrics and their
 associated filters.
 }
+\details{
+Dashboards can be filtered in various ways. The second argument, \code{d}, can be
+either an integer or list of integers, specifying the particular dashboard
+IDs that are wanted. The second argument can also be a character vector,
+to give partial matches against dashboard names. Case is ignored.
+}
 \examples{
 
 \dontrun{
@@ -45,4 +51,7 @@ account("TEST01AA") \%>\%
   dashboards(c("overview", "who"))
 
 }
+}
+\seealso{
+\code{\link[=sections]{sections()}}
 }

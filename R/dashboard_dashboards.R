@@ -19,10 +19,49 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#' List the dashboards in an account
+#'
+#' In [Analyse](https://analyse.brandseye.com), BrandsEye's analysis tool,
+#' people can set up dashboards to query our data. This function exposese those
+#' dashboards as a tibble, allowing you to query sections, metrics and their
+#' associated filters.
+#'
+#' @param x An account object to query.
+#' @param d An optional filter
+#'
+#' @return A tibble of dashboard data.
+#' @export
+#'
+#' @examples
+#'
+#' \dontrun{
+#'
+#' # Get all dashboards.
+#' account("TEST01AA") %>%
+#'   dashboards()
+#'
+#' # Get the dashboard with ID 1.
+#' account("TEST01AA") %>%
+#'   dashboards(1)
+#'
+#' # Get dashboards 1 and 21.
+#' account("TEST01AA") %>%
+#'   dashboards(c(1, 21))
+#'
+#' # Get dashboards whose name contains the string 'overview'.
+#' account("TEST01AA") %>%
+#'   dashboards("overview")
+#'
+#' # Get dashboards whose name contains the string 'overview' or the string 'who'.
+#' account("TEST01AA") %>%
+#'   dashboards(c("overview", "who"))
+#'
+#' }
 dashboards <- function(x, d) {
   UseMethod("dashboards")
 }
 
+#' @export
 dashboards.brandseyer2.account <- function(x, d) {
   result <- read_mash(paste0("accounts/", account_code(x), "/reports")) %>%
     map_df(function(data) {

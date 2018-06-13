@@ -15,3 +15,8 @@ A string indicating the account's type, such as an internal account, paid accoun
 \description{
 Get an account's type
 }
+\examples{
+
+account("TEST01AA") \%>\%
+  account_type()
+}

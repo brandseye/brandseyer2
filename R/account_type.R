@@ -25,6 +25,11 @@
 #'
 #' @return A string indicating the account's type, such as an internal account, paid account, etc.
 #' @export
+#'
+#' @examples
+#'
+#' account("TEST01AA") %>%
+#'   account_type()
 account_type <- function(account) {
   UseMethod("account_type")
 }

@@ -43,7 +43,8 @@ account_list <- function() {
       status =.x$status,
       onlyAdmin = .x$onlyAdminLogin %||% FALSE,
       findNewMentions = .x$findNewMentions %||% FALSE,
-      offline = .x$offline %||% FALSE
+      offline = .x$offline %||% FALSE,
+      type = .x$accountType %||% NA
     ))
 
   class(accounts) <- c("brandseyer2.account_list", class(accounts))

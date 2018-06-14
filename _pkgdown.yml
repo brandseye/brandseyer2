@@ -8,7 +8,7 @@ reference:
     desc: >
       These are the basic steps that you need to take in order to get data
       using brandseyer2. First, ensure that you have authenticated yourself,
-      then refernece an account, then access that account's mentions.
+      then reference an account, then access that account's mentions.
       See the [Get started](../articles/brandseyer2.html) documentation for more
       details.
     contents:
@@ -16,6 +16,7 @@ reference:
       - account
       - mentions
       - update_mentions
+      - dashboards
   - title: "Authenticating"
     desc: >
       Authentication is the first thing that you should do when

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Give section information for a dashboard. — sections • brandseyer2</title>
+<title>See metrics in a dashboard. — metrics • brandseyer2</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,11 @@
 
 
 
-<meta property="og:title" content="Give section information for a dashboard. — sections" />
+<meta property="og:title" content="See metrics in a dashboard. — metrics" />
 
-<meta property="og:description" content="Given a tibble of dashboard information (from, for example, dashboards()),
-this adds the section information to the tibble." />
+<meta property="og:description" content="This provides easy access to metric information stored in the metric
+column of a tibble returned by sections() and dashboards(). It
+essentially uses tidyr::unnest() to clean up the table." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -113,85 +114,71 @@ this adds the section information to the tibble." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Give section information for a dashboard.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/dashboard_sections.R'><code>R/dashboard_sections.R</code></a></small>
-    <div class="hidden name"><code>sections.Rd</code></div>
+    <h1>See metrics in a dashboard.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/dashboard_metrics.R'><code>R/dashboard_metrics.R</code></a></small>
+    <div class="hidden name"><code>metrics.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Given a tibble of dashboard information (from, for example, <code><a href='dashboards.html'>dashboards()</a></code>),
-this adds the section information to the tibble.</p>
+    <p>This provides easy access to metric information stored in the metric
+column of a tibble returned by <code><a href='sections.html'>sections()</a></code> and <code><a href='dashboards.html'>dashboards()</a></code>. It
+essentially uses <code><a href='http://www.rdocumentation.org/packages/tidyr/topics/unnest'>tidyr::unnest()</a></code> to clean up the table.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>sections</span>(<span class='no'>x</span>, <span class='no'>d</span>, <span class='no'>unnest</span>)
+    <pre class="usage"><span class='fu'>metrics</span>(<span class='no'>x</span>, <span class='no'>m</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for data.frame</span>
-<span class='fu'>sections</span>(<span class='no'>x</span>, <span class='no'>d</span>, <span class='kw'>unnest</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>metrics</span>(<span class='no'>x</span>, <span class='no'>m</span>, <span class='kw'>collapse</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A tibble to get section information for.</p></td>
+      <td><p>The tibble to pull widget information from.</p></td>
     </tr>
     <tr>
-      <th>d</th>
-      <td><p>An optional value to filter the sections on. Can be a vector
-of integer IDs for the wanted sections, or a vector of
-characters giving words to perform partial string matches
-on section titles with.</p></td>
+      <th>m</th>
+      <td><p>An optional filter for selecting metrics. A numeric
+vector allows you to choose metrics with the given IDs. A
+character vector allows you to choose metrics with matching captions.</p></td>
     </tr>
     <tr>
-      <th>unnest</th>
-      <td><p>A logical value indicating whether sections should be
-appended as a list of tibbles, or whether they should be unnested
-in to the tibble itself, similar to having called <code><a href='http://www.rdocumentation.org/packages/tidyr/topics/unnest'>tidyr::unnest()</a></code>.</p></td>
+      <th>...</th>
+      <td><p>Parameters for other methods.</p></td>
+    </tr>
+    <tr>
+      <th>collapse</th>
+      <td><p>A logical value indicating whether columns should be removed (collapsed)
+or not.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The original tibble, but now with an additional section column.</p>
+    <p>An unnested table of metrics.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The second argument to this function, <code>d</code>, lets you search for specific
-mentions in a similar way that <code><a href='dashboards.html'>dashboards()</a></code> does for dashboards. See
-the <code><a href='dashboards.html'>dashboards()</a></code> documentation for more details.</p>
+    <p>This provides an additional field not available in the original metric
+information called <code>filter</code>. This indicates the filter that the metric would have
+used to call information from the BrandsEye API, and is a combination of the
+section and metric filters.</p>
     
     <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
 
     <ul>
-<li><p><code>data.frame</code>: Get section information for a dashboard tibble.</p></li>
+<li><p><code>data.frame</code>: Expand metric information for data frames.</p></li>
 </ul>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='dashboards.html'>dashboards()</a></code> to pull dashboard information for an account.</p>
-<p><code><a href='metrics.html'>metrics()</a></code> to pull metric information for sections.</p></div>
+<p><code><a href='sections.html'>sections()</a></code> to pull section information for an account.</p></div>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-</div><span class='co'># NOT RUN {</span>
-<span class='co'># Get all sections for the dashboard with ID 1</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='dashboards.html'>dashboards</a></span>(<span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>sections</span>()
-
-<span class='co'># Get the section with ID 5 for the dashboard with ID 1</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='dashboards.html'>dashboards</a></span>(<span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>sections</span>(<span class='fl'>5</span>)
-
-<span class='co'># Get the sections whose title contain the string "where"</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='dashboards.html'>dashboards</a></span>(<span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>sections</span>(<span class='st'>"where"</span>)
-<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -205,9 +192,7 @@ the <code><a href='dashboards.html'>dashboards()</a></code> documentation for mo
       <li><a href="#methods-by-class-">Methods (by class)</a></li>
 
       <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>

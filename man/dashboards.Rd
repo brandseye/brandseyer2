@@ -71,5 +71,7 @@ account("TEST01AA") \%>\%
 }
 }
 \seealso{
-\code{\link[=sections]{sections()}}
+\code{\link[=sections]{sections()}} to pull section information for a dashboard.
+
+\code{\link[=metrics]{metrics()}} to pull metric information for sections.
 }

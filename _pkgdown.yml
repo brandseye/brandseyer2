@@ -65,4 +65,5 @@ reference:
     contents:
       - dashboards
       - sections
+      - metrics
 

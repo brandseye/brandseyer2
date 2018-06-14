@@ -31,7 +31,8 @@
 #' IDs that are wanted. The second argument can also be a character vector,
 #' to give partial matches against dashboard names. Case is ignored.
 #'
-#' @seealso [sections()]
+#' @seealso [sections()] to pull section information for a dashboard.
+#' @seealso [metrics()] to pull metric information for sections.
 #'
 #' @param x An account object to query.
 #' @param d An optional value to filter the dashboards on. Can be a vector

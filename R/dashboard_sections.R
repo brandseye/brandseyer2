@@ -40,7 +40,8 @@
 #' @return The original tibble, but now with an additional section column.
 #' @export
 #'
-#' @seealso [dashboards()]
+#' @seealso [dashboards()] to pull dashboard information for an account.
+#' @seealso [metrics()] to pull metric information for sections.
 #'
 #' @examples
 #'
@@ -65,6 +66,10 @@ sections <- function(x, d, unnest) {
   UseMethod("sections")
 }
 
+#' @describeIn sections
+#'
+#' Get section information for a dashboard tibble.
+#'
 #' @export
 sections.data.frame <- function(x, d, unnest = FALSE) {
   assert_that(x %has_name% "id", msg = "No dashboard `id` column present")
@@ -109,7 +114,7 @@ load_sections <- function(x, d) {
     pluck("sections") %>%
     map_df(function(section) {
       section[["compare"]] <- list(as_tibble(section[["compare"]] %||% NA))
-      section[["widgets"]] <- list(section$widgets %>%
+      section[["metrics"]] <- list(section$widgets %>%
                                      map_df(~tibble(metric.id = .x$id,
                                                     metric.type = .x$type,
                                                     metric.filter = .x$filter %||% NA,
@@ -121,6 +126,7 @@ load_sections <- function(x, d) {
                                                     coarseness = .x$coarseness %||% NA,
                                                     max.items = as.integer(.x[['max-items']] %||% NA),
                                                     colour.index = as.integer(.x[['colour-index']] %||% NA))))
+      section[["widgets"]] <- NULL
       as_tibble(section)
     }) %>%
     rename(section.id = id, section.filter = filter) %>%

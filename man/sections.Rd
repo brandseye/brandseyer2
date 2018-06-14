@@ -2,9 +2,12 @@
 % Please edit documentation in R/dashboard_sections.R
 \name{sections}
 \alias{sections}
+\alias{sections.data.frame}
 \title{Give section information for a dashboard.}
 \usage{
 sections(x, d, unnest)
+
+\method{sections}{data.frame}(x, d, unnest = FALSE)
 }
 \arguments{
 \item{x}{A tibble to get section information for.}
@@ -30,6 +33,11 @@ The second argument to this function, \code{d}, lets you search for specific
 mentions in a similar way that \code{\link[=dashboards]{dashboards()}} does for dashboards. See
 the \code{dashboards()} documentation for more details.
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{data.frame}: Get section information for a dashboard tibble.
+}}
+
 \examples{
 
 \dontrun{
@@ -51,5 +59,7 @@ account("TEST01AA") \%>\%
 }
 }
 \seealso{
-\code{\link[=dashboards]{dashboards()}}
+\code{\link[=dashboards]{dashboards()}} to pull dashboard information for an account.
+
+\code{\link[=metrics]{metrics()}} to pull metric information for sections.
 }

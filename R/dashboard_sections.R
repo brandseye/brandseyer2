@@ -33,6 +33,9 @@
 #'          of integer IDs for the wanted sections, or a vector of
 #'          characters giving words to perform partial string matches
 #'          on section titles with.
+#' @param unnest A logical value indicating whether sections should be
+#'               appended as a list of tibbles, or whether they should be unnested
+#'               in to the tibble itself, similar to having called [tidyr::unnest()].
 #'
 #' @return The original tibble, but now with an additional section column.
 #' @export
@@ -58,12 +61,12 @@
 #'   dashboards(1) %>%
 #'   sections("where")
 #' }
-sections <- function(x, d) {
+sections <- function(x, d, unnest) {
   UseMethod("sections")
 }
 
 #' @export
-sections.data.frame <- function(x, d) {
+sections.data.frame <- function(x, d, unnest = FALSE) {
   assert_that(x %has_name% "id", msg = "No dashboard `id` column present")
 
   ac <- attr(x, "account")
@@ -94,6 +97,8 @@ sections.data.frame <- function(x, d) {
       }
     }))
 
+  if (unnest) result <- result %>% unnest()
+
   result
 }
 
@@ -103,6 +108,7 @@ load_sections <- function(x, d) {
   read_mash(paste0("accounts/", account_code(x), "/reports/", d)) %>%
     pluck("sections") %>%
     map_df(function(section) {
+      section[["compare"]] <- list(as_tibble(section[["compare"]] %||% NA))
       section[["widgets"]] <- list(section$widgets %>%
                                      map_df(~tibble(metric.id = .x$id,
                                                     metric.type = .x$type,

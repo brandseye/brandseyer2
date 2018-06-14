@@ -2,9 +2,12 @@
 % Please edit documentation in R/dashboard_dashboards.R
 \name{dashboards}
 \alias{dashboards}
+\alias{dashboards.brandseyer2.account}
 \title{List the dashboards in an account}
 \usage{
-dashboards(x, d)
+dashboards(x, d, ...)
+
+\method{dashboards}{brandseyer2.account}(x, d, section, ...)
 }
 \arguments{
 \item{x}{An account object to query.}
@@ -13,6 +16,13 @@ dashboards(x, d)
 of integer IDs for the wanted dashboards, or a vector of
 characters giving words to perform partial string matches
 on dashboard names with.}
+
+\item{...}{Additional parameters for methods}
+
+\item{section}{An optional numeric vector of section IDs, or
+character vector to match against section titles. This specifies
+which sections to return, similarly to calling \code{\link[=sections]{sections()}}. You
+can use the special string \code{'*'} to select all sections.}
 }
 \value{
 A tibble of dashboard data.
@@ -29,6 +39,11 @@ either an integer or list of integers, specifying the particular dashboard
 IDs that are wanted. The second argument can also be a character vector,
 to give partial matches against dashboard names. Case is ignored.
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{brandseyer2.account}: Read dashboard data for an \code{\link[=account]{account()}} object.
+}}
+
 \examples{
 
 \dontrun{

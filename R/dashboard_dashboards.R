@@ -38,6 +38,7 @@
 #'          of integer IDs for the wanted dashboards, or a vector of
 #'          characters giving words to perform partial string matches
 #'          on dashboard names with.
+#' @param ... Additional parameters for methods
 #'
 #' @return A tibble of dashboard data.
 #' @export
@@ -67,12 +68,22 @@
 #'   dashboards(c("overview", "who"))
 #'
 #' }
-dashboards <- function(x, d) {
+dashboards <- function(x, d, ...) {
   UseMethod("dashboards")
 }
 
+#' @describeIn dashboards
+#'
+#' Read dashboard data for an [account()] object.
+#'
 #' @export
-dashboards.brandseyer2.account <- function(x, d) {
+#'
+#' @param section An optional numeric vector of section IDs, or
+#'                character vector to match against section titles. This specifies
+#'                which sections to return, similarly to calling [sections()]. You
+#'                can use the special string `'*'` to select all sections.
+dashboards.brandseyer2.account <- function(x, d,
+                                           section, ...) {
   result <- read_mash(paste0("accounts/", account_code(x), "/reports")) %>%
     map_df(function(data) {
       lastUpdated <- data[["lastUpdatedBy"]]
@@ -88,15 +99,17 @@ dashboards.brandseyer2.account <- function(x, d) {
   name <- NULL;
 
   if (is.character(d)) {
-    return(
-      result %>%
-        filter(map_lgl(name, ~ any(stringr::str_detect(tolower(.x), tolower(d)))))
-    )
+    result <- result %>%
+      filter(map_lgl(name, ~ any(stringr::str_detect(tolower(.x), tolower(d)))))
   }
 
   if (is.numeric(d)) {
-    return(
-      result %>% filter(id %in% d)
-    )
+    result <- result %>% filter(id %in% d)
   }
+
+  if (!missing(section)) {
+    result <- result %>% sections(section, unnest = TRUE)
+  }
+
+  result
 }

@@ -4,7 +4,7 @@
 \alias{sections}
 \title{Give section information for a dashboard.}
 \usage{
-sections(x, d)
+sections(x, d, unnest)
 }
 \arguments{
 \item{x}{A tibble to get section information for.}
@@ -13,6 +13,10 @@ sections(x, d)
 of integer IDs for the wanted sections, or a vector of
 characters giving words to perform partial string matches
 on section titles with.}
+
+\item{unnest}{A logical value indicating whether sections should be
+appended as a list of tibbles, or whether they should be unnested
+in to the tibble itself, similar to having called \code{\link[tidyr:unnest]{tidyr::unnest()}}.}
 }
 \value{
 The original tibble, but now with an additional section column.

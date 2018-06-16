@@ -16,6 +16,7 @@ reference:
       - account
       - mentions
       - update_mentions
+      - count_mentions
       - dashboards
   - title: "Authenticating"
     desc: >
@@ -49,12 +50,16 @@ reference:
       kinds of mentions using a filter language, to count mentions
       matching particular parameters, and to update the information
       stored on mentions.
+      
+      Important functions include [mentions()](mentions.html) to pull mentions in your account,
+      and [count_mentions()](count_mentions.html), to count mentions matching a particular filter.
     contents:
       - mentions
       - tags
       - topics
       - brands
       - phrases
+      - count_mentions
       - update_mentions
       - starts_with("mentions_")
   - title: "Account dashboards"

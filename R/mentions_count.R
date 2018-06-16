@@ -19,36 +19,87 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# count_mentions <- function(x, filter, ...) {
-#   UseMethod("count_mentions")
-# }
-#
-# count_mentions.brandseyer2.account.v4 <- function(x, filter, ...,
-#                                                   groupBy = NULL) {
-#
-#   assert_that(!missing(filter) && is.string(filter),
-#               msg = "A filter must be provided")
-#
-#   query <- list(filter = filter, groupBy = groupBy)
-#
-#   data <- read_api(endpoint = paste0("v4/accounts/",account_code(x), "/mentions/count"),
-#                    query = query)
-#
-#
-#
-#   data %>% map_df(function(row) {
-#     as.tibble(row %>% imap(function(data, index) {
-#       if (index %in% c("published")) {
-#         data <- if (nchar(data) > 10) lubridate::ymd_hm(data) else lubridate::ymd(data)
-#       }
-#       d <- list()
-#       if (is.atomic(data)) d[[index]] = data
-#       else {
-#         d[[paste0(index, ".id")]] = data$id
-#         d[[index]] = list(as.tibble(data))
-#       }
-#       d
-#     }) %>% purrr::flatten())
-#   })
-#
-# }
+#' Count mentions
+#' 
+#' This counts mentions, aggregating them in to various data sets.
+#'
+#' @param x       An account to read from 
+#' @param filter  A filter to use
+#' @param groupBy An optional list of names of things to group by. 
+#'                For example, `groupBy = published`, or,
+#'                `groupBy = tag`
+#' @param ...     Further arguments for other methods
+#'
+#' @return A tibble of data.
+#' @export
+#'
+#' @examples
+#' 
+#' \dontrun{
+#' 
+#' # Count all mentions in your account in the last year
+#' account("TEST01AA") %>% 
+#'   count_mentions("published inthelast year and brandisorchildof 1")
+#'   
+#' # Count all mentions in your account, grouping by publication date.
+#' account("TEST01AA") %>% 
+#'   count_mentions("published inthelast year and brandisorchildof 1", groupBy = published)
+#' 
+#' }
+count_mentions <- function(x, filter, groupBy, ...) {
+  UseMethod("count_mentions")
+}
+
+#' @export
+count_mentions.brandseyer2.account.v4 <- function(x, filter, groupBy = NULL,
+                                                  ...) {
+
+  assert_that(!missing(filter) && is.string(filter),
+              msg = "A filter must be provided")
+
+  query <- list(filter = filter)
+  
+  groupBy = get_name_list(deparse(substitute(groupBy)))
+  if (!is.null(groupBy)) {
+    assert_that(is.character(groupBy))
+    query$groupBy = paste0(groupBy, collapse = ',')
+  }
+
+  data <- read_api(endpoint = paste0("v4/accounts/",account_code(x), "/mentions/count"),
+                   query = query)
+
+  process <- function(row) {
+    as.tibble(row %>% imap(function(data, index) {
+      if (index %in% c("published", "pickedUp", "updated")) {
+        tz <- account_timezone(x)
+        data <- if (nchar(data) > 10) lubridate::ymd_hm(data, tz = tz) else lubridate::ymd(data, tz = tz)
+      }
+      d <- list()
+      if (is.atomic(data)) d[[index]] = data
+      else {
+        # Ensure that we have no null items
+        for (name in names(data)) {
+          if (is.null(data[[name]])) data[[name]] <- NA
+        }
+        
+        d[[paste0(index, ".id")]] <-  data$id
+        if (!is.null(data$name)) d[[paste0(index, ".name")]] <- data$name
+        if (!is.null(data$fullName)) d[[paste0(index, ".name")]] <- data$fullName
+        
+        # See if we want to add the data itself
+        n <- names(data)
+        if (length(n) != 2 || !"id" %in% n || !"name" %in% n) {
+          d[[index]] = list(as.tibble(data))
+        }
+      }
+      d
+    }) %>% purrr::flatten())
+  }
+
+  if (is.null(groupBy)) {
+    return(process(data))
+  }
+  
+  data %>% map_df(process)
+
+}

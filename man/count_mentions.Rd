@@ -5,10 +5,10 @@
 \alias{count_mentions.brandseyer2.account.v4}
 \title{Count mentions}
 \usage{
-count_mentions(x, filter, ..., groupBy, select)
+count_mentions(x, filter, ..., groupBy, select, orderBy)
 
 \method{count_mentions}{brandseyer2.account.v4}(x, filter, ...,
-  groupBy = NULL, select = NULL, tagNamespace = NULL)
+  groupBy = NULL, select = NULL, orderBy = NULL, tagNamespace = NULL)
 }
 \arguments{
 \item{x}{An account to read from}
@@ -25,6 +25,9 @@ For example, \code{groupBy = published}, or,
 aggregate by, in addition to the number of mentions.
 For example, \code{select = totalSentiment}, or,
 \code{select = c(totalSentiment, totalEngagement)}.}
+
+\item{orderBy}{An optional list of names of the aggregate fields to
+order the results by.}
 
 \item{tagNamespace}{An optional string. When grouping by \code{tag}, \code{tagNamespace} can
 be supplied to limit the tags being grouped by to only those

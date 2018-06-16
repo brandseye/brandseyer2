@@ -28,6 +28,10 @@
 #' @param groupBy An optional list of names of things to group by. 
 #'                For example, `groupBy = published`, or,
 #'                `groupBy = tag`
+#' @param select  An optional list of names of things to select and
+#'                aggregate by, in addition to the number of mentions.
+#'                For example, `select = totalSentiment`, or, 
+#'                `select = c(totalSentiment, totalEngagement)`.
 #' @param ...     Further arguments for other methods
 #'
 #' @return A tibble of data.
@@ -46,13 +50,25 @@
 #'   count_mentions("published inthelast year and brandisorchildof 1", groupBy = published)
 #' 
 #' }
-count_mentions <- function(x, filter, groupBy, ...) {
+count_mentions <- function(x, filter, ..., groupBy, select) {
   UseMethod("count_mentions")
 }
 
+#' @describeIn count_mentions
+#' 
+#' Count mentions in a v4 account.
+#' 
+#' @param tagNamespace An optional string. When grouping by `tag`, `tagNamespace` can
+#'                     be supplied to limit the tags being grouped by to only those
+#'                     in the given namespace. For example, to only see topics, 
+#'                     have `tagNamespace = 'topic'`
+#' 
 #' @export
-count_mentions.brandseyer2.account.v4 <- function(x, filter, groupBy = NULL,
-                                                  ...) {
+count_mentions.brandseyer2.account.v4 <- function(x, filter, 
+                                                  ...,
+                                                  groupBy = NULL,
+                                                  select = NULL,
+                                                  tagNamespace = NULL) {
 
   assert_that(!missing(filter) && is.string(filter),
               msg = "A filter must be provided")
@@ -63,6 +79,17 @@ count_mentions.brandseyer2.account.v4 <- function(x, filter, groupBy = NULL,
   if (!is.null(groupBy)) {
     assert_that(is.character(groupBy))
     query$groupBy = paste0(groupBy, collapse = ',')
+  }
+  
+  select = get_name_list(deparse(substitute(select)))
+  if (!is.null(select)) {
+    assert_that(is.character(select))
+    query$select = paste0(select, collapse = ',')
+  }
+  
+  if (!is.null(tagNamespace)) {
+    assert_that(is.string(tagNamespace))
+    query$tagNamespace = tagNamespace
   }
 
   data <- read_api(endpoint = paste0("v4/accounts/",account_code(x), "/mentions/count"),
@@ -82,9 +109,14 @@ count_mentions.brandseyer2.account.v4 <- function(x, filter, groupBy = NULL,
           if (is.null(data[[name]])) data[[name]] <- NA
         }
         
+        # Create specific new fields to return
         d[[paste0(index, ".id")]] <-  data$id
         if (!is.null(data$name)) d[[paste0(index, ".name")]] <- data$name
         if (!is.null(data$fullName)) d[[paste0(index, ".name")]] <- data$fullName
+        
+        # Clean up the object's data.
+        if (!is.null(data$labels)) data$labels <- list(as.tibble(data$labels) %>% tidyr::gather("language", "translation"))
+        if (!is.null(data$descriptions)) data$descriptions <- list(as.tibble(data$descriptions) %>% tidyr::gather("language", "translation"))
         
         # See if we want to add the data itself
         n <- names(data)

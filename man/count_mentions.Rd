@@ -2,20 +2,34 @@
 % Please edit documentation in R/mentions_count.R
 \name{count_mentions}
 \alias{count_mentions}
+\alias{count_mentions.brandseyer2.account.v4}
 \title{Count mentions}
 \usage{
-count_mentions(x, filter, groupBy, ...)
+count_mentions(x, filter, ..., groupBy, select)
+
+\method{count_mentions}{brandseyer2.account.v4}(x, filter, ...,
+  groupBy = NULL, select = NULL, tagNamespace = NULL)
 }
 \arguments{
 \item{x}{An account to read from}
 
 \item{filter}{A filter to use}
 
+\item{...}{Further arguments for other methods}
+
 \item{groupBy}{An optional list of names of things to group by.
 For example, \code{groupBy = published}, or,
 \code{groupBy = tag}}
 
-\item{...}{Further arguments for other methods}
+\item{select}{An optional list of names of things to select and
+aggregate by, in addition to the number of mentions.
+For example, \code{select = totalSentiment}, or,
+\code{select = c(totalSentiment, totalEngagement)}.}
+
+\item{tagNamespace}{An optional string. When grouping by \code{tag}, \code{tagNamespace} can
+be supplied to limit the tags being grouped by to only those
+in the given namespace. For example, to only see topics,
+have \code{tagNamespace = 'topic'}}
 }
 \value{
 A tibble of data.
@@ -23,6 +37,11 @@ A tibble of data.
 \description{
 This counts mentions, aggregating them in to various data sets.
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{brandseyer2.account.v4}: Count mentions in a v4 account.
+}}
+
 \examples{
 
 \dontrun{

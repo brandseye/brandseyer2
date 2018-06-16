@@ -32,6 +32,8 @@
 #'                aggregate by, in addition to the number of mentions.
 #'                For example, `select = totalSentiment`, or, 
 #'                `select = c(totalSentiment, totalEngagement)`.
+#' @param orderBy An optional list of names of the aggregate fields to 
+#'                order the results by.
 #' @param ...     Further arguments for other methods
 #'
 #' @return A tibble of data.
@@ -50,7 +52,7 @@
 #'   count_mentions("published inthelast year and brandisorchildof 1", groupBy = published)
 #' 
 #' }
-count_mentions <- function(x, filter, ..., groupBy, select) {
+count_mentions <- function(x, filter, ..., groupBy, select, orderBy) {
   UseMethod("count_mentions")
 }
 
@@ -68,6 +70,7 @@ count_mentions.brandseyer2.account.v4 <- function(x, filter,
                                                   ...,
                                                   groupBy = NULL,
                                                   select = NULL,
+                                                  orderBy = NULL,
                                                   tagNamespace = NULL) {
 
   assert_that(!missing(filter) && is.string(filter),
@@ -85,6 +88,12 @@ count_mentions.brandseyer2.account.v4 <- function(x, filter,
   if (!is.null(select)) {
     assert_that(is.character(select))
     query$select = paste0(select, collapse = ',')
+  }
+  
+  orderBy = get_name_list(deparse(substitute(orderBy)))
+  if (!is.null(orderBy)) {
+    assert_that(is.character(orderBy))
+    query$orderBy = paste0(orderBy, collapse = ',')
   }
   
   if (!is.null(tagNamespace)) {

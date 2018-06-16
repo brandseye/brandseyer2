@@ -37,12 +37,18 @@
 #' }
 #' 
 get_name_list <- function(names) {
+  strip_quotes <- function(s) {
+    if (stringr::str_sub(s, 1, 1) == '"') return(stringr::str_sub(s, 2, -2))
+    s
+  }
+  
   if (names == "NULL") return(NULL)
-  if (!startsWith(names, "c(")) return(names)
+  if (!startsWith(names, "c(")) return(strip_quotes(names))
   
   names %>% 
     stringr::str_sub(3, -2) %>% 
     stringr::str_split(",") %>% 
     purrr::pluck(1) %>% 
-    stringr::str_trim()
+    stringr::str_trim() %>% 
+    map_chr(strip_quotes)
 }

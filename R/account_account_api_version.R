@@ -33,6 +33,7 @@ account_api_version <- function(account) {
   UseMethod("account_api_version")
 }
 
+#' @export
 account_api_version.brandseyer2.account <- function(account) {
   account$storage
 }

@@ -72,6 +72,11 @@ Updates mentions for an account object
 \item \code{brandseyer2.account.v4}: 
 }}
 
+\note{
+Setting \code{sentiment} and \code{relevancy} will affect crowd data. You should strongly think about
+setting \code{relevancyVerified} or \code{sentimentVerified} as appropriate, if you decide to edit
+\code{sentiment} or \code{relevancy}.
+}
 \author{
 Constance Neeser
 }

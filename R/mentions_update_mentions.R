@@ -62,6 +62,10 @@ update_mentions <- function(x, filter, auto.confirm = FALSE, ...) {
 #'                     updated with any of the information related to the author on this mention, such as race,
 #'                     gender, language or media.
 #'
+#' @note Setting `sentiment` and `relevancy` will affect crowd data. You should strongly think about
+#'       setting `relevancyVerified` or `sentimentVerified` as appropriate, if you decide to edit
+#'       `sentiment` or `relevancy`.
+#'
 #' @export
 update_mentions.brandseyer2.account.v4 <- function(x, filter,
                                                    auto.confirm,
@@ -99,6 +103,7 @@ update_mentions.brandseyer2.account.v4 <- function(x, filter,
 
   if (!missing(sentiment)) {
     assert_that(is.numeric(sentiment), msg = "Sentiment must be an integer")
+    if (missing(sentimentVerified)) rlang::warn("Sentiment is being modified, but `sentimentVerified` is not. This may break crowd data.")
     if (!auto.confirm && !confirm("This could damage a lot of data in an account.")) {
       rlang::abort("Action cancelled by the user")
     }
@@ -132,6 +137,7 @@ update_mentions.brandseyer2.account.v4 <- function(x, filter,
 
   if (!missing(relevancy)) {
     assert_that(is.string(relevancy))
+    if (missing(relevancyVerified)) rlang::warn("Relevancy is being modified, but relevancyVerified is not. This may break crowd data.")
     json <- c(json, list(relevancy = jsonlite::unbox(relevancy)))
   }
 

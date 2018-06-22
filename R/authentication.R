@@ -122,22 +122,18 @@ save_key <- function(key) {
   assertthat::assert_that(is.character(key))
   contents <- paste0('{ "key": "', key, '" }')
 
-  if (!file.exists(authentication_filename())) {
-    message(paste("Authentication file created at", authentication_filename()))
-    if (!file.exists(dirname(authentication_filename()))) {
-      dir.create(dirname(authentication_filename()))
-    }
-    if (!is.null(contents)) {
-      fileConn<-file(authentication_filename())
-      writeLines(contents, fileConn)
-      close(fileConn)
-    }
-    else {
-      file.create(authentication_filename())
-    }
-
+  message(paste("Authentication file created at", authentication_filename()))
+  if (!file.exists(dirname(authentication_filename()))) {
+    dir.create(dirname(authentication_filename()))
   }
-  else abort("Authentication file already exists")
+  if (!is.null(contents)) {
+    fileConn<-file(authentication_filename())
+    writeLines(contents, fileConn)
+    close(fileConn)
+  }
+  else {
+    file.create(authentication_filename())
+  }
 
   invisible()
 }

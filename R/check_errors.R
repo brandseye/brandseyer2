@@ -28,11 +28,22 @@
 #'
 #' @author Constance Neeser
 check_errors <- function(data) {
-  if (httr::status_code(data) == 401) stop("You have bad authentication details. Try authenticating again.")
+  if (httr::status_code(data) == 401) stop(brandseye_auth_error())
   if (httr::status_code(data) != 200) {
     message = jsonlite::fromJSON(httr::content(data, "text"))$error
-    abort(paste("BrandsEye API error: ", message))
+    stop(brandseye_api_error(message))
   }
 
   invisible()
+}
+
+brandseye_auth_error <- function() {
+  condition(c("brandseye_auth_error", "error"),
+            message = "BrandsEye Authentication Error: You have bad authentication details. Try authenticating again.")
+}
+
+brandseye_api_error <- function(message) {
+  condition(c("brandseye_api_error", "error"),
+            message = paste("BrandsEye API Error:", message),
+            text = message)
 }

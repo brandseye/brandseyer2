@@ -28,8 +28,11 @@ pkg.env <- new.env()
     auth_data <- jsonlite::fromJSON(txt = auth_file)
     if (is.string(auth_data$key)) {
       tryCatch(pkg.env$defaultAuthentication <- authenticate(auth_data$key),
-               error = function(e) {
+               brandseye_auth_error = function(e) {
                  rlang::warn("Your saved authentication details are bad. Please reauthenticate. See brandseyer2::authenticate()")
+               },
+               error = function(e) {
+                 stop(e)
                })
     } else {
       rlang::warn("Saved authentication details do not contain an API key")

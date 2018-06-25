@@ -28,15 +28,15 @@ Imports:
     tidyr,
     rlang,
     lubridate,
-    stringr
+    stringr,
+    glue
 RoxygenNote: 6.0.1
 Suggests: 
     testthat,
     covr,
     knitr,
     rmarkdown,
-    brandseyer,
-    glue
+    brandseyer
 VignetteBuilder: knitr
 Remotes: 
     brandseye/brandseyer

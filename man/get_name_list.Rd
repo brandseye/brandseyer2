@@ -4,10 +4,12 @@
 \alias{get_name_list}
 \title{Turn a string creating a vector in to a string of names}
 \usage{
-get_name_list(names)
+get_name_list(names, env = parent.frame())
 }
 \arguments{
 \item{names}{A string generated using \code{deparse} and \code{substitute}.}
+
+\item{env}{The environment in which to perform substitutions.}
 }
 \value{
 A vector of characters.

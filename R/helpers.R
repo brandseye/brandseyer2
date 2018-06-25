@@ -25,6 +25,7 @@
 #' contained within.
 #'
 #' @param names A string generated using `deparse` and `substitute`.
+#' @param env The environment in which to perform substitutions.
 #'
 #' @return A vector of characters.
 #'
@@ -36,15 +37,16 @@
 #' get_name_list(deparse(substitute(NULL)))
 #' }
 #'
-get_name_list <- function(names) {
+get_name_list <- function(names, env = parent.frame()) {
+  if (length(names) > 1) names <- paste(names, collapse = "")
   strip_quotes <- function(s) {
-    if (stringr::str_sub(s, 1, 1) == '"') return(stringr::str_sub(s, 2, -2))
-    s
+    val <- s
+    if (stringr::str_sub(s, 1, 1) == '"') val <- stringr::str_sub(s, 2, -2)
+    if (stringr::str_count(val, '\\{')) val <- glue::glue(val, .envir = env)
+    val
   }
 
   if (names == "NULL") return(NULL)
-  if (startsWith(names, "paste(") || startsWith(names, "paste0(")) names <- eval(parse(text = names))
-  if (startsWith(names, "glue::") && requireNamespace("glue", quietly = TRUE)) names <- eval(parse(text = names))
   if (!startsWith(names, "c(")) return(strip_quotes(names))
 
   names %>%

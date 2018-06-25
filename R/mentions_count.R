@@ -20,82 +20,85 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #' Count mentions
-#' 
+#'
 #' This counts mentions, aggregating them in to various data sets.
 #'
-#' @param x       An account to read from 
+#' @param x       An account to read from
 #' @param filter  A filter to use
-#' @param groupBy An optional list of names of things to group by. 
+#' @param groupBy An optional list of names of things to group by.
 #'                For example, `groupBy = published`, or,
 #'                `groupBy = tag`
 #' @param select  An optional list of names of things to select and
 #'                aggregate by, in addition to the number of mentions.
-#'                For example, `select = totalSentiment`, or, 
+#'                For example, `select = totalSentiment`, or,
 #'                `select = c(totalSentiment, totalEngagement)`.
-#' @param orderBy An optional list of names of the aggregate fields to 
+#' @param orderBy An optional list of names of the aggregate fields to
 #'                order the results by.
+#' @param .envir  An optional environment in which to evaluate variables in
+#'                your `groupBy`, `select`, and `orderBy` arguments.
 #' @param ...     Further arguments for other methods
 #'
 #' @return A tibble of data.
 #' @export
 #'
 #' @examples
-#' 
+#'
 #' \dontrun{
-#' 
+#'
 #' # Count all mentions in your account in the last year
-#' account("TEST01AA") %>% 
+#' account("TEST01AA") %>%
 #'   count_mentions("published inthelast year and brandisorchildof 1")
-#'   
+#'
 #' # Count all mentions in your account, grouping by publication date.
-#' account("TEST01AA") %>% 
+#' account("TEST01AA") %>%
 #'   count_mentions("published inthelast year and brandisorchildof 1", groupBy = published)
-#' 
+#'
 #' }
-count_mentions <- function(x, filter, ..., groupBy, select, orderBy) {
+count_mentions <- function(x, filter, ..., groupBy, select, orderBy, .envir) {
   UseMethod("count_mentions")
 }
 
 #' @describeIn count_mentions
-#' 
+#'
 #' Count mentions in a v4 account.
-#' 
+#'
 #' @param tagNamespace An optional string. When grouping by `tag`, `tagNamespace` can
 #'                     be supplied to limit the tags being grouped by to only those
-#'                     in the given namespace. For example, to only see topics, 
+#'                     in the given namespace. For example, to only see topics,
 #'                     have `tagNamespace = 'topic'`
-#' 
+#'
 #' @export
-count_mentions.brandseyer2.account.v4 <- function(x, filter, 
+count_mentions.brandseyer2.account.v4 <- function(x, filter,
                                                   ...,
                                                   groupBy = NULL,
                                                   select = NULL,
                                                   orderBy = NULL,
-                                                  tagNamespace = NULL) {
+                                                  tagNamespace = NULL,
+                                                  .envir = parent.frame()) {
 
   assert_that(!missing(filter) && is.string(filter),
               msg = "A filter must be provided")
 
   query <- list(filter = filter)
-  
-  groupBy = get_name_list(deparse(substitute(groupBy)))
+
+  groupBy = get_name_list(deparse(substitute(groupBy)), env = .envir)
   if (!is.null(groupBy)) {
     assert_that(is.character(groupBy))
     query$groupBy = paste0(groupBy, collapse = ',')
   }
-  
-  select = get_name_list(deparse(substitute(select)))
+
+  select = get_name_list(deparse(substitute(select)), env = .envir)
   if (!is.null(select)) {
     assert_that(is.character(select))
     query$select = paste0(select, collapse = ',')
   }
-  
-  orderBy = get_name_list(deparse(substitute(orderBy)))
+
+  orderBy = get_name_list(deparse(substitute(orderBy)), env = .envir)
   if (!is.null(orderBy)) {
     assert_that(is.character(orderBy))
     query$orderBy = paste0(orderBy, collapse = ',')
   }
-  
+
   if (!is.null(tagNamespace)) {
     assert_that(is.string(tagNamespace))
     query$tagNamespace = tagNamespace
@@ -117,16 +120,16 @@ count_mentions.brandseyer2.account.v4 <- function(x, filter,
         for (name in names(data)) {
           if (is.null(data[[name]])) data[[name]] <- NA
         }
-        
+
         # Create specific new fields to return
         d[[paste0(index, ".id")]] <-  data$id
         if (!is.null(data$name)) d[[paste0(index, ".name")]] <- data$name
         if (!is.null(data$fullName)) d[[paste0(index, ".name")]] <- data$fullName
-        
+
         # Clean up the object's data.
         if (!is.null(data$labels)) data$labels <- list(as.tibble(data$labels) %>% tidyr::gather("language", "translation"))
         if (!is.null(data$descriptions)) data$descriptions <- list(as.tibble(data$descriptions) %>% tidyr::gather("language", "translation"))
-        
+
         # See if we want to add the data itself
         n <- names(data)
         if (length(n) != 2 || !"id" %in% n || !"name" %in% n) {
@@ -140,7 +143,7 @@ count_mentions.brandseyer2.account.v4 <- function(x, filter,
   if (is.null(groupBy)) {
     return(process(data))
   }
-  
+
   data %>% map_df(process)
 
 }

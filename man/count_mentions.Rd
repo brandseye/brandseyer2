@@ -5,10 +5,11 @@
 \alias{count_mentions.brandseyer2.account.v4}
 \title{Count mentions}
 \usage{
-count_mentions(x, filter, ..., groupBy, select, orderBy)
+count_mentions(x, filter, ..., groupBy, select, orderBy, .envir)
 
 \method{count_mentions}{brandseyer2.account.v4}(x, filter, ...,
-  groupBy = NULL, select = NULL, orderBy = NULL, tagNamespace = NULL)
+  groupBy = NULL, select = NULL, orderBy = NULL, tagNamespace = NULL,
+  .envir = parent.frame())
 }
 \arguments{
 \item{x}{An account to read from}
@@ -28,6 +29,9 @@ For example, \code{select = totalSentiment}, or,
 
 \item{orderBy}{An optional list of names of the aggregate fields to
 order the results by.}
+
+\item{.envir}{An optional environment in which to evaluate variables in
+your \code{groupBy}, \code{select}, and \code{orderBy} arguments.}
 
 \item{tagNamespace}{An optional string. When grouping by \code{tag}, \code{tagNamespace} can
 be supplied to limit the tags being grouped by to only those
@@ -50,11 +54,11 @@ This counts mentions, aggregating them in to various data sets.
 \dontrun{
 
 # Count all mentions in your account in the last year
-account("TEST01AA") \%>\% 
+account("TEST01AA") \%>\%
   count_mentions("published inthelast year and brandisorchildof 1")
-  
+
 # Count all mentions in your account, grouping by publication date.
-account("TEST01AA") \%>\% 
+account("TEST01AA") \%>\%
   count_mentions("published inthelast year and brandisorchildof 1", groupBy = published)
 
 }

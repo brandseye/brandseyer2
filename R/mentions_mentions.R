@@ -35,6 +35,7 @@
 #'               See the filter vignette for details.
 #' @param select A character vector of the mention fields to be returned.
 #' @param ... Further arguments passed to or from other methods.
+#' @param .envir An optional environment for when substituting values in to select.
 #'
 #' @return A tibble of mentions.
 #'
@@ -44,7 +45,7 @@
 #' @seealso [phrases()]() to fetch phrase information from mentions.
 #'
 #' @export
-mentions <- function(x, filter, select, ...) {
+mentions <- function(x, filter, select, ..., .envir) {
   UseMethod("mentions")
 }
 
@@ -64,6 +65,7 @@ mentions <- function(x, filter, select, ...) {
 #'   mentions(filter = "published inthelast week and brand isorchildof 1") # Must always have a filter
 mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL,
                                             ...,
+                                            .envir = parent.frame(),
                                             orderBy = NULL, fetchGraph = FALSE) {
   assert_that(assertthat::is.string(filter))
   assert_that(nchar(filter) > 0,
@@ -81,11 +83,13 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL,
                   limit= sprintf("%d", limit),
                   offset = sprintf("%d", nrow(result) %||% 0))
 
+    select <-  get_name_list(deparse(substitute(select)), env = .envir)
     if (!is.null(select)) {
       assert_that(is.character(select))
       query$select = paste0(select, collapse = ',')
     }
 
+    orderBy <- get_name_list(deparse(substitute(orderBy)), env = .envir)
     if (!is.null(orderBy)) {
       assert_that(is.character(orderBy))
       query$orderBy = paste0(orderBy, collapse = ',')

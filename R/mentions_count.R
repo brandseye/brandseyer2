@@ -81,19 +81,19 @@ count_mentions.brandseyer2.account.v4 <- function(x, filter,
 
   query <- list(filter = filter)
 
-  groupBy = get_name_list(deparse(substitute(groupBy)), env = .envir)
+  groupBy <- get_name_list(deparse(substitute(groupBy)), env = .envir)
   if (!is.null(groupBy)) {
     assert_that(is.character(groupBy))
     query$groupBy = paste0(groupBy, collapse = ',')
   }
 
-  select = get_name_list(deparse(substitute(select)), env = .envir)
+  select <- get_name_list(deparse(substitute(select)), env = .envir)
   if (!is.null(select)) {
     assert_that(is.character(select))
     query$select = paste0(select, collapse = ',')
   }
 
-  orderBy = get_name_list(deparse(substitute(orderBy)), env = .envir)
+  orderBy <- get_name_list(deparse(substitute(orderBy)), env = .envir)
   if (!is.null(orderBy)) {
     assert_that(is.character(orderBy))
     query$orderBy = paste0(orderBy, collapse = ',')

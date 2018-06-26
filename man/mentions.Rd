@@ -6,10 +6,10 @@
 \alias{mentions.brandseyer2.account.v3}
 \title{Fetch mentions from an account}
 \usage{
-mentions(x, filter, select, ...)
+mentions(x, filter, select, ..., .envir)
 
 \method{mentions}{brandseyer2.account.v4}(x, filter, select = NULL, ...,
-  orderBy = NULL, fetchGraph = FALSE)
+  .envir = parent.frame(), orderBy = NULL, fetchGraph = FALSE)
 
 \method{mentions}{brandseyer2.account.v3}(x, filter, select, ...,
   use.brandseyer = FALSE, limit = 30, offset = 0, include, all = FALSE)
@@ -23,6 +23,8 @@ See the filter vignette for details.}
 \item{select}{A character vector of the mention fields to be returned.}
 
 \item{...}{Further arguments passed to or from other methods.}
+
+\item{.envir}{An optional environment for when substituting values in to select.}
 
 \item{orderBy}{Fields to order the returned data by. Defaults to published}
 

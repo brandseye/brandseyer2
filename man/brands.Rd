@@ -8,7 +8,7 @@
 \alias{brands.data.frame}
 \title{Fetch brand information}
 \usage{
-\method{brands}{brandseyer2.account}(x, ...)
+\method{brands}{brandseyer2.account}(x, ..., short = TRUE)
 
 \method{brands}{list}(x, ...)
 
@@ -21,6 +21,8 @@ brands(x, ...)
 or tibble of mention data.}
 
 \item{...}{Additional parameters for functions.}
+
+\item{short}{Only show the most important brand information.}
 
 \item{ac}{An optional account object from which to take brand information.}
 }
@@ -55,7 +57,7 @@ account("TEST01AA") \%>\%
 
 # Fetch phrases without using `phrases``
 account("TEST01AA") \%>\%
-  brands() \%>\%
+  brands(short = FALSE) \%>\%
   dplyr::select(id, phrases) \%>\%
   dplyr::rename(brand.id = id) \%>\%
   tidyr::unnest(phrases) \%>\%

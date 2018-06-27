@@ -23,6 +23,8 @@
 #'
 #' Read brands for only a single account
 #'
+#' @param short Only show the most important brand information.
+#'
 #' @export
 #' @examples
 #'
@@ -37,12 +39,15 @@
 #'
 #' # Fetch phrases without using `phrases``
 #' account("TEST01AA") %>%
-#'   brands() %>%
+#'   brands(short = FALSE) %>%
 #'   dplyr::select(id, phrases) %>%
 #'   dplyr::rename(brand.id = id) %>%
 #'   tidyr::unnest(phrases) %>%
 #'   dplyr::rename(phrase.id = id)
-brands.brandseyer2.account <- function(x, ...) {
+brands.brandseyer2.account <- function(x, ..., short = TRUE) {
+
+  # For devtools::check
+  id <- NULL; name <- NULL; deleted <- NULL; archived <- NULL; parent <- NULL;
 
   # Brands are stored in a recursive tree, so we need a recursive function.
   recurse <- function(brands, parent = NA) {
@@ -82,7 +87,15 @@ brands.brandseyer2.account <- function(x, ...) {
     bind_rows(parents, children)
   }
 
-  recurse(x$brands)
+  data <- recurse(x$brands)
+
+  if (short) {
+    data <- data %>%
+      select(id, name, parent, deleted, archived)
+  }
+
+
+  data
 }
 
 #' @describeIn brands

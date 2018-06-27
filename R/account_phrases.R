@@ -39,7 +39,7 @@ phrases.brandseyer2.account <- function(x, ...) {
   inactive <- NULL
   query <- NULL
 
-  brands <- x %>% brands()
+  brands <- x %>% brands(short = FALSE)
   if (nrow(brands) == 0) return(tibble())
 
   brands %>%

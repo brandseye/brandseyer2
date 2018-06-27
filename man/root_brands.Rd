@@ -56,7 +56,7 @@ account("TEST01AA") \%>\%
 
 # Get root brands from a tibble or data.frame
 account(c("TEST01AA", "TEST02AA")) \%>\%
-  brands() \%>\%
+  brands(short = FALSE) \%>\%
   root_brands()
 
 # Show fuller root brand information

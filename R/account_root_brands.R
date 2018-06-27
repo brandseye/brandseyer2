@@ -47,7 +47,7 @@
 #'
 #' # Get root brands from a tibble or data.frame
 #' account(c("TEST01AA", "TEST02AA")) %>%
-#'   brands() %>%
+#'   brands(short = FALSE) %>%
 #'   root_brands()
 #'
 #' # Show fuller root brand information
@@ -99,7 +99,7 @@ root_brands.data.frame <- function(x, includeDeleted = FALSE, includeArchived = 
 root_brands.brandseyer2.account <- function(x, includeDeleted = FALSE, includeArchived = FALSE,
                                             short = TRUE) {
   x %>%
-    brands() %>%
+    brands(short = FALSE) %>%
     root_brands(includeDeleted = includeDeleted,
                 includeArchived = includeArchived,
                 short = short)
@@ -112,6 +112,6 @@ root_brands.brandseyer2.account <- function(x, includeDeleted = FALSE, includeAr
 #' @export
 root_brands.list <- function(x, includeDeleted = FALSE, includeArchived = FALSE, short = TRUE) {
   x %>%
-    brands() %>%
+    brands(short = FALSE) %>%
     root_brands(includeDeleted = includeDeleted, includeArchived = includeArchived, short = TRUE)
 }

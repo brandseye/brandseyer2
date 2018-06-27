@@ -7,16 +7,16 @@
 \alias{root_brands.list}
 \title{Find root brands in an account.}
 \usage{
-root_brands(x, includeDeleted, includeArchived)
+root_brands(x, includeDeleted, includeArchived, short)
 
 \method{root_brands}{data.frame}(x, includeDeleted = FALSE,
-  includeArchived = FALSE)
+  includeArchived = FALSE, short = TRUE)
 
 \method{root_brands}{brandseyer2.account}(x, includeDeleted = FALSE,
-  includeArchived = FALSE)
+  includeArchived = FALSE, short = TRUE)
 
 \method{root_brands}{list}(x, includeDeleted = FALSE,
-  includeArchived = FALSE)
+  includeArchived = FALSE, short = TRUE)
 }
 \arguments{
 \item{x}{The object to find root brands for.}
@@ -26,6 +26,8 @@ shows non-deleted brands.}
 
 \item{includeArchived}{Whether to include archived root brands. By default, only
 shows non-archived brands.}
+
+\item{short}{Include only the most import bits of brand information, such as the name and ID.}
 }
 \value{
 A tibble containing rows only for the root brands of an account. Otherwise,
@@ -56,6 +58,10 @@ account("TEST01AA") \%>\%
 account(c("TEST01AA", "TEST02AA")) \%>\%
   brands() \%>\%
   root_brands()
+
+# Show fuller root brand information
+account("TEST01AA") \%>\%
+  root_brands(short = FALSE)
 }
 \seealso{
 \code{\link[=brands]{brands()}} for returning all brands in an account.

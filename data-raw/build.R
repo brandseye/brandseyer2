@@ -112,7 +112,7 @@ test01aa_data <- list(
     ),
     list(
       id = 6,
-      name = "Brand of the Christmas Past",
+      name = "Brand of Christmas Past",
       tier = "ESSENTIALS",
       crowdSamplePercentage = 0.8,
       crowdTopicPercentage = 1,

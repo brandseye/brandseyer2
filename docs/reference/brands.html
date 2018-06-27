@@ -183,40 +183,49 @@ or tibble of mention data.</p></td>
     <pre class="examples"><div class='input'>
 <span class='co'># Fetch brand information</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>brands</span>()</div><div class='output co'>#&gt; # A tibble: 3 x 5
-#&gt;      id name            parent deleted archived           
-#&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;lgl&gt;   &lt;dttm&gt;             
-#&gt; 1     1 Your Brand Here     NA FALSE   NA                 
-#&gt; 2     2 Sibling Brand       NA FALSE   NA                 
-#&gt; 3     3 Niece Brand          2 FALSE   NA                 </div><div class='input'>
+  <span class='fu'>brands</span>()</div><div class='output co'>#&gt; # A tibble: 5 x 5
+#&gt;      id name                        parent deleted archived           
+#&gt;   &lt;dbl&gt; &lt;chr&gt;                        &lt;dbl&gt; &lt;lgl&gt;   &lt;dttm&gt;             
+#&gt; 1     1 Your Brand Here                 NA FALSE   NA                 
+#&gt; 2     2 Sibling Brand                   NA FALSE   NA                 
+#&gt; 3     5 So deleted                      NA TRUE    NA                 
+#&gt; 4     6 Brand of the Christmas Past     NA FALSE   2018-01-23 12:20:18
+#&gt; 5     3 Niece Brand                      2 FALSE   NA                 </div><div class='input'>
 <span class='co'># Find deleted parent brands</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>brands</span>() <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>is.na</span>(<span class='no'>parent</span>), <span class='no'>deleted</span>)</div><div class='output co'>#&gt; # A tibble: 0 x 5
-#&gt; # ... with 5 variables: id &lt;dbl&gt;, name &lt;chr&gt;, parent &lt;dbl&gt;, deleted &lt;lgl&gt;,
-#&gt; #   archived &lt;dttm&gt;</div><div class='input'>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>is.na</span>(<span class='no'>parent</span>), <span class='no'>deleted</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 5
+#&gt;      id name       parent deleted archived           
+#&gt;   &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;lgl&gt;   &lt;dttm&gt;             
+#&gt; 1     5 So deleted     NA TRUE    NA                 </div><div class='input'>
 <span class='co'># Fetch phrases without using `phrases``</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>brands</span>(<span class='kw'>short</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>id</span>, <span class='no'>phrases</span>) <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>rename</a></span>(<span class='kw'>brand.id</span> <span class='kw'>=</span> <span class='no'>id</span>) <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>tidyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/tidyr/topics/unnest'>unnest</a></span>(<span class='no'>phrases</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>rename</a></span>(<span class='kw'>phrase.id</span> <span class='kw'>=</span> <span class='no'>id</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 5
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>rename</a></span>(<span class='kw'>phrase.id</span> <span class='kw'>=</span> <span class='no'>id</span>)</div><div class='output co'>#&gt; # A tibble: 9 x 5
 #&gt;   brand.id phrase.id query      inactive deleted
 #&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;lgl&gt;  
 #&gt; 1        1         1 brand      FALSE    TRUE   
 #&gt; 2        1         2 your brand FALSE    FALSE  
 #&gt; 3        2         3 sibling    FALSE    FALSE  
 #&gt; 4        2         4 oh wow     TRUE     FALSE  
-#&gt; 5        3         5 niece      FALSE    FALSE  </div><div class='input'>
+#&gt; 5        5       101 brander    FALSE    FALSE  
+#&gt; 6        5       102 branded    FALSE    FALSE  
+#&gt; 7        6       101 brander    FALSE    FALSE  
+#&gt; 8        6       102 branded    FALSE    FALSE  
+#&gt; 9        3         5 niece      FALSE    FALSE  </div><div class='input'>
 <span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'>brands</span>()</div><div class='output co'>#&gt; # A tibble: 4 x 6
-#&gt;   account     id name               parent deleted archived           
-#&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt; &lt;lgl&gt;   &lt;dttm&gt;             
-#&gt; 1 TEST01AA     1 Your Brand Here        NA FALSE   NA                 
-#&gt; 2 TEST01AA     2 Sibling Brand          NA FALSE   NA                 
-#&gt; 3 TEST01AA     3 Niece Brand             2 FALSE   NA                 
-#&gt; 4 TEST02AA   100 The Best of Brands     NA FALSE   NA                 </div><div class='input'>
+  <span class='fu'>brands</span>()</div><div class='output co'>#&gt; # A tibble: 6 x 6
+#&gt;   account     id name                        parent deleted archived           
+#&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;                        &lt;dbl&gt; &lt;lgl&gt;   &lt;dttm&gt;             
+#&gt; 1 TEST01AA     1 Your Brand Here                 NA FALSE   NA                 
+#&gt; 2 TEST01AA     2 Sibling Brand                   NA FALSE   NA                 
+#&gt; 3 TEST01AA     5 So deleted                      NA TRUE    NA                 
+#&gt; 4 TEST01AA     6 Brand of the Christmas Past     NA FALSE   2018-01-23 12:20:18
+#&gt; 5 TEST01AA     3 Niece Brand                      2 FALSE   NA                 
+#&gt; 6 TEST02AA   100 The Best of Brands              NA FALSE   NA                 </div><div class='input'>
 <span class='co'># Finding the brands and sub-brands that mentions matched.</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='mentions.html'>mentions</a></span>(<span class='st'>"published inthelast week"</span>) <span class='kw'>%&gt;%</span>

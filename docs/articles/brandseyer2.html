@@ -184,14 +184,12 @@
 <p>You can find out what brands are in your account using the <code><a href="../reference/brands.html">brands()</a></code> function. Let’s have a look at what brands are in <em>TEST01AA</em>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/brands.html">brands</a></span>()
-<span class="co">#&gt; # A tibble: 3 x 12</span>
-<span class="co">#&gt;      id parent name       tier    deleted schema  filter     topic_tree_id</span>
-<span class="co">#&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;lgl&gt;   &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;</span>
-<span class="co">#&gt; 1     1     NA Your Bran… ESSENT… FALSE   &lt;NA&gt;    &lt;NA&gt;                  NA</span>
-<span class="co">#&gt; 2     2     NA Sibling B… TOPICS  FALSE   b00000… location …           100</span>
-<span class="co">#&gt; 3     3      2 Niece Bra… &lt;NA&gt;    FALSE   &lt;NA&gt;    &lt;NA&gt;                  NA</span>
-<span class="co">#&gt; # ... with 4 more variables: sentimentRate &lt;dbl&gt;, topicRate &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   archived &lt;dttm&gt;, phrases &lt;list&gt;</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 3 x 5</span>
+<span class="co">#&gt;      id name            parent deleted archived           </span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;lgl&gt;   &lt;dttm&gt;             </span>
+<span class="co">#&gt; 1     1 Your Brand Here     NA FALSE   NA                 </span>
+<span class="co">#&gt; 2     2 Sibling Brand       NA FALSE   NA                 </span>
+<span class="co">#&gt; 3     3 Niece Brand          2 FALSE   NA</span></code></pre></div>
 <p>These tibbles can become a bit tight to display all of the data that you may want to see. If you are using RStudio, you can always pipe the results in to View(). Otherwise, you can subselect for the data you want using standard dplyr<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> functions.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Find brand IDs and names</span>
 <span class="kw">library</span>(dplyr)
@@ -219,13 +217,11 @@
 <p>Notice that one of our accounts have old brands that are no longer being used, and have been deleted. Also, we often want to find the top level brands that make up the main collections of mentions in an account. These “top level” brands are called <em>root brands</em>. We have a convenient function that finds the root brands currently in use in your account:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/root_brands.html">root_brands</a></span>()
-<span class="co">#&gt; # A tibble: 2 x 12</span>
-<span class="co">#&gt;      id parent name       tier    deleted schema  filter     topic_tree_id</span>
-<span class="co">#&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;lgl&gt;   &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;</span>
-<span class="co">#&gt; 1     2     NA Sibling B… TOPICS  FALSE   b00000… location …           100</span>
-<span class="co">#&gt; 2     1     NA Your Bran… ESSENT… FALSE   &lt;NA&gt;    &lt;NA&gt;                  NA</span>
-<span class="co">#&gt; # ... with 4 more variables: sentimentRate &lt;dbl&gt;, topicRate &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   archived &lt;dttm&gt;, phrases &lt;list&gt;</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 2 x 4</span>
+<span class="co">#&gt;      id name            deleted archived           </span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;lgl&gt;   &lt;dttm&gt;             </span>
+<span class="co">#&gt; 1     2 Sibling Brand   FALSE   NA                 </span>
+<span class="co">#&gt; 2     1 Your Brand Here FALSE   NA</span></code></pre></div>
 </div>
 <div id="topics" class="section level2">
 <h2 class="hasAnchor">

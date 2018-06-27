@@ -89,6 +89,46 @@ test01aa_data <- list(
           )
         )
       )
+    ),
+    list(
+      id = 5,
+      name = "So deleted",
+      tier = "ESSENTIALS",
+      crowdSamplePercentage = 0.8,
+      crowdTopicPercentage = 1,
+      description = "Gone Brand",
+      topicTreeId = 1001,
+      deleted = TRUE,
+      phrases = list(
+        list(
+          id = 101,
+          q = "brander"
+        ),
+        list(
+          id = 102,
+          q = "branded"
+        )
+      )
+    ),
+    list(
+      id = 6,
+      name = "Brand of the Christmas Past",
+      tier = "ESSENTIALS",
+      crowdSamplePercentage = 0.8,
+      crowdTopicPercentage = 1,
+      description = "A part of history",
+      topicTreeId = 1001,
+      archived = "2018-01-23T12:20:18.258+0000",
+      phrases = list(
+        list(
+          id = 101,
+          q = "brander"
+        ),
+        list(
+          id = 102,
+          q = "branded"
+        )
+      )
     )
   )
 )

@@ -176,25 +176,33 @@ to ensure that phrase information is returned with the mentions.</p>
     <pre class="examples"><div class='input'>
 <span class='co'># Fetch phrases for a single account</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>phrases</span>()</div><div class='output co'>#&gt; # A tibble: 5 x 5
+  <span class='fu'>phrases</span>()</div><div class='output co'>#&gt; # A tibble: 9 x 5
 #&gt;   phrase.id brand.id query      inactive deleted
 #&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;lgl&gt;  
-#&gt; 1         5        3 niece      FALSE    FALSE  
-#&gt; 2         3        2 sibling    FALSE    FALSE  
-#&gt; 3         2        1 your brand FALSE    FALSE  
-#&gt; 4         4        2 oh wow     TRUE     FALSE  
-#&gt; 5         1        1 brand      FALSE    TRUE   </div><div class='input'>
+#&gt; 1       102        5 branded    FALSE    FALSE  
+#&gt; 2       102        6 branded    FALSE    FALSE  
+#&gt; 3       101        5 brander    FALSE    FALSE  
+#&gt; 4       101        6 brander    FALSE    FALSE  
+#&gt; 5         5        3 niece      FALSE    FALSE  
+#&gt; 6         3        2 sibling    FALSE    FALSE  
+#&gt; 7         2        1 your brand FALSE    FALSE  
+#&gt; 8         4        2 oh wow     TRUE     FALSE  
+#&gt; 9         1        1 brand      FALSE    TRUE   </div><div class='input'>
 <span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'>phrases</span>()</div><div class='output co'>#&gt; # A tibble: 7 x 6
-#&gt;   account  phrase.id brand.id query      inactive deleted
-#&gt;   &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;lgl&gt;  
-#&gt; 1 TEST01AA         5        3 niece      FALSE    FALSE  
-#&gt; 2 TEST01AA         3        2 sibling    FALSE    FALSE  
-#&gt; 3 TEST01AA         2        1 your brand FALSE    FALSE  
-#&gt; 4 TEST01AA         4        2 oh wow     TRUE     FALSE  
-#&gt; 5 TEST01AA         1        1 brand      FALSE    TRUE   
-#&gt; 6 TEST02AA       102      100 branded    FALSE    FALSE  
-#&gt; 7 TEST02AA       101      100 brander    FALSE    FALSE  </div></pre>
+  <span class='fu'>phrases</span>()</div><div class='output co'>#&gt; # A tibble: 11 x 6
+#&gt;    account  phrase.id brand.id query      inactive deleted
+#&gt;    &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;lgl&gt;  
+#&gt;  1 TEST01AA       102        5 branded    FALSE    FALSE  
+#&gt;  2 TEST01AA       102        6 branded    FALSE    FALSE  
+#&gt;  3 TEST01AA       101        5 brander    FALSE    FALSE  
+#&gt;  4 TEST01AA       101        6 brander    FALSE    FALSE  
+#&gt;  5 TEST01AA         5        3 niece      FALSE    FALSE  
+#&gt;  6 TEST01AA         3        2 sibling    FALSE    FALSE  
+#&gt;  7 TEST01AA         2        1 your brand FALSE    FALSE  
+#&gt;  8 TEST01AA         4        2 oh wow     TRUE     FALSE  
+#&gt;  9 TEST01AA         1        1 brand      FALSE    TRUE   
+#&gt; 10 TEST02AA       102      100 branded    FALSE    FALSE  
+#&gt; 11 TEST02AA       101      100 brander    FALSE    FALSE  </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

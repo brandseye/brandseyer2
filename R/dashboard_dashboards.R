@@ -82,7 +82,7 @@ dashboards <- function(x, d, ...) {
 #' @param section An optional numeric vector of section IDs, or
 #'                character vector to match against section titles. This specifies
 #'                which sections to return, similarly to calling [sections()]. You
-#'                can use the special string `'*'` to select all sections.
+#'                can use the special string `'.'` to select all sections.
 dashboards.brandseyer2.account <- function(x, d,
                                            section, ...) {
   result <- read_mash(paste0("accounts/", account_code(x), "/reports")) %>%

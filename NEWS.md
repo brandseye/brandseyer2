@@ -2,3 +2,4 @@
 
 * Added a `NEWS.md` file to track changes to the package.
 * Bumped the development version for the first time.
+* Clarified documentation on `dashboards()`.

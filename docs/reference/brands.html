@@ -64,7 +64,7 @@ this returns the brands that are associated with the mention." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9000</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9001</span>
       </span>
     </div>
 
@@ -93,6 +93,9 @@ this returns the brands that are associated with the mention." />
       <a href="../articles/filtering.html">Filtering</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -184,13 +187,13 @@ or tibble of mention data.</p></td>
 <span class='co'># Fetch brand information</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>brands</span>()</div><div class='output co'>#&gt; # A tibble: 5 x 5
-#&gt;      id name                        parent deleted archived           
-#&gt;   &lt;dbl&gt; &lt;chr&gt;                        &lt;dbl&gt; &lt;lgl&gt;   &lt;dttm&gt;             
-#&gt; 1     1 Your Brand Here                 NA FALSE   NA                 
-#&gt; 2     2 Sibling Brand                   NA FALSE   NA                 
-#&gt; 3     5 So deleted                      NA TRUE    NA                 
-#&gt; 4     6 Brand of the Christmas Past     NA FALSE   2018-01-23 12:20:18
-#&gt; 5     3 Niece Brand                      2 FALSE   NA                 </div><div class='input'>
+#&gt;      id name                    parent deleted archived           
+#&gt;   &lt;dbl&gt; &lt;chr&gt;                    &lt;dbl&gt; &lt;lgl&gt;   &lt;dttm&gt;             
+#&gt; 1     1 Your Brand Here             NA FALSE   NA                 
+#&gt; 2     2 Sibling Brand               NA FALSE   NA                 
+#&gt; 3     5 So deleted                  NA TRUE    NA                 
+#&gt; 4     6 Brand of Christmas Past     NA FALSE   2018-01-23 12:20:18
+#&gt; 5     3 Niece Brand                  2 FALSE   NA                 </div><div class='input'>
 <span class='co'># Find deleted parent brands</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>brands</span>() <span class='kw'>%&gt;%</span>
@@ -218,14 +221,14 @@ or tibble of mention data.</p></td>
 #&gt; 9        3         5 niece      FALSE    FALSE  </div><div class='input'>
 <span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'>brands</span>()</div><div class='output co'>#&gt; # A tibble: 6 x 6
-#&gt;   account     id name                        parent deleted archived           
-#&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;                        &lt;dbl&gt; &lt;lgl&gt;   &lt;dttm&gt;             
-#&gt; 1 TEST01AA     1 Your Brand Here                 NA FALSE   NA                 
-#&gt; 2 TEST01AA     2 Sibling Brand                   NA FALSE   NA                 
-#&gt; 3 TEST01AA     5 So deleted                      NA TRUE    NA                 
-#&gt; 4 TEST01AA     6 Brand of the Christmas Past     NA FALSE   2018-01-23 12:20:18
-#&gt; 5 TEST01AA     3 Niece Brand                      2 FALSE   NA                 
-#&gt; 6 TEST02AA   100 The Best of Brands              NA FALSE   NA                 </div><div class='input'>
+#&gt;   account     id name                    parent deleted archived           
+#&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;                    &lt;dbl&gt; &lt;lgl&gt;   &lt;dttm&gt;             
+#&gt; 1 TEST01AA     1 Your Brand Here             NA FALSE   NA                 
+#&gt; 2 TEST01AA     2 Sibling Brand               NA FALSE   NA                 
+#&gt; 3 TEST01AA     5 So deleted                  NA TRUE    NA                 
+#&gt; 4 TEST01AA     6 Brand of Christmas Past     NA FALSE   2018-01-23 12:20:18
+#&gt; 5 TEST01AA     3 Niece Brand                  2 FALSE   NA                 
+#&gt; 6 TEST02AA   100 The Best of Brands          NA FALSE   NA                 </div><div class='input'>
 <span class='co'># Finding the brands and sub-brands that mentions matched.</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='mentions.html'>mentions</a></span>(<span class='st'>"published inthelast week"</span>) <span class='kw'>%&gt;%</span>

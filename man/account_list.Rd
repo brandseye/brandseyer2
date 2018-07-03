@@ -4,7 +4,10 @@
 \alias{account_list}
 \title{List all accounts available to you.}
 \usage{
-account_list()
+account_list(includeInactive = FALSE)
+}
+\arguments{
+\item{includeInactive}{Set to \code{TRUE} if you would like inactive accounts to also be returned.}
 }
 \value{
 A tibble of accounts available to you.
@@ -13,6 +16,10 @@ A tibble of accounts available to you.
 These accounts are provided as a tibble. The tibble can be
 passed to some other functions, such as \code{\link[=account]{account()}},
 to return information from across all accounts available to you.
+}
+\details{
+By default this returns only active accounts. You can use the
+\code{includeInactive} parameter to change this behaviour
 }
 \examples{
 

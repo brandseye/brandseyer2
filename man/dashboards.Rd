@@ -22,7 +22,7 @@ on dashboard names with.}
 \item{section}{An optional numeric vector of section IDs, or
 character vector to match against section titles. This specifies
 which sections to return, similarly to calling \code{\link[=sections]{sections()}}. You
-can use the special string \code{'*'} to select all sections.}
+can use the special string \code{'.'} to select all sections.}
 }
 \value{
 A tibble of dashboard data.

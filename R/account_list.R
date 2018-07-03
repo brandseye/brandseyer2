@@ -25,6 +25,11 @@
 #' passed to some other functions, such as [account()],
 #' to return information from across all accounts available to you.
 #'
+#' By default this returns only active accounts. You can use the
+#' `includeInactive` parameter to change this behaviour
+#'
+#' @param includeInactive Set to `TRUE` if you would like inactive accounts to also be returned.
+#'
 #' @return A tibble of accounts available to you.
 #' @export
 #'
@@ -35,8 +40,9 @@
 #' account_list() %>%
 #'   tags()
 #' }
-account_list <- function() {
-  accounts <- read_mash("accounts") %>%
+account_list <- function(includeInactive = FALSE) {
+  query <- list(includeInactive = ifelse(includeInactive, "true", "false"))
+  accounts <- read_mash("accounts", query = query) %>%
     map_df(~tibble(
       account = .x$code,
       name = .x$name,
@@ -44,6 +50,7 @@ account_list <- function() {
       onlyAdmin = .x$onlyAdminLogin %||% FALSE,
       findNewMentions = .x$findNewMentions %||% FALSE,
       offline = .x$offline %||% FALSE,
+      inactive = .x$inactive %||% FALSE,
       type = .x$accountType %||% NA
     ))
 

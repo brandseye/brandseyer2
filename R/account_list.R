@@ -21,25 +21,19 @@
 
 #' List all accounts available to you.
 #'
-#' These accounts are provided as a tibble. The tibble can be
-#' passed to some other functions, such as [account()],
-#' to return information from across all accounts available to you.
+#' Provides a tibble of all BrandsEye accounts that are available to you. By default,
+#' this will show only active accounts.
 #'
 #' By default this returns only active accounts. You can use the
 #' `includeInactive` parameter to change this behaviour
+#'
+#' The returned tibble can be passed to some other functions, such as [account()],
+#' to return information from across all accounts available to you.
 #'
 #' @param includeInactive Set to `TRUE` if you would like inactive accounts to also be returned.
 #'
 #' @return A tibble of accounts available to you.
 #' @export
-#'
-#' @examples
-#'
-#' \dontrun{
-#' # Fetch the tags from all accounts available to you.
-#' account_list() %>%
-#'   tags()
-#' }
 account_list <- function(includeInactive = FALSE) {
   query <- list(includeInactive = ifelse(includeInactive, "true", "false"))
   accounts <- read_mash("accounts", query = query) %>%

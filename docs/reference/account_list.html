@@ -32,9 +32,8 @@
 
 <meta property="og:title" content="List all accounts available to you. — account_list" />
 
-<meta property="og:description" content="These accounts are provided as a tibble. The tibble can be
-passed to some other functions, such as account(),
-to return information from across all accounts available to you." />
+<meta property="og:description" content="Provides a tibble of all BrandsEye accounts that are available to you. By default,
+this will show only active accounts." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -124,9 +123,8 @@ to return information from across all accounts available to you." />
 
     <div class="ref-description">
     
-    <p>These accounts are provided as a tibble. The tibble can be
-passed to some other functions, such as <code><a href='account.html'>account()</a></code>,
-to return information from across all accounts available to you.</p>
+    <p>Provides a tibble of all BrandsEye accounts that are available to you. By default,
+this will show only active accounts.</p>
     
     </div>
 
@@ -149,15 +147,10 @@ to return information from across all accounts available to you.</p>
 
     <p>By default this returns only active accounts. You can use the
 <code>includeInactive</code> parameter to change this behaviour</p>
+<p>The returned tibble can be passed to some other functions, such as <code><a href='account.html'>account()</a></code>,
+to return information from across all accounts available to you.</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-</div><span class='co'># NOT RUN {</span>
-<span class='co'># Fetch the tags from all accounts available to you.</span>
-<span class='fu'>account_list</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='tags.html'>tags</a></span>()
-<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -167,9 +160,7 @@ to return information from across all accounts available to you.</p>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>

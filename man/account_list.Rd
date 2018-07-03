@@ -13,19 +13,13 @@ account_list(includeInactive = FALSE)
 A tibble of accounts available to you.
 }
 \description{
-These accounts are provided as a tibble. The tibble can be
-passed to some other functions, such as \code{\link[=account]{account()}},
-to return information from across all accounts available to you.
+Provides a tibble of all BrandsEye accounts that are available to you. By default,
+this will show only active accounts.
 }
 \details{
 By default this returns only active accounts. You can use the
 \code{includeInactive} parameter to change this behaviour
-}
-\examples{
 
-\dontrun{
-# Fetch the tags from all accounts available to you.
-account_list() \%>\%
-  tags()
-}
+The returned tibble can be passed to some other functions, such as \code{\link[=account]{account()}},
+to return information from across all accounts available to you.
 }

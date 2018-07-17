@@ -52,7 +52,7 @@ test_that("Can fetch account tags", {
   tags <- account("TEST01AA") %>%
     tags()
 
-  expect_equal(nrow(tags), 5)
+  expect_equal(nrow(tags), 6)
   expect_warning(tags$account)
 
   tag1 <- tags %>% filter(id == 1)
@@ -65,8 +65,8 @@ test_that("Can fetch tags for multiple accounts", {
   tags <- accounts(c("TEST01AA", "TEST02AA")) %>%
     tags()
 
-  expect_equal(nrow(tags), 10)
-  expect_equal(length(tags$account), 10)
+  expect_equal(nrow(tags), 11)
+  expect_equal(length(tags$account), 11)
 })
 
 test_that("Can fetch topics for an account", {
@@ -86,6 +86,14 @@ test_that("Can fetch topics for multiple accounts", {
 
   expect_equal(nrow(topics), 6)
   expect_equal(length(topics$account), 6)
+})
+
+test_that("Can fetch topic_tree for an account", {
+  tree <- account("TEST01AA") %>%
+    topic_trees()
+
+  expect_equal(nrow(tree), 1)
+  expect_equal(tree[[1, "namespace"]], "topic_tree")
 })
 
 test_that("Can read an account's manager", {

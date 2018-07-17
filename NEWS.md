@@ -1,6 +1,6 @@
 # brandseyer2 0.0.1.9003
 
-* Added new `topic_tree()` method to find topic trees in the account.
+* Added new `topic_trees()` method to find topic trees in the account.
 
 # brandseyer2 0.0.1.9002
 

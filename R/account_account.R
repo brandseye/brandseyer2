@@ -31,6 +31,10 @@
 #'
 #' @seealso [accounts()] is a synonym for `account`.
 #' @seealso [is.account()] to test if an object is an account object.
+#' @seealso [tags()] to find tags in an account.
+#' @seealso [topics()] to find topics in an account.
+#' @seealso [create_tags()] to add more tags to an account.
+#' @seealso [topic_trees()] to find the topic trees in an account.
 #'
 #' @export
 #' @examples

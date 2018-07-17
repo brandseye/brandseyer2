@@ -43,4 +43,12 @@ account("TEST01AA")
 \code{\link[=accounts]{accounts()}} is a synonym for \code{account}.
 
 \code{\link[=is.account]{is.account()}} to test if an object is an account object.
+
+\code{\link[=tags]{tags()}} to find tags in an account.
+
+\code{\link[=topics]{topics()}} to find topics in an account.
+
+\code{\link[=create_tags]{create_tags()}} to add more tags to an account.
+
+\code{\link[=topic_trees]{topic_trees()}} to find the topic trees in an account.
 }

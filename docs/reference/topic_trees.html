@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Confirm an action. — confirm • brandseyer2</title>
+<title>List topic trees for an account. — topic_trees • brandseyer2</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Confirm an action. — confirm" />
+<meta property="og:title" content="List topic trees for an account. — topic_trees" />
 
-<meta property="og:description" content="Asks the user to answer Yes or No after prompting them with a message." />
+<meta property="og:description" content="Returns a tibble of topic trees associated with the account." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -115,39 +115,66 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Confirm an action.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/utils-confirm.R'><code>R/utils-confirm.R</code></a></small>
-    <div class="hidden name"><code>confirm.Rd</code></div>
+    <h1>List topic trees for an account.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/account_topic_trees.R'><code>R/account_topic_trees.R</code></a></small>
+    <div class="hidden name"><code>topic_trees.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Asks the user to answer Yes or No after prompting them with a message.</p>
+    <p>Returns a tibble of topic trees associated with the account.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>confirm</span>(<span class='no'>message</span>)</pre>
+    <pre class="usage"><span class='fu'>topic_trees</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for brandseyer2.account</span>
+<span class='fu'>topic_trees</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for list</span>
+<span class='fu'>topic_trees</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>message</th>
-      <td><p>A message to display to the user.</p></td>
+      <th>x</th>
+      <td><p>A account or list of accounts.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Arguments for other methods.</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
 
+    <ul>
+<li><p><code>brandseyer2.account</code>: Provides topic trees for <code><a href='account.html'>account()</a></code> objects.</p></li>
+<li><p><code>list</code>: Get topic trees for a list of accounts.</p></li>
+</ul>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>topic_trees</span>()</div><div class='output co'>#&gt; # A tibble: 0 x 7
+#&gt; # ... with 7 variables: id &lt;dbl&gt;, name &lt;chr&gt;, namespace &lt;chr&gt;,
+#&gt; #   description &lt;chr&gt;, deleted &lt;lgl&gt;, children &lt;list&gt;, is_parent &lt;lgl&gt;</div><div class='input'>
+<span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'>topic_trees</span>()</div><div class='output co'>#&gt; # A tibble: 0 x 8
+#&gt; # ... with 8 variables: account &lt;chr&gt;, id &lt;dbl&gt;, name &lt;chr&gt;, namespace &lt;chr&gt;,
+#&gt; #   description &lt;chr&gt;, deleted &lt;lgl&gt;, children &lt;list&gt;, is_parent &lt;lgl&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
-
-    <h2>Author</h2>
-    
-Constance Neeser
+      
+      <li><a href="#methods-by-class-">Methods (by class)</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

@@ -10,7 +10,7 @@
 \usage{
 \method{brands}{brandseyer2.account}(x, ..., short = TRUE)
 
-\method{brands}{list}(x, ...)
+\method{brands}{list}(x, ..., short = TRUE)
 
 brands(x, ...)
 

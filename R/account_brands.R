@@ -108,10 +108,10 @@ brands.brandseyer2.account <- function(x, ..., short = TRUE) {
 #'
 #' accounts(c("TEST01AA", "TEST02AA")) %>%
 #'   brands()
-brands.list <- function(x, ...) {
+brands.list <- function(x, ..., short = TRUE) {
   x %>%
     map_df(~ .x %>%
-             brands() %>%
+             brands(short = short) %>%
              mutate(account = account_code(.x)) %>%
              select(account, everything()))
 }

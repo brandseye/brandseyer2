@@ -1,6 +1,7 @@
 # brandseyer2 0.0.1.9003
 
 * Added new `topic_trees()` method to find topic trees in the account.
+* Bug fix: `brands()` on lists now obeys the `short` parameter.
 
 # brandseyer2 0.0.1.9002
 

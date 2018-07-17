@@ -65,6 +65,8 @@ using the V3 API. Using the older brandseyer library is the most
 convenient way of doing this, but if the brandseyer library is installed,
 the \code{mentions} function will automatically fall back to the appropriate
 function calls in \code{brandseyer} to read mentions for you.
+
+Returns an empty tibble if there are no mentions.
 }
 \examples{
 

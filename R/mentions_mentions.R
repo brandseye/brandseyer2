@@ -56,6 +56,8 @@ mentions <- function(x, filter, select, ..., .envir) {
 #' @param orderBy Fields to order the returned data by. Defaults to published
 #' @param fetchGraph Fetch other mentions that are part of the same conversation as this one.
 #'
+#' @note Returns an empty tibble if there are no mentions.
+#'
 #' @export
 #'
 #' @examples
@@ -124,6 +126,8 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL,
   if (result %has_name% "published") result <- result %>% mutate(published = lubridate::ymd_hms(published))
   if (result %has_name% "pickedUp") result <- result %>% mutate(published = lubridate::ymd_hms(published))
   if (result %has_name% "updated") result <- result %>% mutate(published = lubridate::ymd_hms(published))
+
+  if (is.null(result)) return(tibble::tibble())
 
   result <- result %>%
     select(id, uri, link,

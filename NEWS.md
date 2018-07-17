@@ -4,6 +4,7 @@
 * Bug fix: `brands()` on lists now obeys the `short` parameter.
 * `account()` can now be called with multiple account codes, like so: 
   ``` account("TEST01AA", "TEST02AA") ```
+* Bug fix: `mentions()` no longer throws an error when returning no mentions.
 
 # brandseyer2 0.0.1.9002
 

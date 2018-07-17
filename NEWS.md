@@ -1,5 +1,7 @@
 # brandseyer2 0.0.1.9003
 
+* Added new `topic_tree()` method to find topic trees in the account.
+
 # brandseyer2 0.0.1.9002
 
 * `account_list()` can now include inactive accounts.

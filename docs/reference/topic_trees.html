@@ -158,13 +158,15 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>topic_trees</span>()</div><div class='output co'>#&gt; # A tibble: 0 x 7
-#&gt; # ... with 7 variables: id &lt;dbl&gt;, name &lt;chr&gt;, namespace &lt;chr&gt;,
-#&gt; #   description &lt;chr&gt;, deleted &lt;lgl&gt;, children &lt;list&gt;, is_parent &lt;lgl&gt;</div><div class='input'>
+  <span class='fu'>topic_trees</span>()</div><div class='output co'>#&gt; # A tibble: 1 x 7
+#&gt;      id name           namespace  description        deleted children is_parent
+#&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;              &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;    
+#&gt; 1  1001 Tree of Topics topic_tree Topics come from … FALSE   &lt;NULL&gt;   FALSE    </div><div class='input'>
 <span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'>topic_trees</span>()</div><div class='output co'>#&gt; # A tibble: 0 x 8
-#&gt; # ... with 8 variables: account &lt;chr&gt;, id &lt;dbl&gt;, name &lt;chr&gt;, namespace &lt;chr&gt;,
-#&gt; #   description &lt;chr&gt;, deleted &lt;lgl&gt;, children &lt;list&gt;, is_parent &lt;lgl&gt;</div></pre>
+  <span class='fu'>topic_trees</span>()</div><div class='output co'>#&gt; # A tibble: 1 x 8
+#&gt;   account     id name      namespace description     deleted children is_parent
+#&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;           &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;    
+#&gt; 1 TEST01AA  1001 Tree of … topic_tr… Topics come fr… FALSE   &lt;NULL&gt;   FALSE    </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

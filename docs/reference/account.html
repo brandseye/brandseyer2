@@ -32,7 +32,8 @@
 
 <meta property="og:title" content="Access account information — account" />
 
-<meta property="og:description" content="Access account information" />
+<meta property="og:description" content="Returns an account object, representing the account that you're
+performing actions on in brandseyer2." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -122,17 +123,18 @@
 
     <div class="ref-description">
     
-    <p>Access account information</p>
+    <p>Returns an account object, representing the account that you're
+performing actions on in brandseyer2.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>account</span>(<span class='no'>codes</span>)
+    <pre class="usage"><span class='fu'>account</span>(<span class='no'>codes</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for character</span>
-<span class='fu'>account</span>(<span class='no'>codes</span>)
+<span class='fu'>account</span>(<span class='no'>codes</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for brandseyer2.account_list</span>
-<span class='fu'>account</span>(<span class='no'>codes</span>)</pre>
+<span class='fu'>account</span>(<span class='no'>codes</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -142,12 +144,23 @@
       <td><p>A vector of one or more account codes, or possibly
 a tibble, as provided by <code><a href='account_list.html'>account_list()</a></code></p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional account codes.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An account object if one account code is given, or a list of account objects,
 one for each code given, in the same order as the codes were given.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Typically you may ask for only a single account, by passing
+a single account code as an argument. You can also pass in multiple
+account codes, or even a vector of account codes, to be given a list
+of account objects to act on.</p>
     
     <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
 
@@ -168,8 +181,12 @@ one for each code given, in the same order as the codes were given.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='co'># Read two accounts, returned as a list.</span>
-<span class='fu'>accounts</span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>))</div><div class='output co'>#&gt; [[1]]
+<span class='co'># Read one account</span>
+<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>)</div><div class='output co'>#&gt; BrandsEye Account 
+#&gt;   Name:  Test 1 
+#&gt;   Code:  TEST01AA </div><div class='input'>
+<span class='co'># Read two accounts</span>
+<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)</div><div class='output co'>#&gt; [[1]]
 #&gt; BrandsEye Account 
 #&gt;   Name:  Test 1 
 #&gt;   Code:  TEST01AA 
@@ -179,10 +196,17 @@ one for each code given, in the same order as the codes were given.</p>
 #&gt;   Name:  Test 2 — Best Account 
 #&gt;   Code:  TEST02AA 
 #&gt; </div><div class='input'>
-<span class='co'># Read one account</span>
-<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>)</div><div class='output co'>#&gt; BrandsEye Account 
+<span class='co'># Read accounts from a vector</span>
+<span class='fu'>account</span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>))</div><div class='output co'>#&gt; [[1]]
+#&gt; BrandsEye Account 
 #&gt;   Name:  Test 1 
-#&gt;   Code:  TEST01AA </div></pre>
+#&gt;   Code:  TEST01AA 
+#&gt; 
+#&gt; [[2]]
+#&gt; BrandsEye Account 
+#&gt;   Name:  Test 2 — Best Account 
+#&gt;   Code:  TEST02AA 
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -190,6 +214,8 @@ one for each code given, in the same order as the codes were given.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#methods-by-class-">Methods (by class)</a></li>
 

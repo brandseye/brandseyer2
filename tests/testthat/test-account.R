@@ -113,7 +113,7 @@ test_that("Can read brand information for an account", {
 })
 
 test_that("Can read brands from more than one account", {
-  brands <- account(c("TEST01AA", "TEST02AA")) %>%
+  brands <- account("TEST01AA", "TEST02AA") %>%
     brands()
 
   expect_equal(nrow(brands), 6)

@@ -2,6 +2,8 @@
 
 * Added new `topic_trees()` method to find topic trees in the account.
 * Bug fix: `brands()` on lists now obeys the `short` parameter.
+* `account()` can now be called with multiple account codes, like so: 
+  ``` account("TEST01AA", "TEST02AA") ```
 
 # brandseyer2 0.0.1.9002
 

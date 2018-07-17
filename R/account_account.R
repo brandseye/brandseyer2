@@ -21,8 +21,17 @@
 
 #' Access account information
 #'
+#' Returns an account object, representing the account that you're
+#' performing actions on in brandseyer2.
+#'
+#' Typically you may ask for only a single account, by passing
+#' a single account code as an argument. You can also pass in multiple
+#' account codes, or even a vector of account codes, to be given a list
+#' of account objects to act on.
+#'
 #' @param codes A vector of one or more account codes, or possibly
 #'              a tibble, as provided by [account_list()]
+#' @param ...   Additional account codes.
 #'
 #' @return An account object if one account code is given, or a list of account objects,
 #'         one for each code given, in the same order as the codes were given.
@@ -37,11 +46,7 @@
 #' @seealso [topic_trees()] to find the topic trees in an account.
 #'
 #' @export
-#' @examples
-#'
-#' # Read two accounts, returned as a list.
-#' accounts(c("TEST01AA", "TEST02AA"))
-account <- function(codes) {
+account <- function(codes, ...) {
   UseMethod("account")
 }
 
@@ -55,7 +60,15 @@ account <- function(codes) {
 #'
 #' # Read one account
 #' account("TEST01AA")
-account.character <- function(codes) {
+#'
+#' # Read two accounts
+#' account("TEST01AA", "TEST02AA")
+#'
+#' # Read accounts from a vector
+#' account(c("TEST01AA", "TEST02AA"))
+account.character <- function(codes, ...) {
+  codes <- c(codes, ...)
+
   if (length(codes) > 1) {
     return(map(codes, account))
   }
@@ -77,7 +90,8 @@ account.character <- function(codes) {
 #' Get account information from the list of accounts available to from [account_list()]
 #'
 #' @export
-account.brandseyer2.account_list <- function(codes) {
+account.brandseyer2.account_list <- function(codes, ...) {
+  codes <- c(codes, ...)
   account(codes$account)
 }
 

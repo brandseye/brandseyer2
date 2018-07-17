@@ -7,22 +7,31 @@
 \alias{account.brandseyer2.account_list}
 \title{Access account information}
 \usage{
-account(codes)
+account(codes, ...)
 
-\method{account}{character}(codes)
+\method{account}{character}(codes, ...)
 
-\method{account}{brandseyer2.account_list}(codes)
+\method{account}{brandseyer2.account_list}(codes, ...)
 }
 \arguments{
 \item{codes}{A vector of one or more account codes, or possibly
 a tibble, as provided by \code{\link[=account_list]{account_list()}}}
+
+\item{...}{Additional account codes.}
 }
 \value{
 An account object if one account code is given, or a list of account objects,
 one for each code given, in the same order as the codes were given.
 }
 \description{
-Access account information
+Returns an account object, representing the account that you're
+performing actions on in brandseyer2.
+}
+\details{
+Typically you may ask for only a single account, by passing
+a single account code as an argument. You can also pass in multiple
+account codes, or even a vector of account codes, to be given a list
+of account objects to act on.
 }
 \section{Methods (by class)}{
 \itemize{
@@ -33,11 +42,14 @@ Access account information
 
 \examples{
 
-# Read two accounts, returned as a list.
-accounts(c("TEST01AA", "TEST02AA"))
-
 # Read one account
 account("TEST01AA")
+
+# Read two accounts
+account("TEST01AA", "TEST02AA")
+
+# Read accounts from a vector
+account(c("TEST01AA", "TEST02AA"))
 }
 \seealso{
 \code{\link[=accounts]{accounts()}} is a synonym for \code{account}.

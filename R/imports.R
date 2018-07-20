@@ -8,4 +8,5 @@
 #' @importFrom assertthat assert_that
 #' @importFrom assertthat %has_name%
 #' @importFrom assertthat is.string
+#' @importFrom lubridate %m-%
 NULL

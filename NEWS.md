@@ -1,3 +1,5 @@
+# brandseyer2 0.0.1.9004
+
 # brandseyer2 0.0.1.9003
 
 * Added new `topic_trees()` method to find topic trees in the account.

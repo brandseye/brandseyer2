@@ -42,6 +42,7 @@ reference:
       - topics
       - topic_trees
       - create_tags
+      - logs
       - starts_with("account_")
   - title: "Accessing mentions"
     desc: >

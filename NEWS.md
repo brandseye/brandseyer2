@@ -1,5 +1,7 @@
 # brandseyer2 0.0.1.9004
 
+* Added `logs()`, which returns a tibble of logs from an account.
+
 # brandseyer2 0.0.1.9003
 
 * Added new `topic_trees()` method to find topic trees in the account.

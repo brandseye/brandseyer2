@@ -23,7 +23,13 @@
 #'
 #' Returns a tibble of logs for the account, in the last period stated.
 #'
-#' @param x An [account()] object or list of them.
+#' Logs can be read from various different kinds of object. An [account()]
+#' object is the most basic, although logs can also be read from a list of
+#' account objects (in which case the returned tibble will include an account code column),
+#' or from a tibble containing an account code column, such as that returned
+#' by [account_list()].
+#'
+#' @param x An object to read logs from.
 #' @param from A date indicating from when to read dates.
 #'
 #' @return A tibble of log information, including the user that perform the action, and how many
@@ -35,22 +41,28 @@ logs <- function(x, from) {
 
 #' @describeIn logs
 #'
-#' For [account()] objects.
+#' Reach for an account code character vector.
 #'
 #' @export
 #' @examples
 #'
 #' \dontrun{
-#' # Read logs for an account
-#' account("TEST01AA") %>%
-#'   logs()
+#' logs("TEST01AA")
 #' }
 #'
-logs.brandseyer2.account <- function(x, from = (Sys.Date() %m-% months(1))) {
+logs.character <- function(x, from = (Sys.Date() %m-% months(1))) {
   assert_that(lubridate::is.Date(from))
   assert_that(from <= Sys.Date(), msg = "`from` cannot be after today")
 
-  getData <- function(offset) read_mash(paste0("accounts/", account_code(x), "/activity"),
+  if (length(x) > 1) {
+    return(
+      map_df(x, ~ logs(.x, from = from) %>%
+               mutate(account = .x) %>%
+               select(account, everything()))
+    )
+  }
+
+  getData <- function(offset) read_mash(paste0("accounts/", x, "/activity"),
                                         query = list(limit = 100, offset = offset))
 
   packData <- function(data) {
@@ -68,6 +80,8 @@ logs.brandseyer2.account <- function(x, from = (Sys.Date() %m-% months(1))) {
     purrr::pluck("data") %>%
     packData()
 
+  if (nrow(results) == 0) return(results)
+
   lastDate <- utils::tail(results$date, n = 1)
 
   offset <- 0
@@ -76,6 +90,7 @@ logs.brandseyer2.account <- function(x, from = (Sys.Date() %m-% months(1))) {
     r <- getData(offset) %>%
       purrr::pluck("data") %>%
       packData()
+    if (nrow(r) == 0) break
     lastDate <- utils::tail(results$date, n = 1)
     results <- dplyr::bind_rows(results, r)
   }
@@ -83,6 +98,23 @@ logs.brandseyer2.account <- function(x, from = (Sys.Date() %m-% months(1))) {
 
   results %>%
     filter(date >= from)
+}
+
+#' @describeIn logs
+#'
+#' For [account()] objects.
+#'
+#' @export
+#' @examples
+#'
+#' \dontrun{
+#' # Read logs for an account
+#' account("TEST01AA") %>%
+#'   logs()
+#' }
+#'
+logs.brandseyer2.account <- function(x, from = (Sys.Date() %m-% months(1))) {
+  account_code(x) %>% logs(from = from)
 }
 
 #' @describeIn logs
@@ -102,4 +134,22 @@ logs.list <- function(x, from = (Sys.Date() %m-% months(1))) {
     map_df(~ logs(.x, from = from) %>%
              mutate(account = account_code(.x)) %>%
              select(account, everything()))
+}
+
+#' @describeIn logs
+#'
+#' Read for a data frame, such as returned by [account_list()]
+#'
+#' @export
+#' @examples
+#' \dontrun{
+#' account_list() %>%
+#'   logs()
+#' }
+logs.data.frame <- function(x, from = (Sys.Date() %m-% months(1))) {
+  assert_that(x %has_name% 'account',
+              msg = "No account code column present in `x`")
+
+  x$account %>%
+    logs(from = from)
 }

@@ -2,18 +2,24 @@
 % Please edit documentation in R/account_logs.R
 \name{logs}
 \alias{logs}
+\alias{logs.character}
 \alias{logs.brandseyer2.account}
 \alias{logs.list}
+\alias{logs.data.frame}
 \title{Read account logs}
 \usage{
 logs(x, from)
 
+\method{logs}{character}(x, from = (Sys.Date() \%m-\% months(1)))
+
 \method{logs}{brandseyer2.account}(x, from = (Sys.Date() \%m-\% months(1)))
 
 \method{logs}{list}(x, from = (Sys.Date() \%m-\% months(1)))
+
+\method{logs}{data.frame}(x, from = (Sys.Date() \%m-\% months(1)))
 }
 \arguments{
-\item{x}{An \code{\link[=account]{account()}} object or list of them.}
+\item{x}{An object to read logs from.}
 
 \item{from}{A date indicating from when to read dates.}
 }
@@ -24,14 +30,30 @@ times the action was performed.
 \description{
 Returns a tibble of logs for the account, in the last period stated.
 }
+\details{
+Logs can be read from various different kinds of object. An \code{\link[=account]{account()}}
+object is the most basic, although logs can also be read from a list of
+account objects (in which case the returned tibble will include an account code column),
+or from a tibble containing an account code column, such as that returned
+by \code{\link[=account_list]{account_list()}}.
+}
 \section{Methods (by class)}{
 \itemize{
+\item \code{character}: Reach for an account code character vector.
+
 \item \code{brandseyer2.account}: For \code{\link[=account]{account()}} objects.
 
 \item \code{list}: For a list of accounts
+
+\item \code{data.frame}: Read for a data frame, such as returned by \code{\link[=account_list]{account_list()}}
 }}
 
 \examples{
+
+\dontrun{
+logs("TEST01AA")
+}
+
 
 \dontrun{
 # Read logs for an account
@@ -43,6 +65,10 @@ account("TEST01AA") \%>\%
 \dontrun{
 # Read for a list of accounts
 account("TEST01AA", "TEST02AA") \%>\%
+  logs()
+}
+\dontrun{
+account_list() \%>\%
   logs()
 }
 }

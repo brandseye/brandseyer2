@@ -90,6 +90,9 @@ it will create a new tag with a new ID." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/cookbook.html">The brandseyer2 Cookbook</a>
+    </li>
+    <li>
       <a href="../articles/filtering.html">Filtering</a>
     </li>
   </ul>
@@ -161,19 +164,19 @@ the same length as <code>name</code>.</p></td>
     <pre class="examples"><div class='input'>
 </div><span class='co'># NOT RUN {</span>
 <span class='co'># Create one tag</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>create_tags</span>(<span class='st'>"tag1"</span>)
 
 <span class='co'># Create a tag with a description</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>create_tags</span>(<span class='st'>"tag1"</span>, <span class='st'>"A description"</span>)
 
 <span class='co'># Create multiple tags</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>create_tags</span>(<span class='fu'>c</span>(<span class='st'>"tag1"</span>, <span class='st'>"tag2"</span>))
 
 <span class='co'># Create multiple tags, with descriptions</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>create_tags</span>(<span class='fu'>c</span>(<span class='st'>"tag1"</span>, <span class='st'>"tag2"</span>),
               <span class='fu'>c</span>(<span class='st'>"description 1"</span>, <span class='st'>"description2"</span>))
 

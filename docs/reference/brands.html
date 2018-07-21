@@ -90,6 +90,9 @@ this returns the brands that are associated with the mention." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/cookbook.html">The brandseyer2 Cookbook</a>
+    </li>
+    <li>
       <a href="../articles/filtering.html">Filtering</a>
     </li>
   </ul>
@@ -148,7 +151,7 @@ this returns the brands that are associated with the mention.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object to fetch brand data for, such as an <code><a href='account.html'>account()</a></code>
+      <td><p>An object to fetch brand data for, such as an <code>account()</code>
 or tibble of mention data.</p></td>
     </tr>
     <tr>
@@ -179,13 +182,13 @@ or tibble of mention data.</p></td>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='root_brands.html'>root_brands()</a></code> for filtering to only the root brands of an account.</p></div>
+    <div class='dont-index'><p><code>root_brands()</code> for filtering to only the root brands of an account.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Fetch brand information</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>brands</span>()</div><div class='output co'>#&gt; # A tibble: 5 x 5
 #&gt;      id name                    parent deleted archived           
 #&gt;   &lt;dbl&gt; &lt;chr&gt;                    &lt;dbl&gt; &lt;lgl&gt;   &lt;dttm&gt;             
@@ -195,14 +198,14 @@ or tibble of mention data.</p></td>
 #&gt; 4     6 Brand of Christmas Past     NA FALSE   2018-01-23 12:20:18
 #&gt; 5     3 Niece Brand                  2 FALSE   NA                 </div><div class='input'>
 <span class='co'># Find deleted parent brands</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>brands</span>() <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>is.na</span>(<span class='no'>parent</span>), <span class='no'>deleted</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 5
 #&gt;      id name       parent deleted archived           
 #&gt;   &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;lgl&gt;   &lt;dttm&gt;             
 #&gt; 1     5 So deleted     NA TRUE    NA                 </div><div class='input'>
 <span class='co'># Fetch phrases without using `phrases``</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>brands</span>(<span class='kw'>short</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>id</span>, <span class='no'>phrases</span>) <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>rename</a></span>(<span class='kw'>brand.id</span> <span class='kw'>=</span> <span class='no'>id</span>) <span class='kw'>%&gt;%</span>
@@ -219,7 +222,7 @@ or tibble of mention data.</p></td>
 #&gt; 7        6       101 brander    FALSE    FALSE  
 #&gt; 8        6       102 branded    FALSE    FALSE  
 #&gt; 9        3         5 niece      FALSE    FALSE  </div><div class='input'>
-<span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
+<span class='fu'>accounts</span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'>brands</span>()</div><div class='output co'>#&gt; # A tibble: 6 x 6
 #&gt;   account     id name                    parent deleted archived           
 #&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;                    &lt;dbl&gt; &lt;lgl&gt;   &lt;dttm&gt;             
@@ -230,8 +233,8 @@ or tibble of mention data.</p></td>
 #&gt; 5 TEST01AA     3 Niece Brand                  2 FALSE   NA                 
 #&gt; 6 TEST02AA   100 The Best of Brands          NA FALSE   NA                 </div><div class='input'>
 <span class='co'># Finding the brands and sub-brands that mentions matched.</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='mentions.html'>mentions</a></span>(<span class='st'>"published inthelast week"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>mentions</span>(<span class='st'>"published inthelast week"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>brands</span>()</div><div class='output co'>#&gt; # A tibble: 2 x 5
 #&gt;   id    brand.id parent name          deleted
 #&gt;   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;         &lt;lgl&gt;  

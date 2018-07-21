@@ -87,6 +87,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/cookbook.html">The brandseyer2 Cookbook</a>
+    </li>
+    <li>
       <a href="../articles/filtering.html">Filtering</a>
     </li>
   </ul>
@@ -150,19 +153,19 @@
     <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
 
     <ul>
-<li><p><code>brandseyer2.account</code>: Provides topic trees for <code><a href='account.html'>account()</a></code> objects.</p></li>
+<li><p><code>brandseyer2.account</code>: Provides topic trees for <code>account()</code> objects.</p></li>
 <li><p><code>list</code>: Get topic trees for a list of accounts.</p></li>
 </ul>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>topic_trees</span>()</div><div class='output co'>#&gt; # A tibble: 1 x 7
-#&gt;      id name           namespace  description        deleted children is_parent
-#&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;              &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;    
-#&gt; 1  1001 Tree of Topics topic_tree Topics come from … FALSE   &lt;NULL&gt;   FALSE    </div><div class='input'>
-<span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
+#&gt;      id name          namespace  description         deleted children is_parent
+#&gt;   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;               &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;    
+#&gt; 1  1001 Tree of Topi… topic_tree Topics come from h… FALSE   &lt;NULL&gt;   FALSE    </div><div class='input'>
+<span class='fu'>accounts</span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'>topic_trees</span>()</div><div class='output co'>#&gt; # A tibble: 1 x 8
 #&gt;   account     id name      namespace description     deleted children is_parent
 #&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;           &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;    

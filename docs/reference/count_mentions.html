@@ -87,6 +87,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/cookbook.html">The brandseyer2 Cookbook</a>
+    </li>
+    <li>
       <a href="../articles/filtering.html">Filtering</a>
     </li>
   </ul>
@@ -195,11 +198,11 @@ have <code>tagNamespace = 'topic'</code></p></td>
     <pre class="examples"><div class='input'>
 </div><span class='co'># NOT RUN {</span>
 <span class='co'># Count all mentions in your account in the last year</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>count_mentions</span>(<span class='st'>"published inthelast year and brandisorchildof 1"</span>)
 
 <span class='co'># Count all mentions in your account, grouping by publication date.</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>count_mentions</span>(<span class='st'>"published inthelast year and brandisorchildof 1"</span>, <span class='kw'>groupBy</span> <span class='kw'>=</span> <span class='no'>published</span>)
 
 <span class='co'># }</span></pre>

@@ -88,6 +88,9 @@ account. All of this information is included in brands()" />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/cookbook.html">The brandseyer2 Cookbook</a>
+    </li>
+    <li>
       <a href="../articles/filtering.html">Filtering</a>
     </li>
   </ul>
@@ -124,7 +127,7 @@ account. All of this information is included in brands()" />
     <div class="ref-description">
     
     <p>Fetches phrase information, returned as a tibble, for the given
-account. All of this information is included in <code><a href='brands.html'>brands()</a></code></p>
+account. All of this information is included in <code>brands()</code></p>
     
     </div>
 
@@ -144,7 +147,7 @@ account. All of this information is included in <code><a href='brands.html'>bran
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object to read phrases from, such as an <code><a href='account.html'>account()</a></code>
+      <td><p>An object to read phrases from, such as an <code>account()</code>
 object, or a tibble of mentions.</p></td>
     </tr>
     <tr>
@@ -171,14 +174,14 @@ object, or a tibble of mentions.</p></td>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p><code><a href='mentions.html'>mentions()</a></code> should be called with <code>select = "phrases"</code>
+    <p><code>mentions()</code> should be called with <code>select = "phrases"</code>
 to ensure that phrase information is returned with the mentions.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Fetch phrases for a single account</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>phrases</span>()</div><div class='output co'>#&gt; # A tibble: 9 x 5
 #&gt;   phrase.id brand.id query      inactive deleted
 #&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;lgl&gt;  
@@ -191,7 +194,7 @@ to ensure that phrase information is returned with the mentions.</p>
 #&gt; 7         2        1 your brand FALSE    FALSE  
 #&gt; 8         4        2 oh wow     TRUE     FALSE  
 #&gt; 9         1        1 brand      FALSE    TRUE   </div><div class='input'>
-<span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
+<span class='fu'>accounts</span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'>phrases</span>()</div><div class='output co'>#&gt; # A tibble: 11 x 6
 #&gt;    account  phrase.id brand.id query      inactive deleted
 #&gt;    &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;lgl&gt;  

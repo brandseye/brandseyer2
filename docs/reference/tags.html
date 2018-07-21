@@ -89,6 +89,9 @@ mentions." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/cookbook.html">The brandseyer2 Cookbook</a>
+    </li>
+    <li>
       <a href="../articles/filtering.html">Filtering</a>
     </li>
   </ul>
@@ -146,7 +149,7 @@ mentions.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object to find tag information for, such as an <code><a href='account.html'>account()</a></code>
+      <td><p>An object to find tag information for, such as an <code>account()</code>
 or a tibble of mention data.</p></td>
     </tr>
     <tr>
@@ -186,14 +189,14 @@ tags. Note that topics are stored in the 'topics' namespace.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># See what namespaces are in your account</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>tags</span>() <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>namespace</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>table</span>()</div><div class='output co'>#&gt; .
 #&gt;        tag      topic topic_tree 
 #&gt;          2          3          1 </div><div class='input'>
 <span class='co'># Find topics</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>tags</span>() <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>namespace</span> <span class='kw'>==</span> <span class='st'>"topic"</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 7
 #&gt;      id name          namespace description       deleted children  is_parent
@@ -203,24 +206,24 @@ tags. Note that topics are stored in the 'topics' namespace.</p>
 #&gt; 3    12 Child topic 2 topic     I am also a child FALSE   &lt;NULL&gt;    FALSE    </div><div class='input'>
 
 <span class='co'># See the tags for multiple accounts at a time.</span>
-<span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
+<span class='fu'>accounts</span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'>tags</span>()</div><div class='output co'>#&gt; # A tibble: 11 x 9
-#&gt;    account     id name   namespace description deleted children is_parent ac   
-#&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;       &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;     &lt;lis&gt;
-#&gt;  1 TEST01AA     1 tag1   tag       &lt;NA&gt;        FALSE   &lt;NULL&gt;   FALSE     &lt;S3:…
-#&gt;  2 TEST01AA     2 tag2   tag       Deleted     TRUE    &lt;NULL&gt;   FALSE     &lt;S3:…
-#&gt;  3 TEST01AA    10 Paren… topic     Has childr… FALSE   &lt;dbl [2… TRUE      &lt;S3:…
-#&gt;  4 TEST01AA    11 Child… topic     I am a chi… FALSE   &lt;NULL&gt;   FALSE     &lt;S3:…
-#&gt;  5 TEST01AA    12 Child… topic     I am also … FALSE   &lt;NULL&gt;   FALSE     &lt;S3:…
-#&gt;  6 TEST01AA  1001 Tree … topic_tr… Topics com… FALSE   &lt;NULL&gt;   FALSE     &lt;S3:…
-#&gt;  7 TEST02AA   101 tag1   tag       &lt;NA&gt;        FALSE   &lt;NULL&gt;   FALSE     &lt;S3:…
-#&gt;  8 TEST02AA   102 tag2   tag       Deleted     TRUE    &lt;NULL&gt;   FALSE     &lt;S3:…
-#&gt;  9 TEST02AA  1010 Paren… topic     Has childr… FALSE   &lt;dbl [2… TRUE      &lt;S3:…
-#&gt; 10 TEST02AA  1011 Child… topic     I am a chi… FALSE   &lt;NULL&gt;   FALSE     &lt;S3:…
-#&gt; 11 TEST02AA  1012 Child… topic     I am also … FALSE   &lt;NULL&gt;   FALSE     &lt;S3:…</div><div class='input'>
+#&gt;    account     id name  namespace description deleted children is_parent ac    
+#&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;     &lt;list&gt;
+#&gt;  1 TEST01AA     1 tag1  tag       &lt;NA&gt;        FALSE   &lt;NULL&gt;   FALSE     &lt;S3: …
+#&gt;  2 TEST01AA     2 tag2  tag       Deleted     TRUE    &lt;NULL&gt;   FALSE     &lt;S3: …
+#&gt;  3 TEST01AA    10 Pare… topic     Has childr… FALSE   &lt;dbl [2… TRUE      &lt;S3: …
+#&gt;  4 TEST01AA    11 Chil… topic     I am a chi… FALSE   &lt;NULL&gt;   FALSE     &lt;S3: …
+#&gt;  5 TEST01AA    12 Chil… topic     I am also … FALSE   &lt;NULL&gt;   FALSE     &lt;S3: …
+#&gt;  6 TEST01AA  1001 Tree… topic_tr… Topics com… FALSE   &lt;NULL&gt;   FALSE     &lt;S3: …
+#&gt;  7 TEST02AA   101 tag1  tag       &lt;NA&gt;        FALSE   &lt;NULL&gt;   FALSE     &lt;S3: …
+#&gt;  8 TEST02AA   102 tag2  tag       Deleted     TRUE    &lt;NULL&gt;   FALSE     &lt;S3: …
+#&gt;  9 TEST02AA  1010 Pare… topic     Has childr… FALSE   &lt;dbl [2… TRUE      &lt;S3: …
+#&gt; 10 TEST02AA  1011 Chil… topic     I am a chi… FALSE   &lt;NULL&gt;   FALSE     &lt;S3: …
+#&gt; 11 TEST02AA  1012 Chil… topic     I am also … FALSE   &lt;NULL&gt;   FALSE     &lt;S3: …</div><div class='input'>
 <span class='co'># Finding the tags that mentions matched.</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='mentions.html'>mentions</a></span>(<span class='st'>"published inthelast week"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>mentions</span>(<span class='st'>"published inthelast week"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>tags</span>()</div><div class='output co'>#&gt; # A tibble: 1 x 8
 #&gt;   id    tag.id name  namespace description deleted children is_parent
 #&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;    

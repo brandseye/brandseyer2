@@ -55,6 +55,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/cookbook.html">The brandseyer2 Cookbook</a>
+    </li>
+    <li>
       <a href="../articles/filtering.html">Filtering</a>
     </li>
   </ul>
@@ -85,7 +88,7 @@
       <h1>Filtering</h1>
                         <h4 class="author">Constance Neeser</h4>
             
-            <h4 class="date">2018-07-20</h4>
+            <h4 class="date">2018-07-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/brandseye/brandseyer2/blob/master/vignettes/filtering.Rmd"><code>vignettes/filtering.Rmd</code></a></small>
       <div class="hidden name"><code>filtering.Rmd</code></div>
@@ -95,16 +98,15 @@
     
     
 <p>This will provide an introduction to filtering for data in BrandsEye</p>
-<p>BrandsEye’s API supports a small language to help you select exactly the mentions that you want to select. You’ll do this with the help of the <code><a href="../reference/mentions.html">mentions()</a></code> function, which always expects a filter.</p>
+<p>BrandsEye’s API supports a small language to help you select exactly the mentions that you want to select. You’ll do this with the help of the <code><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/mentions">mentions()</a></code> function, which always expects a filter.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(brandseyer2)
 
-<span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/mentions.html">mentions</a></span>(<span class="dt">filter =</span> <span class="st">"published inthelast week"</span>)  
+<span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/account">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/mentions">mentions</a></span>(<span class="dt">filter =</span> <span class="st">"published inthelast week"</span>)  
 <span class="co">#&gt; # A tibble: 1 x 7</span>
-<span class="co">#&gt;   id    published           brands   sentiment mediaLinks    socialNetwork</span>
-<span class="co">#&gt;   &lt;chr&gt; &lt;dttm&gt;              &lt;list&gt;       &lt;int&gt; &lt;list&gt;        &lt;chr&gt;        </span>
-<span class="co">#&gt; 1 2-1   2018-03-03 21:37:35 &lt;int [2…         0 &lt;tibble [1 ×… TWITTER      </span>
-<span class="co">#&gt; # ... with 1 more variable: tags &lt;list&gt;</span></code></pre></div>
+<span class="co">#&gt;   id    published           brands sentiment mediaLinks socialNetwork tags</span>
+<span class="co">#&gt;   &lt;chr&gt; &lt;dttm&gt;              &lt;list&gt;     &lt;int&gt; &lt;list&gt;     &lt;chr&gt;         &lt;li&gt;</span>
+<span class="co">#&gt; 1 2-1   2018-03-03 21:37:35 &lt;int …         0 &lt;tibble [… TWITTER       &lt;in…</span></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

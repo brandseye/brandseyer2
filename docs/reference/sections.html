@@ -88,6 +88,9 @@ this adds the section information to the tibble." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/cookbook.html">The brandseyer2 Cookbook</a>
+    </li>
+    <li>
       <a href="../articles/filtering.html">Filtering</a>
     </li>
   </ul>
@@ -123,7 +126,7 @@ this adds the section information to the tibble." />
 
     <div class="ref-description">
     
-    <p>Given a tibble of dashboard information (from, for example, <code><a href='dashboards.html'>dashboards()</a></code>),
+    <p>Given a tibble of dashboard information (from, for example, <code>dashboards()</code>),
 this adds the section information to the tibble.</p>
     
     </div>
@@ -162,8 +165,8 @@ in to the tibble itself, similar to having called <code><a href='http://www.rdoc
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The second argument to this function, <code>d</code>, lets you search for specific
-mentions in a similar way that <code><a href='dashboards.html'>dashboards()</a></code> does for dashboards. See
-the <code><a href='dashboards.html'>dashboards()</a></code> documentation for more details.</p>
+mentions in a similar way that <code>dashboards()</code> does for dashboards. See
+the <code>dashboards()</code> documentation for more details.</p>
     
     <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
 
@@ -173,26 +176,26 @@ the <code><a href='dashboards.html'>dashboards()</a></code> documentation for mo
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='dashboards.html'>dashboards()</a></code> to pull dashboard information for an account.</p>
-<p><code><a href='metrics.html'>metrics()</a></code> to pull metric information for sections.</p></div>
+    <div class='dont-index'><p><code>dashboards()</code> to pull dashboard information for an account.</p>
+<p><code>metrics()</code> to pull metric information for sections.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 </div><span class='co'># NOT RUN {</span>
 <span class='co'># Get all sections for the dashboard with ID 1</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='dashboards.html'>dashboards</a></span>(<span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>dashboards</span>(<span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>sections</span>()
 
 <span class='co'># Get the section with ID 5 for the dashboard with ID 1</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='dashboards.html'>dashboards</a></span>(<span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>dashboards</span>(<span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>sections</span>(<span class='fl'>5</span>)
 
 <span class='co'># Get the sections whose title contain the string "where"</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='dashboards.html'>dashboards</a></span>(<span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>dashboards</span>(<span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>sections</span>(<span class='st'>"where"</span>)
 <span class='co'># }</span></pre>
   </div>

@@ -3,6 +3,7 @@ pkgdown: 1.1.0
 pkgdown_sha: ~
 articles:
   brandseyer2: brandseyer2.html
+  cookbook: cookbook.html
   filtering: filtering.html
 urls:
   reference: https://brandseye.github.io/brandseyer2//reference

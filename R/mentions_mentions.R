@@ -123,9 +123,6 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL,
   phrases <- NULL;
 
   # Clean up the final tibble.
-  if (result %has_name% "published") result <- result %>% mutate(published = lubridate::ymd_hms(published))
-  if (result %has_name% "pickedUp") result <- result %>% mutate(published = lubridate::ymd_hms(published))
-  if (result %has_name% "updated") result <- result %>% mutate(published = lubridate::ymd_hms(published))
 
   if (is.null(result)) return(tibble::tibble())
 
@@ -191,6 +188,9 @@ mentions.brandseyer2.account.v3 <- function(x, filter, select, ...,
 #'
 #' @return A tibble of mention data.
 list_to_v4_mentions <- function(data) {
+  # for devtools::check
+  published <- NULL; pickedUp <- NULL; updated <- NULL;
+
   # We want to figure out a list of fields.
   list.fields <- c("brands", "tags", "mediaLinks", "phrases")
   fields = new.env(hash = TRUE)
@@ -236,7 +236,13 @@ list_to_v4_mentions <- function(data) {
     final[[field]] <- data
   }
 
-  as_tibble(final)
+  result <- as_tibble(final)
+
+  if (result %has_name% "published") result <- result %>% mutate(published = lubridate::ymd_hms(published))
+  if (result %has_name% "pickedUp") result <- result %>% mutate(pickedUp = lubridate::ymd_hms(pickedUp))
+  if (result %has_name% "updated") result <- result %>% mutate(updated = lubridate::ymd_hms(updated))
+
+  result
 }
 
 #' Read mention data from the API.

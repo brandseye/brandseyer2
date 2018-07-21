@@ -6,8 +6,8 @@ test_that("Can parse a minimal list of mention data", {
     list(id = "one",
          sentiment = as.integer(0),
          published = "2017-11-21T21:37:35.000+0000",
-         pickedUp = "2017-11-21T21:37:35.000+0000",
-         updated = "2017-11-21T21:37:35.000+0000",
+         pickedUp = "2017-11-22T21:37:35.000+0000",
+         updated = "2017-11-23T21:37:35.000+0000",
          brands = list(
            list(id = as.integer(1), name = "one"),
            list(id = as.integer(2), name = "two")
@@ -39,6 +39,9 @@ test_that("Can parse a minimal list of mention data", {
   expect_equal(m[[1, "mediaLinks"]]$url, "http://bob.com")
   expect_equal(m[[1, "mediaLinks"]]$mimeType, "application/json")
   expect_equal(m[[1, "socialNetwork"]], "TWITTER")
+  expect(m[[1, "published"]] == lubridate::ymd_hms(20171121213735), "Wrong published time")
+  expect(m[[1, "pickedUp"]] == lubridate::ymd_hms(20171122213735), "Wrong pickedup time")
+  expect(m[[1, "updated"]] == lubridate::ymd_hms(20171123213735), "Wrong updated time")
 
   expect_equal(m[[2, "id"]], "two")
   expect_equal(m[[2, "tags"]], NULL)

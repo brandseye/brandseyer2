@@ -36,7 +36,8 @@ Suggests:
     covr,
     knitr,
     rmarkdown,
-    brandseyer
+    brandseyer,
+    readr
 VignetteBuilder: knitr
 Remotes: 
     brandseye/brandseyer

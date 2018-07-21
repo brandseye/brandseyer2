@@ -2,3 +2,4 @@
 brandseyer2.Rproj
 .Rhistory
 inst/doc
+vignettes/*.csv

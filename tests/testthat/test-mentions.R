@@ -66,3 +66,9 @@ test_that("Can handle reading no data", {
 
   expect_equal(result, tibble::tibble())
 })
+
+test_that("Error reported for reaching v3 accounts", {
+  data <- structure(list(id = 1), class = "brandseyer2.account.v3")
+
+  expect_error(mentions(data, "published inthelast week"), regexp = "only supports V4 accounts")
+})

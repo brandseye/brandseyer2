@@ -39,6 +39,4 @@ Suggests:
     brandseyer,
     readr
 VignetteBuilder: knitr
-Remotes: 
-    brandseye/brandseyer
 Roxygen: list(markdown = TRUE)

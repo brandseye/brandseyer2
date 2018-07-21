@@ -3,16 +3,12 @@
 \name{mentions}
 \alias{mentions}
 \alias{mentions.brandseyer2.account.v4}
-\alias{mentions.brandseyer2.account.v3}
 \title{Fetch mentions from an account}
 \usage{
 mentions(x, filter, select, ..., .envir)
 
 \method{mentions}{brandseyer2.account.v4}(x, filter, select = NULL, ...,
   .envir = parent.frame(), orderBy = NULL, fetchGraph = FALSE)
-
-\method{mentions}{brandseyer2.account.v3}(x, filter, select, ...,
-  use.brandseyer = FALSE, limit = 30, offset = 0, include, all = FALSE)
 }
 \arguments{
 \item{x}{An account object}
@@ -29,19 +25,6 @@ See the filter vignette for details.}
 \item{orderBy}{Fields to order the returned data by. Defaults to published}
 
 \item{fetchGraph}{Fetch other mentions that are part of the same conversation as this one.}
-
-\item{use.brandseyer}{Set to TRUE if the old brandseyer library is installed,
-and you would like to read from an account still using the old V3 API.}
-
-\item{limit}{The maximum number of mentions to be returned}
-
-\item{offset}{Mentions are returned in an order. Offset says how many of the
-first mentions should be skipped.}
-
-\item{include}{A character vector of extra information to include in the mentions}
-
-\item{all}{Set to true if you would like to return all mentions from the account.
-This overides the \code{limit} parameter.}
 }
 \value{
 A tibble of mentions.
@@ -52,19 +35,10 @@ This will give you access to mentions in an account.
 \section{Methods (by class)}{
 \itemize{
 \item \code{brandseyer2.account.v4}: Reads V4 accounts. Returns a tibble of mentions.
-
-\item \code{brandseyer2.account.v3}: Reads older, V3 accounts. To use this function, please ensure that
-the older \code{brandseyer} library is installed as well. Returns
-old \code{brandseyer} data structures, as though the \code{brandseyer::account_mentions}
-function had been called.
 }}
 
 \note{
-It is possible to read mentions from older accounts still
-using the V3 API. Using the older brandseyer library is the most
-convenient way of doing this, but if the brandseyer library is installed,
-the \code{mentions} function will automatically fall back to the appropriate
-function calls in \code{brandseyer} to read mentions for you.
+We cannot read data from older, V3 accounts / APIs.
 
 Returns an empty tibble if there are no mentions.
 }

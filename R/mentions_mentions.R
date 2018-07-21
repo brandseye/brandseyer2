@@ -24,11 +24,7 @@
 #'
 #' This will give you access to mentions in an account.
 #'
-#' @note It is possible to read mentions from older accounts still
-#' using the V3 API. Using the older brandseyer library is the most
-#' convenient way of doing this, but if the brandseyer library is installed,
-#' the `mentions` function will automatically fall back to the appropriate
-#' function calls in `brandseyer` to read mentions for you.
+#' @note We cannot read data from older, V3 accounts / APIs.
 #'
 #' @param x An account object
 #' @param filter A query to match mentions against. Always required.
@@ -148,35 +144,9 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL,
   result
 }
 
-#' @describeIn mentions
-#'
-#' Reads older, V3 accounts. To use this function, please ensure that
-#' the older `brandseyer` library is installed as well. Returns
-#' old `brandseyer` data structures, as though the `brandseyer::account_mentions`
-#' function had been called.
-#'
-#' @param use.brandseyer Set to TRUE if the old brandseyer library is installed,
-#'        and you would like to read from an account still using the old V3 API.
-#' @param limit The maximum number of mentions to be returned
-#' @param offset Mentions are returned in an order. Offset says how many of the
-#'   first mentions should be skipped.
-#' @param include A character vector of extra information to include in the mentions
-#' @param all Set to true if you would like to return all mentions from the account.
-#'            This overides the `limit` parameter.
-
-#'
 #' @export
-mentions.brandseyer2.account.v3 <- function(x, filter, select, ...,
-                                            use.brandseyer = FALSE,
-                                            limit = 30, offset = 0,
-                                            include,
-                                            all = FALSE) {
-  if (!is_installed("brandseyer") || !use.brandseyer) {
-    abort("brandseyer2 only supports V4 accounts.")
-  }
-  brandseyer::account_mentions(account_code(x), filter = filter,
-                               limit = 30, offset = 0,
-                               include = include, select = select, all = all)
+mentions.brandseyer2.account.v3 <- function(x, filter, select, ...) {
+  abort("brandseyer2 only supports V4 accounts.")
 }
 
 #' Format list data as a tibble

@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9004</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9005</span>
       </span>
     </div>
 
@@ -133,11 +133,7 @@
 
 <span class='co'># S3 method for brandseyer2.account.v4</span>
 <span class='fu'>mentions</span>(<span class='no'>x</span>, <span class='no'>filter</span>, <span class='kw'>select</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>,
-  <span class='kw'>.envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='kw'>orderBy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fetchGraph</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-
-<span class='co'># S3 method for brandseyer2.account.v3</span>
-<span class='fu'>mentions</span>(<span class='no'>x</span>, <span class='no'>filter</span>, <span class='no'>select</span>, <span class='no'>...</span>,
-  <span class='kw'>use.brandseyer</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>limit</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>offset</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>include</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>.envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='kw'>orderBy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fetchGraph</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -171,53 +167,21 @@ See the filter vignette for details.</p></td>
       <th>fetchGraph</th>
       <td><p>Fetch other mentions that are part of the same conversation as this one.</p></td>
     </tr>
-    <tr>
-      <th>use.brandseyer</th>
-      <td><p>Set to TRUE if the old brandseyer library is installed,
-and you would like to read from an account still using the old V3 API.</p></td>
-    </tr>
-    <tr>
-      <th>limit</th>
-      <td><p>The maximum number of mentions to be returned</p></td>
-    </tr>
-    <tr>
-      <th>offset</th>
-      <td><p>Mentions are returned in an order. Offset says how many of the
-first mentions should be skipped.</p></td>
-    </tr>
-    <tr>
-      <th>include</th>
-      <td><p>A character vector of extra information to include in the mentions</p></td>
-    </tr>
-    <tr>
-      <th>all</th>
-      <td><p>Set to true if you would like to return all mentions from the account.
-This overides the <code>limit</code> parameter.</p></td>
-    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble of mentions.</p>
+    <p>A tibble of mentions. Returns an empty tibble if there are no mentions.</p>
     
     <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
 
     <ul>
 <li><p><code>brandseyer2.account.v4</code>: Reads V4 accounts. Returns a tibble of mentions.</p></li>
-<li><p><code>brandseyer2.account.v3</code>: Reads older, V3 accounts. To use this function, please ensure that
-the older <code>brandseyer</code> library is installed as well. Returns
-old <code>brandseyer</code> data structures, as though the <code><a href='http://www.rdocumentation.org/packages/brandseyer/topics/account_mentions'>brandseyer::account_mentions</a></code>
-function had been called.</p></li>
 </ul>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>It is possible to read mentions from older accounts still
-using the V3 API. Using the older brandseyer library is the most
-convenient way of doing this, but if the brandseyer library is installed,
-the <code>mentions</code> function will automatically fall back to the appropriate
-function calls in <code>brandseyer</code> to read mentions for you.</p>
-<p>Returns an empty tibble if there are no mentions.</p>
+    <p>We cannot read data from older, V3 accounts / APIs.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -230,7 +194,7 @@ function calls in <code>brandseyer</code> to read mentions for you.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Reading data from a single account</span>
-<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>mentions</span>(<span class='kw'>filter</span> <span class='kw'>=</span> <span class='st'>"published inthelast week and brand isorchildof 1"</span>) <span class='co'># Must always have a filter</span></div><div class='output co'>#&gt; # A tibble: 1 x 7
 #&gt;   id    published           brands  sentiment mediaLinks   socialNetwork tags  
 #&gt;   &lt;chr&gt; &lt;dttm&gt;              &lt;list&gt;      &lt;int&gt; &lt;list&gt;       &lt;chr&gt;         &lt;list&gt;

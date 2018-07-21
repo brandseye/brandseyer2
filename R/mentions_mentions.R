@@ -33,7 +33,7 @@
 #' @param ... Further arguments passed to or from other methods.
 #' @param .envir An optional environment for when substituting values in to select.
 #'
-#' @return A tibble of mentions.
+#' @return A tibble of mentions. Returns an empty tibble if there are no mentions.
 #'
 #' @seealso [tags()]() to fetch tag information from mentions.
 #' @seealso [topics()]() to fetch topic information from mentions.
@@ -51,8 +51,6 @@ mentions <- function(x, filter, select, ..., .envir) {
 #'
 #' @param orderBy Fields to order the returned data by. Defaults to published
 #' @param fetchGraph Fetch other mentions that are part of the same conversation as this one.
-#'
-#' @note Returns an empty tibble if there are no mentions.
 #'
 #' @export
 #'

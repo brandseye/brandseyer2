@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9004</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9005</span>
       </span>
     </div>
 
@@ -98,11 +98,11 @@
     
     
 <p>This will provide an introduction to filtering for data in BrandsEye</p>
-<p>BrandsEye’s API supports a small language to help you select exactly the mentions that you want to select. You’ll do this with the help of the <code><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/mentions">mentions()</a></code> function, which always expects a filter.</p>
+<p>BrandsEye’s API supports a small language to help you select exactly the mentions that you want to select. You’ll do this with the help of the <code><a href="../reference/mentions.html">mentions()</a></code> function, which always expects a filter.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(brandseyer2)
 
-<span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/account">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/mentions">mentions</a></span>(<span class="dt">filter =</span> <span class="st">"published inthelast week"</span>)  
+<span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/mentions.html">mentions</a></span>(<span class="dt">filter =</span> <span class="st">"published inthelast week"</span>)  
 <span class="co">#&gt; # A tibble: 1 x 7</span>
 <span class="co">#&gt;   id    published           brands sentiment mediaLinks socialNetwork tags</span>
 <span class="co">#&gt;   &lt;chr&gt; &lt;dttm&gt;              &lt;list&gt;     &lt;int&gt; &lt;list&gt;     &lt;chr&gt;         &lt;li&gt;</span>

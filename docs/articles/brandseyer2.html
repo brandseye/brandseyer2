@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9004</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9005</span>
       </span>
     </div>
 
@@ -117,12 +117,12 @@
 <p>brandseyer2 provides API access to the BrandsEye API. In order to identify who you are, we provide our users with API keys on request. API keys are strings of randomly generated characters and numbers — they are difficult to guess, and very secure.</p>
 <p>You can contact your account manager to get your API key. Once you have your API key, the first step to using brandseyer2 is to authenticate yourself, which you can do as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(brandseyer2)
-<span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/authenticate">authenticate</a></span>(<span class="dt">key =</span> <span class="st">"&lt;my api key&gt;"</span>)</code></pre></div>
+<span class="kw"><a href="../reference/authenticate.html">authenticate</a></span>(<span class="dt">key =</span> <span class="st">"&lt;my api key&gt;"</span>)</code></pre></div>
 <p>This will let brandseyer2 know who you are. If you don’t want to type this in every time that you use brandseyer2, you can tell brandseyer2 to save your api key.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/authenticate">authenticate</a></span>(<span class="dt">key =</span> <span class="st">"&lt;my api key&gt;"</span>, <span class="dt">save =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/authenticate.html">authenticate</a></span>(<span class="dt">key =</span> <span class="st">"&lt;my api key&gt;"</span>, <span class="dt">save =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>Now, every time the library is loaded, brandseyer2 will immediately start using the saved API key.</p>
 <p>Along with the <code>authenticate</code> function, you can also find out whose API key brandseyer2 is using:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/whoami">whoami</a></span>()
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/whoami.html">whoami</a></span>()
 <span class="co">#&gt; login:  Constance Neeser </span>
 <span class="co">#&gt; email:  noreply@brandseye.com</span></code></pre></div>
 <p>Now that you have authenticated yourself, you can begin to access your account information and mentions.</p>
@@ -153,31 +153,31 @@
 <div id="working-with-accounts" class="section level1">
 <h1 class="hasAnchor">
 <a href="#working-with-accounts" class="anchor"></a>Working with accounts</h1>
-<p>As someone who works with BrandsEye tools, you have a collection of accounts that you have access to. You can find this collection of accounts using <code><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/account_list">account_list()</a></code>, as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/account_list">account_list</a></span>()</code></pre></div>
+<p>As someone who works with BrandsEye tools, you have a collection of accounts that you have access to. You can find this collection of accounts using <code><a href="../reference/account_list.html">account_list()</a></code>, as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/account_list.html">account_list</a></span>()</code></pre></div>
 <p>This returns a tibble of accounts that are available to you. Importantly, it lets you find the account code (listed in the <code>account</code>, such as <code>TEST01AA</code> and <code>TEST02AA</code>) column that brandseyer2 uses to reference individual accounts.</p>
 <div id="referencing-an-account" class="section level2">
 <h2 class="hasAnchor">
 <a href="#referencing-an-account" class="anchor"></a>Referencing an account</h2>
-<p>Nearly all the functions in brandseyer2 needs an account reference. You can refer to any account using it’s account code and the <code><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/account">account()</a></code> function. For example:</p>
+<p>Nearly all the functions in brandseyer2 needs an account reference. You can refer to any account using it’s account code and the <code><a href="../reference/account.html">account()</a></code> function. For example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get a reference to the account TEST01AA</span>
-<span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/account">account</a></span>(<span class="st">"TEST01AA"</span>)
+<span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>)
 <span class="co">#&gt; BrandsEye Account </span>
 <span class="co">#&gt;   Name:  Test 1 </span>
 <span class="co">#&gt;   Code:  TEST01AA</span></code></pre></div>
 <p>Many operations that you may want to perform will begin with finding an account reference, and then passing this on to other brandseyer2 functions using the pipe operator, <code>%&gt;%</code>.</p>
 <p>Here are some examples to find the name, code, and account manager of your account:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Your account's name</span>
-<span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/account">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/account_name">account_name</a></span>()
+<span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/account_name.html">account_name</a></span>()
 <span class="co">#&gt; [1] "Test 1"</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Your account code</span>
-<span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/account">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/account_code">account_code</a></span>()
+<span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/account_code.html">account_code</a></span>()
 <span class="co">#&gt; [1] "TEST01AA"</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Your account manager.</span>
-<span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/account">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/account_manager">account_manager</a></span>()
+<span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/account_manager.html">account_manager</a></span>()
 <span class="co">#&gt; BrandsEye Client Service</span>
 <span class="co">#&gt;  name: Your Manager</span>
 <span class="co">#&gt;  email: noreply@brandseye.com</span></code></pre></div>
@@ -187,9 +187,9 @@
 <a href="#brands" class="anchor"></a>Brands</h2>
 <p>Accounts are made up of <em>brands</em>. It is brands themselves that store individual <em>mentions</em> (such as tweets, facebook posts, and so on).</p>
 <p>A brand is usually something that you would like to track on social media, and measure sentiment towards. All sentiment on a mention is always towards the brand that the mention belongs to.</p>
-<p>You can find out what brands are in your account using the <code><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/brands">brands()</a></code> function. Let’s have a look at what brands are in <em>TEST01AA</em>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/account">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/brands">brands</a></span>()
+<p>You can find out what brands are in your account using the <code><a href="../reference/brands.html">brands()</a></code> function. Let’s have a look at what brands are in <em>TEST01AA</em>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/brands.html">brands</a></span>()
 <span class="co">#&gt; # A tibble: 5 x 5</span>
 <span class="co">#&gt;      id name                    parent deleted archived           </span>
 <span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;                    &lt;dbl&gt; &lt;lgl&gt;   &lt;dttm&gt;             </span>
@@ -210,8 +210,8 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     intersect, setdiff, setequal, union</span>
 
-<span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/account">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/brands">brands</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/brands.html">brands</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(id, name, parent)
 <span class="co">#&gt; # A tibble: 5 x 3</span>
 <span class="co">#&gt;      id name                    parent</span>
@@ -225,8 +225,8 @@
 <p>You can also discover this information for all the accounts that you have access to.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Example here</span></code></pre></div>
 <p>Notice that one of our accounts have old brands that are no longer being used, and have been deleted. Also, we often want to find the top level brands that make up the main collections of mentions in an account. These “top level” brands are called <em>root brands</em>. We have a convenient function that finds the root brands currently in use in your account:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/account">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/root_brands">root_brands</a></span>()
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/root_brands.html">root_brands</a></span>()
 <span class="co">#&gt; # A tibble: 2 x 4</span>
 <span class="co">#&gt;      id name            deleted archived           </span>
 <span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;lgl&gt;   &lt;dttm&gt;             </span>
@@ -245,9 +245,9 @@
 <div id="working-with-mentions" class="section level1">
 <h1 class="hasAnchor">
 <a href="#working-with-mentions" class="anchor"></a>Working with mentions</h1>
-<p>Mentions can be read using the <code><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/mentions">mentions()</a></code> function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/account">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/mentions">mentions</a></span>(<span class="dt">filter =</span> <span class="st">"published inthelast week"</span>)
+<p>Mentions can be read using the <code><a href="../reference/mentions.html">mentions()</a></code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/mentions.html">mentions</a></span>(<span class="dt">filter =</span> <span class="st">"published inthelast week"</span>)
 <span class="co">#&gt; # A tibble: 1 x 7</span>
 <span class="co">#&gt;   id    published           brands sentiment mediaLinks socialNetwork tags</span>
 <span class="co">#&gt;   &lt;chr&gt; &lt;dttm&gt;              &lt;list&gt;     &lt;int&gt; &lt;list&gt;     &lt;chr&gt;         &lt;li&gt;</span>

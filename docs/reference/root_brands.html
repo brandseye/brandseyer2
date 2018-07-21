@@ -62,7 +62,7 @@ determine sentiment. Sentiment is always towards the brand." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9004</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9005</span>
       </span>
     </div>
 
@@ -171,35 +171,35 @@ shows non-archived brands.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A tibble containing rows only for the root brands of an account. Otherwise,
-like the table returned in <code>brands()</code>.</p>
+like the table returned in <code><a href='brands.html'>brands()</a></code>.</p>
     
     <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
 
     <ul>
 <li><p><code>data.frame</code>: Find root brands from a <code>tibble</code> or <code>data.frame</code>. The data.frame
 should have  <code>id</code>, <code>parent</code>, and <code>deleted</code> columns, just as
-the tibble returned from <code>brands()</code> does.</p></li>
+the tibble returned from <code><a href='brands.html'>brands()</a></code> does.</p></li>
 <li><p><code>brandseyer2.account</code>: Returns root brand information from an account object.</p></li>
 <li><p><code>list</code>: Returns root brand information from a list of account objects.</p></li>
 </ul>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>brands()</code> for returning all brands in an account.</p></div>
+    <div class='dont-index'><p><code><a href='brands.html'>brands()</a></code> for returning all brands in an account.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Get root brands for an account</span>
-<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>root_brands</span>()</div><div class='output co'>#&gt; # A tibble: 2 x 4
 #&gt;      id name            deleted archived           
 #&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;lgl&gt;   &lt;dttm&gt;             
 #&gt; 1     2 Sibling Brand   FALSE   NA                 
 #&gt; 2     1 Your Brand Here FALSE   NA                 </div><div class='input'>
 <span class='co'># Get root brands from a tibble or data.frame</span>
-<span class='fu'>account</span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'>brands</span>(<span class='kw'>short</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='brands.html'>brands</a></span>(<span class='kw'>short</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>root_brands</span>()</div><div class='output co'>#&gt; # A tibble: 3 x 4
 #&gt;      id name               deleted archived           
 #&gt;   &lt;dbl&gt; &lt;chr&gt;              &lt;lgl&gt;   &lt;dttm&gt;             
@@ -207,7 +207,7 @@ the tibble returned from <code>brands()</code> does.</p></li>
 #&gt; 2   100 The Best of Brands FALSE   NA                 
 #&gt; 3     1 Your Brand Here    FALSE   NA                 </div><div class='input'>
 <span class='co'># Show fuller root brand information</span>
-<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>root_brands</span>(<span class='kw'>short</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 12
 #&gt;      id parent name  tier  deleted schema filter topic_tree_id sentimentRate
 #&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;lgl&gt;   &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt;         &lt;dbl&gt;

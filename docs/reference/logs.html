@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9004</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9005</span>
       </span>
     </div>
 
@@ -163,19 +163,19 @@ times the action was performed.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Logs can be read from various different kinds of object. An <code>account()</code>
+    <p>Logs can be read from various different kinds of object. An <code><a href='account.html'>account()</a></code>
 object is the most basic, although logs can also be read from a list of
 account objects (in which case the returned tibble will include an account code column),
 or from a tibble containing an account code column, such as that returned
-by <code>account_list()</code>.</p>
+by <code><a href='account_list.html'>account_list()</a></code>.</p>
     
     <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
 
     <ul>
 <li><p><code>character</code>: Reach for an account code character vector.</p></li>
-<li><p><code>brandseyer2.account</code>: For <code>account()</code> objects.</p></li>
+<li><p><code>brandseyer2.account</code>: For <code><a href='account.html'>account()</a></code> objects.</p></li>
 <li><p><code>list</code>: For a list of accounts</p></li>
-<li><p><code>data.frame</code>: Read for a data frame, such as returned by <code>account_list()</code></p></li>
+<li><p><code>data.frame</code>: Read for a data frame, such as returned by <code><a href='account_list.html'>account_list()</a></code></p></li>
 </ul>
     
 
@@ -187,16 +187,16 @@ by <code>account_list()</code>.</p>
 
 </div><span class='co'># NOT RUN {</span>
 <span class='co'># Read logs for an account</span>
-<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>logs</span>()
 <span class='co'># }</span><div class='input'>
 
 </div><span class='co'># NOT RUN {</span>
 <span class='co'># Read for a list of accounts</span>
-<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>logs</span>()
 <span class='co'># }</span><span class='co'># NOT RUN {</span>
-<span class='fu'>account_list</span>() <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='account_list.html'>account_list</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>logs</span>()
 <span class='co'># }</span></pre>
   </div>

@@ -27,7 +27,7 @@ See the filter vignette for details.}
 \item{fetchGraph}{Fetch other mentions that are part of the same conversation as this one.}
 }
 \value{
-A tibble of mentions.
+A tibble of mentions. Returns an empty tibble if there are no mentions.
 }
 \description{
 This will give you access to mentions in an account.
@@ -39,8 +39,6 @@ This will give you access to mentions in an account.
 
 \note{
 We cannot read data from older, V3 accounts / APIs.
-
-Returns an empty tibble if there are no mentions.
 }
 \examples{
 

@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9004</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9005</span>
       </span>
     </div>
 
@@ -108,7 +108,7 @@
 <div id="finding-topics-for-mentions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#finding-topics-for-mentions" class="anchor"></a>Finding topics for mentions</h2>
-<p>Sometimes you may want to get a clean data set of mentions, and the topics on them. This small script will write out a CSV giving, for each topic on a mention, a row with the mention ID, topic ID, and topic name. It reads all the mentions matching a filter, asking for only the mentions’ IDs and tags. Then, using <code><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/topics">topics()</a></code>, it gets all the topic data for the mentions. Next, it uses <code><a href="http://dplyr.tidyverse.org/reference/select.html">dplyr::select()</a></code> to choose only some interesting columns to keep. Finaly, it saves the data, using <code><a href="http://www.rdocumentation.org/packages/readr/topics/write_delim">readr::write_csv()</a></code>.</p>
+<p>Sometimes you may want to get a clean data set of mentions, and the topics on them. This small script will write out a CSV giving, for each topic on a mention, a row with the mention ID, topic ID, and topic name. It reads all the mentions matching a filter, asking for only the mentions’ IDs and tags. Then, using <code><a href="../reference/topics.html">topics()</a></code>, it gets all the topic data for the mentions. Next, it uses <code><a href="http://dplyr.tidyverse.org/reference/select.html">dplyr::select()</a></code> to choose only some interesting columns to keep. Finaly, it saves the data, using <code><a href="http://www.rdocumentation.org/packages/readr/topics/write_delim">readr::write_csv()</a></code>.</p>
 <div id="the-recipe" class="section level3">
 <h3 class="hasAnchor">
 <a href="#the-recipe" class="anchor"></a>The Recipe</h3>
@@ -119,9 +119,9 @@
 code &lt;-<span class="st"> "BEUB03AA"</span>
 filter &lt;-<span class="st"> "published inthelast week and brand isorchildof 46334"</span>
 
-mentions_with_topics &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/account">account</a></span>(code) <span class="op">%&gt;%</span><span class="st">         </span><span class="co"># Get the account</span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/mentions">mentions</a></span>(filter, <span class="dt">select =</span> <span class="kw">c</span>(id, tags)) <span class="op">%&gt;%</span><span class="st">      </span><span class="co"># Ask for the mentions (but only their IDs and tags)</span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer2/topics/topics">topics</a></span>() <span class="op">%&gt;%</span><span class="st">                                    </span><span class="co"># From the mentions, get specific topics</span>
+mentions_with_topics &lt;-<span class="st"> </span><span class="kw"><a href="../reference/account.html">account</a></span>(code) <span class="op">%&gt;%</span><span class="st">         </span><span class="co"># Get the account</span>
+<span class="st">  </span><span class="kw"><a href="../reference/mentions.html">mentions</a></span>(filter, <span class="dt">select =</span> <span class="kw">c</span>(id, tags)) <span class="op">%&gt;%</span><span class="st">      </span><span class="co"># Ask for the mentions (but only their IDs and tags)</span>
+<span class="st">  </span><span class="kw"><a href="../reference/topics.html">topics</a></span>() <span class="op">%&gt;%</span><span class="st">                                    </span><span class="co"># From the mentions, get specific topics</span>
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(id, topic.id, name)                      <span class="co"># Select only some interesting columns</span>
 
 
@@ -131,20 +131,20 @@ mentions_with_topics &lt;-<span class="st"> </span><span class="kw"><a href="htt
 <h3 class="hasAnchor">
 <a href="#outcomes" class="anchor"></a>Outcomes</h3>
 <p>You can modify what columns you’d like kept in your CSV file by modifying the <code>select</code> line. And this is what some of the data looks like:</p>
-<pre><code>#&gt; # A tibble: 2,475 x 3
-#&gt;    id          topic.id name                                              
-#&gt;    &lt;chr&gt;          &lt;int&gt; &lt;chr&gt;                                             
-#&gt;  1 46334-8933…    70331 Comparing (brands to brands) or comparing (brands…
-#&gt;  2 46334-8933…    69873 Ethics or reputation                              
-#&gt;  3 46334-8933…    71303 Transport experience                              
-#&gt;  4 46334-8933…    71359 Drivers                                           
-#&gt;  5 46334-8933…    69878 Accusations of unethical behavior                 
-#&gt;  6 46334-8933…    69873 Ethics or reputation                              
-#&gt;  7 46334-8933…    70331 Comparing (brands to brands) or comparing (brands…
-#&gt;  8 46334-8933…    69873 Ethics or reputation                              
-#&gt;  9 46334-8933…    70331 Comparing (brands to brands) or comparing (brands…
-#&gt; 10 46334-8933…    69873 Ethics or reputation                              
-#&gt; # ... with 2,465 more rows</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&gt; # A tibble: 2,475 x 3</span>
+<span class="co">#&gt;    id          topic.id name                                              </span>
+<span class="co">#&gt;    &lt;chr&gt;          &lt;int&gt; &lt;chr&gt;                                             </span>
+<span class="co">#&gt;  1 46334-8933…    70331 Comparing (brands to brands) or comparing (brands…</span>
+<span class="co">#&gt;  2 46334-8933…    69873 Ethics or reputation                              </span>
+<span class="co">#&gt;  3 46334-8933…    71303 Transport experience                              </span>
+<span class="co">#&gt;  4 46334-8933…    71359 Drivers                                           </span>
+<span class="co">#&gt;  5 46334-8933…    69878 Accusations of unethical behavior                 </span>
+<span class="co">#&gt;  6 46334-8933…    69873 Ethics or reputation                              </span>
+<span class="co">#&gt;  7 46334-8933…    70331 Comparing (brands to brands) or comparing (brands…</span>
+<span class="co">#&gt;  8 46334-8933…    69873 Ethics or reputation                              </span>
+<span class="co">#&gt;  9 46334-8933…    70331 Comparing (brands to brands) or comparing (brands…</span>
+<span class="co">#&gt; 10 46334-8933…    69873 Ethics or reputation                              </span>
+<span class="co">#&gt; # ... with 2,465 more rows</span></code></pre></div>
 </div>
 </div>
 </div>

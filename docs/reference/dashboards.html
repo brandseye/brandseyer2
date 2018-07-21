@@ -64,7 +64,7 @@ associated filters." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9004</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9005</span>
       </span>
     </div>
 
@@ -162,7 +162,7 @@ on dashboard names with.</p></td>
       <th>section</th>
       <td><p>An optional numeric vector of section IDs, or
 character vector to match against section titles. This specifies
-which sections to return, similarly to calling <code>sections()</code>. You
+which sections to return, similarly to calling <code><a href='sections.html'>sections()</a></code>. You
 can use the special string <code>'.'</code> to select all sections.</p></td>
     </tr>
     </table>
@@ -181,36 +181,36 @@ to give partial matches against dashboard names. Case is ignored.</p>
     <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
 
     <ul>
-<li><p><code>brandseyer2.account</code>: Read dashboard data for an <code>account()</code> object.</p></li>
+<li><p><code>brandseyer2.account</code>: Read dashboard data for an <code><a href='account.html'>account()</a></code> object.</p></li>
 </ul>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>sections()</code> to pull section information for a dashboard.</p>
-<p><code>metrics()</code> to pull metric information for sections.</p></div>
+    <div class='dont-index'><p><code><a href='sections.html'>sections()</a></code> to pull section information for a dashboard.</p>
+<p><code><a href='metrics.html'>metrics()</a></code> to pull metric information for sections.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 </div><span class='co'># NOT RUN {</span>
 <span class='co'># Get all dashboards.</span>
-<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>dashboards</span>()
 
 <span class='co'># Get the dashboard with ID 1.</span>
-<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>dashboards</span>(<span class='fl'>1</span>)
 
 <span class='co'># Get dashboards 1 and 21.</span>
-<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>dashboards</span>(<span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>21</span>))
 
 <span class='co'># Get dashboards whose name contains the string 'overview'.</span>
-<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>dashboards</span>(<span class='st'>"overview"</span>)
 
 <span class='co'># Get dashboards whose name contains the string 'overview' or the string 'who'.</span>
-<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>dashboards</span>(<span class='fu'>c</span>(<span class='st'>"overview"</span>, <span class='st'>"who"</span>))
 
 <span class='co'># }</span></pre>

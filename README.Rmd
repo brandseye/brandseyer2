@@ -19,20 +19,31 @@ knitr::opts_chunk$set(
 
 brandseyer2 is a library for handling data in your BrandsEye account.
 
-[BrandsEye][brandseye] is an opinion mining company. We use a proprietary mix of artificial intelligence and crowdsourcing to mine online conversations for sentiment.
+[BrandsEye][brandseye] is an opinion mining company. We use a proprietary mix of artificial intelligence
+and crowdsourcing to mine online conversations for sentiment.
 While we have an analytics suite, and reporting service, we also provide an extensive API
 to access to the data that makes up your various BrandsEye accounts, and makes it easy to
 access the data outside of the BrandsEye application in any [R][R] analyses that you might want to
 perform.
 
-This version of the library is still in its early stages, and you should definitely be 
-using the first version instead, which is available from [GitHub][brandseyer].
+This version of the library is still in its early stages, but is usable,
+and is the preferred way of getting data from the API. You should probably be using
+this over the previous version of the API, available at [GitHub][brandseyer].
 
 The goal of this version of the library is:
 
 - to fully support our new API, 
-- to better support the tidy universe of libraries
+- to better support the tidy universe of libraries,
 - and to have a test suite.
+
+There may be breaking changes to some methods in future updates, before the version 1.0.0 release,
+After that, we expect that the API should be fairly stable. 
+
+# Getting started
+
+After installing, you may find the [Getting Started](https://brandseye.github.io/brandseyer2/articles/brandseyer2.html) 
+and [Cookbook](https://brandseye.github.io/brandseyer2/articles/cookbook.html) vignettes interesting
+to read or skim through. 
 
 # Installing
 

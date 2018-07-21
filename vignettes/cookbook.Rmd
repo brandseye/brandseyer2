@@ -36,7 +36,7 @@ columns to keep. Finaly, it saves the data, using `readr::write_csv()`.
 
 ### The Recipe
 
-```{r}
+```{r, eval=FALSE}
 library(brandseyer2)
 library(dplyr, warn.conflicts = FALSE)            # For manipulating tables
 library(readr)                                    # For writing CSVs
@@ -59,7 +59,20 @@ write_csv(mentions_with_topics, "topics.csv")
 You can modify what columns you'd like kept in your CSV file by modifying the `select` line. 
 And this is what some of the data looks like:
 
-```{r echo=FALSE}
-mentions_with_topics
+```{r}
+#> # A tibble: 2,475 x 3
+#>    id          topic.id name                                              
+#>    <chr>          <int> <chr>                                             
+#>  1 46334-8933…    70331 Comparing (brands to brands) or comparing (brands…
+#>  2 46334-8933…    69873 Ethics or reputation                              
+#>  3 46334-8933…    71303 Transport experience                              
+#>  4 46334-8933…    71359 Drivers                                           
+#>  5 46334-8933…    69878 Accusations of unethical behavior                 
+#>  6 46334-8933…    69873 Ethics or reputation                              
+#>  7 46334-8933…    70331 Comparing (brands to brands) or comparing (brands…
+#>  8 46334-8933…    69873 Ethics or reputation                              
+#>  9 46334-8933…    70331 Comparing (brands to brands) or comparing (brands…
+#> 10 46334-8933…    69873 Ethics or reputation                              
+#> # ... with 2,465 more rows
 ```
 

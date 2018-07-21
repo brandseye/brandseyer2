@@ -1,5 +1,8 @@
 # brandseyer2 0.0.1.9005
 
+* No longer supports V3 accounts.
+* More testing for `mentions()`.
+
 # brandseyer2 0.0.1.9004
 
 * Added `logs()`, which returns a tibble of logs from an account.

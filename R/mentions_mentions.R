@@ -22,7 +22,7 @@
 
 #' Fetch mentions from an account
 #'
-#' This will give you access to mentions in an account.
+#' This provides access to an account's mentions.
 #'
 #' @note We cannot read data from older, V3 accounts / APIs.
 #'

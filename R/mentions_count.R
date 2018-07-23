@@ -21,7 +21,7 @@
 
 #' Count mentions
 #'
-#' This counts mentions, aggregating them in to various data sets.
+#' Counts mentions, aggregating them in to various data sets.
 #'
 #' @param x       An account to read from
 #' @param filter  A filter to use

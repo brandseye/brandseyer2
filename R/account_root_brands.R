@@ -84,8 +84,15 @@ root_brands.data.frame <- function(x, includeDeleted = FALSE, includeArchived = 
   data <- tibble::as_tibble(result)
 
   if (short) {
-    data <- data %>%
+    shortened <- data %>%
       select(id, name, deleted, archived)
+
+    if ("account" %in% names(data)) {
+      shortened <- left_join(shortened, data %>% select(account, id)) %>%
+        select(account, everything())
+    }
+
+    data <- shortened
   }
 
   data
@@ -113,5 +120,5 @@ root_brands.brandseyer2.account <- function(x, includeDeleted = FALSE, includeAr
 root_brands.list <- function(x, includeDeleted = FALSE, includeArchived = FALSE, short = TRUE) {
   x %>%
     brands(short = FALSE) %>%
-    root_brands(includeDeleted = includeDeleted, includeArchived = includeArchived, short = TRUE)
+    root_brands(includeDeleted = includeDeleted, includeArchived = includeArchived, short = short)
 }

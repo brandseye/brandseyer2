@@ -34,7 +34,7 @@ This will give you access to mentions in an account.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{brandseyer2.account.v4}: Reads V4 accounts. Returns a tibble of mentions.
+\item \code{brandseyer2.account.v4}: Read mentions from an account. Returns a tibble of mention data.
 }}
 
 \note{

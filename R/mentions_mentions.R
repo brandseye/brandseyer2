@@ -47,7 +47,7 @@ mentions <- function(x, filter, select, ..., .envir) {
 
 #' @describeIn mentions
 #'
-#' Reads V4 accounts. Returns a tibble of mentions.
+#' Read mentions from an account. Returns a tibble of mention data.
 #'
 #' @param orderBy Fields to order the returned data by. Defaults to published
 #' @param fetchGraph Fetch other mentions that are part of the same conversation as this one.
@@ -120,23 +120,26 @@ mentions.brandseyer2.account.v4 <- function(x, filter, select = NULL,
 
   if (is.null(result)) return(tibble::tibble())
 
-  result <- result %>%
-    select(id, uri, link,
-           published, pickedUp, updated,
-           extract,
-           postExtract,
-           replyToUri, replyToId,
-           reshareOfUri, reshareOfId,
-           brands,
-           phrases,
-           sentiment, relevancy,
-           crowdVerified,
-           relevancyVerified,
-           sentimentVerified,
-           authorId, authorName, authorHandle, authorPictureLink, authorProfileLink, authorBio, authorTimezone,
-           toId,
-           toName, toHandle, toHandleId,
-           everything())
+
+  if ("id" %in% names(result)) {
+    result %<>%
+      select(id, uri, link,
+             published, pickedUp, updated,
+             extract,
+             postExtract,
+             replyToUri, replyToId,
+             reshareOfUri, reshareOfId,
+             brands,
+             phrases,
+             sentiment, relevancy,
+             crowdVerified,
+             relevancyVerified,
+             sentimentVerified,
+             authorId, authorName, authorHandle, authorPictureLink, authorProfileLink, authorBio, authorTimezone,
+             toId,
+             toName, toHandle, toHandleId,
+             everything())
+  }
 
   attr(result, "account") <- x
   result

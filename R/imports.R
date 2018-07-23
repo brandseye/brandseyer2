@@ -9,4 +9,5 @@
 #' @importFrom assertthat %has_name%
 #' @importFrom assertthat is.string
 #' @importFrom lubridate %m-%
+#' @importFrom magrittr %<>%
 NULL

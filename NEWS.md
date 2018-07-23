@@ -1,5 +1,7 @@
 # brandseyer2 0.0.1.9006
 
+* bug fix: `mentions()` no longer raises a condition if `id` isn't selected.
+
 # brandseyer2 0.0.1.9005
 
 * No longer supports V3 accounts.

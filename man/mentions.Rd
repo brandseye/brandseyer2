@@ -30,7 +30,7 @@ See the filter vignette for details.}
 A tibble of mentions. Returns an empty tibble if there are no mentions.
 }
 \description{
-This will give you access to mentions in an account.
+This provides access to an account's mentions.
 }
 \section{Methods (by class)}{
 \itemize{

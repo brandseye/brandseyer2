@@ -42,7 +42,7 @@ have \code{tagNamespace = 'topic'}}
 A tibble of data.
 }
 \description{
-This counts mentions, aggregating them in to various data sets.
+Counts mentions, aggregating them in to various data sets.
 }
 \section{Methods (by class)}{
 \itemize{

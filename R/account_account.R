@@ -44,6 +44,8 @@
 #' @seealso [topics()] to find topics in an account.
 #' @seealso [create_tags()] to add more tags to an account.
 #' @seealso [topic_trees()] to find the topic trees in an account.
+#' @seealso [logs()] to read the account's logs.
+#' @seealso [users()] to see what users have access to the account.
 #'
 #' @export
 account <- function(codes, ...) {

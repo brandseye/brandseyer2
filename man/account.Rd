@@ -63,4 +63,8 @@ account(c("TEST01AA", "TEST02AA"))
 \code{\link[=create_tags]{create_tags()}} to add more tags to an account.
 
 \code{\link[=topic_trees]{topic_trees()}} to find the topic trees in an account.
+
+\code{\link[=logs]{logs()}} to read the account's logs.
+
+\code{\link[=users]{users()}} to see what users have access to the account.
 }

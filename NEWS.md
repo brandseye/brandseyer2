@@ -1,5 +1,7 @@
 # brandseyer2 0.0.1.9007
 
+* Added the function `users()` to read a list of users from an account.
+
 # brandseyer2 0.0.1.9006
 
 * bug fix: `mentions()` no longer raises a condition if `id` isn't selected.

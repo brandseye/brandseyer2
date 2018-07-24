@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Checking for errors — check_errors • brandseyer2</title>
+<title>Get users for an account — users • brandseyer2</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,9 @@
 
 
 
-<meta property="og:title" content="Checking for errors — check_errors" />
+<meta property="og:title" content="Get users for an account — users" />
 
-<meta property="og:description" content="Pass the results from httr calls to the API to examine errors
-and report on them in a standard way." />
+<meta property="og:description" content="Returns a tibble of users for an account, or list of accounts." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -119,40 +118,82 @@ and report on them in a standard way." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Checking for errors</h1>
-    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/check_errors.R'><code>R/check_errors.R</code></a></small>
-    <div class="hidden name"><code>check_errors.Rd</code></div>
+    <h1>Get users for an account</h1>
+    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/account_users.R'><code>R/account_users.R</code></a></small>
+    <div class="hidden name"><code>users.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Pass the results from httr calls to the API to examine errors
-and report on them in a standard way.</p>
+    <p>Returns a tibble of users for an account, or list of accounts.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>check_errors</span>(<span class='no'>data</span>)</pre>
+    <pre class="usage"><span class='fu'>users</span>(<span class='no'>x</span>)
+
+<span class='co'># S3 method for brandseyer2.account</span>
+<span class='fu'>users</span>(<span class='no'>x</span>)
+
+<span class='co'># S3 method for character</span>
+<span class='fu'>users</span>(<span class='no'>x</span>)
+
+<span class='co'># S3 method for list</span>
+<span class='fu'>users</span>(<span class='no'>x</span>)
+
+<span class='co'># S3 method for data.frame</span>
+<span class='fu'>users</span>(<span class='no'>x</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>Data returned from an <code>httr</code> call.</p></td>
+      <th>x</th>
+      <td><p>An object to get users for, such as an account object.</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>A tibble of users.</p>
+    
+    <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
+
+    <ul>
+<li><p><code>brandseyer2.account</code>: List users for an account object.</p></li>
+<li><p><code>character</code>: List users for accounts given as account codes.</p></li>
+<li><p><code>list</code>: List users for a list of account objects.</p></li>
+<li><p><code>data.frame</code>: List users for accounts coded in the <code>account</code> column of a tibble, such as
+provided by <code><a href='account_list.html'>account_list()</a></code>.</p></li>
+</ul>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>users</span>()
+<span class='co'># }</span><div class='input'>
+</div><span class='co'># NOT RUN {</span>
+<span class='fu'>users</span>(<span class='st'>"TEST01AA"</span>)
+<span class='fu'>users</span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>))
+<span class='co'># }</span><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>users</span>()
+<span class='co'># }</span><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='account_list.html'>account_list</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'>users</span>()
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#value">Value</a></li>
 
-    <h2>Author</h2>
-    
-Constance Neeser
+      <li><a href="#methods-by-class-">Methods (by class)</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

@@ -76,3 +76,39 @@ And this is what some of the data looks like:
 #> # ... with 2,465 more rows
 ```
 
+## Average number of topics per mention
+
+This is an extension of the recipe for finding topics on a mention. It uses 
+dplyr to calculate the average number of mentions on a topic. 
+
+### The Recipe
+
+```{r, eval=FALSE}
+library(brandseyer2)
+library(dplyr)
+library(readr)
+
+code <- "BEUB03AA"
+filter <- "published inthelast week and brand isorchildof 46334"
+
+mentions_with_topics <- account(code) %>%         # Get the account
+  mentions(filter, select = c(id, tags)) %>%      # Ask for the mentions (but only their IDs and tags)
+  topics() %>%                                    # From the mentions, get specific topics
+  select(id, topic.id, name)
+
+topics_per_mention <- mentions_with_topics %>%   
+  group_by(id) %>%                # For each mention
+  summarise(count = n())          # Count the number of mentions
+
+average_topics <- sum(topics_per_mention$count) / nrow(topics_per_mention)
+message(glue::glue("The average number of topics per mention is {round(average_topics, 2)}"))
+```
+
+### The outcome
+
+The recipe prints out the average
+
+```{r}
+#> The average number of topics per mention is 2.84
+```
+

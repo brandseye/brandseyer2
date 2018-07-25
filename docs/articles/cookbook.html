@@ -88,7 +88,7 @@
       <h1>The brandseyer2 Cookbook</h1>
                         <h4 class="author">Constance Neeser</h4>
             
-            <h4 class="date">2018-07-24</h4>
+            <h4 class="date">2018-07-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/brandseye/brandseyer2/blob/master/vignettes/cookbook.Rmd"><code>vignettes/cookbook.Rmd</code></a></small>
       <div class="hidden name"><code>cookbook.Rmd</code></div>
@@ -147,6 +147,39 @@ mentions_with_topics &lt;-<span class="st"> </span><span class="kw"><a href="../
 <span class="co">#&gt; # ... with 2,465 more rows</span></code></pre></div>
 </div>
 </div>
+<div id="average-number-of-topics-per-mention" class="section level2">
+<h2 class="hasAnchor">
+<a href="#average-number-of-topics-per-mention" class="anchor"></a>Average number of topics per mention</h2>
+<p>This is an extension of the recipe for finding topics on a mention. It uses dplyr to calculate the average number of mentions on a topic.</p>
+<div id="the-recipe-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#the-recipe-1" class="anchor"></a>The Recipe</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(brandseyer2)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(readr)
+
+code &lt;-<span class="st"> "BEUB03AA"</span>
+filter &lt;-<span class="st"> "published inthelast week and brand isorchildof 46334"</span>
+
+mentions_with_topics &lt;-<span class="st"> </span><span class="kw"><a href="../reference/account.html">account</a></span>(code) <span class="op">%&gt;%</span><span class="st">         </span><span class="co"># Get the account</span>
+<span class="st">  </span><span class="kw"><a href="../reference/mentions.html">mentions</a></span>(filter, <span class="dt">select =</span> <span class="kw">c</span>(id, tags)) <span class="op">%&gt;%</span><span class="st">      </span><span class="co"># Ask for the mentions (but only their IDs and tags)</span>
+<span class="st">  </span><span class="kw"><a href="../reference/topics.html">topics</a></span>() <span class="op">%&gt;%</span><span class="st">                                    </span><span class="co"># From the mentions, get specific topics</span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(id, topic.id, name)
+
+topics_per_mention &lt;-<span class="st"> </span>mentions_with_topics <span class="op">%&gt;%</span><span class="st">   </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(id) <span class="op">%&gt;%</span><span class="st">                </span><span class="co"># For each mention</span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="dt">count =</span> <span class="kw"><a href="http://dplyr.tidyverse.org/reference/n.html">n</a></span>())          <span class="co"># Count the number of mentions</span>
+
+average_topics &lt;-<span class="st"> </span><span class="kw">sum</span>(topics_per_mention<span class="op">$</span>count) <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(topics_per_mention)
+<span class="kw">message</span>(glue<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/glue/topics/glue">glue</a></span>(<span class="st">"The average number of topics per mention is {round(average_topics, 2)}"</span>))</code></pre></div>
+</div>
+<div id="the-outcome" class="section level3">
+<h3 class="hasAnchor">
+<a href="#the-outcome" class="anchor"></a>The outcome</h3>
+<p>The recipe prints out the average</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&gt; The average number of topics per mention is 2.84</span></code></pre></div>
+</div>
+</div>
 </div>
   </div>
 
@@ -159,6 +192,7 @@ mentions_with_topics &lt;-<span class="st"> </span><span class="kw"><a href="../
       <li>
 <a href="#recipes">Recipes</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#finding-topics-for-mentions">Finding topics for mentions</a></li>
+      <li><a href="#average-number-of-topics-per-mention">Average number of topics per mention</a></li>
       </ul>
 </li>
       </ul>

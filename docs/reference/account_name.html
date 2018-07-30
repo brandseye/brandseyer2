@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Get an account's name — account_name" />
 
-<meta property="og:description" content="Get an account's name" />
+<meta property="og:description" content="Returns a vector of names for the accounts passed as the argument." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -125,7 +125,7 @@
 
     <div class="ref-description">
     
-    <p>Get an account's name</p>
+    <p>Returns a vector of names for the accounts passed as the argument.</p>
     
     </div>
 
@@ -145,6 +145,12 @@
     <p>A string holding the account's name</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>account_name</span>()</div><div class='output co'>#&gt; [1] "Test 1"</div><div class='input'>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>account_name</span>()</div><div class='output co'>#&gt; [1] "Test 1"                "Test 2 — Best Account"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -152,7 +158,9 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

@@ -129,10 +129,10 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>count_mentions</span>(<span class='no'>x</span>, <span class='no'>filter</span>, <span class='no'>...</span>, <span class='no'>groupBy</span>, <span class='no'>select</span>, <span class='no'>orderBy</span>, <span class='no'>.envir</span>)
+    <pre class="usage"><span class='fu'>count_mentions</span>(<span class='no'>.account</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for brandseyer2.account.v4</span>
-<span class='fu'>count_mentions</span>(<span class='no'>x</span>, <span class='no'>filter</span>, <span class='no'>...</span>,
+<span class='fu'>count_mentions</span>(<span class='no'>.account</span>, <span class='no'>filter</span>, <span class='no'>...</span>,
   <span class='kw'>groupBy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>select</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>orderBy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tagNamespace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>.envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>())</pre>
     
@@ -140,16 +140,16 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
+      <th>.account</th>
       <td><p>An account to read from</p></td>
-    </tr>
-    <tr>
-      <th>filter</th>
-      <td><p>A filter to use</p></td>
     </tr>
     <tr>
       <th>...</th>
       <td><p>Further arguments for other methods</p></td>
+    </tr>
+    <tr>
+      <th>filter</th>
+      <td><p>A filter to use</p></td>
     </tr>
     <tr>
       <th>groupBy</th>
@@ -170,16 +170,16 @@ For example, <code>select = totalSentiment</code>, or,
 order the results by.</p></td>
     </tr>
     <tr>
-      <th>.envir</th>
-      <td><p>An optional environment in which to evaluate variables in
-your <code>groupBy</code>, <code>select</code>, and <code>orderBy</code> arguments.</p></td>
-    </tr>
-    <tr>
       <th>tagNamespace</th>
       <td><p>An optional string. When grouping by <code>tag</code>, <code>tagNamespace</code> can
 be supplied to limit the tags being grouped by to only those
 in the given namespace. For example, to only see topics,
 have <code>tagNamespace = 'topic'</code></p></td>
+    </tr>
+    <tr>
+      <th>.envir</th>
+      <td><p>An optional environment in which to evaluate variables in
+your <code>groupBy</code>, <code>select</code>, and <code>orderBy</code> arguments.</p></td>
     </tr>
     </table>
     

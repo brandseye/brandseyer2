@@ -164,8 +164,8 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get a reference to the account TEST01AA</span>
 <span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>)
 <span class="co">#&gt; BrandsEye Account </span>
-<span class="co">#&gt;   Name:  Test 1 </span>
-<span class="co">#&gt;   Code:  TEST01AA</span></code></pre></div>
+<span class="co">#&gt;   Name:   Test 1 </span>
+<span class="co">#&gt;   Code:   TEST01AA</span></code></pre></div>
 <p>Many operations that you may want to perform will begin with finding an account reference, and then passing this on to other brandseyer2 functions using the pipe operator, <code>%&gt;%</code>.</p>
 <p>Here are some examples to find the name, code, and account manager of your account:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Your account's name</span>
@@ -180,8 +180,8 @@
 <span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/account_manager.html">account_manager</a></span>()
 <span class="co">#&gt; BrandsEye Client Service</span>
-<span class="co">#&gt;  name: Your Manager</span>
-<span class="co">#&gt;  email: noreply@brandseye.com</span></code></pre></div>
+<span class="co">#&gt;   name:  Your Manager</span>
+<span class="co">#&gt;   email: noreply@brandseye.com</span></code></pre></div>
 </div>
 <div id="brands" class="section level2">
 <h2 class="hasAnchor">

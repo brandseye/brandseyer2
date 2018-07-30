@@ -1,5 +1,8 @@
 # brandseyer2 0.0.1.9008
 
+* Updated various format functions to provide colour. 
+* Began work on filter language
+
 # brandseyer2 0.0.1.9007
 
 * Added the function `users()` to read a list of users from an account.

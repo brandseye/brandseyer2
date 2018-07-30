@@ -20,7 +20,8 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 query <- function(accounts = accounts,
-                  timezones = timezones,
+                  brands = NULL,
+                  timezones = NULL,
                   filter = NULL,
                   comparison = NULL,
                   fields = NULL,
@@ -28,6 +29,7 @@ query <- function(accounts = accounts,
                   ordering = NULL) {
 
   structure(list(accounts = accounts,
+                 brands = brands,
                  timezones = timezones,
                  filter = filter,
                  comparison = comparison,
@@ -40,6 +42,7 @@ query <- function(accounts = accounts,
 copy_query <- function(q) {
   query(
     accounts = q$accounts,
+    brands = brands,
     timezones = q$timezones,
     filter = q$filter,
     comparison = q$comparison,
@@ -58,6 +61,10 @@ format.brandseyer2.query <- function(x, ...) {
   lines <- list("BrandsEye Query")
   if (!is.null(x$accounts)) {
     lines <- c(lines, glue::glue("  {crayon::silver('accounts:')}\t{stringr::str_flatten(x$accounts, collapse = ', ')}"))
+  }
+  if (!is.null(x$brands)) {
+    brands <- map_chr(x$brands, format)
+    lines <- c(lines, glue::glue("  {crayon::silver('brands:')}\t{stringr::str_flatten(brands, collapse = ', ')}"))
   }
   if (!is.null(x$timezones)) {
     lines <- c(lines, glue::glue("  {crayon::silver('timezones:')}\t{stringr::str_flatten(x$timezones, collapse = ', ')}"))

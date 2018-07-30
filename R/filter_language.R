@@ -30,6 +30,7 @@ filter_mentions.brandseyer2.account <- function(.account, filter) {
   assert_that(is.string(filter))
 
   query(accounts = account_code(.account),
+        brands = filter_brand_from_df(account_code(.account), .account %>% root_brands()),
         timezones = account_timezone(.account),
         filter = filter)
 }

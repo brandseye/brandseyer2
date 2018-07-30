@@ -201,10 +201,37 @@ count_mentions.character <- function(.account,
 
 count_mentions.brandseyer2.query <- function(.account, ...,
                                              tagNamespace = NULL) {
-  count_mentions(.account$accounts,
-                 filter = .account$filter,
-                 timezones = .account$timezones,
-                 groupBy = .account$grouping,
-                 orderBy = .account$ordering,
-                 tagNamespace = tagNamespace)
+
+  get <- function(code, filter, timezone, comparison = NULL) {
+    results <- count_mentions(code,
+                              filter = filter,
+                              timezone = timezone,
+                              groupBy = .account$grouping,
+                              orderBy = .account$ordering,
+                              tagNamespace = tagNamespace)
+
+    if (!is.null(comparison)) {
+      results %<>% mutate(comparison = comparison) %>%
+        select(comparison, everything())
+    }
+
+    if (length(.account$accounts) > 1) {
+      results %<>% mutate(account = code) %>%
+        select(account, everything())
+    }
+
+    results
+  }
+
+  purrr::map2_df(.account$accounts, .account$timezones, function(code, timezone) {
+    filters <- count_filter(.account, code)
+    if (length(filters) == 1) {
+      return(get(code, filters, timezone))
+    }
+
+    purrr::map2_df(filters, names(filters), function(filter, comparison) {
+      get(code, filter, timezone, comparison)
+    })
+  })
+
 }

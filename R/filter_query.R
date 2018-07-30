@@ -42,13 +42,26 @@ query <- function(accounts = accounts,
 copy_query <- function(q) {
   query(
     accounts = q$accounts,
-    brands = brands,
+    brands = q$brands,
     timezones = q$timezones,
     filter = q$filter,
     comparison = q$comparison,
     fields = q$fields,
     grouping = q$grouping,
     ordering = q$ordering
+  )
+}
+
+merge_query <- function(lhs, rhs) {
+  query(
+    accounts = c(lhs$accounts, rhs$accounts),
+    brands = c(lhs$brands, rhs$brands),
+    timezones = c(lhs$timezones, rhs$timezones),
+    filter = lhs$filter,
+    comparison = lhs$comparison,
+    fields = lhs$fields,
+    grouping = lhs$grouping,
+    ordering = lhs$ordering
   )
 }
 

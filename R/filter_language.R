@@ -39,8 +39,8 @@ filter_mentions.list <- function(.account, filter) {
   assert_that(is.string(filter))
 
   .account %>%
-    account_code() %>%
-    filter_mentions(filter)
+    map(~ .x %>% filter_mentions(filter)) %>%
+    purrr::reduce(merge_query)
 }
 
 filter_mentions.character <- function(.account, filter) {

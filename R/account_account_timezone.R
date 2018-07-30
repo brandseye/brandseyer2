@@ -21,14 +21,23 @@
 
 #' Get an account's timezone
 #'
+#' Returns a vector of timezones for the given accounts.
 #' An account's data is reported in a particular timezone, set for that account.
 #' All dates provided in filters are assumed to be given in that timezone.
 #'
-#' @param account An account object.
+#' @param account An account object, or list of account objects.
 #'
-#' @return A string holding the timezone that account data is reported in.
+#' @return A character vector of timezone that account data is reported in.
 #' @export
 #' @author Constance Neeser
+#'
+#' @examples
+#'
+#' account("TEST01AA") %>%
+#'   account_timezone()
+#'
+#' account("TEST01AA", "TEST02AA") %>%
+#'   account_timezone()
 account_timezone <- function(account) {
   UseMethod("account_timezone")
 }
@@ -36,4 +45,9 @@ account_timezone <- function(account) {
 #' @export
 account_timezone.brandseyer2.account <- function(account) {
   account$timezone
+}
+
+#' @export
+account_timezone.list <- function(account) {
+  map_chr(account, account_timezone)
 }

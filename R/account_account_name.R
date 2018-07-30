@@ -21,6 +21,8 @@
 
 #' Get an account's name
 #'
+#' Returns a vector of names for the accounts passed as the argument.
+#'
 #' @param account The account object.
 #'
 #' @return A string holding the account's name

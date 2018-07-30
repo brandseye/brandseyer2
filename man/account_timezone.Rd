@@ -7,14 +7,23 @@
 account_timezone(account)
 }
 \arguments{
-\item{account}{An account object.}
+\item{account}{An account object, or list of account objects.}
 }
 \value{
-A string holding the timezone that account data is reported in.
+A character vector of timezone that account data is reported in.
 }
 \description{
+Returns a vector of timezones for the given accounts.
 An account's data is reported in a particular timezone, set for that account.
 All dates provided in filters are assumed to be given in that timezone.
+}
+\examples{
+
+account("TEST01AA") \%>\%
+  account_timezone()
+
+account("TEST01AA", "TEST02AA") \%>\%
+  account_timezone()
 }
 \author{
 Constance Neeser

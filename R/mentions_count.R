@@ -104,6 +104,29 @@ count_mentions.character <- function(.account,
   assert_that(!missing(filter) && is.string(filter),
               msg = "A filter must be provided")
   assert_that(is.character(timezone))
+  assert_that(length(timezone) == 1 || length(timezone) == length(.account),
+              msg = "Timezone must be either a single string, or a vector of the same size as .account")
+  assert_that(length(timezone) <= length(.account),
+              msg = "More timezones provided than accounts")
+
+  if (length(timezone) != length(.account)) {
+    timezone <- rep(timezone, length(.account))
+  }
+
+  if (length(account) > 1) {
+    return(
+      purrr::map2_df(.account, timezone, function(a, t) {
+        count_mentions(a, filter,
+                       imezone = timezone,
+                       groupBy = groupBy,
+                       select = select,
+                       orderBy = orderBy,
+                       tagNamespace = tagNamespace) %>%
+          mutate(account = a)
+      }) %>%
+        select(account, everything())
+    )
+  }
 
   query <- list(filter = filter)
 
@@ -180,6 +203,7 @@ count_mentions.brandseyer2.query <- function(.account, ...,
                                              tagNamespace = NULL) {
   count_mentions(.account$accounts,
                  filter = .account$filter,
+                 timezones = .account$timezones,
                  groupBy = .account$grouping,
                  orderBy = .account$ordering,
                  tagNamespace = tagNamespace)

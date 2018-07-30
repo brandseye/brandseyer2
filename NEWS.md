@@ -2,6 +2,7 @@
 
 * Updated various format functions to provide colour. 
 * Began work on filter language
+* `account_timezone()`, `account_code()` and `account_name()` are now all vectorised.
 
 # brandseyer2 0.0.1.9007
 

@@ -29,7 +29,9 @@ filter_mentions <- function(.account, filter) {
 filter_mentions.brandseyer2.account <- function(.account, filter) {
   assert_that(is.string(filter))
 
-  query(accounts = account_code(.account), filter = filter)
+  query(accounts = account_code(.account),
+        timezones = account_timezone(.account),
+        filter = filter)
 }
 
 filter_mentions.list <- function(.account, filter) {
@@ -79,7 +81,9 @@ compare_mentions.character <- function(.account, ...) {
   assert_that(length(comparison) >= 1, msg = "No comparison filters supplied")
   assert_that(all(map_lgl(comparison, is.string)), msg = "Comparison filters must be strings")
 
-  query(accounts = .account, comparison = comparison)
+  query(accounts = .account,
+        timezones = account_timezone(.account),
+        comparison = comparison)
 }
 
 compare_mentions.brandseyer2.query <- function(.account, ...) {

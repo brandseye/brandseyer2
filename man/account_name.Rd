@@ -13,7 +13,7 @@ account_name(account)
 A string holding the account's name
 }
 \description{
-Get an account's name
+Returns a vector of names for the accounts passed as the argument.
 }
 \examples{
 

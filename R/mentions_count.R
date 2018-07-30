@@ -23,20 +23,8 @@
 #'
 #' Counts mentions, aggregating them in to various data sets.
 #'
-#' @param x       An account to read from
-#' @param filter  A filter to use
-#' @param groupBy An optional list of names of things to group by.
-#'                For example, `groupBy = published`, or,
-#'                `groupBy = tag`
-#' @param select  An optional list of names of things to select and
-#'                aggregate by, in addition to the number of mentions.
-#'                For example, `select = totalSentiment`, or,
-#'                `select = c(totalSentiment, totalEngagement)`.
-#' @param orderBy An optional list of names of the aggregate fields to
-#'                order the results by.
-#' @param .envir  An optional environment in which to evaluate variables in
-#'                your `groupBy`, `select`, and `orderBy` arguments.
-#' @param ...     Further arguments for other methods
+#' @param .account   An account to read from
+#' @param ...        Further arguments for other methods
 #'
 #' @return A tibble of data.
 #' @export
@@ -54,7 +42,7 @@
 #'   count_mentions("published inthelast year and brandisorchildof 1", groupBy = published)
 #'
 #' }
-count_mentions <- function(x, filter, ..., groupBy, select, orderBy, .envir) {
+count_mentions <- function(.account, ...) {
   UseMethod("count_mentions")
 }
 
@@ -62,13 +50,26 @@ count_mentions <- function(x, filter, ..., groupBy, select, orderBy, .envir) {
 #'
 #' Count mentions in a v4 account.
 #'
+#' @param filter  A filter to use
+#' @param groupBy An optional list of names of things to group by.
+#'                For example, `groupBy = published`, or,
+#'                `groupBy = tag`
+#' @param select  An optional list of names of things to select and
+#'                aggregate by, in addition to the number of mentions.
+#'                For example, `select = totalSentiment`, or,
+#'                `select = c(totalSentiment, totalEngagement)`.
+#' @param orderBy An optional list of names of the aggregate fields to
+#'                order the results by.
 #' @param tagNamespace An optional string. When grouping by `tag`, `tagNamespace` can
 #'                     be supplied to limit the tags being grouped by to only those
 #'                     in the given namespace. For example, to only see topics,
 #'                     have `tagNamespace = 'topic'`
+#' @param .envir  An optional environment in which to evaluate variables in
+#'                your `groupBy`, `select`, and `orderBy` arguments.
 #'
 #' @export
-count_mentions.brandseyer2.account.v4 <- function(x, filter,
+count_mentions.brandseyer2.account.v4 <- function(.account,
+                                                  filter,
                                                   ...,
                                                   groupBy = NULL,
                                                   select = NULL,
@@ -76,24 +77,46 @@ count_mentions.brandseyer2.account.v4 <- function(x, filter,
                                                   tagNamespace = NULL,
                                                   .envir = parent.frame()) {
 
+  groupBy <- get_name_list(deparse(substitute(groupBy)), env = .envir)
+  select <- get_name_list(deparse(substitute(select)), env = .envir)
+  orderBy <- get_name_list(deparse(substitute(orderBy)), env = .envir)
+
+  count_mentions(account_code(.account), filter,
+                 timezone = account_timezone(.account),
+                 groupBy = groupBy,
+                 select = select,
+                 orderBy = orderBy,
+                 tagNamespace = tagNamespace)
+}
+
+
+
+
+count_mentions.character <- function(.account,
+                                     filter,
+                                     ...,
+                                     timezone = "Africa/Johannesburg",
+                                     groupBy = NULL,
+                                     select = NULL,
+                                     orderBy = NULL,
+                                     tagNamespace = NULL) {
+
   assert_that(!missing(filter) && is.string(filter),
               msg = "A filter must be provided")
+  assert_that(is.character(timezone))
 
   query <- list(filter = filter)
 
-  groupBy <- get_name_list(deparse(substitute(groupBy)), env = .envir)
   if (!is.null(groupBy)) {
     assert_that(is.character(groupBy))
     query$groupBy = paste0(groupBy, collapse = ',')
   }
 
-  select <- get_name_list(deparse(substitute(select)), env = .envir)
   if (!is.null(select)) {
     assert_that(is.character(select))
     query$select = paste0(select, collapse = ',')
   }
 
-  orderBy <- get_name_list(deparse(substitute(orderBy)), env = .envir)
   if (!is.null(orderBy)) {
     assert_that(is.character(orderBy))
     query$orderBy = paste0(orderBy, collapse = ',')
@@ -104,14 +127,13 @@ count_mentions.brandseyer2.account.v4 <- function(x, filter,
     query$tagNamespace = tagNamespace
   }
 
-  data <- read_api(endpoint = paste0("v4/accounts/",account_code(x), "/mentions/count"),
+  data <- read_api(endpoint = paste0("v4/accounts/", .account, "/mentions/count"),
                    query = query)
 
   process <- function(row) {
     as.tibble(row %>% imap(function(data, index) {
       if (index %in% c("published", "pickedUp", "updated")) {
-        tz <- account_timezone(x)
-        data <- if (nchar(data) > 10) lubridate::ymd_hm(data, tz = tz) else lubridate::ymd(data, tz = tz)
+        data <- if (nchar(data) > 10) lubridate::ymd_hm(data, tz = timezone) else lubridate::ymd(data, tz = timezone)
       }
       d <- list()
       if (is.atomic(data)) d[[index]] = data
@@ -146,4 +168,19 @@ count_mentions.brandseyer2.account.v4 <- function(x, filter,
 
   data %>% map_df(process)
 
+}
+
+
+
+
+
+
+
+count_mentions.brandseyer2.query <- function(.account, ...,
+                                             tagNamespace = NULL) {
+  count_mentions(.account$accounts,
+                 filter = .account$filter,
+                 groupBy = .account$grouping,
+                 orderBy = .account$ordering,
+                 tagNamespace = tagNamespace)
 }

@@ -5,18 +5,18 @@
 \alias{count_mentions.brandseyer2.account.v4}
 \title{Count mentions}
 \usage{
-count_mentions(x, filter, ..., groupBy, select, orderBy, .envir)
+count_mentions(.account, ...)
 
-\method{count_mentions}{brandseyer2.account.v4}(x, filter, ...,
+\method{count_mentions}{brandseyer2.account.v4}(.account, filter, ...,
   groupBy = NULL, select = NULL, orderBy = NULL, tagNamespace = NULL,
   .envir = parent.frame())
 }
 \arguments{
-\item{x}{An account to read from}
-
-\item{filter}{A filter to use}
+\item{.account}{An account to read from}
 
 \item{...}{Further arguments for other methods}
+
+\item{filter}{A filter to use}
 
 \item{groupBy}{An optional list of names of things to group by.
 For example, \code{groupBy = published}, or,
@@ -30,13 +30,13 @@ For example, \code{select = totalSentiment}, or,
 \item{orderBy}{An optional list of names of the aggregate fields to
 order the results by.}
 
-\item{.envir}{An optional environment in which to evaluate variables in
-your \code{groupBy}, \code{select}, and \code{orderBy} arguments.}
-
 \item{tagNamespace}{An optional string. When grouping by \code{tag}, \code{tagNamespace} can
 be supplied to limit the tags being grouped by to only those
 in the given namespace. For example, to only see topics,
 have \code{tagNamespace = 'topic'}}
+
+\item{.envir}{An optional environment in which to evaluate variables in
+your \code{groupBy}, \code{select}, and \code{orderBy} arguments.}
 }
 \value{
 A tibble of data.

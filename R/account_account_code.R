@@ -21,10 +21,20 @@
 
 #' Get an account's code
 #'
-#' @param account The account object.
+#' Returns a vector of account codes.
+#'
+#' @param account The account object, or list of account objects.
 #'
 #' @return A string holding the account's code
 #' @export
+#'
+#' @examples
+#'
+#' account("TEST01AA") %>%
+#'   account_code()
+#'
+#' account("TEST01AA", "TEST02AA") %>%
+#'   account_code()
 account_code <- function(account) {
   UseMethod("account_code")
 }
@@ -32,4 +42,9 @@ account_code <- function(account) {
 #' @export
 account_code.brandseyer2.account <- function(account) {
   account$code
+}
+
+#' @export
+account_code.list <- function(account) {
+  map_chr(account, account_code)
 }

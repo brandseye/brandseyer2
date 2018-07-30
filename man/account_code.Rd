@@ -7,11 +7,19 @@
 account_code(account)
 }
 \arguments{
-\item{account}{The account object.}
+\item{account}{The account object, or list of account objects.}
 }
 \value{
 A string holding the account's code
 }
 \description{
-Get an account's code
+Returns a vector of account codes.
+}
+\examples{
+
+account("TEST01AA") \%>\%
+  account_code()
+
+account("TEST01AA", "TEST02AA") \%>\%
+  account_code()
 }

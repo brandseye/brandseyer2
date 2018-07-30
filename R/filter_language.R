@@ -19,19 +19,89 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#----------------------------------------------------------
+# Filtering mentions
 
 filter_mentions <- function(.account, filter) {
   UseMethod("filter_mentions")
 }
 
+filter_mentions.brandseyer2.account <- function(.account, filter) {
+  assert_that(is.string(filter))
+
+  query(accounts = account_code(.account), filter = filter)
+}
+
+filter_mentions.list <- function(.account, filter) {
+  assert_that(is.string(filter))
+
+  .account %>%
+    account_code() %>%
+    filter_mentions(filter)
+}
+
+filter_mentions.character <- function(.account, filter) {
+  assert_that(is.string(filter))
+
+  query(accounts = .account, filter = filter)
+}
+
+filter_mentions.brandseyer2.query <- function(.account, filter) {
+  assert_that(is.string(filter))
+
+  query <- copy_query(.account)
+  query$filter <- filter
+  query
+}
+
+#----------------------------------------------------------
+# Comparing mentions
+
 compare_mentions <- function(.account, ...) {
   UseMethod("compare_mentions")
 }
+
+compare_mentions.brandseyer2.account <- function(.account, ...) {
+  .account %>%
+    account_code() %>%
+    compare_mentions(...)
+}
+
+compare_mentions.list <- function(.account, ...) {
+
+  .account %>%
+    account_code() %>%
+    compare_mentions(...)
+}
+
+compare_mentions.character <- function(.account, ...) {
+  comparison <- list(...)
+  assert_that(length(comparison) >= 1, msg = "No comparison filters supplied")
+  assert_that(all(map_lgl(comparison, is.string)), msg = "Comparison filters must be strings")
+
+  query(accounts = .account, comparison = comparison)
+}
+
+compare_mentions.brandseyer2.query <- function(.account, ...) {
+  comparison <- list(...)
+  assert_that(length(comparison) >= 1, msg = "No comparison filters supplied")
+  assert_that(all(map_lgl(comparison, is.string)), msg = "Comparison filters must be strings")
+
+  query <- copy_query(.account)
+  query$comparison <- comparison
+  query
+}
+
+#----------------------------------------------------------
+# Grouping mentions
 
 group_mentions_by <- function(.account, ...) {
   UseMethod("group_mentions_by")
 }
 
-with_extra_fields <- function(.account, ...) {
-  UseMethod("with_extra_fields")
+#----------------------------------------------------------
+# Selecting extra fields
+
+with_fields <- function(.account, ...) {
+  UseMethod("with_fields")
 }

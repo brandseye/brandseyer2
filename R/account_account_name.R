@@ -25,6 +25,14 @@
 #'
 #' @return A string holding the account's name
 #' @export
+#'
+#' @examples
+#'
+#' account("TEST01AA") %>%
+#'   account_name()
+#'
+#' account("TEST01AA", "TEST02AA") %>%
+#'   account_name()
 account_name <- function(account) {
   UseMethod("account_name")
 }
@@ -32,4 +40,9 @@ account_name <- function(account) {
 #' @export
 account_name.brandseyer2.account <- function(account) {
   account$name
+}
+
+#' @export
+account_name.list <- function(account) {
+  map_chr(account, account_name)
 }

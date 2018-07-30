@@ -23,16 +23,27 @@ query <- function(accounts = accounts,
                   filter = NULL,
                   comparison = NULL,
                   fields = NULL,
-                  groupBy = NULL,
+                  grouping = NULL,
                   ordering = NULL) {
 
   structure(list(accounts = accounts,
                  filter = filter,
                  comparison = comparison,
                  fields = fields,
-                 groupBy = groupBy,
+                 grouping = grouping,
                  ordering = ordering),
             class = "brandseyer2.query")
+}
+
+copy_query <- function(q) {
+  query(
+    accounts = q$accounts,
+    filter = q$filter,
+    comparison = q$comparison,
+    fields = q$fields,
+    grouping = q$grouping,
+    ordering = q$ordering
+  )
 }
 
 
@@ -47,6 +58,18 @@ format.brandseyer2.query <- function(x, ...) {
   }
   if (!is.null(x$filter)) {
     lines <- c(lines, glue::glue("  {crayon::silver('filter:')}\t{x$filter}"))
+  }
+  if (!is.null(x$comparison)) {
+    lines <- c(lines, glue::glue("  {crayon::silver('comparison:')}\t{stringr::str_flatten(x$comparison, collapse = ', ')}"))
+  }
+  if (!is.null(x$fields)) {
+    lines <- c(lines, glue::glue("  {crayon::silver('fields:')}\t{stringr::str_flatten(x$fields, collapse = ', ')}"))
+  }
+  if (!is.null(x$grouping)) {
+    lines <- c(lines, glue::glue("  {crayon::silver('grouping:')}\t{stringr::str_flatten(x$grouping, collapse = ', ')}"))
+  }
+  if (!is.null(x$ordering)) {
+    lines <- c(lines, glue::glue("  {crayon::silver('ordering:')}\t{stringr::str_flatten(x$ordering, collapse = ', ')}"))
   }
 
   paste(lines, collapse = "\n")

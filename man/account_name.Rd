@@ -15,3 +15,11 @@ A string holding the account's name
 \description{
 Get an account's name
 }
+\examples{
+
+account("TEST01AA") \%>\%
+  account_name()
+
+account("TEST01AA", "TEST02AA") \%>\%
+  account_name()
+}

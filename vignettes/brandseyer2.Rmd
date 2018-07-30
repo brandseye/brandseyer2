@@ -62,7 +62,7 @@ brandseyer2 is using:
 ```{r eval=FALSE}
 whoami()
 #> BrandsEye Credentials
-#>   name: Constance Neeser
+#>   name:  Constance Neeser
 #>   email: connie@brandseye.com 
 ```
 

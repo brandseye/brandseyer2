@@ -84,7 +84,7 @@ print.brandseye.auth <- function(x, ...) {
 #' @export
 format.brandseye.auth <- function(x, ...) {
   paste0("BrandsEye Credentials\n",
-         crayon::silver("  name: "), x$name, "\n",
+         crayon::silver("  name:  "), x$name, "\n",
          crayon::silver("  email: "), x$email)
 }
 

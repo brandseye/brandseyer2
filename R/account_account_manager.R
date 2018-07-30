@@ -70,9 +70,9 @@ print.brandseyer2.manager <- function(x, ...) {
 #' @export
 format.brandseyer2.manager <- function(x, ...) {
   display <- matrix(c(x$name, x$email), 2, 1)
-  format(paste0(
+  paste0(
     "BrandsEye Client Service\n",
-    " name: ", x$name, "\n",
-    " email: ", x$email
-  ))
+    crayon::silver("  name:  "), x$name, "\n",
+    crayon::silver("  email: "), x$email
+  )
 }

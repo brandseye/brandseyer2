@@ -83,8 +83,9 @@ print.brandseye.auth <- function(x, ...) {
 
 #' @export
 format.brandseye.auth <- function(x, ...) {
-  format(paste0("login: ", x$name, "\n",
-         "email: ", x$email))
+  paste0("BrandsEye Credentials\n",
+         crayon::silver("  name: "), x$name, "\n",
+         crayon::silver("  email: "), x$email)
 }
 
 #' Returns your current authentication credentials.

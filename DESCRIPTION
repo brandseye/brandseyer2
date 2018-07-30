@@ -29,7 +29,8 @@ Imports:
     rlang,
     lubridate,
     stringr,
-    glue
+    glue,
+    crayon
 RoxygenNote: 6.0.1
 Suggests: 
     testthat,

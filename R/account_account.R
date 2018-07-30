@@ -114,10 +114,10 @@ print.brandseyer2.account <- function(x, ...) {
 
 #' @export
 format.brandseyer2.account <- function(x, ...) {
-  format(paste(
+  paste(
     "BrandsEye Account", "\n",
-    " Name: ", account_name(x), "\n",
-    " Code: ", account_code(x)
-  ))
+    crayon::silver(" Name:\t"), account_name(x), "\n",
+    crayon::silver(" Code:\t"), account_code(x)
+  )
 }
 

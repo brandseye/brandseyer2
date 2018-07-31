@@ -22,12 +22,15 @@
 .onAttach <- function(libname, pkgname) {
   if (!interactive()) return()
 
+  # Print a welcoming message for people in interactive mode.
+  # We want to make sure that we don't upset any scripts
+  # relying on preset random number seeds.
   withr::with_preserve_seed({
     message <- sample(
       c(
         "Welcome to brandseyer2!",
         "Find help and docs at https://brandseye.github.io/brandseyer2",
-        "Read the brandseyer2 Cookbook at https://brandseye.github.io/brandseyer2/articles/cookbook.html"
+        "Read the brandseyer2 cookbook at https://brandseye.github.io/brandseyer2/articles/cookbook.html"
       ),
       1
     )

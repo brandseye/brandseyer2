@@ -30,7 +30,8 @@
       c(
         "Welcome to brandseyer2!",
         "Find help and docs at https://brandseye.github.io/brandseyer2",
-        "Read the brandseyer2 cookbook at https://brandseye.github.io/brandseyer2/articles/cookbook.html"
+        "Read the brandseyer2 cookbook at https://brandseye.github.io/brandseyer2/articles/cookbook.html",
+        "See what brandseyer2 can do at https://brandseye.github.io/brandseyer2/reference/index.html"
       ),
       1
     )

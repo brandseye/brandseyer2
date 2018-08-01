@@ -41,9 +41,13 @@ filter_brand_from_df <- function(account, df) {
 }
 
 
-format.brandseyer2.brand <- function(x, ...) {
-  code <- if (is.null(x$code)) "" else glue::glue("{crayon::silver(x$code)}:")
-  name <- if (is.null(x$name)) "" else crayon::silver(glue::glue("[{x$name}]"))
+format.brandseyer2.brand <- function(x, colour = TRUE, ...) {
+  code <- if (is.null(x$code)) "" else glue::glue("{x$code}:")
+  name <- if (is.null(x$name)) "" else glue::glue("[{x$name}]")
+  if (colour) {
+    code = crayon::silver(code)
+    name = crayon::silver(name)
+  }
   glue::glue("{code}{x$id}{name}")
 }
 

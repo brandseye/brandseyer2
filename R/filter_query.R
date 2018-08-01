@@ -72,12 +72,23 @@ print.brandseyer2.query <- function(x, ...) {
 
 format.brandseyer2.query <- function(x, ...) {
   lines <- list("BrandsEye Query")
+  width <- cli::console_width()
+  message(width)
+
   if (!is.null(x$accounts)) {
     lines <- c(lines, glue::glue("  {crayon::silver('accounts:')}\t{stringr::str_flatten(x$accounts, collapse = ', ')}"))
   }
   if (!is.null(x$brands)) {
-    brands <- map_chr(x$brands, format)
-    lines <- c(lines, glue::glue("  {crayon::silver('brands:')}\t{stringr::str_flatten(brands, collapse = ', ')}"))
+    title_str <- "  brands:\t"
+    brand_str <- x$brands %>% map_chr(~ format(.x, colour = FALSE)) %>% stringr::str_flatten(collapse = ", ")
+    if (stringr::str_length(brand_str) + stringr::str_length(title_str) > width) {
+      brand_str <- glue::glue("{length(x$brands)} brands selected")
+    } else {
+      brand_str <- x$brands %>% map_chr(~ format(.x)) %>% stringr::str_flatten(collapse = ", ")
+    }
+
+    brand_str = paste0(crayon::silver(title_str), brand_str)
+    lines <- c(lines, brand_str)
   }
   if (!is.null(x$timezones)) {
     lines <- c(lines, glue::glue("  {crayon::silver('timezones:')}\t{stringr::str_flatten(x$timezones, collapse = ', ')}"))

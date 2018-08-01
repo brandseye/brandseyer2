@@ -4,12 +4,15 @@
 \alias{account}
 \alias{accounts}
 \alias{account.character}
+\alias{account.data.frame}
 \alias{account.brandseyer2.account_list}
 \title{Access account information}
 \usage{
 account(codes, ...)
 
 \method{account}{character}(codes, ...)
+
+\method{account}{data.frame}(codes, ...)
 
 \method{account}{brandseyer2.account_list}(codes, ...)
 }
@@ -36,6 +39,9 @@ of account objects to act on.
 \section{Methods (by class)}{
 \itemize{
 \item \code{character}: Fetch counts for one or more account codes given as a character vector.
+
+\item \code{data.frame}: Get account information from a data.frame. The data.frame
+should have an \code{account} column holding the account's code.
 
 \item \code{brandseyer2.account_list}: Get account information from the list of accounts available to from \code{\link[=account_list]{account_list()}}
 }}

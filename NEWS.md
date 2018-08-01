@@ -1,6 +1,7 @@
 # brandseyer2 0.0.1.9010
 
 * Added `with_tag_parents()` to provide parent information to tags.
+* `account()` can now load account information from a data.frame.
 
 # brandseyer2 0.0.1.9009
 

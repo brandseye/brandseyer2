@@ -2,6 +2,7 @@
 
 S3method(account,brandseyer2.account_list)
 S3method(account,character)
+S3method(account,data.frame)
 S3method(account_api_version,brandseyer2.account)
 S3method(account_code,brandseyer2.account)
 S3method(account_code,list)

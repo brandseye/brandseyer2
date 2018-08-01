@@ -89,6 +89,20 @@ account.character <- function(codes, ...) {
 
 #' @describeIn account
 #'
+#' Get account information from a data.frame. The data.frame
+#' should have an `account` column holding the account's code.
+#'
+#' @export
+account.data.frame <- function(codes, ...) {
+  assert_that(codes %has_name% "account",
+              msg = "No `account` column in data.frame")
+
+  codes$account %>%
+    account()
+}
+
+#' @describeIn account
+#'
 #' Get account information from the list of accounts available to from [account_list()]
 #'
 #' @export

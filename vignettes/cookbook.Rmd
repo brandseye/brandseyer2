@@ -112,3 +112,52 @@ The recipe prints out the average
 #> The average number of topics per mention is 2.84
 ```
 
+## Find the parent of topics
+
+BrandsEye topics can belong to more than one topic tree, and so can have more
+than one parent. When wanting to find the parent of a topic, you need to choose
+a topic tree to do this from. The easiest way to find topic trees is to use the
+`topic_trees()` function, like so:
+
+```{r message=FALSE, warning=FALSE}
+library(brandseyer2)
+library(dplyr)
+
+account("TEST01AA") %>% 
+  topic_trees() %>% 
+  select(id, name)
+```
+
+### The Recipe
+
+```{r, eval=FALSE}
+library(brandseyer2)
+library(dplyr)
+
+account("TEST01AA") %>% 
+  tags() %>% 
+  with_tag_parents(1001) %>% 
+  filter(namespace == 'topic') %>% 
+  arrange(desc(is_parent), name)
+
+```
+
+### The outcome
+
+This produces a nicely sorted table of topics and parents, all in relation
+to the given topic tree. Notice that the topic tree itself won't be in this
+table, since it is in its own *topic_tree* namespace.
+
+```{r, echo=FALSE}
+library(brandseyer2)
+library(dplyr)
+
+account("TEST01AA") %>% 
+  tags() %>% 
+  with_tag_parents(1001) %>% 
+  filter(namespace == 'topic') %>% 
+  arrange(desc(is_parent), name) %>% 
+  select(id, name, parent)
+
+```
+

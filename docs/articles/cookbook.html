@@ -180,6 +180,44 @@ average_topics &lt;-<span class="st"> </span><span class="kw">sum</span>(topics_
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&gt; The average number of topics per mention is 2.84</span></code></pre></div>
 </div>
 </div>
+<div id="find-the-parent-of-topics" class="section level2">
+<h2 class="hasAnchor">
+<a href="#find-the-parent-of-topics" class="anchor"></a>Find the parent of topics</h2>
+<p>BrandsEye topics can belong to more than one topic tree, and so can have more than one parent. When wanting to find the parent of a topic, you need to choose a topic tree to do this from. The easiest way to find topic trees is to use the <code><a href="../reference/topic_trees.html">topic_trees()</a></code> function, like so:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(brandseyer2)
+<span class="kw">library</span>(dplyr)
+
+<span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/topic_trees.html">topic_trees</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(id, name)
+<span class="co">#&gt; # A tibble: 1 x 2</span>
+<span class="co">#&gt;      id name          </span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;         </span>
+<span class="co">#&gt; 1  1001 Tree of Topics</span></code></pre></div>
+<div id="the-recipe-2" class="section level3">
+<h3 class="hasAnchor">
+<a href="#the-recipe-2" class="anchor"></a>The Recipe</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(brandseyer2)
+<span class="kw">library</span>(dplyr)
+
+<span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/tags.html">tags</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/with_tag_parents.html">with_tag_parents</a></span>(<span class="dv">1001</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(namespace <span class="op">==</span><span class="st"> 'topic'</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="kw"><a href="http://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(is_parent), name)</code></pre></div>
+</div>
+<div id="the-outcome-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#the-outcome-1" class="anchor"></a>The outcome</h3>
+<p>This produces a nicely sorted table of topics and parents, all in relation to the given topic tree. Notice that the topic tree itself won’t be in this table, since it is in its own <em>topic_tree</em> namespace.</p>
+<pre><code>#&gt; # A tibble: 3 x 3
+#&gt;      id name          parent
+#&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;
+#&gt; 1    10 Parent topic    1001
+#&gt; 2    11 Child topic 1     10
+#&gt; 3    12 Child topic 2     10</code></pre>
+</div>
+</div>
 </div>
   </div>
 
@@ -193,6 +231,7 @@ average_topics &lt;-<span class="st"> </span><span class="kw">sum</span>(topics_
 <a href="#recipes">Recipes</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#finding-topics-for-mentions">Finding topics for mentions</a></li>
       <li><a href="#average-number-of-topics-per-mention">Average number of topics per mention</a></li>
+      <li><a href="#find-the-parent-of-topics">Find the parent of topics</a></li>
       </ul>
 </li>
       </ul>

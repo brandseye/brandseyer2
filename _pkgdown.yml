@@ -42,6 +42,7 @@ reference:
       - topics
       - topic_trees
       - create_tags
+      - with_tag_parents
       - logs
       - users
       - starts_with("account_")

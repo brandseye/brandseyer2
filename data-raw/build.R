@@ -38,7 +38,8 @@ test01aa_data <- list(
     list(id = 1001,
          name = "Tree of Topics",
          namespace = "topic_tree",
-         description = "Topics come from here")
+         description = "Topics come from here",
+         children = list(10))
   ),
   brands = list(
     list(

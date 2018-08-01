@@ -69,6 +69,18 @@ test_that("Can fetch tags for multiple accounts", {
   expect_equal(length(tags$account), 11)
 })
 
+test_that("Can annotate tags with parents", {
+  tag_list <- account("TEST01AA") %>%
+    tags() %>%
+    with_tag_parents(1001)
+
+  expect_equal(tag_list$parent, c(NA, NA, 1001, 10, 10, NA))
+
+  tag_list <- account("TEST01AA") %>% tags()
+  expect_error(with_tag_parents(tag_list), regexp = "parent_id")
+  expect_error(with_tag_parents(tag_list, 98284374), regexp = "not present")
+})
+
 test_that("Can fetch topics for an account", {
   topics <- account("TEST01AA") %>%
     topics()

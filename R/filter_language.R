@@ -38,15 +38,9 @@ filter_mentions.list <- function(.account, filter) {
   assert_that(is.string(filter))
 
   .account %>%
+    filter_and_warn_v4() %>%
     map(~ .x %>% filter_mentions(filter)) %>%
     purrr::reduce(merge_query)
-}
-
-# Possibly bad, as doesn't check if an account is V4.
-filter_mentions.character <- function(.account, filter) {
-  assert_that(is.string(filter))
-
-  query(accounts = .account, filter = filter)
 }
 
 filter_mentions.brandseyer2.query <- function(.account, filter) {
@@ -65,34 +59,35 @@ compare_mentions <- function(.account, ...) {
 }
 
 compare_mentions.brandseyer2.account <- function(.account, ...) {
-  .account %>%
-    account_code() %>%
-    compare_mentions(...)
+  comparison <- list(...)
+
+  compare_mentions_impl(to_query(.account), comparison)
 }
 
 compare_mentions.list <- function(.account, ...) {
+  comparison <- list(...)
 
   .account %>%
-    account_code() %>%
-    compare_mentions(...)
+    filter_and_warn_v4() %>%
+    map(to_query) %>%
+    purrr::reduce(merge_query) %>%
+    compare_mentions_impl(comparison)
 }
 
 compare_mentions.character <- function(.account, ...) {
-  comparison <- list(...)
-  assert_that(length(comparison) >= 1, msg = "No comparison filters supplied")
-  assert_that(all(map_lgl(comparison, is.string)), msg = "Comparison filters must be strings")
-
-  q <- to_query(.account)
-  q$comparison <- comparison
-  q
+  stop("sdf")
 }
 
 compare_mentions.brandseyer2.query <- function(.account, ...) {
   comparison <- list(...)
+  compare_mentions_impl(.account, comparison)
+}
+
+compare_mentions_impl <- function(query, comparison) {
   assert_that(length(comparison) >= 1, msg = "No comparison filters supplied")
   assert_that(all(map_lgl(comparison, is.string)), msg = "Comparison filters must be strings")
 
-  query <- copy_query(.account)
+  query <- copy_query(query)
   query$comparison <- comparison
   query
 }
@@ -109,4 +104,42 @@ group_mentions_by <- function(.account, ...) {
 
 with_fields <- function(.account, ...) {
   UseMethod("with_fields")
+}
+
+#----------------------------------------------------------
+# Utilities
+
+filter_and_warn_v4 <- function(accounts) {
+  bad_version <- keep(accounts, ~ account_api_version(.x) != 'V4')
+  bad_brand <- keep(accounts, ~ nrow(root_brands(.x)) == 0)
+
+  if (rlang::is_empty(bad_version) && rlang::is_empty(bad_brand))
+    return(accounts)
+
+  if (!rlang::is_empty(bad_version)) {
+    message <- bad_version %>%
+      map(account_code) %>%
+      stringr::str_flatten(collapse = ", ") %>%
+      { glue::glue("The following accounts are not V4: {.}. Ignoring them.")}
+
+
+
+    if (rlang::is_string(message))
+      rlang::warn(message)
+  }
+
+
+  if (!rlang::is_empty(bad_brand)) {
+    message <- bad_brand %>%
+      map(account_code) %>%
+      stringr::str_flatten(collapse = ", ") %>%
+      { glue::glue("The following accounts have no root brands: {.}. Ignoring them.")}
+
+
+
+    if (rlang::is_string(message))
+      rlang::warn(message)
+  }
+
+  keep(accounts, ~ account_api_version(.x) == 'V4' && nrow(root_brands(.x)) != 0)
 }

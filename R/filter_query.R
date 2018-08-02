@@ -71,13 +71,13 @@ to_query <- function(x) {
 
 to_query.brandseyer2.account <- function(x) {
   if (account_api_version(x) != "V4") {
-    rlang::warn(glue::glue("Account {account_code(x)} isn't V4."))
+    rlang::warn(glue::glue("Account {account_code(x)} isn't V4. Ignoring."))
     return(query())
   }
 
   brands <- filter_brand_from_df(account_code(x), x %>% root_brands())
   if (rlang::is_empty(brands)) {
-    rlang::warn(glue::glue("Account {account_code(x)} has no root brands."))
+    rlang::warn(glue::glue("Account {account_code(x)} has no root brands. Ignoring."))
   }
 
   query(accounts = account_code(x),

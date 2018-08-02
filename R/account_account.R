@@ -126,6 +126,11 @@ account.data.frame <- function(codes, ..., .show.progress = interactive()) {
     account(.show.progress = .show.progress)
 }
 
+#' @export
+account.brandseyer2.account <- function(codes, ...) {
+  return(codes)
+}
+
 
 #' @export
 accounts <- account

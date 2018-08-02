@@ -187,6 +187,7 @@ other things, such as an <code><a href='account.html'>account()</a></code>.</p>
 The advantage of using query and its various verbs is that it handles
 adding root brands to your filter for you, as well as filtering out
 mentions using older versions of the API, or who have no brands altogether.</p>
+<p>Of special note, V4 accounts will not be added to a query.</p>
     
     <h2 class="hasAnchor" id="query-verbs"><a class="anchor" href="#query-verbs"></a>Query verbs</h2>
 
@@ -202,7 +203,9 @@ in a query sentence.</p><ul>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>You can test if an object is a <code>query()</code> object using <code><a href='is_query.html'>is_query()</a></code>.</p></div>
+    <div class='dont-index'><p>You can test if an object is a <code>query()</code> object using <code><a href='is_query.html'>is_query()</a></code>.
+<code><a href='to_count_filter.html'>to_count_filter()</a></code> will allow you to convert a <code>query()</code> to
+a vector of filters appropriate for use on <code><a href='count_mentions.html'>count_mentions()</a></code>.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

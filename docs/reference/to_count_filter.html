@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fetch phrases for an accounts and mentions — phrases.brandseyer2.account • brandseyer2</title>
+<title>Converts a query to a vector of filters for counting by. — to_count_filter • brandseyer2</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,13 @@
 
 
 
-<meta property="og:title" content="Fetch phrases for an accounts and mentions — phrases.brandseyer2.account" />
+<meta property="og:title" content="Converts a query to a vector of filters for counting by. — to_count_filter" />
 
-<meta property="og:description" content="Fetches phrase information, returned as a tibble, for the given
-account. All of this information is included in brands()" />
+<meta property="og:description" content="to_count_filter() converts a query() to a vector
+of filters appropriate for counting by. An account code
+is specified to choose a filter for a specific account.
+Each filter is required to perform all of the count operations
+being requested by the query for an individual account." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -119,96 +122,46 @@ account. All of this information is included in brands()" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fetch phrases for an accounts and mentions</h1>
-    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/account_phrases.R'><code>R/account_phrases.R</code></a>, <a href='https://github.com/brandseye/brandseyer2/blob/master/R/mention_phrases.R'><code>R/mention_phrases.R</code></a>, <a href='https://github.com/brandseye/brandseyer2/blob/master/R/phrases.R'><code>R/phrases.R</code></a></small>
-    <div class="hidden name"><code>phrases.Rd</code></div>
+    <h1>Converts a query to a vector of filters for counting by.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/filter_count_filter.R'><code>R/filter_count_filter.R</code></a></small>
+    <div class="hidden name"><code>to_count_filter.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Fetches phrase information, returned as a tibble, for the given
-account. All of this information is included in <code><a href='brands.html'>brands()</a></code></p>
+    <p><code>to_count_filter()</code> converts a <code><a href='query.html'>query()</a></code> to a vector
+of filters appropriate for counting by. An account code
+is specified to choose a filter for a specific account.
+Each filter is required to perform all of the count operations
+being requested by the query for an individual account.</p>
     
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for brandseyer2.account</span>
-<span class='fu'>phrases</span>(<span class='no'>x</span>, <span class='no'>...</span>)
-
-<span class='co'># S3 method for list</span>
-<span class='fu'>phrases</span>(<span class='no'>x</span>, <span class='no'>...</span>)
-
-<span class='co'># S3 method for data.frame</span>
-<span class='fu'>phrases</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>ac</span> <span class='kw'>=</span> <span class='fu'>attr</span>(<span class='no'>x</span>, <span class='st'>"account"</span>))
-
-<span class='fu'>phrases</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>to_count_filter</span>(<span class='no'>query</span>, <span class='no'>code</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>An object to read phrases from, such as an <code><a href='account.html'>account()</a></code>
-object, or a tibble of mentions.</p></td>
+      <th>query</th>
+      <td><p>A <code><a href='query.html'>query()</a></code> object.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Additional arguments for other methods.</p></td>
-    </tr>
-    <tr>
-      <th>ac</th>
-      <td><p>An optional account object from which to take phrase information.</p></td>
+      <th>code</th>
+      <td><p>The account we want filters for.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble of phrase information.</p>
-    
-    <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
-
-    <ul>
-<li><p><code>brandseyer2.account</code>: Read phrases for only a single account</p></li>
-<li><p><code>list</code>: Create a table of phrases for the list of accounts given</p></li>
-<li><p><code>data.frame</code>: Fetch phrase information from a tibble of mention data.</p></li>
-</ul>
-    
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p><code><a href='mentions.html'>mentions()</a></code> should be called with <code>select = "phrases"</code>
-to ensure that phrase information is returned with the mentions.</p>
+    <p>A vector of characters.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='co'># Fetch phrases for a single account</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>phrases</span>()</div><div class='output co'>#&gt; # A tibble: 9 x 5
-#&gt;   phrase.id brand.id query      inactive deleted
-#&gt;       &lt;dbl&gt;    &lt;int&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;lgl&gt;  
-#&gt; 1       102        5 branded    FALSE    FALSE  
-#&gt; 2       102        6 branded    FALSE    FALSE  
-#&gt; 3       101        5 brander    FALSE    FALSE  
-#&gt; 4       101        6 brander    FALSE    FALSE  
-#&gt; 5         5        3 niece      FALSE    FALSE  
-#&gt; 6         3        2 sibling    FALSE    FALSE  
-#&gt; 7         2        1 your brand FALSE    FALSE  
-#&gt; 8         4        2 oh wow     TRUE     FALSE  
-#&gt; 9         1        1 brand      FALSE    TRUE   </div><div class='input'>
-<span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'>phrases</span>()</div><div class='output co'>#&gt; # A tibble: 11 x 6
-#&gt;    account  phrase.id brand.id query      inactive deleted
-#&gt;    &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;lgl&gt;  
-#&gt;  1 TEST01AA       102        5 branded    FALSE    FALSE  
-#&gt;  2 TEST01AA       102        6 branded    FALSE    FALSE  
-#&gt;  3 TEST01AA       101        5 brander    FALSE    FALSE  
-#&gt;  4 TEST01AA       101        6 brander    FALSE    FALSE  
-#&gt;  5 TEST01AA         5        3 niece      FALSE    FALSE  
-#&gt;  6 TEST01AA         3        2 sibling    FALSE    FALSE  
-#&gt;  7 TEST01AA         2        1 your brand FALSE    FALSE  
-#&gt;  8 TEST01AA         4        2 oh wow     TRUE     FALSE  
-#&gt;  9 TEST01AA         1        1 brand      FALSE    TRUE   
-#&gt; 10 TEST02AA       102      100 branded    FALSE    FALSE  
-#&gt; 11 TEST02AA       101      100 brander    FALSE    FALSE  </div></pre>
+  <span class='fu'><a href='filter_mentions.html'>filter_mentions</a></span>(<span class='st'>"published inthelast week"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>to_count_filter</span>(<span class='st'>"TEST01AA"</span>)</div><div class='output co'>#&gt; (published inthelast week) and (brand isorchildof 2 or brand isorchildof 1)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -216,17 +169,9 @@ to ensure that phrase information is returned with the mentions.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#methods-by-class-">Methods (by class)</a></li>
-
-      <li><a href="#note">Note</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
-
-    <h2>Author</h2>
-    
-Constance Neeser
 
   </div>
 </div>

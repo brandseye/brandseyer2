@@ -191,7 +191,7 @@ or tibble of mention data.</p></td>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>brands</span>()</div><div class='output co'>#&gt; # A tibble: 5 x 5
 #&gt;      id name                    parent deleted archived           
-#&gt;   &lt;dbl&gt; &lt;chr&gt;                    &lt;dbl&gt; &lt;lgl&gt;   &lt;dttm&gt;             
+#&gt;   &lt;int&gt; &lt;chr&gt;                    &lt;int&gt; &lt;lgl&gt;   &lt;dttm&gt;             
 #&gt; 1     1 Your Brand Here             NA FALSE   NA                 
 #&gt; 2     2 Sibling Brand               NA FALSE   NA                 
 #&gt; 3     5 So deleted                  NA TRUE    NA                 
@@ -202,7 +202,7 @@ or tibble of mention data.</p></td>
   <span class='fu'>brands</span>() <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>is.na</span>(<span class='no'>parent</span>), <span class='no'>deleted</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 5
 #&gt;      id name       parent deleted archived           
-#&gt;   &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;lgl&gt;   &lt;dttm&gt;             
+#&gt;   &lt;int&gt; &lt;chr&gt;       &lt;int&gt; &lt;lgl&gt;   &lt;dttm&gt;             
 #&gt; 1     5 So deleted     NA TRUE    NA                 </div><div class='input'>
 <span class='co'># Fetch phrases without using `phrases``</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
@@ -212,7 +212,7 @@ or tibble of mention data.</p></td>
   <span class='kw pkg'>tidyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/tidyr/topics/unnest'>unnest</a></span>(<span class='no'>phrases</span>) <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>rename</a></span>(<span class='kw'>phrase.id</span> <span class='kw'>=</span> <span class='no'>id</span>)</div><div class='output co'>#&gt; # A tibble: 9 x 5
 #&gt;   brand.id phrase.id query      inactive deleted
-#&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;lgl&gt;  
+#&gt;      &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;lgl&gt;  
 #&gt; 1        1         1 brand      FALSE    TRUE   
 #&gt; 2        1         2 your brand FALSE    FALSE  
 #&gt; 3        2         3 sibling    FALSE    FALSE  
@@ -225,7 +225,7 @@ or tibble of mention data.</p></td>
 <span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'>brands</span>()</div><div class='output co'>#&gt; # A tibble: 6 x 6
 #&gt;   account     id name                    parent deleted archived           
-#&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;                    &lt;dbl&gt; &lt;lgl&gt;   &lt;dttm&gt;             
+#&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;                    &lt;int&gt; &lt;lgl&gt;   &lt;dttm&gt;             
 #&gt; 1 TEST01AA     1 Your Brand Here             NA FALSE   NA                 
 #&gt; 2 TEST01AA     2 Sibling Brand               NA FALSE   NA                 
 #&gt; 3 TEST01AA     5 So deleted                  NA TRUE    NA                 
@@ -237,7 +237,7 @@ or tibble of mention data.</p></td>
   <span class='fu'><a href='mentions.html'>mentions</a></span>(<span class='st'>"published inthelast week"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>brands</span>()</div><div class='output co'>#&gt; # A tibble: 2 x 5
 #&gt;   id    brand.id parent name          deleted
-#&gt;   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;         &lt;lgl&gt;  
+#&gt;   &lt;chr&gt;    &lt;int&gt;  &lt;int&gt; &lt;chr&gt;         &lt;lgl&gt;  
 #&gt; 1 2-1          2     NA Sibling Brand FALSE  
 #&gt; 2 2-1          3      2 Niece Brand   FALSE  </div><div class='input'>
 </div></pre>

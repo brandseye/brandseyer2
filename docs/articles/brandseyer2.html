@@ -193,7 +193,7 @@
 <span class="st">  </span><span class="kw"><a href="../reference/brands.html">brands</a></span>()
 <span class="co">#&gt; # A tibble: 5 x 5</span>
 <span class="co">#&gt;      id name                    parent deleted archived           </span>
-<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;                    &lt;dbl&gt; &lt;lgl&gt;   &lt;dttm&gt;             </span>
+<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;                    &lt;int&gt; &lt;lgl&gt;   &lt;dttm&gt;             </span>
 <span class="co">#&gt; 1     1 Your Brand Here             NA FALSE   NA                 </span>
 <span class="co">#&gt; 2     2 Sibling Brand               NA FALSE   NA                 </span>
 <span class="co">#&gt; 3     5 So deleted                  NA TRUE    NA                 </span>
@@ -202,21 +202,13 @@
 <p>These tibbles can become a bit tight to display all of the data that you may want to see. If you are using RStudio, you can always pipe the results in to View(). Otherwise, you can subselect for the data you want using standard dplyr<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> functions.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Find brand IDs and names</span>
 <span class="kw">library</span>(dplyr)
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'dplyr'</span>
-<span class="co">#&gt; The following objects are masked from 'package:stats':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     filter, lag</span>
-<span class="co">#&gt; The following objects are masked from 'package:base':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     intersect, setdiff, setequal, union</span>
 
 <span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/brands.html">brands</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(id, name, parent)
 <span class="co">#&gt; # A tibble: 5 x 3</span>
 <span class="co">#&gt;      id name                    parent</span>
-<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;                    &lt;dbl&gt;</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;                    &lt;int&gt;</span>
 <span class="co">#&gt; 1     1 Your Brand Here             NA</span>
 <span class="co">#&gt; 2     2 Sibling Brand               NA</span>
 <span class="co">#&gt; 3     5 So deleted                  NA</span>
@@ -230,7 +222,7 @@
 <span class="st">  </span><span class="kw"><a href="../reference/root_brands.html">root_brands</a></span>()
 <span class="co">#&gt; # A tibble: 2 x 4</span>
 <span class="co">#&gt;      id name            deleted archived           </span>
-<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;lgl&gt;   &lt;dttm&gt;             </span>
+<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;           &lt;lgl&gt;   &lt;dttm&gt;             </span>
 <span class="co">#&gt; 1     2 Sibling Brand   FALSE   NA                 </span>
 <span class="co">#&gt; 2     1 Your Brand Here FALSE   NA</span></code></pre></div>
 </div>
@@ -253,6 +245,114 @@
 <span class="co">#&gt;   id    published           brands sentiment mediaLinks socialNetwork tags</span>
 <span class="co">#&gt;   &lt;chr&gt; &lt;dttm&gt;              &lt;list&gt;     &lt;int&gt; &lt;list&gt;     &lt;chr&gt;         &lt;li&gt;</span>
 <span class="co">#&gt; 1 2-1   2018-03-03 21:37:35 &lt;int …         0 &lt;tibble [… TWITTER       &lt;in…</span></code></pre></div>
+</div>
+<div id="counting-mentions" class="section level1">
+<h1 class="hasAnchor">
+<a href="#counting-mentions" class="anchor"></a>Counting mentions</h1>
+<p>Mentions can be counted. The simplest way of doing this is with the <code><a href="../reference/count_mentions.html">count_mentions()</a></code> function, and using a query language designed to do this.</p>
+<p>Here is a simple query to count all mentions published the last week:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"QUIR01BA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published inthelast week"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/count_mentions.html">count_mentions</a></span>()
+<span class="co">#&gt; # A tibble: 1 x 1</span>
+<span class="co">#&gt;   mentionCount</span>
+<span class="co">#&gt;          &lt;int&gt;</span>
+<span class="co">#&gt; 1         8907</span></code></pre></div>
+<p>More interestingly, we can count just the relevant mentions from the last week:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"QUIR01BA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published inthelast week and relevancy isnt irrelevant"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/count_mentions.html">count_mentions</a></span>()
+<span class="co">#&gt; # A tibble: 1 x 1</span>
+<span class="co">#&gt;   mentionCount</span>
+<span class="co">#&gt;          &lt;int&gt;</span>
+<span class="co">#&gt; 1         7918</span></code></pre></div>
+<p>If you would like to know more about filtering in particular, see our <a href="filtering.html">Filtering</a> vignette.</p>
+<p>Now, counting mentions becomes interesting when we begin to do things such as grouping mentions. For example, we can group mentions by the published date.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"QUIR01BA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published inthelast week and relevancy isnt irrelevant"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/group_mentions_by.html">group_mentions_by</a></span>(published) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/count_mentions.html">count_mentions</a></span>()
+<span class="co">#&gt; # A tibble: 8 x 2</span>
+<span class="co">#&gt;   published           mentionCount</span>
+<span class="co">#&gt;   &lt;dttm&gt;                     &lt;int&gt;</span>
+<span class="co">#&gt; 1 2018-07-26 00:00:00         1410</span>
+<span class="co">#&gt; 2 2018-07-27 00:00:00         1067</span>
+<span class="co">#&gt; 3 2018-07-28 00:00:00          528</span>
+<span class="co">#&gt; 4 2018-07-29 00:00:00          655</span>
+<span class="co">#&gt; 5 2018-07-30 00:00:00         1389</span>
+<span class="co">#&gt; 6 2018-07-31 00:00:00         1214</span>
+<span class="co">#&gt; 7 2018-08-01 00:00:00         1124</span>
+<span class="co">#&gt; 8 2018-08-02 00:00:00          532</span></code></pre></div>
+<p>This is something that you could potentially chart, using a library such as <a href="http://ggplot2.org/">ggplot2</a>.</p>
+<div class="figure">
+<img src="brandseyer2_files/figure-html/unnamed-chunk-17-1.png" alt="A plot of data pulled from the api" width="480"><p class="caption">
+A plot of data pulled from the api
+</p>
+</div>
+<p>One thing to take note of is that at no point have we specified what brands we want to use in the filter. This happens automatically: the query language selects all the root brands. You can easily examine this by leaving out the final step in the pipe chain above, like so:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"QUIR01BA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published inthelast week and relevancy isnt irrelevant"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/group_mentions_by.html">group_mentions_by</a></span>(published)
+<span class="co">#&gt; BrandsEye Query</span>
+<span class="co">#&gt;   accounts:  QUIR01BA</span>
+<span class="co">#&gt;   brands:    35 brands selected</span>
+<span class="co">#&gt;   timezones: Africa/Johannesburg</span>
+<span class="co">#&gt;   filter:    published inthelast week and relevancy isnt irrelevant</span>
+<span class="co">#&gt;   grouping:  published</span></code></pre></div>
+<p>If you would like to see the filter being produced, you can do so using the <code><a href="../reference/to_count_filter.html">to_count_filter()</a></code> method. Let’s do this using an account with fewer root brands:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Let's see what the query looks like</span>
+<span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published inthelast week and relevancy isnt irrelevant"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/group_mentions_by.html">group_mentions_by</a></span>(published)
+<span class="co">#&gt; BrandsEye Query</span>
+<span class="co">#&gt;   accounts:  TEST01AA</span>
+<span class="co">#&gt;   brands:    TEST01AA:2[Sibling Brand], TEST01AA:1[Your Brand Here]</span>
+<span class="co">#&gt;   timezones: Africa/Johannesburg</span>
+<span class="co">#&gt;   filter:    published inthelast week and relevancy isnt irrelevant</span>
+<span class="co">#&gt;   grouping:  published</span>
+
+<span class="co"># And this is the filter</span>
+<span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published inthelast week and relevancy isnt irrelevant"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/group_mentions_by.html">group_mentions_by</a></span>(published) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/to_count_filter.html">to_count_filter</a></span>(<span class="st">"TEST01AA"</span>)
+<span class="co">#&gt; (published inthelast week and relevancy isnt irrelevant) and (brand isorchildof 2 or brand isorchildof 1)</span></code></pre></div>
+<p>Notice that the <em>group by</em> doesn’t occur in the filter: this is additional data sent to the API when we request the data. This full filter is, however, sent to the API. It’s also an appropriate filter for use in Analyse or anywhere else that a filter is accepted.</p>
+<p>A useful thing that the filter allows us to do is to count data across multiple accounts at a time. For example, you across two specific brands:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"QUIR01BA"</span>, <span class="st">"BEUB03AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published inthelast week and relevancy isnt irrelevant"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/count_mentions.html">count_mentions</a></span>()
+<span class="co">#&gt; # A tibble: 2 x 2</span>
+<span class="co">#&gt;   account  mentionCount</span>
+<span class="co">#&gt;   &lt;chr&gt;           &lt;int&gt;</span>
+<span class="co">#&gt; 1 QUIR01BA         7951</span>
+<span class="co">#&gt; 2 BEUB03AA         8466</span></code></pre></div>
+<p>Again, you can group by any grouping field that you would want.</p>
+<p>You can also count across all accounts that are available to you:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/account_list.html">account_list</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/account.html">account</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published inthelast week and relevancy isnt irrelevant"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/count_mentions.html">count_mentions</a></span>()
+<span class="co">#&gt; # A tibble: 4 x 2</span>
+<span class="co">#&gt;   account  mentionCount</span>
+<span class="co">#&gt;   &lt;chr&gt;           &lt;int&gt;</span>
+<span class="co">#&gt; 1 QUIR01BA         7951</span>
+<span class="co">#&gt; 2 BEUB03AA         8466</span>
+<span class="co">#&gt; 3 TEST01AA         1234</span>
+<span class="co">#&gt; 4 TEST02AA         1234</span></code></pre></div>
+<p>A very useful thing that the query language provides us, is the ability to compare sub-groups of mentions using sub-filters. For example, if we want to find mentions inside and outside of Africa, we could so as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"QUIR01BA"</span>, <span class="st">"BEUB03AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published inthelast week and relevancy isnt irrelevant"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/compare_mentions.html">compare_mentions</a></span>(<span class="dt">africa =</span> <span class="st">"location is 'ZA'"</span>, <span class="dt">elsewhere =</span> <span class="st">"location isnt 'ZA'"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/count_mentions.html">count_mentions</a></span>()
+<span class="co">#&gt; # A tibble: 4 x 3</span>
+<span class="co">#&gt;   account  comparison mentionCount</span>
+<span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;             &lt;int&gt;</span>
+<span class="co">#&gt; 1 QUIR01BA africa              101</span>
+<span class="co">#&gt; 2 QUIR01BA elsewhere          7865</span>
+<span class="co">#&gt; 3 BEUB03AA africa             8226</span>
+<span class="co">#&gt; 4 BEUB03AA elsewhere           252</span></code></pre></div>
+<p>We have provided two seperate sub-filters, one labeled ‘africa’, one labeled ‘elsewhere’. Notice that these labels have now appeared in the result table, once for each account that we are querying.</p>
 </div>
 <div class="footnotes">
 <hr>
@@ -289,6 +389,7 @@
       </ul>
 </li>
       <li><a href="#working-with-mentions">Working with mentions</a></li>
+      <li><a href="#counting-mentions">Counting mentions</a></li>
       </ul>
 </div>
       </div>

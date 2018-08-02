@@ -95,20 +95,78 @@ compare_mentions_impl <- function(query, comparison) {
 #----------------------------------------------------------
 # Grouping mentions
 
-group_mentions_by <- function(.account, ...) {
+group_mentions_by <- function(.account, ..., .envir) {
   UseMethod("group_mentions_by")
+}
+
+group_mentions_by.brandseyer2.account <- function(.account, ..., .envir = parent.frame()) {
+  groupBy <- get_name_list(deparse(substitute(c(...))), env = .envir)
+
+  .account %>%
+    to_query %>%
+    group_mentions_by_impl(groupBy)
+}
+
+group_mentions_by.list <- function(.account, ..., .envir = parent.frame()) {
+  groupBy <- get_name_list(deparse(substitute(c(...))), env = .envir)
+  .account %>%
+    filter_and_warn_v4() %>%
+    map(to_query) %>%
+    purrr::reduce(merge_query) %>%
+    group_mentions_by_impl(groupBy)
+}
+
+group_mentions_by.brandseyer2.query <- function(.account, ..., .envir = parent.frame()) {
+  groupBy <- get_name_list(deparse(substitute(c(...))), env = .envir)
+  group_mentions_by_impl(.account, groupBy)
+}
+
+group_mentions_by_impl <- function(query, groupBy) {
+  query <- copy_query(query)
+  query$grouping <- groupBy
+  query
 }
 
 #----------------------------------------------------------
 # Selecting extra fields
 
-with_fields <- function(.account, ...) {
+with_fields <- function(.account, ..., .envir) {
   UseMethod("with_fields")
+}
+
+with_fields.brandseyer2.account <- function(.account, ..., .envir = parent.frame()) {
+  fields <- get_name_list(deparse(substitute(c(...))), env = .envir)
+
+  .account %>%
+    to_query %>%
+    with_fields_impl(fields)
+}
+
+with_fields.list <- function(.account, ..., .envir = parent.frame()) {
+  fields <- get_name_list(deparse(substitute(c(...))), env = .envir)
+  .account %>%
+    filter_and_warn_v4() %>%
+    map(to_query) %>%
+    purrr::reduce(merge_query) %>%
+    with_fields_impl(fields)
+}
+
+with_fields.brandseyer2.query <- function(.account, ..., .envir = parent.frame()) {
+  fields <- get_name_list(deparse(substitute(c(...))), env = .envir)
+  with_fields_impl(.account, fields)
+}
+
+with_fields_impl <- function(query, fields) {
+  query <- copy_query(query)
+  query$fields <- fields
+  query
 }
 
 #----------------------------------------------------------
 # Utilities
 
+# This filters out accounts that we can't query on,
+# and provides nice, grouped, warning messages.
 filter_and_warn_v4 <- function(accounts) {
   bad_version <- keep(accounts, ~ account_api_version(.x) != 'V4')
   bad_brand <- keep(accounts, ~ nrow(root_brands(.x)) == 0)

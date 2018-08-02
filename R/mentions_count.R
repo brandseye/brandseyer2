@@ -208,6 +208,7 @@ count_mentions.brandseyer2.query <- function(.account, ...,
       results <- count_mentions(code,
                                 filter = filter,
                                 timezone = timezone,
+                                select = .account$fields,
                                 groupBy = .account$grouping,
                                 orderBy = .account$ordering,
                                 tagNamespace = tagNamespace)

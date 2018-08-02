@@ -204,24 +204,33 @@ count_mentions.brandseyer2.query <- function(.account, ...,
                                              .show.progress = interactive()) {
 
   get <- function(code, filter, timezone, comparison = NULL) {
-    results <- count_mentions(code,
-                              filter = filter,
-                              timezone = timezone,
-                              groupBy = .account$grouping,
-                              orderBy = .account$ordering,
-                              tagNamespace = tagNamespace)
+    tryCatch({
+      results <- count_mentions(code,
+                                filter = filter,
+                                timezone = timezone,
+                                groupBy = .account$grouping,
+                                orderBy = .account$ordering,
+                                tagNamespace = tagNamespace)
 
-    if (!is.null(comparison)) {
-      results %<>% mutate(comparison = comparison) %>%
-        select(comparison, everything())
-    }
+      if (!is.null(comparison)) {
+        results %<>% mutate(comparison = comparison) %>%
+          select(comparison, everything())
+      }
 
-    if (length(.account$accounts) > 1) {
-      results %<>% mutate(account = code) %>%
-        select(account, everything())
-    }
+      if (length(.account$accounts) > 1) {
+        results %<>% mutate(account = code) %>%
+          select(account, everything())
+      }
 
-    results
+      results
+    },
+    brandseye_api_error = function(e) {
+      rlang::warn(glue::glue("{code}: {e$message}"))
+      tibble::tibble()
+    },
+    error = function(e) {
+      stop(e)
+    })
   }
 
   pb <- list(tick = function(...) {})

@@ -20,12 +20,16 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
+# returns NULL if there are no brands.
 count_filter <- function(query, code) {
   if (!(code %in% query$accounts)) return(NULL)
-
   assert_that(is.string(query$filter))
 
-  brand_portion <- purrr::keep(query$brands, ~ .x$code == code) %>%
+  brands <- purrr::keep(query$brands, ~ .x$code == code)
+  if (length(brands) == 0) return(NULL)
+
+
+  brand_portion <- brands %>%
     map_int(~.x$id) %>%
     map_chr(~ glue::glue("brand isorchildof {.x}")) %>%
     stringr::str_flatten(collapse = " or ")
@@ -34,7 +38,7 @@ count_filter <- function(query, code) {
   if (is.null(query$comparison)) return(filter)
 
   results <- query$comparison %>%
-    map_chr(function(value) glue::glue("{filter} and ({value})"))
+    map_chr(~ glue::glue("{filter} and ({.x})"))
 
   # Ensure that all comparisons have names
   names(results) %<>%

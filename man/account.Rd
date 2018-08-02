@@ -10,7 +10,7 @@
 \usage{
 account(codes, ...)
 
-\method{account}{character}(codes, ...)
+\method{account}{character}(codes, ..., .show.progress = interactive())
 
 \method{account}{data.frame}(codes, ...)
 
@@ -21,6 +21,11 @@ account(codes, ...)
 a tibble, as provided by \code{\link[=account_list]{account_list()}}}
 
 \item{...}{Additional account codes.}
+
+\item{.show.progress}{A logical indicating whether a progress bar should
+be shown or not. By default, it will only be shown on interactive sessions.
+Further, no matter this parameter's value, the bar will only be shown
+when fetching account information for more than five accounts.}
 }
 \value{
 An account object if one account code is given, or a list of account objects,

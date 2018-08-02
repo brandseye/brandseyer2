@@ -56,6 +56,11 @@ account <- function(codes, ...) {
 #'
 #' Fetch counts for one or more account codes given as a character vector.
 #'
+#' @param .show.progress A logical indicating whether a progress bar should
+#'        be shown or not. By default, it will only be shown on interactive sessions.
+#'        Further, no matter this parameter's value, the bar will only be shown
+#'        when fetching account information for more than five accounts.
+#'
 #' @export
 #'
 #' @examples
@@ -68,11 +73,24 @@ account <- function(codes, ...) {
 #'
 #' # Read accounts from a vector
 #' account(c("TEST01AA", "TEST02AA"))
-account.character <- function(codes, ...) {
+account.character <- function(codes, ..., .show.progress = interactive()) {
   codes <- c(codes, ...)
 
   if (length(codes) > 1) {
-    return(map(codes, account))
+    # Set up the progress bar.
+    pb <- list(tick = function(...) {})
+    if (length(codes) >= 5 && .show.progress) {
+      pb <- progress::progress_bar$new(
+        format = "  account :code [:bar] :percent eta: :eta",
+        total = length(codes)
+      )
+    }
+
+    pb$tick(tokens = list(code = "starting"), len = 0)
+    return(map(codes, function(code) {
+      on.exit(pb$tick(tokens = list(code = code)))
+      account(code)
+    }))
   }
 
   # See if we have any internal data that we can load

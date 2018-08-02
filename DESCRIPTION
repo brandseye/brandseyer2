@@ -32,7 +32,8 @@ Imports:
     glue,
     crayon,
     withr,
-    cli
+    cli,
+    progress
 RoxygenNote: 6.0.1
 Suggests: 
     testthat,

@@ -150,6 +150,7 @@ test_that("Can read root brand info for accounts", {
   expect_equal(nrow(rb %>% root_brands()), 1)
   expect_equal(nrow(rb %>% root_brands(includeDeleted = TRUE)), 2)
   expect_equal(nrow(rb %>% root_brands(includeDeleted = TRUE, includeArchived = TRUE)), 3)
+  expect_equal(nrow(data.frame() %>% root_brands()), 0)
 })
 
 test_that("Can read phrase information for an account", {

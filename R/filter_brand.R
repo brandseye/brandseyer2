@@ -34,6 +34,7 @@ filter_brand_from_df <- function(account, df) {
   # For devtools::check
   . <- NULL; name <- NULL;
 
+  if (rlang::is_empty(df) || nrow(df) == 0) return(list())
   df %>%
     rowwise() %>%
     mutate(brand = list(filter_brand(id = id, code = account, name = name))) %>%

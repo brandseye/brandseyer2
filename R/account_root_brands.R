@@ -66,6 +66,9 @@ root_brands <- function(x, includeDeleted, includeArchived, short) {
 #' @export
 root_brands.data.frame <- function(x, includeDeleted = FALSE, includeArchived = FALSE,
                                    short = TRUE) {
+  # If there are no brands, there are no root brands.
+  if (nrow(x) == 0 && ncol(x) == 0) return(tibble())
+
   assert_that(x %has_name% "id", msg = "data.frame has no `id` column for brand IDs")
   assert_that(x %has_name% "parent", msg = "data.frame has no `parent` column")
   assert_that(x %has_name% "deleted", msg = "data.frame has no `deleted` column")

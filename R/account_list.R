@@ -19,7 +19,7 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' List all accounts available to you.
+#' List all accounts available to you
 #'
 #' Provides a tibble of all BrandsEye accounts that are available to you. By default,
 #' this will show only active accounts.

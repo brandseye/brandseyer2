@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Filter for only specific mentions — filter_mentions • brandseyer2</title>
+<title>Select extra data when fetching or counting mentions — with_fields • brandseyer2</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,11 +30,11 @@
 
 
 
-<meta property="og:title" content="Filter for only specific mentions — filter_mentions" />
+<meta property="og:title" content="Select extra data when fetching or counting mentions — with_fields" />
 
-<meta property="og:description" content="filter_mentions() causes counting and mention operations
-to occur on only those mentions matching the filter. This is
-part of the query() language." />
+<meta property="og:description" content="with_fields() allows you to fetch additional data fields on mentions,
+or to count additional fields when counting mentions. This is part of the
+query() language." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -120,20 +120,20 @@ part of the query() language." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Filter for only specific mentions</h1>
+    <h1>Select extra data when fetching or counting mentions</h1>
     <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/filter_language.R'><code>R/filter_language.R</code></a></small>
-    <div class="hidden name"><code>filter_mentions.Rd</code></div>
+    <div class="hidden name"><code>with_fields.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p><code>filter_mentions()</code> causes counting and mention operations
-to occur on only those mentions matching the filter. This is
-part of the <code><a href='query.html'>query()</a></code> language.</p>
+    <p><code>with_fields()</code> allows you to fetch additional data fields on mentions,
+or to count additional fields when counting mentions. This is part of the
+<code><a href='query.html'>query()</a></code> language.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>filter_mentions</span>(<span class='no'>.account</span>, <span class='no'>filter</span>)</pre>
+    <pre class="usage"><span class='fu'>with_fields</span>(<span class='no'>.account</span>, <span class='no'>...</span>, <span class='no'>.envir</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -143,30 +143,36 @@ part of the <code><a href='query.html'>query()</a></code> language.</p>
       <td><p>An account or <code><a href='query.html'>query()</a></code> object.</p></td>
     </tr>
     <tr>
-      <th>filter</th>
-      <td><p>A filter string.</p></td>
+      <th>...</th>
+      <td><p>The fields to order by.</p></td>
+    </tr>
+    <tr>
+      <th>.envir</th>
+      <td><p>An environment to perform substitutions in.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A query object</p>
+    <p>A <code><a href='query.html'>query()</a></code> object</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other verbs for the query language: <code><a href='group_mentions_by.html'>group_mentions_by()</a></code>,
-<code><a href='compare_mentions.html'>compare_mentions()</a></code>, <code><a href='with_fields.html'>with_fields()</a></code>, <code><a href='with_order.html'>with_order()</a></code></p>
+<code><a href='compare_mentions.html'>compare_mentions()</a></code>, <code><a href='filter_mentions.html'>filter_mentions()</a></code>, <code><a href='with_order.html'>with_order()</a></code></p>
 <p><code><a href='query.html'>query()</a></code> is a way to manually create queries.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>filter_mentions</span>(<span class='st'>"published inthelast week"</span>)</div><div class='output co'>#&gt; BrandsEye Query
+  <span class='fu'><a href='filter_mentions.html'>filter_mentions</a></span>(<span class='st'>"published inthelast week"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>with_fields</span>(<span class='no'>mentionCount</span>, <span class='no'>totalOTS</span>)</div><div class='output co'>#&gt; BrandsEye Query
 #&gt;   accounts:	TEST01AA
 #&gt;   brands:	TEST01AA:2[Sibling Brand], TEST01AA:1[Your Brand Here]
 #&gt;   timezones:	Africa/Johannesburg
-#&gt;   filter:	published inthelast week </div></pre>
+#&gt;   filter:	published inthelast week
+#&gt;   fields:	mentionCount, totalOTS </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

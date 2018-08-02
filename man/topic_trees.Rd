@@ -4,7 +4,7 @@
 \alias{topic_trees}
 \alias{topic_trees.brandseyer2.account}
 \alias{topic_trees.list}
-\title{List topic trees for an account.}
+\title{List topic trees for an account}
 \usage{
 topic_trees(x, ...)
 

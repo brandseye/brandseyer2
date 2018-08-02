@@ -69,7 +69,7 @@ account(c("TEST01AA", "TEST02AA"))
 \seealso{
 \code{\link[=accounts]{accounts()}} is a synonym for \code{account}.
 
-\code{\link[=is.account]{is.account()}} to test if an object is an account object.
+\code{\link[=is_account]{is_account()}} to test if an object is an account object.
 
 \code{\link[=tags]{tags()}} to find tags in an account.
 

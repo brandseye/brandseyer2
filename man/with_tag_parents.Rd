@@ -2,7 +2,7 @@
 % Please edit documentation in R/account_with_tag_parents.R
 \name{with_tag_parents}
 \alias{with_tag_parents}
-\title{Determine the parent of tags given a particular tree.}
+\title{Determine the parent of tags given a particular tree}
 \usage{
 with_tag_parents(tags, parent_id)
 }

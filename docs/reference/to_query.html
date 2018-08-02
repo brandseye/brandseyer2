@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>See if an object is a BrandsEyeR account object. — is.account • brandseyer2</title>
+<title>Create a query object from another object — to_query • brandseyer2</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,10 @@
 
 
 
-<meta property="og:title" content="See if an object is a BrandsEyeR account object. — is.account" />
+<meta property="og:title" content="Create a query object from another object — to_query" />
 
-<meta property="og:description" content="See if an object is a BrandsEyeR account object." />
+<meta property="og:description" content="Creates a query() object from another object. This
+can be a convenient way to create queries." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -61,7 +62,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9010</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9011</span>
       </span>
     </div>
 
@@ -118,33 +119,40 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>See if an object is a BrandsEyeR account object.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/account_is_account.R'><code>R/account_is_account.R</code></a></small>
-    <div class="hidden name"><code>is.account.Rd</code></div>
+    <h1>Create a query object from another object</h1>
+    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/filter_to_query.R'><code>R/filter_to_query.R</code></a></small>
+    <div class="hidden name"><code>to_query.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>See if an object is a BrandsEyeR account object.</p>
+    <p>Creates a <code><a href='query.html'>query()</a></code> object from another object. This
+can be a convenient way to create queries.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>is.account</span>(<span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>to_query</span>(<span class='no'>x</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A possible BrandsEyeR account object.</p></td>
+      <td><p>An object to turn in to a <code><a href='query.html'>query()</a></code> object.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>TRUE if this is an account object, otherwise false.</p>
+    <p>A query object</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='fu'>to_query</span>(<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>))</div><div class='output co'>#&gt; BrandsEye Query
+#&gt;   accounts:	TEST01AA
+#&gt;   brands:	TEST01AA:2[Sibling Brand], TEST01AA:1[Your Brand Here]
+#&gt;   timezones:	Africa/Johannesburg </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -152,7 +160,9 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

@@ -19,16 +19,20 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' Create a query for mentions or counts.
+#' Create a query for mentions or counts
 #'
 #' [query()] creates a query to be used for fetching mentions, or
 #' for counting them. You probably want to avoid using this directly,
 #' and use one of the query verbs instead, such as [filter_mentions()].
+#' [to_query()] is a convenient way to create a query object from
+#' other things, such as an [account()].
 #'
 #' The query object is accepted by [count_mentions()] and [mentions()].
 #' The advantage of using query and its various verbs is that it handles
 #' adding root brands to your filter for you, as well as filtering out
 #' mentions using older versions of the API, or who have no brands altogether.
+#'
+#' Of special note, V4 accounts will not be added to a query.
 #'
 #' @section Query verbs:
 #'
@@ -52,6 +56,12 @@
 #'
 #' @return A query object
 #' @export
+#'
+#' @seealso
+#'
+#' You can test if an object is a [query()] object using [is_query()].
+#' [to_count_filter()] will allow you to convert a [query()] to
+#' a vector of filters appropriate for use on [count_mentions()].
 #'
 #' @examples
 #'
@@ -106,27 +116,6 @@ merge_query <- function(lhs, rhs) {
   )
 }
 
-to_query <- function(x) {
-  UseMethod("to_query")
-}
-
-to_query.brandseyer2.account <- function(x) {
-  if (account_api_version(x) != "V4") {
-    rlang::warn(glue::glue("Account {account_code(x)} isn't V4. Ignoring."))
-    return(query())
-  }
-
-  brands <- filter_brand_from_df(account_code(x), x %>% root_brands())
-  if (rlang::is_empty(brands)) {
-    rlang::warn(glue::glue("Account {account_code(x)} has no root brands. Ignoring."))
-  }
-
-  query(accounts = account_code(x),
-        brands = brands,
-        timezones = account_timezone(x))
-}
-
-to_query.brandseyer2.query <- function(x) x
 
 #' @export
 print.brandseyer2.query <- function(x, ...) {
@@ -180,4 +169,5 @@ format.brandseyer2.query <- function(x, ...) {
 
   paste(lines, collapse = "\n")
 }
+
 

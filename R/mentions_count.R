@@ -275,7 +275,7 @@ count_mentions.brandseyer2.query <- function(.account, ...,
 
   purrr::map2_df(.account$accounts, .account$timezones, function(code, timezone) {
     on.exit(pb$tick(tokens = list(code = code)))
-    filters <- count_filter(.account, code)
+    filters <- to_count_filter(.account, code)
     if (length(filters) == 1) {
       return(get(code, filters, timezone))
     }

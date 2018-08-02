@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a query for mentions or counts. — query • brandseyer2</title>
+<title>Create a query for mentions or counts — query • brandseyer2</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,11 +30,13 @@
 
 
 
-<meta property="og:title" content="Create a query for mentions or counts. — query" />
+<meta property="og:title" content="Create a query for mentions or counts — query" />
 
 <meta property="og:description" content="query() creates a query to be used for fetching mentions, or
 for counting them. You probably want to avoid using this directly,
-and use one of the query verbs instead, such as filter_mentions()." />
+and use one of the query verbs instead, such as filter_mentions().
+to_query() is a convenient way to create a query object from
+other things, such as an account()." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -63,7 +65,7 @@ and use one of the query verbs instead, such as filter_mentions()." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9010</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9011</span>
       </span>
     </div>
 
@@ -120,7 +122,7 @@ and use one of the query verbs instead, such as filter_mentions()." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a query for mentions or counts.</h1>
+    <h1>Create a query for mentions or counts</h1>
     <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/filter_query.R'><code>R/filter_query.R</code></a></small>
     <div class="hidden name"><code>query.Rd</code></div>
     </div>
@@ -129,7 +131,9 @@ and use one of the query verbs instead, such as filter_mentions()." />
     
     <p><code>query()</code> creates a query to be used for fetching mentions, or
 for counting them. You probably want to avoid using this directly,
-and use one of the query verbs instead, such as <code>filter_mentions()</code>.</p>
+and use one of the query verbs instead, such as <code><a href='filter_mentions.html'>filter_mentions()</a></code>.
+<code><a href='to_query.html'>to_query()</a></code> is a convenient way to create a query object from
+other things, such as an <code><a href='account.html'>account()</a></code>.</p>
     
     </div>
 
@@ -189,12 +193,16 @@ mentions using older versions of the API, or who have no brands altogether.</p>
     
     <p>Various functions can be chained together using the pipe operator as 'verbs'
 in a query sentence.</p><ul>
-<li><p><code>filter_mentions()</code> lets you choose what mentions to count or fetch.</p></li>
-<li><p><code>group_mentions_by()</code> lets you group mentions when counting.</p></li>
-<li><p><code>compare_mentions()</code> lets you count and compare mentions from subfilters.</p></li>
-<li><p><code>with_fields()</code> lets you select extra information fields, such as OTS, or engagement.</p></li>
-<li><p><code>with_order()</code> lets you order the results.</p></li>
+<li><p><code><a href='filter_mentions.html'>filter_mentions()</a></code> lets you choose what mentions to count or fetch.</p></li>
+<li><p><code><a href='group_mentions_by.html'>group_mentions_by()</a></code> lets you group mentions when counting.</p></li>
+<li><p><code><a href='compare_mentions.html'>compare_mentions()</a></code> lets you count and compare mentions from subfilters.</p></li>
+<li><p><code><a href='with_fields.html'>with_fields()</a></code> lets you select extra information fields, such as OTS, or engagement.</p></li>
+<li><p><code><a href='with_order.html'>with_order()</a></code> lets you order the results.</p></li>
 </ul>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>You can test if an object is a <code>query()</code> object using <code><a href='is_query.html'>is_query()</a></code>.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -202,7 +210,7 @@ in a query sentence.</p><ul>
 <span class='fu'>query</span>(<span class='kw'>accounts</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>),
       <span class='kw'>filter</span> <span class='kw'>=</span> <span class='st'>"published inthelast week"</span>,
       <span class='kw'>timezone</span> <span class='kw'>=</span> <span class='st'>"UTC"</span>,
-      <span class='kw'>brands</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='fu'>filter_brand</span>(<span class='fl'>1</span>), <span class='fu'>filter_brand</span>(<span class='fl'>2</span>))
+      <span class='kw'>brands</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='fu'><a href='filter_brand.html'>filter_brand</a></span>(<span class='fl'>1</span>), <span class='fu'><a href='filter_brand.html'>filter_brand</a></span>(<span class='fl'>2</span>))
 )</div><div class='output co'>#&gt; BrandsEye Query
 #&gt;   accounts:	TEST01AA, TEST02AA
 #&gt;   brands:	1, 2
@@ -219,6 +227,8 @@ in a query sentence.</p><ul>
       <li><a href="#details">Details</a></li>
 
       <li><a href="#query-verbs">Query verbs</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

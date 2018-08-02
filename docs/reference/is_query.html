@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fetch topics for an account — account_topics • brandseyer2</title>
+<title>See if an object is a BrandsEyeR query — is_query • brandseyer2</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -21,17 +21,20 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
 
-<meta property="og:title" content="Fetch topics for an account — account_topics" />
+<meta property="og:title" content="See if an object is a BrandsEyeR query — is_query" />
 
-<meta property="og:description" content="Fetches the topics that are used in an account." />
+<meta property="og:description" content="Returns true if and only if the argument is a query() object." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -58,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9000</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9011</span>
       </span>
     </div>
 
@@ -75,6 +78,24 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/cookbook.html">The brandseyer2 Cookbook</a>
+    </li>
+    <li>
+      <a href="../articles/filtering.html">Filtering</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -97,44 +118,31 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fetch topics for an account</h1>
-    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/account_account_topics.R'><code>R/account_account_topics.R</code></a></small>
-    <div class="hidden name"><code>account_topics.Rd</code></div>
+    <h1>See if an object is a BrandsEyeR query</h1>
+    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/filter_is_query.R'><code>R/filter_is_query.R</code></a></small>
+    <div class="hidden name"><code>is_query.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Fetches the topics that are used in an account.</p>
+    <p>Returns true if and only if the argument is a <code><a href='query.html'>query()</a></code> object.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>account_topics</span>(<span class='no'>accounts</span>)
-
-<span class='co'># S3 method for brandseyer2.account</span>
-<span class='fu'>account_topics</span>(<span class='no'>accounts</span>)
-
-<span class='co'># S3 method for list</span>
-<span class='fu'>account_topics</span>(<span class='no'>accounts</span>)</pre>
+    <pre class="usage"><span class='fu'>is_query</span>(<span class='no'>x</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>accounts</th>
-      <td><p>One or more account objects.</p></td>
+      <th>x</th>
+      <td><p>A possible <code><a href='query.html'>query()</a></code> account object.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble of topic information. Includes the name and topic description.</p>
-    
-    <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
-
-    <ul>
-<li><p><code>brandseyer2.account</code>: Get topics for a single account.</p></li>
-<li><p><code>list</code>: Get topics for a list of accounts</p></li>
-</ul>
+    <p>TRUE if this is an account object, otherwise false.</p>
     
 
   </div>
@@ -144,8 +152,6 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#methods-by-class-">Methods (by class)</a></li>
           </ul>
 
   </div>

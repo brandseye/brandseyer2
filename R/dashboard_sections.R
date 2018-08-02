@@ -19,7 +19,7 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' Give section information for a dashboard.
+#' Give section information for a dashboard
 #'
 #' Given a tibble of dashboard information (from, for example, `dashboards()`),
 #' this adds the section information to the tibble.

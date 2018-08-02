@@ -2,7 +2,7 @@
 % Please edit documentation in R/account_list.R
 \name{account_list}
 \alias{account_list}
-\title{List all accounts available to you.}
+\title{List all accounts available to you}
 \usage{
 account_list(includeInactive = FALSE)
 }

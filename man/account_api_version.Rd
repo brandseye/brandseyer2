@@ -2,7 +2,7 @@
 % Please edit documentation in R/account_account_api_version.R
 \name{account_api_version}
 \alias{account_api_version}
-\title{Get the version of the API the account uses.}
+\title{Get the version of the API the account uses}
 \usage{
 account_api_version(account)
 }

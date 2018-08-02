@@ -19,9 +19,9 @@ test_that("Can create an account structure", {
 # -----------------------------------------------
 
 test_that("Can detect if something is an account object", {
-  expect_equal(is.account(v3_account), TRUE)
-  expect_equal(is.account(account("TEST01AA")), TRUE)
-  expect_equal(is.account(1), FALSE)
+  expect_equal(is_account(v3_account), TRUE)
+  expect_equal(is_account(account("TEST01AA")), TRUE)
+  expect_equal(is_account(1), FALSE)
 })
 
 # -----------------------------------------------

@@ -3,7 +3,7 @@
 \name{sections}
 \alias{sections}
 \alias{sections.data.frame}
-\title{Give section information for a dashboard.}
+\title{Give section information for a dashboard}
 \usage{
 sections(x, d, unnest)
 

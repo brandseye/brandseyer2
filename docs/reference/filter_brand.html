@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fetch account phrases — account_phrases • brandseyer2</title>
+<title>Describe a brand — filter_brand • brandseyer2</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -21,18 +21,20 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
 
-<meta property="og:title" content="Fetch account phrases — account_phrases" />
+<meta property="og:title" content="Describe a brand — filter_brand" />
 
-<meta property="og:description" content="Fetches phrase information, returned as a tibble, for the given
-account. All of this information is included in brands" />
+<meta property="og:description" content="Describes a brand, and optionally, its account and name." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -59,7 +61,7 @@ account. All of this information is included in brands" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9000</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9011</span>
       </span>
     </div>
 
@@ -76,6 +78,24 @@ account. All of this information is included in brands" />
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/cookbook.html">The brandseyer2 Cookbook</a>
+    </li>
+    <li>
+      <a href="../articles/filtering.html">Filtering</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -98,60 +118,50 @@ account. All of this information is included in brands" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fetch account phrases</h1>
-    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/account_account_phrases.R'><code>R/account_account_phrases.R</code></a></small>
-    <div class="hidden name"><code>account_phrases.Rd</code></div>
+    <h1>Describe a brand</h1>
+    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/filter_brand.R'><code>R/filter_brand.R</code></a></small>
+    <div class="hidden name"><code>filter_brand.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Fetches phrase information, returned as a tibble, for the given
-account. All of this information is included in <code><a href='brands.html'>brands</a></code></p>
+    <p>Describes a brand, and optionally, its account and name.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>account_phrases</span>(<span class='no'>accounts</span>)
-
-<span class='co'># S3 method for brandseyer2.account</span>
-<span class='fu'>account_phrases</span>(<span class='no'>accounts</span>)
-
-<span class='co'># S3 method for list</span>
-<span class='fu'>account_phrases</span>(<span class='no'>accounts</span>)</pre>
+    <pre class="usage"><span class='fu'>filter_brand</span>(<span class='no'>id</span>, <span class='kw'>code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>accounts</th>
-      <td><p>One or more account objects.</p></td>
+      <th>id</th>
+      <td><p>The brand ID</p></td>
+    </tr>
+    <tr>
+      <th>code</th>
+      <td><p>An account code (optional)</p></td>
+    </tr>
+    <tr>
+      <th>name</th>
+      <td><p>The brand's name (optional)</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble of phrase information.</p>
+    <p>A <code>filter_brand()</code> object.</p>
     
-    <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <ul>
-<li><p><code>brandseyer2.account</code>: Read phrases for only a single account</p></li>
-<li><p><code>list</code>: Create a table of phrases for the list of accounts given</p></li>
-</ul>
+    <div class='dont-index'><p>This is used by <code><a href='query.html'>query()</a></code>.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'>account_phrases</span>()</div><div class='output co'>#&gt; # A tibble: 7 x 6
-#&gt;   account  phrase.id brand.id query      inactive deleted
-#&gt;   &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;lgl&gt;  
-#&gt; 1 TEST01AA         1        1 brand      FALSE    TRUE   
-#&gt; 2 TEST01AA         2        1 your brand FALSE    FALSE  
-#&gt; 3 TEST01AA         3        2 sibling    FALSE    FALSE  
-#&gt; 4 TEST01AA         4        2 oh wow     TRUE     FALSE  
-#&gt; 5 TEST01AA         5        3 niece      FALSE    FALSE  
-#&gt; 6 TEST02AA       101      100 brander    FALSE    FALSE  
-#&gt; 7 TEST02AA       102      100 branded    FALSE    FALSE  </div></pre>
+<span class='fu'>filter_brand</span>(<span class='fl'>1</span>)</div><div class='output co'>#&gt; 1 </div><div class='input'>
+<span class='fu'>filter_brand</span>(<span class='fl'>1</span>, <span class='st'>"TEST01AA"</span>)</div><div class='output co'>#&gt; TEST01AA:1 </div><div class='input'>
+<span class='fu'>filter_brand</span>(<span class='fl'>1</span>, <span class='st'>"TEST01AA"</span>, <span class='st'>"The first brand"</span>)</div><div class='output co'>#&gt; TEST01AA:1[The first brand] </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -160,7 +170,7 @@ account. All of this information is included in <code><a href='brands.html'>bran
       
       <li><a href="#value">Value</a></li>
 
-      <li><a href="#methods-by-class-">Methods (by class)</a></li>
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

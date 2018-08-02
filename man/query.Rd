@@ -2,7 +2,7 @@
 % Please edit documentation in R/filter_query.R
 \name{query}
 \alias{query}
-\title{Create a query for mentions or counts.}
+\title{Create a query for mentions or counts}
 \usage{
 query(accounts = NULL, brands = NULL, timezones = NULL, filter = NULL,
   comparison = NULL, fields = NULL, grouping = NULL, ordering = NULL)
@@ -31,12 +31,16 @@ A query object
 \code{\link[=query]{query()}} creates a query to be used for fetching mentions, or
 for counting them. You probably want to avoid using this directly,
 and use one of the query verbs instead, such as \code{\link[=filter_mentions]{filter_mentions()}}.
+\code{\link[=to_query]{to_query()}} is a convenient way to create a query object from
+other things, such as an \code{\link[=account]{account()}}.
 }
 \details{
 The query object is accepted by \code{\link[=count_mentions]{count_mentions()}} and \code{\link[=mentions]{mentions()}}.
 The advantage of using query and its various verbs is that it handles
 adding root brands to your filter for you, as well as filtering out
 mentions using older versions of the API, or who have no brands altogether.
+
+Of special note, V4 accounts will not be added to a query.
 }
 \section{Query verbs}{
 
@@ -59,4 +63,9 @@ query(accounts = c("TEST01AA", "TEST02AA"),
       timezone = "UTC",
       brands = list(filter_brand(1), filter_brand(2))
 )
+}
+\seealso{
+You can test if an object is a \code{\link[=query]{query()}} object using \code{\link[=is_query]{is_query()}}.
+\code{\link[=to_count_filter]{to_count_filter()}} will allow you to convert a \code{\link[=query]{query()}} to
+a vector of filters appropriate for use on \code{\link[=count_mentions]{count_mentions()}}.
 }

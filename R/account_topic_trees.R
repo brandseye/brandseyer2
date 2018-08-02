@@ -19,7 +19,7 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' List topic trees for an account.
+#' List topic trees for an account
 #'
 #' Returns a tibble of topic trees associated with the account.
 #'

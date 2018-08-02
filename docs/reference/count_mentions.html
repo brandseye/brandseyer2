@@ -32,7 +32,8 @@
 
 <meta property="og:title" content="Count mentions — count_mentions" />
 
-<meta property="og:description" content="Counts mentions, aggregating them in to various data sets." />
+<meta property="og:description" content="Counts mentions, aggregating them in to various data sets.
+See the query() language to conveniently specify what to count." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -61,7 +62,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9010</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9011</span>
       </span>
     </div>
 
@@ -125,7 +126,8 @@
 
     <div class="ref-description">
     
-    <p>Counts mentions, aggregating them in to various data sets.</p>
+    <p>Counts mentions, aggregating them in to various data sets.
+See the <code><a href='query.html'>query()</a></code> language to conveniently specify what to count.</p>
     
     </div>
 
@@ -134,7 +136,16 @@
 <span class='co'># S3 method for brandseyer2.account.v4</span>
 <span class='fu'>count_mentions</span>(<span class='no'>.account</span>, <span class='no'>filter</span>, <span class='no'>...</span>,
   <span class='kw'>groupBy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>select</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>orderBy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tagNamespace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>.envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>())</pre>
+  <span class='kw'>.envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>())
+
+<span class='co'># S3 method for character</span>
+<span class='fu'>count_mentions</span>(<span class='no'>.account</span>, <span class='no'>filter</span>, <span class='no'>...</span>,
+  <span class='kw'>timezone</span> <span class='kw'>=</span> <span class='st'>"Africa/Johannesburg"</span>, <span class='kw'>groupBy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>select</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>orderBy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tagNamespace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='co'># S3 method for brandseyer2.query</span>
+<span class='fu'>count_mentions</span>(<span class='no'>.account</span>, <span class='no'>...</span>, <span class='kw'>tagNamespace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -181,6 +192,18 @@ have <code>tagNamespace = 'topic'</code></p></td>
       <td><p>An optional environment in which to evaluate variables in
 your <code>groupBy</code>, <code>select</code>, and <code>orderBy</code> arguments.</p></td>
     </tr>
+    <tr>
+      <th>timezone</th>
+      <td><p>A character vector indicating the timezone that dates are
+reported in. This should usually be the account's timezone.</p></td>
+    </tr>
+    <tr>
+      <th>.show.progress</th>
+      <td><p>A logical value to indicate whether to show
+a progress bar or not. Defaults to showing the progress bar in
+interactive settings. In addition, the progress bar will only be
+shown when counting mentions for more than three accounts at a time.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -191,6 +214,10 @@ your <code>groupBy</code>, <code>select</code>, and <code>orderBy</code> argumen
 
     <ul>
 <li><p><code>brandseyer2.account.v4</code>: Count mentions in a v4 account.</p></li>
+<li><p><code>character</code>: Allows you to fetch mentions using raw fields. All fields are dynamically
+created (such as groupBy) are, in this version of the function, character
+vectors.</p></li>
+<li><p><code>brandseyer2.query</code>: Count mentions using a <code><a href='query.html'>query()</a></code>.</p></li>
 </ul>
     
 
@@ -205,6 +232,16 @@ your <code>groupBy</code>, <code>select</code>, and <code>orderBy</code> argumen
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>count_mentions</span>(<span class='st'>"published inthelast year and brandisorchildof 1"</span>, <span class='kw'>groupBy</span> <span class='kw'>=</span> <span class='no'>published</span>)
 
+<span class='co'># }</span><div class='input'>
+</div><span class='co'># NOT RUN {</span>
+  <span class='fu'>count_mentions</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"published inthelast week"</span>, <span class='kw'>groupBy</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"published"</span>))
+<span class='co'># }</span><div class='input'>
+
+</div><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='filter_mentions.html'>filter_mentions</a></span>(<span class='st'>"published inthelast week"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='group_mentions_by.html'>group_mentions_by</a></span>(<span class='no'>published</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>count_mentions</span>()
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

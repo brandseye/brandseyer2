@@ -2,7 +2,7 @@
 % Please edit documentation in R/filter_language.R
 \name{with_order}
 \alias{with_order}
-\title{Order results from fetching or counting mentions.}
+\title{Order results from fetching or counting mentions}
 \usage{
 with_order(.account, ..., .envir)
 }

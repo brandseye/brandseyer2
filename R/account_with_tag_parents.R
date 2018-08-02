@@ -19,7 +19,7 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' Determine the parent of tags given a particular tree.
+#' Determine the parent of tags given a particular tree
 #'
 #' Adds a column called `parent` to a table. This is the ID
 #' of a tag's parent tag. Since tags can have multiple parents,

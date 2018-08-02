@@ -43,6 +43,9 @@
     <loc>https://brandseye.github.io/brandseyer2//reference/check_errors.html</loc>
   </url>
   <url>
+    <loc>https://brandseye.github.io/brandseyer2//reference/compare_mentions.html</loc>
+  </url>
+  <url>
     <loc>https://brandseye.github.io/brandseyer2//reference/confirm.html</loc>
   </url>
   <url>
@@ -55,13 +58,25 @@
     <loc>https://brandseye.github.io/brandseyer2//reference/dashboards.html</loc>
   </url>
   <url>
+    <loc>https://brandseye.github.io/brandseyer2//reference/filter_brand.html</loc>
+  </url>
+  <url>
+    <loc>https://brandseye.github.io/brandseyer2//reference/filter_mentions.html</loc>
+  </url>
+  <url>
     <loc>https://brandseye.github.io/brandseyer2//reference/getUserImpl.html</loc>
   </url>
   <url>
     <loc>https://brandseye.github.io/brandseyer2//reference/get_name_list.html</loc>
   </url>
   <url>
-    <loc>https://brandseye.github.io/brandseyer2//reference/is.account.html</loc>
+    <loc>https://brandseye.github.io/brandseyer2//reference/group_mentions_by.html</loc>
+  </url>
+  <url>
+    <loc>https://brandseye.github.io/brandseyer2//reference/is_account.html</loc>
+  </url>
+  <url>
+    <loc>https://brandseye.github.io/brandseyer2//reference/is_query.html</loc>
   </url>
   <url>
     <loc>https://brandseye.github.io/brandseyer2//reference/list_to_v4_mentions.html</loc>
@@ -80,6 +95,9 @@
   </url>
   <url>
     <loc>https://brandseye.github.io/brandseyer2//reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>https://brandseye.github.io/brandseyer2//reference/query.html</loc>
   </url>
   <url>
     <loc>https://brandseye.github.io/brandseyer2//reference/read_account.html</loc>
@@ -106,6 +124,9 @@
     <loc>https://brandseye.github.io/brandseyer2//reference/tags.html</loc>
   </url>
   <url>
+    <loc>https://brandseye.github.io/brandseyer2//reference/to_query.html</loc>
+  </url>
+  <url>
     <loc>https://brandseye.github.io/brandseyer2//reference/topic_trees.html</loc>
   </url>
   <url>
@@ -119,6 +140,12 @@
   </url>
   <url>
     <loc>https://brandseye.github.io/brandseyer2//reference/whoami.html</loc>
+  </url>
+  <url>
+    <loc>https://brandseye.github.io/brandseyer2//reference/with_fields.html</loc>
+  </url>
+  <url>
+    <loc>https://brandseye.github.io/brandseyer2//reference/with_order.html</loc>
   </url>
   <url>
     <loc>https://brandseye.github.io/brandseyer2//reference/with_tag_parents.html</loc>

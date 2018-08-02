@@ -81,7 +81,7 @@ filter_mentions.brandseyer2.query <- function(.account, filter) {
 #----------------------------------------------------------
 # Comparing mentions
 
-#' Compare mentions using sub-filters when counting them.
+#' Compare mentions using sub-filters when counting them
 #'
 #' [compare_mentions()] lets you group mentions together using
 #' sub-filters when counting them using [count_mentions()]. This
@@ -271,7 +271,7 @@ with_fields_impl <- function(query, fields) {
 #----------------------------------------------------------
 # ordering fields
 
-#' Order results from fetching or counting mentions.
+#' Order results from fetching or counting mentions
 #'
 #' [with_order()] allows you to specify the order of returned
 #' mentions or the order of counted mentions. This does not

@@ -19,21 +19,39 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' Get the version of the API the account uses
+#' Create a query object from another object
 #'
-#' There are currently only two versions, V3 and V4. This library
-#' supports only the V4 format. See the originaly brandseyer library
-#' if you would like to read data from a V3 account.
+#' Creates a [query()] object from another object. This
+#' can be a convenient way to create queries.
 #'
-#' @param account The account object.
+#' @param x An object to turn in to a [query()] object.
 #'
-#' @return A string: either V3 or V4.
+#' @return A query object
 #' @export
-account_api_version <- function(account) {
-  UseMethod("account_api_version")
+#'
+#' @examples
+#'
+#' to_query(account("TEST01AA"))
+to_query <- function(x) {
+  UseMethod("to_query")
 }
 
 #' @export
-account_api_version.brandseyer2.account <- function(account) {
-  account$storage
+to_query.brandseyer2.account <- function(x) {
+  if (account_api_version(x) != "V4") {
+    rlang::warn(glue::glue("Account {account_code(x)} isn't V4. Ignoring."))
+    return(query())
+  }
+
+  brands <- filter_brand_from_df(account_code(x), x %>% root_brands())
+  if (rlang::is_empty(brands)) {
+    rlang::warn(glue::glue("Account {account_code(x)} has no root brands. Ignoring."))
+  }
+
+  query(accounts = account_code(x),
+        brands = brands,
+        timezones = account_timezone(x))
 }
+
+#' @export
+to_query.brandseyer2.query <- function(x) x

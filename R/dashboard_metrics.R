@@ -19,7 +19,7 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' See metrics in a dashboard.
+#' See metrics in a dashboard
 #'
 #' This provides easy access to metric information stored in the metric
 #' column of a tibble returned by [sections()] and [dashboards()]. It

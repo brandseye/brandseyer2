@@ -19,21 +19,14 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' Get the version of the API the account uses
+#' See if an object is a BrandsEyeR query
 #'
-#' There are currently only two versions, V3 and V4. This library
-#' supports only the V4 format. See the originaly brandseyer library
-#' if you would like to read data from a V3 account.
+#' Returns true if and only if the argument is a [query()] object.
 #'
-#' @param account The account object.
+#' @param x A possible [query()] account object.
 #'
-#' @return A string: either V3 or V4.
+#' @return TRUE if this is an account object, otherwise false.
 #' @export
-account_api_version <- function(account) {
-  UseMethod("account_api_version")
-}
-
-#' @export
-account_api_version.brandseyer2.account <- function(account) {
-  account$storage
+is_query <- function(x) {
+  inherits(x, "brandseyer2.query")
 }

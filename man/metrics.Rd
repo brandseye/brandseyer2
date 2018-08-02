@@ -3,7 +3,7 @@
 \name{metrics}
 \alias{metrics}
 \alias{metrics.data.frame}
-\title{See metrics in a dashboard.}
+\title{See metrics in a dashboard}
 \usage{
 metrics(x, m, ...)
 

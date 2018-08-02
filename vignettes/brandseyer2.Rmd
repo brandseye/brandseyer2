@@ -172,7 +172,7 @@ These tibbles can become a bit tight to display all of the data that you may wan
 If you are using RStudio, you can always pipe the results in to View(). Otherwise, you can 
 subselect for the data you want using standard dplyr[^1] functions.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 # Find brand IDs and names
 library(dplyr)
 
@@ -220,6 +220,171 @@ account("TEST01AA") %>%
   mentions(filter = "published inthelast week")
 ```
 
+# Counting mentions
+
+Mentions can be counted. The simplest way of doing this is
+with the `count_mentions()` function, and using a query language
+designed to do this.
+
+Here is a simple query to count all mentions published the last week:
+
+```{r, eval = FALSE}
+account("QUIR01BA") %>% 
+  filter_mentions("published inthelast week") %>% 
+  count_mentions()
+#> # A tibble: 1 x 1
+#>   mentionCount
+#>          <int>
+#> 1         8907
+```
+
+More interestingly, we can count just the relevant mentions from the
+last week:
+
+```{r, eval = FALSE}
+account("QUIR01BA") %>% 
+  filter_mentions("published inthelast week and relevancy isnt irrelevant") %>% 
+  count_mentions()
+#> # A tibble: 1 x 1
+#>   mentionCount
+#>          <int>
+#> 1         7918
+```
+
+If you would like to know more about filtering in particular, see our 
+[Filtering](filtering.html) vignette.
+
+Now, counting mentions becomes interesting when we begin to do things such as
+grouping mentions. For example, we can group mentions by the published date.
+
+```{r, eval = FALSE}
+account("QUIR01BA") %>% 
+  filter_mentions("published inthelast week and relevancy isnt irrelevant") %>% 
+  group_mentions_by(published) %>% 
+  count_mentions()
+#> # A tibble: 8 x 2
+#>   published           mentionCount
+#>   <dttm>                     <int>
+#> 1 2018-07-26 00:00:00         1410
+#> 2 2018-07-27 00:00:00         1067
+#> 3 2018-07-28 00:00:00          528
+#> 4 2018-07-29 00:00:00          655
+#> 5 2018-07-30 00:00:00         1389
+#> 6 2018-07-31 00:00:00         1214
+#> 7 2018-08-01 00:00:00         1124
+#> 8 2018-08-02 00:00:00          532
+```
+
+This is something that you could potentially chart, using
+a library such as [ggplot2](http://ggplot2.org/).
+
+```{r echo=FALSE, fig.cap="A plot of data pulled from the api", message=FALSE, warning=FALSE, fig.width=5}
+library(lubridate)
+library(ggplot2)
+
+data <- tibble::tribble(
+  ~published,           ~mentionCount,
+  ymd(20180726),         1410,
+  ymd(20180727),         1067,
+  ymd(20180728),          528,
+  ymd(20180729),          655,
+  ymd(20180730),         1389,
+  ymd(20180731),         1214,
+  ymd(20180801),         1124,
+  ymd(20180802),          532
+)
+
+ggplot(data, aes(x = published, y = mentionCount)) +
+  geom_bar(stat = "identity") +
+  labs(x = "Published date", y = "Mention volume")
+
+```
+
+One thing to take note of is that at no point have we specified
+what brands we want to use in the filter. This happens automatically:
+the query language selects all the root brands. You can easily examine
+this by leaving out the final step in the pipe chain above, like so:
+
+```{r}
+account("QUIR01BA") %>% 
+  filter_mentions("published inthelast week and relevancy isnt irrelevant") %>% 
+  group_mentions_by(published)
+```
+
+If you would like to see the filter being produced, you can do so using the
+`to_count_filter()` method. Let's do this using an account with fewer root brands:
+
+```{r}
+# Let's see what the query looks like
+account("TEST01AA") %>% 
+  filter_mentions("published inthelast week and relevancy isnt irrelevant") %>% 
+  group_mentions_by(published)
+
+# And this is the filter
+account("TEST01AA") %>% 
+  filter_mentions("published inthelast week and relevancy isnt irrelevant") %>% 
+  group_mentions_by(published) %>% 
+  to_count_filter("TEST01AA")
+```
+
+Notice that the _group by_ doesn't occur in the filter: this is additional data
+sent to the API when we request the data. This full filter is, however, sent to 
+the API. It's also an appropriate filter for use in Analyse or anywhere else
+that a filter is accepted.
+
+A useful thing that the filter allows us to do is to count data across multiple
+accounts at a time. For example, you across two specific brands:
+
+```{r, eval = FALSE}
+account("QUIR01BA", "BEUB03AA") %>% 
+  filter_mentions("published inthelast week and relevancy isnt irrelevant") %>% 
+  count_mentions()
+#> # A tibble: 2 x 2
+#>   account  mentionCount
+#>   <chr>           <int>
+#> 1 QUIR01BA         7951
+#> 2 BEUB03AA         8466
+```
+
+Again, you can group by any grouping field that you would want. 
+
+You can also count across all accounts that are available to you:
+
+```{r, eval = FALSE}
+account_list() %>% 
+  account() %>% 
+  filter_mentions("published inthelast week and relevancy isnt irrelevant") %>% 
+  count_mentions()
+#> # A tibble: 4 x 2
+#>   account  mentionCount
+#>   <chr>           <int>
+#> 1 QUIR01BA         7951
+#> 2 BEUB03AA         8466
+#> 3 TEST01AA         1234
+#> 4 TEST02AA         1234
+```
+
+A very useful thing that the query language provides us, is the ability to
+compare sub-groups of mentions using sub-filters. For example, if we want
+to find mentions inside and outside of Africa, we could so as follows:
+
+```{r, eval = FALSE}
+account("QUIR01BA", "BEUB03AA") %>% 
+  filter_mentions("published inthelast week and relevancy isnt irrelevant") %>% 
+  compare_mentions(africa = "location is 'ZA'", elsewhere = "location isnt 'ZA'") %>% 
+  count_mentions()
+#> # A tibble: 4 x 3
+#>   account  comparison mentionCount
+#>   <chr>    <chr>             <int>
+#> 1 QUIR01BA africa              101
+#> 2 QUIR01BA elsewhere          7865
+#> 3 BEUB03AA africa             8226
+#> 4 BEUB03AA elsewhere           252
+```
+
+We have provided two seperate sub-filters, one labeled 'africa', one labeled 'elsewhere'. 
+Notice that these labels have now appeared in the result table, once for each account
+that we are querying.
 
 
 [^1]: [dplyr](https://dplyr.tidyverse.org/) is a great library for working with and manipulating your data sets. brandseyer2 is built around some patterns that you will find in dplyr itself.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/filter_language.R
 \name{compare_mentions}
 \alias{compare_mentions}
-\title{Compare mentions using sub-filters when counting them.}
+\title{Compare mentions using sub-filters when counting them}
 \usage{
 compare_mentions(.account, ...)
 }

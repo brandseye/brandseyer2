@@ -19,7 +19,7 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' Find root brands in an account.
+#' Find root brands in an account
 #'
 #' Root brands are the brands around which we collect mentions, and
 #' determine sentiment. Sentiment is always towards the brand.

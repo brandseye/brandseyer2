@@ -21,7 +21,28 @@
 
 
 # returns NULL if there are no brands.
-count_filter <- function(query, code) {
+
+
+#' Converts a query to a vector of filters for counting by.
+#'
+#' [to_count_filter()] converts a [query()] to a vector
+#' of filters appropriate for counting by. An account code
+#' is specified to choose a filter for a specific account.
+#' Each filter is required to perform all of the count operations
+#' being requested by the query for an individual account.
+#'
+#' @param query A [query()] object.
+#' @param code  The account we want filters for.
+#'
+#' @return A vector of characters.
+#' @export
+#'
+#' @examples
+#'
+#' account("TEST01AA") %>%
+#'   filter_mentions("published inthelast week") %>%
+#'   to_count_filter("TEST01AA")
+to_count_filter <- function(query, code) {
   if (!(code %in% query$accounts)) return(NULL)
   assert_that(is.string(query$filter))
 

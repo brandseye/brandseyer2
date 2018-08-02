@@ -43,7 +43,7 @@ test01aa_data <- list(
   ),
   brands = list(
     list(
-      id = 1,
+      id = as.integer(1),
       name = "Your Brand Here",
       tier = "ESSENTIALS",
       crowdSamplePercentage = 0,
@@ -62,7 +62,7 @@ test01aa_data <- list(
       )
     ),
     list(
-      id = 2,
+      id = as.integer(2),
       name = "Sibling Brand",
       mentionFilter = "location is 'ZA'",
       tier = "TOPICS",
@@ -84,7 +84,7 @@ test01aa_data <- list(
       ),
       children = list(
         list(
-          id = 3,
+          id = as.integer(3),
           name = "Niece Brand",
           phrases = list(
             list(
@@ -96,7 +96,7 @@ test01aa_data <- list(
       )
     ),
     list(
-      id = 5,
+      id = as.integer(5),
       name = "So deleted",
       tier = "ESSENTIALS",
       crowdSamplePercentage = 0.8,
@@ -116,7 +116,7 @@ test01aa_data <- list(
       )
     ),
     list(
-      id = 6,
+      id = as.integer(6),
       name = "Brand of Christmas Past",
       tier = "ESSENTIALS",
       crowdSamplePercentage = 0.8,

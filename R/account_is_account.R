@@ -19,12 +19,14 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#' See if an object is a BrandsEyeR account object.
+#' See if an object is a account object
 #'
-#' @param x A possible BrandsEyeR account object.
+#' Returns true if and only if the argument is an [account()] object.
+#'
+#' @param x A possible [account()] object.
 #'
 #' @return TRUE if this is an account object, otherwise false.
 #' @export
-is.account <- function(x) {
+is_account <- function(x) {
   inherits(x, "brandseyer2.account")
 }

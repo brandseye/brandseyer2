@@ -58,7 +58,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9010</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9011</span>
       </span>
     </div>
 
@@ -206,9 +206,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="is.account.html">is.account()</a></code> </p>
+          <p><code><a href="is_account.html">is_account()</a></code> </p>
         </td>
-        <td><p>See if an object is a BrandsEyeR account object.</p></td>
+        <td><p>See if an object is a account object</p></td>
       </tr><tr>
         
         <td>
@@ -220,7 +220,7 @@
         <td>
           <p><code><a href="root_brands.html">root_brands()</a></code> </p>
         </td>
-        <td><p>Find root brands in an account.</p></td>
+        <td><p>Find root brands in an account</p></td>
       </tr><tr>
         
         <td>
@@ -244,7 +244,7 @@
         <td>
           <p><code><a href="topic_trees.html">topic_trees()</a></code> </p>
         </td>
-        <td><p>List topic trees for an account.</p></td>
+        <td><p>List topic trees for an account</p></td>
       </tr><tr>
         
         <td>
@@ -256,7 +256,7 @@
         <td>
           <p><code><a href="with_tag_parents.html">with_tag_parents()</a></code> </p>
         </td>
-        <td><p>Determine the parent of tags given a particular tree.</p></td>
+        <td><p>Determine the parent of tags given a particular tree</p></td>
       </tr><tr>
         
         <td>
@@ -274,7 +274,7 @@
         <td>
           <p><code><a href="account_api_version.html">account_api_version()</a></code> </p>
         </td>
-        <td><p>Get the version of the API the account uses.</p></td>
+        <td><p>Get the version of the API the account uses</p></td>
       </tr><tr>
         
         <td>
@@ -286,7 +286,7 @@
         <td>
           <p><code><a href="account_list.html">account_list()</a></code> </p>
         </td>
-        <td><p>List all accounts available to you.</p></td>
+        <td><p>List all accounts available to you</p></td>
       </tr><tr>
         
         <td>
@@ -365,6 +365,62 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
+          <h2 id="section-a-query-language-filtering-and-grouping-your-mentions" class="hasAnchor"><a href="#section-a-query-language-filtering-and-grouping-your-mentions" class="anchor"></a>A query language: filtering and grouping your mentions</h2>
+          <p class="section-desc"><p>Often, when counting or fetching mentions, you may need to specify a filter, or the brands in the filter, and so on. The query language lets you easily define these things, as well as avoid specify brands in each and every filter. The <a href="../articles/brandseyer2.html">Get started</a> guide discusses this in more detail.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="query.html">query()</a></code> </p>
+        </td>
+        <td><p>Create a query for mentions or counts</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="filter_mentions.html">filter_mentions()</a></code> </p>
+        </td>
+        <td><p>Filter for only specific mentions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="group_mentions_by.html">group_mentions_by()</a></code> </p>
+        </td>
+        <td><p>Group mentions by shared criteria</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="compare_mentions.html">compare_mentions()</a></code> </p>
+        </td>
+        <td><p>Compare mentions using sub-filters when counting them</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="with_fields.html">with_fields()</a></code> </p>
+        </td>
+        <td><p>Select extra data when fetching or counting mentions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="with_order.html">with_order()</a></code> </p>
+        </td>
+        <td><p>Order results from fetching or counting mentions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="is_query.html">is_query()</a></code> </p>
+        </td>
+        <td><p>See if an object is a BrandsEyeR query</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="to_query.html">to_query()</a></code> </p>
+        </td>
+        <td><p>Create a query object from another object</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
           <h2 id="section-account-dashboards" class="hasAnchor"><a href="#section-account-dashboards" class="anchor"></a>Account dashboards</h2>
           <p class="section-desc"><p>In <a href="https://analyse.brandseye.com">Analyse</a>, BrandsEye’s analysis tool, people can set up dashboards to query our data. We have various functions that help you to read data from the dashboards, their various sub-sections, an the metrics that they contain.</p></p>
         </th>
@@ -380,13 +436,13 @@
         <td>
           <p><code><a href="sections.html">sections()</a></code> </p>
         </td>
-        <td><p>Give section information for a dashboard.</p></td>
+        <td><p>Give section information for a dashboard</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="metrics.html">metrics()</a></code> </p>
         </td>
-        <td><p>See metrics in a dashboard.</p></td>
+        <td><p>See metrics in a dashboard</p></td>
       </tr>
     </tbody>
     </table>
@@ -399,6 +455,7 @@
       <li><a href="#section-authenticating">Authenticating</a></li>
       <li><a href="#section-accounts">Accounts</a></li>
       <li><a href="#section-accessing-mentions">Accessing mentions</a></li>
+      <li><a href="#section-a-query-language-filtering-and-grouping-your-mentions">A query language: filtering and grouping your mentions</a></li>
       <li><a href="#section-account-dashboards">Account dashboards</a></li>
     </ul>
   </div>

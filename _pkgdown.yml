@@ -34,7 +34,7 @@ reference:
       that you are tracking, and the tags and topics in each account.
     contents:
       - account
-      - is.account
+      - is_account
       - brands
       - root_brands
       - phrases
@@ -66,6 +66,22 @@ reference:
       - count_mentions
       - update_mentions
       - starts_with("mentions_")
+  - title: "A query language: filtering and grouping your mentions"
+    desc: >
+      Often, when counting or fetching mentions, you may need to specify
+      a filter, or the brands in the filter, and so on. The query language
+      lets you easily define these things, as well as avoid specify brands
+      in each and every filter. The [Get started](../articles/brandseyer2.html)
+      guide discusses this in more detail.
+    contents:
+      - query
+      - filter_mentions
+      - group_mentions_by
+      - compare_mentions
+      - with_fields
+      - with_order
+      - is_query
+      - to_query
   - title: "Account dashboards"
     desc: >
       In [Analyse](https://analyse.brandseye.com), BrandsEye's analysis tool,

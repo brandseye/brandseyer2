@@ -5,7 +5,7 @@
 \alias{root_brands.data.frame}
 \alias{root_brands.brandseyer2.account}
 \alias{root_brands.list}
-\title{Find root brands in an account.}
+\title{Find root brands in an account}
 \usage{
 root_brands(x, includeDeleted, includeArchived, short)
 

@@ -2,6 +2,7 @@
 
 * Added `with_tag_parents()` to provide parent information to tags.
 * `account()` can now load account information from a data.frame.
+* `account()` now shows a progress bar when interactive. 
 * `account()` can now fetch accounts from a data.frame. 
 * Much debugging of how `filter_mentions()` handles multiple 
   accounts, some with no brands.

@@ -111,12 +111,12 @@ account.character <- function(codes, ..., .show.progress = interactive()) {
 #' should have an `account` column holding the account's code.
 #'
 #' @export
-account.data.frame <- function(codes, ...) {
+account.data.frame <- function(codes, ..., .show.progress = interactive()) {
   assert_that(codes %has_name% "account",
               msg = "No `account` column in data.frame")
 
   codes$account %>%
-    account()
+    account(.show.progress = .show.progress)
 }
 
 #' @describeIn account
@@ -124,9 +124,9 @@ account.data.frame <- function(codes, ...) {
 #' Get account information from the list of accounts available to from [account_list()]
 #'
 #' @export
-account.brandseyer2.account_list <- function(codes, ...) {
+account.brandseyer2.account_list <- function(codes, ..., .show.progress = interactive()) {
   codes <- c(codes, ...)
-  account(codes$account)
+  account(codes$account, .show.progress = .show.progress)
 }
 
 #' @export

@@ -163,6 +163,41 @@ with_fields_impl <- function(query, fields) {
 }
 
 #----------------------------------------------------------
+# ordering fields
+
+with_order <- function(.account, ..., .envir) {
+  UseMethod("with_order")
+}
+
+with_order.brandseyer2.account <- function(.account, ..., .envir = parent.frame()) {
+  fields <- get_name_list(deparse(substitute(c(...))), env = .envir)
+
+  .account %>%
+    to_query %>%
+    with_order_impl(fields)
+}
+
+with_order.list <- function(.account, ..., .envir = parent.frame()) {
+  fields <- get_name_list(deparse(substitute(c(...))), env = .envir)
+  .account %>%
+    filter_and_warn_v4() %>%
+    map(to_query) %>%
+    purrr::reduce(merge_query) %>%
+    with_order_impl(fields)
+}
+
+with_order.brandseyer2.query <- function(.account, ..., .envir = parent.frame()) {
+  fields <- get_name_list(deparse(substitute(c(...))), env = .envir)
+  with_order_impl(.account, fields)
+}
+
+with_order_impl <- function(query, fields) {
+  query <- copy_query(query)
+  query$ordering <- fields
+  query
+}
+
+#-------------------------------------------------------------
 # Utilities
 
 # This filters out accounts that we can't query on,

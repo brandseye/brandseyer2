@@ -305,10 +305,16 @@ what brands we want to use in the filter. This happens automatically:
 the query language selects all the root brands. You can easily examine
 this by leaving out the final step in the pipe chain above, like so:
 
-```{r}
+```{r, eval = FALSE}
 account("QUIR01BA") %>% 
   filter_mentions("published inthelast week and relevancy isnt irrelevant") %>% 
   group_mentions_by(published)
+#> BrandsEye Query
+#>   accounts:  QUIR01BA
+#>   brands:    35 brands selected
+#>   timezones: Africa/Johannesburg
+#>   filter:    published inthelast week and relevancy isnt irrelevant
+#>   grouping:  published
 ```
 
 If you would like to see the filter being produced, you can do so using the

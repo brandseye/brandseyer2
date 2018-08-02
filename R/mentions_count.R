@@ -200,7 +200,8 @@ count_mentions.character <- function(.account,
 
 
 count_mentions.brandseyer2.query <- function(.account, ...,
-                                             tagNamespace = NULL) {
+                                             tagNamespace = NULL,
+                                             .show.progress = interactive()) {
 
   get <- function(code, filter, timezone, comparison = NULL) {
     results <- count_mentions(code,
@@ -223,7 +224,18 @@ count_mentions.brandseyer2.query <- function(.account, ...,
     results
   }
 
+  pb <- list(tick = function(...) {})
+  if (length(.account$accounts) > 3 && .show.progress) {
+    pb <- progress::progress_bar$new(
+      format = "  counting :code [:bar] :percent eta: :eta",
+      total = length(.account$accounts)
+    )
+  }
+
+  pb$tick(0, tokens = list(code = "starting"))
+
   purrr::map2_df(.account$accounts, .account$timezones, function(code, timezone) {
+    on.exit(pb$tick(tokens = list(code = code)))
     filters <- count_filter(.account, code)
     if (length(filters) == 1) {
       return(get(code, filters, timezone))

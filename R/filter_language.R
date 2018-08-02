@@ -29,10 +29,9 @@ filter_mentions <- function(.account, filter) {
 filter_mentions.brandseyer2.account <- function(.account, filter) {
   assert_that(is.string(filter))
 
-  query(accounts = account_code(.account),
-        brands = filter_brand_from_df(account_code(.account), .account %>% root_brands()),
-        timezones = account_timezone(.account),
-        filter = filter)
+  q <- to_query(.account)
+  q$filter <- filter
+  q
 }
 
 filter_mentions.list <- function(.account, filter) {
@@ -43,6 +42,7 @@ filter_mentions.list <- function(.account, filter) {
     purrr::reduce(merge_query)
 }
 
+# Possibly bad, as doesn't check if an account is V4.
 filter_mentions.character <- function(.account, filter) {
   assert_that(is.string(filter))
 
@@ -82,9 +82,9 @@ compare_mentions.character <- function(.account, ...) {
   assert_that(length(comparison) >= 1, msg = "No comparison filters supplied")
   assert_that(all(map_lgl(comparison, is.string)), msg = "Comparison filters must be strings")
 
-  query(accounts = .account,
-        timezones = account_timezone(.account),
-        comparison = comparison)
+  q <- to_query(.account)
+  q$comparison <- comparison
+  q
 }
 
 compare_mentions.brandseyer2.query <- function(.account, ...) {

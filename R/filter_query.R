@@ -19,7 +19,7 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-query <- function(accounts = accounts,
+query <- function(accounts = NULL,
                   brands = NULL,
                   timezones = NULL,
                   filter = NULL,
@@ -64,6 +64,28 @@ merge_query <- function(lhs, rhs) {
     ordering = lhs$ordering
   )
 }
+
+to_query <- function(x) {
+  UseMethod("to_query")
+}
+
+to_query.brandseyer2.account <- function(x) {
+  if (account_api_version(x) != "V4") {
+    rlang::warn(glue::glue("Account {account_code(x)} isn't V4."))
+    return(query())
+  }
+
+  brands <- filter_brand_from_df(account_code(x), x %>% root_brands())
+  if (rlang::is_empty(brands)) {
+    rlang::warn(glue::glue("Account {account_code(x)} has no root brands."))
+  }
+
+  query(accounts = account_code(x),
+        brands = brands,
+        timezones = account_timezone(x))
+}
+
+to_query.brandseyer2.query <- function(x) x
 
 
 print.brandseyer2.query <- function(x, ...) {

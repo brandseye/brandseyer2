@@ -41,6 +41,14 @@ test_that("Can create a query object from an account", {
   expect_equal(is_query("bob"), FALSE)
 })
 
+test_that("Query for a V3 account is null", {
+  expect_warning(to_query(account("TEST02AA")), regexp = "V4")
+  q <- suppressWarnings(to_query(account("TEST02AA")))
+  expect_equal(q$accounts, NULL)
+  expect_equal(q$brands, NULL)
+  expect_equal(q$timezone, NULL)
+})
+
 test_that("Can filter a query", {
   q <- to_query(account("TEST01AA")) %>% filter_mentions("test")
   expect_equal(q$filter, "test")

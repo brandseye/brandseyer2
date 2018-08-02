@@ -19,6 +19,26 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#' Describe a brand
+#'
+#' Describes a brand, and optionally, its account and name.
+#'
+#' @param id   The brand ID
+#' @param code An account code (optional)
+#' @param name The brand's name (optional)
+#'
+#' @return A [filter_brand()] object.
+#' @export
+#'
+#' @seealso This is used by [query()].
+#'
+#' @examples
+#'
+#' filter_brand(1)
+#'
+#' filter_brand(1, "TEST01AA")
+#'
+#' filter_brand(1, "TEST01AA", "The first brand")
 filter_brand <- function(id, code = NULL, name = NULL) {
   assert_that(assertthat::is.count(id))
 
@@ -41,7 +61,7 @@ filter_brand_from_df <- function(account, df) {
     .$brand
 }
 
-
+#' @export
 format.brandseyer2.brand <- function(x, colour = TRUE, ...) {
   code <- if (is.null(x$code)) "" else glue::glue("{x$code}:")
   name <- if (is.null(x$name)) "" else glue::glue("[{x$name}]")
@@ -52,6 +72,7 @@ format.brandseyer2.brand <- function(x, colour = TRUE, ...) {
   glue::glue("{code}{x$id}{name}")
 }
 
+#' @export
 print.brandseyer2.brand <- function(x, ...) {
   cat(format(x), "\n")
 }

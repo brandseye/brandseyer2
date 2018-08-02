@@ -22,6 +22,7 @@
 #' Count mentions
 #'
 #' Counts mentions, aggregating them in to various data sets.
+#' See the [query()] language to conveniently specify what to count.
 #'
 #' @param .account   An account to read from
 #' @param ...        Further arguments for other methods
@@ -91,7 +92,22 @@ count_mentions.brandseyer2.account.v4 <- function(.account,
 
 
 
-
+#' @describeIn count_mentions
+#'
+#' Allows you to fetch mentions using raw fields. All fields are dynamically
+#' created (such as groupBy) are, in this version of the function, character
+#' vectors.
+#'
+#' @param timezone A character vector indicating the timezone that dates are
+#'        reported in. This should usually be the account's timezone.
+#'
+#' @examples
+#'
+#' \dontrun{
+#'   count_mentions("TEST01AA", "published inthelast week", groupBy = c("published"))
+#' }
+#'
+#' @export
 count_mentions.character <- function(.account,
                                      filter,
                                      ...,
@@ -194,11 +210,24 @@ count_mentions.character <- function(.account,
 }
 
 
-
-
-
-
-
+#' @describeIn count_mentions
+#'
+#' Count mentions using a [query()].
+#'
+#' @param .show.progress A logical value to indicate whether to show
+#'        a progress bar or not. Defaults to showing the progress bar in
+#'        interactive settings. In addition, the progress bar will only be
+#'        shown when counting mentions for more than three accounts at a time.
+#' @export
+#'
+#' @examples
+#'
+#' \dontrun{
+#' account("TEST01AA", "TEST02AA") %>%
+#'   filter_mentions("published inthelast week") %>%
+#'   group_mentions_by(published) %>%
+#'   count_mentions()
+#' }
 count_mentions.brandseyer2.query <- function(.account, ...,
                                              tagNamespace = NULL,
                                              .show.progress = interactive()) {

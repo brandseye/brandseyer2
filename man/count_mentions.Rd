@@ -3,6 +3,8 @@
 \name{count_mentions}
 \alias{count_mentions}
 \alias{count_mentions.brandseyer2.account.v4}
+\alias{count_mentions.character}
+\alias{count_mentions.brandseyer2.query}
 \title{Count mentions}
 \usage{
 count_mentions(.account, ...)
@@ -10,6 +12,13 @@ count_mentions(.account, ...)
 \method{count_mentions}{brandseyer2.account.v4}(.account, filter, ...,
   groupBy = NULL, select = NULL, orderBy = NULL, tagNamespace = NULL,
   .envir = parent.frame())
+
+\method{count_mentions}{character}(.account, filter, ...,
+  timezone = "Africa/Johannesburg", groupBy = NULL, select = NULL,
+  orderBy = NULL, tagNamespace = NULL)
+
+\method{count_mentions}{brandseyer2.query}(.account, ..., tagNamespace = NULL,
+  .show.progress = interactive())
 }
 \arguments{
 \item{.account}{An account to read from}
@@ -37,16 +46,31 @@ have \code{tagNamespace = 'topic'}}
 
 \item{.envir}{An optional environment in which to evaluate variables in
 your \code{groupBy}, \code{select}, and \code{orderBy} arguments.}
+
+\item{timezone}{A character vector indicating the timezone that dates are
+reported in. This should usually be the account's timezone.}
+
+\item{.show.progress}{A logical value to indicate whether to show
+a progress bar or not. Defaults to showing the progress bar in
+interactive settings. In addition, the progress bar will only be
+shown when counting mentions for more than three accounts at a time.}
 }
 \value{
 A tibble of data.
 }
 \description{
 Counts mentions, aggregating them in to various data sets.
+See the \code{\link[=query]{query()}} language to conveniently specify what to count.
 }
 \section{Methods (by class)}{
 \itemize{
 \item \code{brandseyer2.account.v4}: Count mentions in a v4 account.
+
+\item \code{character}: Allows you to fetch mentions using raw fields. All fields are dynamically
+created (such as groupBy) are, in this version of the function, character
+vectors.
+
+\item \code{brandseyer2.query}: Count mentions using a \code{\link[=query]{query()}}.
 }}
 
 \examples{
@@ -61,5 +85,17 @@ account("TEST01AA") \%>\%
 account("TEST01AA") \%>\%
   count_mentions("published inthelast year and brandisorchildof 1", groupBy = published)
 
+}
+
+\dontrun{
+  count_mentions("TEST01AA", "published inthelast week", groupBy = c("published"))
+}
+
+
+\dontrun{
+account("TEST01AA", "TEST02AA") \%>\%
+  filter_mentions("published inthelast week") \%>\%
+  group_mentions_by(published) \%>\%
+  count_mentions()
 }
 }

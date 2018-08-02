@@ -22,10 +22,35 @@
 #----------------------------------------------------------
 # Filtering mentions
 
+
+#' Filter for only specific mentions
+#'
+#' `filter_mentions()` causes counting and mention operations
+#' to occur on only those mentions matching the filter. This is
+#' part of the [query()] language.
+#'
+#' @param .account An account or [query()] object.
+#' @param filter A filter string.
+#'
+#' @return A query object
+#' @export
+#'
+#' @seealso
+#'
+#' Other verbs for the query language: [group_mentions_by()],
+#' [compare_mentions()], [with_fields()], [with_order()]
+#'
+#' [query()] is a way to manually create queries.
+#'
+#' @examples
+#'
+#' account("TEST01AA") %>%
+#'   filter_mentions("published inthelast week")
 filter_mentions <- function(.account, filter) {
   UseMethod("filter_mentions")
 }
 
+#' @export
 filter_mentions.brandseyer2.account <- function(.account, filter) {
   assert_that(is.string(filter))
 
@@ -34,6 +59,7 @@ filter_mentions.brandseyer2.account <- function(.account, filter) {
   q
 }
 
+#' @export
 filter_mentions.list <- function(.account, filter) {
   assert_that(is.string(filter))
 
@@ -43,6 +69,7 @@ filter_mentions.list <- function(.account, filter) {
     purrr::reduce(merge_query)
 }
 
+#' @export
 filter_mentions.brandseyer2.query <- function(.account, filter) {
   assert_that(is.string(filter))
 
@@ -54,16 +81,43 @@ filter_mentions.brandseyer2.query <- function(.account, filter) {
 #----------------------------------------------------------
 # Comparing mentions
 
+#' Compare mentions using sub-filters when counting them.
+#'
+#' [compare_mentions()] lets you group mentions together using
+#' sub-filters when counting them using [count_mentions()]. This
+#' is part of the [query()] language.
+#'
+#' @param .account An account or [query()] object.
+#' @param ... A named set of sub-filters, such as
+#'            `positive = sentiment = 1`. See the examples.
+#'
+#' @return A [query()] object.
+#' @export
+#'
+#' @seealso
+#'
+#' Other verbs for the query language: [group_mentions_by()],
+#' [filter_mentions()], [with_fields()], [with_order()]
+#'
+#' [query()] is a way to manually create queries.
+#'
+#' @examples
+#'
+#' account("TEST01AA") %>%
+#'   compare_mentions(enterprise = "media is enterprise",
+#'                    consume = "media is consumer")
 compare_mentions <- function(.account, ...) {
   UseMethod("compare_mentions")
 }
 
+#' @export
 compare_mentions.brandseyer2.account <- function(.account, ...) {
   comparison <- list(...)
 
   compare_mentions_impl(to_query(.account), comparison)
 }
 
+#' @export
 compare_mentions.list <- function(.account, ...) {
   comparison <- list(...)
 
@@ -74,10 +128,7 @@ compare_mentions.list <- function(.account, ...) {
     compare_mentions_impl(comparison)
 }
 
-compare_mentions.character <- function(.account, ...) {
-  stop("sdf")
-}
-
+#' @export
 compare_mentions.brandseyer2.query <- function(.account, ...) {
   comparison <- list(...)
   compare_mentions_impl(.account, comparison)
@@ -95,10 +146,35 @@ compare_mentions_impl <- function(query, comparison) {
 #----------------------------------------------------------
 # Grouping mentions
 
+#' Group mentions by shared criteria
+#'
+#' [group_mentions_by()] allows you to specify how to group
+#' mentions when counting them, such as by day, sentiment, etc.
+#' This is part of the [query()] language.
+#'
+#' @param .account An account or [query()] object.
+#' @param ... A list of fields to group by.
+#' @param .envir An optional environment to perform substitutions in.
+#'
+#' @return A [query()] object.
+#' @export
+#' @seealso
+#'
+#' Other verbs for the query language: [group_mentions_by()],
+#' [compare_mentions()], [with_fields()], [with_order()]
+#'
+#' [query()] is a way to manually create queries.
+#'
+#' @examples
+#'
+#' account("TEST01AA", "TEST02AA") %>%
+#'   filter_mentions("published inthelast week") %>%
+#'   group_mentions_by(published, sentiment)
 group_mentions_by <- function(.account, ..., .envir) {
   UseMethod("group_mentions_by")
 }
 
+#' @export
 group_mentions_by.brandseyer2.account <- function(.account, ..., .envir = parent.frame()) {
   groupBy <- get_name_list(deparse(substitute(c(...))), env = .envir)
 
@@ -107,6 +183,7 @@ group_mentions_by.brandseyer2.account <- function(.account, ..., .envir = parent
     group_mentions_by_impl(groupBy)
 }
 
+#' @export
 group_mentions_by.list <- function(.account, ..., .envir = parent.frame()) {
   groupBy <- get_name_list(deparse(substitute(c(...))), env = .envir)
   .account %>%
@@ -116,6 +193,7 @@ group_mentions_by.list <- function(.account, ..., .envir = parent.frame()) {
     group_mentions_by_impl(groupBy)
 }
 
+#' @export
 group_mentions_by.brandseyer2.query <- function(.account, ..., .envir = parent.frame()) {
   groupBy <- get_name_list(deparse(substitute(c(...))), env = .envir)
   group_mentions_by_impl(.account, groupBy)
@@ -130,10 +208,36 @@ group_mentions_by_impl <- function(query, groupBy) {
 #----------------------------------------------------------
 # Selecting extra fields
 
+#' Select extra data when fetching or counting mentions
+#'
+#' [with_fields()] allows you to fetch additional data fields on mentions,
+#' or to count additional fields when counting mentions. This is part of the
+#' [query()] language.
+#'
+#' @param .account An account or [query()] object.
+#' @param ... The fields to order by.
+#' @param .envir An environment to perform substitutions in.
+#'
+#' @return A [query()] object
+#' @export
+#'
+#' @seealso
+#'
+#' Other verbs for the query language: [group_mentions_by()],
+#' [compare_mentions()], [filter_mentions()], [with_order()]
+#'
+#' [query()] is a way to manually create queries.
+#'
+#' @examples
+#'
+#' account("TEST01AA") %>%
+#'   filter_mentions("published inthelast week") %>%
+#'   with_fields(mentionCount, totalOTS)
 with_fields <- function(.account, ..., .envir) {
   UseMethod("with_fields")
 }
 
+#' @export
 with_fields.brandseyer2.account <- function(.account, ..., .envir = parent.frame()) {
   fields <- get_name_list(deparse(substitute(c(...))), env = .envir)
 
@@ -142,6 +246,7 @@ with_fields.brandseyer2.account <- function(.account, ..., .envir = parent.frame
     with_fields_impl(fields)
 }
 
+#' @export
 with_fields.list <- function(.account, ..., .envir = parent.frame()) {
   fields <- get_name_list(deparse(substitute(c(...))), env = .envir)
   .account %>%
@@ -151,6 +256,7 @@ with_fields.list <- function(.account, ..., .envir = parent.frame()) {
     with_fields_impl(fields)
 }
 
+#' @export
 with_fields.brandseyer2.query <- function(.account, ..., .envir = parent.frame()) {
   fields <- get_name_list(deparse(substitute(c(...))), env = .envir)
   with_fields_impl(.account, fields)
@@ -165,10 +271,38 @@ with_fields_impl <- function(query, fields) {
 #----------------------------------------------------------
 # ordering fields
 
+#' Order results from fetching or counting mentions.
+#'
+#' [with_order()] allows you to specify the order of returned
+#' mentions or the order of counted mentions. This does not
+#' preclude you from reordering mentions using [dplyr::arrange()].
+#' This is part of the [query()] language.
+#'
+#' @param .account An account or [query()] object.
+#' @param ... The fields to order by.
+#' @param .envir The environment to perform substitutions in.
+#'
+#' @return A [query()] object.
+#' @export
+#'
+#' @seealso
+#'
+#' Other verbs for the query language: [group_mentions_by()],
+#' [compare_mentions()], [filter_mentions()], [filter_mentions()]
+#'
+#' [query()] is a way to manually create queries.
+#'
+#' @examples
+#'
+#' account("TEST01AA") %>%
+#'   filter_mentions("published inthelast week") %>%
+#'   group_mentions_by(mentionCount, totalOTS) %>%
+#'   with_order(totalOTS)
 with_order <- function(.account, ..., .envir) {
   UseMethod("with_order")
 }
 
+#' @export
 with_order.brandseyer2.account <- function(.account, ..., .envir = parent.frame()) {
   fields <- get_name_list(deparse(substitute(c(...))), env = .envir)
 
@@ -177,6 +311,7 @@ with_order.brandseyer2.account <- function(.account, ..., .envir = parent.frame(
     with_order_impl(fields)
 }
 
+#' @export
 with_order.list <- function(.account, ..., .envir = parent.frame()) {
   fields <- get_name_list(deparse(substitute(c(...))), env = .envir)
   .account %>%
@@ -186,6 +321,7 @@ with_order.list <- function(.account, ..., .envir = parent.frame()) {
     with_order_impl(fields)
 }
 
+#' @export
 with_order.brandseyer2.query <- function(.account, ..., .envir = parent.frame()) {
   fields <- get_name_list(deparse(substitute(c(...))), env = .envir)
   with_order_impl(.account, fields)

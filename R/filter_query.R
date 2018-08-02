@@ -19,6 +19,47 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#' Create a query for mentions or counts.
+#'
+#' [query()] creates a query to be used for fetching mentions, or
+#' for counting them. You probably want to avoid using this directly,
+#' and use one of the query verbs instead, such as [filter_mentions()].
+#'
+#' The query object is accepted by [count_mentions()] and [mentions()].
+#' The advantage of using query and its various verbs is that it handles
+#' adding root brands to your filter for you, as well as filtering out
+#' mentions using older versions of the API, or who have no brands altogether.
+#'
+#' @section Query verbs:
+#'
+#' Various functions can be chained together using the pipe operator as 'verbs'
+#' in a query sentence.
+#'
+#' - [filter_mentions()] lets you choose what mentions to count or fetch.
+#' - [group_mentions_by()] lets you group mentions when counting.
+#' - [compare_mentions()] lets you count and compare mentions from subfilters.
+#' - [with_fields()] lets you select extra information fields, such as OTS, or engagement.
+#' - [with_order()] lets you order the results.
+#'
+#' @param accounts   A character vector of accounts to use.
+#' @param brands     A list of brands to query against.
+#' @param timezones  The timezones to report dates in when counting mentions.
+#' @param filter     The filter to use when fetching or counting mentions.
+#' @param comparison A list of subfilters to use when counting mentions.
+#' @param fields     Extra fields to return when fetching or counting mentions.
+#' @param grouping   How to group mentions when counting them.
+#' @param ordering   The order to return results in.
+#'
+#' @return A query object
+#' @export
+#'
+#' @examples
+#'
+#' query(accounts = c("TEST01AA", "TEST02AA"),
+#'       filter = "published inthelast week",
+#'       timezone = "UTC",
+#'       brands = list(filter_brand(1), filter_brand(2))
+#' )
 query <- function(accounts = NULL,
                   brands = NULL,
                   timezones = NULL,
@@ -87,11 +128,12 @@ to_query.brandseyer2.account <- function(x) {
 
 to_query.brandseyer2.query <- function(x) x
 
-
+#' @export
 print.brandseyer2.query <- function(x, ...) {
   cat(format(x), "\n")
 }
 
+#' @export
 format.brandseyer2.query <- function(x, ...) {
   lines <- list("BrandsEye Query")
   width <- cli::console_width()

@@ -5,20 +5,17 @@
 \alias{accounts}
 \alias{account.character}
 \alias{account.data.frame}
-\alias{account.brandseyer2.account_list}
 \title{Access account information}
 \usage{
 account(codes, ...)
 
 \method{account}{character}(codes, ..., .show.progress = interactive())
 
-\method{account}{data.frame}(codes, ...)
-
-\method{account}{brandseyer2.account_list}(codes, ...)
+\method{account}{data.frame}(codes, ..., .show.progress = interactive())
 }
 \arguments{
 \item{codes}{A vector of one or more account codes, or possibly
-a tibble, as provided by \code{\link[=account_list]{account_list()}}}
+a tibble (with an \code{account} column, such as from \code{\link[=account_list]{account_list()}})}
 
 \item{...}{Additional account codes.}
 
@@ -47,9 +44,16 @@ of account objects to act on.
 
 \item \code{data.frame}: Get account information from a data.frame. The data.frame
 should have an \code{account} column holding the account's code.
-
-\item \code{brandseyer2.account_list}: Get account information from the list of accounts available to from \code{\link[=account_list]{account_list()}}
+\code{\link[=account_list]{account_list()}} is a function that returns just such a data.frame.
 }}
+
+\section{Interactive use}{
+
+
+When reading multiple accounts at a time, this method will by defualt
+show a progress bar in interactive environments (such as RStudio). You
+can control this behaviour using the \code{.show.progress} parameter.
+}
 
 \examples{
 

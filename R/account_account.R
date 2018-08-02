@@ -30,7 +30,7 @@
 #' of account objects to act on.
 #'
 #' @param codes A vector of one or more account codes, or possibly
-#'              a tibble, as provided by [account_list()]
+#'              a tibble (with an `account` column, such as from [account_list()])
 #' @param ...   Additional account codes.
 #'
 #' @return An account object if one account code is given, or a list of account objects,
@@ -60,6 +60,12 @@ account <- function(codes, ...) {
 #'        be shown or not. By default, it will only be shown on interactive sessions.
 #'        Further, no matter this parameter's value, the bar will only be shown
 #'        when fetching account information for more than five accounts.
+#'
+#' @section Interactive use:
+#'
+#' When reading multiple accounts at a time, this method will by defualt
+#' show a progress bar in interactive environments (such as RStudio). You
+#' can control this behaviour using the `.show.progress` parameter.
 #'
 #' @export
 #'
@@ -109,6 +115,7 @@ account.character <- function(codes, ..., .show.progress = interactive()) {
 #'
 #' Get account information from a data.frame. The data.frame
 #' should have an `account` column holding the account's code.
+#' [account_list()] is a function that returns just such a data.frame.
 #'
 #' @export
 account.data.frame <- function(codes, ..., .show.progress = interactive()) {
@@ -119,15 +126,6 @@ account.data.frame <- function(codes, ..., .show.progress = interactive()) {
     account(.show.progress = .show.progress)
 }
 
-#' @describeIn account
-#'
-#' Get account information from the list of accounts available to from [account_list()]
-#'
-#' @export
-account.brandseyer2.account_list <- function(codes, ..., .show.progress = interactive()) {
-  codes <- c(codes, ...)
-  account(codes$account, .show.progress = .show.progress)
-}
 
 #' @export
 accounts <- account

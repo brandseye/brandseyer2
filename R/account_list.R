@@ -36,7 +36,7 @@
 #' @export
 account_list <- function(includeInactive = FALSE) {
   query <- list(includeInactive = ifelse(includeInactive, "true", "false"))
-  accounts <- read_mash("accounts", query = query) %>%
+  read_mash("accounts", query = query) %>%
     map_df(~tibble(
       account = .x$code,
       name = .x$name,
@@ -47,7 +47,4 @@ account_list <- function(includeInactive = FALSE) {
       inactive = .x$inactive %||% FALSE,
       type = .x$accountType %||% NA
     ))
-
-  class(accounts) <- c("brandseyer2.account_list", class(accounts))
-  accounts
 }

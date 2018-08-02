@@ -134,10 +134,10 @@ performing actions on in brandseyer2.</p>
     <pre class="usage"><span class='fu'>account</span>(<span class='no'>codes</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for character</span>
-<span class='fu'>account</span>(<span class='no'>codes</span>, <span class='no'>...</span>)
+<span class='fu'>account</span>(<span class='no'>codes</span>, <span class='no'>...</span>, <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())
 
-<span class='co'># S3 method for brandseyer2.account_list</span>
-<span class='fu'>account</span>(<span class='no'>codes</span>, <span class='no'>...</span>)</pre>
+<span class='co'># S3 method for data.frame</span>
+<span class='fu'>account</span>(<span class='no'>codes</span>, <span class='no'>...</span>, <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -145,11 +145,18 @@ performing actions on in brandseyer2.</p>
     <tr>
       <th>codes</th>
       <td><p>A vector of one or more account codes, or possibly
-a tibble, as provided by <code><a href='account_list.html'>account_list()</a></code></p></td>
+a tibble (with an <code>account</code> column, such as from <code><a href='account_list.html'>account_list()</a></code>)</p></td>
     </tr>
     <tr>
       <th>...</th>
       <td><p>Additional account codes.</p></td>
+    </tr>
+    <tr>
+      <th>.show.progress</th>
+      <td><p>A logical indicating whether a progress bar should
+be shown or not. By default, it will only be shown on interactive sessions.
+Further, no matter this parameter's value, the bar will only be shown
+when fetching account information for more than five accounts.</p></td>
     </tr>
     </table>
     
@@ -169,8 +176,16 @@ of account objects to act on.</p>
 
     <ul>
 <li><p><code>character</code>: Fetch counts for one or more account codes given as a character vector.</p></li>
-<li><p><code>brandseyer2.account_list</code>: Get account information from the list of accounts available to from <code><a href='account_list.html'>account_list()</a></code></p></li>
+<li><p><code>data.frame</code>: Get account information from a data.frame. The data.frame
+should have an <code>account</code> column holding the account's code.</p></li>
 </ul>
+    
+    <h2 class="hasAnchor" id="interactive-use"><a class="anchor" href="#interactive-use"></a>Interactive use</h2>
+
+    
+    <p>When reading multiple accounts at a time, this method will by defualt
+show a progress bar in interactive environments (such as RStudio). You
+can control this behaviour using the <code>.show.progress</code> parameter.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -223,6 +238,8 @@ of account objects to act on.</p>
       <li><a href="#details">Details</a></li>
 
       <li><a href="#methods-by-class-">Methods (by class)</a></li>
+
+      <li><a href="#interactive-use">Interactive use</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

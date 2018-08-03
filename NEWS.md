@@ -1,6 +1,7 @@
 # brandseyer2 0.0.1.9011
 
 * The filter language is available.
+* `logs()` now shows a progress bar in interactive settings.
 
 # brandseyer2 0.0.1.9010
 

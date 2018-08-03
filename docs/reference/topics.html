@@ -181,15 +181,15 @@ that appear on a tibble of mentions.</p>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>topics</span>()</div><div class='output co'>#&gt; # A tibble: 3 x 7
 #&gt;      id name          namespace description       deleted children  is_parent
-#&gt;   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;             &lt;lgl&gt;   &lt;list&gt;    &lt;lgl&gt;    
-#&gt; 1    10 Parent topic  topic     Has children      FALSE   &lt;dbl [2]&gt; TRUE     
+#&gt;   &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;             &lt;lgl&gt;   &lt;list&gt;    &lt;lgl&gt;    
+#&gt; 1    10 Parent topic  topic     Has children      FALSE   &lt;int [2]&gt; TRUE     
 #&gt; 2    11 Child topic 1 topic     I am a child      FALSE   &lt;NULL&gt;    FALSE    
 #&gt; 3    12 Child topic 2 topic     I am also a child FALSE   &lt;NULL&gt;    FALSE    </div><div class='input'>
 <span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'>topics</span>()</div><div class='output co'>#&gt; # A tibble: 6 x 8
 #&gt;   account     id name       namespace description    deleted children is_parent
 #&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;          &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;    
-#&gt; 1 TEST01AA    10 Parent to… topic     Has children   FALSE   &lt;dbl [2… TRUE     
+#&gt; 1 TEST01AA    10 Parent to… topic     Has children   FALSE   &lt;int [2… TRUE     
 #&gt; 2 TEST01AA    11 Child top… topic     I am a child   FALSE   &lt;NULL&gt;   FALSE    
 #&gt; 3 TEST01AA    12 Child top… topic     I am also a c… FALSE   &lt;NULL&gt;   FALSE    
 #&gt; 4 TEST02AA  1010 Parent to… topic     Has children   FALSE   &lt;dbl [2… TRUE     

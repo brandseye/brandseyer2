@@ -8,20 +8,29 @@
 \alias{logs.data.frame}
 \title{Read account logs}
 \usage{
-logs(x, from)
+logs(x, from, .show.progress)
 
-\method{logs}{character}(x, from = (Sys.Date() \%m-\% months(1)))
+\method{logs}{character}(x, from = (Sys.Date() \%m-\% months(1)),
+  .show.progress = interactive())
 
-\method{logs}{brandseyer2.account}(x, from = (Sys.Date() \%m-\% months(1)))
+\method{logs}{brandseyer2.account}(x, from = (Sys.Date() \%m-\% months(1)),
+  .show.progress = interactive())
 
-\method{logs}{list}(x, from = (Sys.Date() \%m-\% months(1)))
+\method{logs}{list}(x, from = (Sys.Date() \%m-\% months(1)),
+  .show.progress = interactive())
 
-\method{logs}{data.frame}(x, from = (Sys.Date() \%m-\% months(1)))
+\method{logs}{data.frame}(x, from = (Sys.Date() \%m-\% months(1)),
+  .show.progress = interactive())
 }
 \arguments{
 \item{x}{An object to read logs from.}
 
 \item{from}{A date indicating from when to read dates.}
+
+\item{.show.progress}{A logical indicating whether to show a progress bar or not.
+By default, this only shows a progress bar in interactive environments.
+Also, progress bars will only be shown if 3 or more accounts are
+being examined.}
 }
 \value{
 A tibble of log information, including the user that perform the action, and how many

@@ -129,19 +129,23 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>logs</span>(<span class='no'>x</span>, <span class='no'>from</span>)
+    <pre class="usage"><span class='fu'>logs</span>(<span class='no'>x</span>, <span class='no'>from</span>, <span class='no'>.show.progress</span>)
 
 <span class='co'># S3 method for character</span>
-<span class='fu'>logs</span>(<span class='no'>x</span>, <span class='kw'>from</span> <span class='kw'>=</span> (<span class='fu'>Sys.Date</span>() <span class='kw'>%m-%</span> <span class='fu'>months</span>(<span class='fl'>1</span>)))
+<span class='fu'>logs</span>(<span class='no'>x</span>, <span class='kw'>from</span> <span class='kw'>=</span> (<span class='fu'>Sys.Date</span>() <span class='kw'>%m-%</span> <span class='fu'>months</span>(<span class='fl'>1</span>)),
+  <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())
 
 <span class='co'># S3 method for brandseyer2.account</span>
-<span class='fu'>logs</span>(<span class='no'>x</span>, <span class='kw'>from</span> <span class='kw'>=</span> (<span class='fu'>Sys.Date</span>() <span class='kw'>%m-%</span> <span class='fu'>months</span>(<span class='fl'>1</span>)))
+<span class='fu'>logs</span>(<span class='no'>x</span>, <span class='kw'>from</span> <span class='kw'>=</span> (<span class='fu'>Sys.Date</span>() <span class='kw'>%m-%</span> <span class='fu'>months</span>(<span class='fl'>1</span>)),
+  <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())
 
 <span class='co'># S3 method for list</span>
-<span class='fu'>logs</span>(<span class='no'>x</span>, <span class='kw'>from</span> <span class='kw'>=</span> (<span class='fu'>Sys.Date</span>() <span class='kw'>%m-%</span> <span class='fu'>months</span>(<span class='fl'>1</span>)))
+<span class='fu'>logs</span>(<span class='no'>x</span>, <span class='kw'>from</span> <span class='kw'>=</span> (<span class='fu'>Sys.Date</span>() <span class='kw'>%m-%</span> <span class='fu'>months</span>(<span class='fl'>1</span>)),
+  <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())
 
 <span class='co'># S3 method for data.frame</span>
-<span class='fu'>logs</span>(<span class='no'>x</span>, <span class='kw'>from</span> <span class='kw'>=</span> (<span class='fu'>Sys.Date</span>() <span class='kw'>%m-%</span> <span class='fu'>months</span>(<span class='fl'>1</span>)))</pre>
+<span class='fu'>logs</span>(<span class='no'>x</span>, <span class='kw'>from</span> <span class='kw'>=</span> (<span class='fu'>Sys.Date</span>() <span class='kw'>%m-%</span> <span class='fu'>months</span>(<span class='fl'>1</span>)),
+  <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -153,6 +157,13 @@
     <tr>
       <th>from</th>
       <td><p>A date indicating from when to read dates.</p></td>
+    </tr>
+    <tr>
+      <th>.show.progress</th>
+      <td><p>A logical indicating whether to show a progress bar or not.
+By default, this only shows a progress bar in interactive environments.
+Also, progress bars will only be shown if 3 or more accounts are
+being examined.</p></td>
     </tr>
     </table>
     

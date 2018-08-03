@@ -164,19 +164,19 @@ we need to know what the ultimate root parent to determine
 #&gt; 
 #&gt; # A tibble: 6 x 8
 #&gt;      id name       namespace  description     deleted children is_parent parent
-#&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;           &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;      &lt;dbl&gt;
+#&gt;   &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;           &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;      &lt;dbl&gt;
 #&gt; 1     1 tag1       tag        &lt;NA&gt;            FALSE   &lt;NULL&gt;   FALSE         NA
 #&gt; 2     2 tag2       tag        Deleted         TRUE    &lt;NULL&gt;   FALSE         NA
-#&gt; 3    10 Parent to… topic      Has children    FALSE   &lt;dbl [2… TRUE          NA
+#&gt; 3    10 Parent to… topic      Has children    FALSE   &lt;int [2… TRUE          NA
 #&gt; 4    11 Child top… topic      I am a child    FALSE   &lt;NULL&gt;   FALSE         10
 #&gt; 5    12 Child top… topic      I am also a ch… FALSE   &lt;NULL&gt;   FALSE         10
-#&gt; 6  1001 Tree of T… topic_tree Topics come fr… FALSE   &lt;dbl [1… TRUE          NA</div><div class='input'>
+#&gt; 6  1001 Tree of T… topic_tree Topics come fr… FALSE   &lt;int [1… TRUE          NA</div><div class='input'>
 <span class='co'># See what root brands we have</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='topic_trees.html'>topic_trees</a></span>()</div><div class='output co'>#&gt; # A tibble: 1 x 7
 #&gt;      id name          namespace  description         deleted children is_parent
-#&gt;   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;               &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;    
-#&gt; 1  1001 Tree of Topi… topic_tree Topics come from h… FALSE   &lt;dbl [1… TRUE     </div><div class='input'>
+#&gt;   &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;               &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;    
+#&gt; 1  1001 Tree of Topi… topic_tree Topics come from h… FALSE   &lt;int [1… TRUE     </div><div class='input'>
 <span class='co'># Tag 1001 is a topic tree. Let's find</span>
 <span class='co'># topics, with parents, that are part of this tree.</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
@@ -185,8 +185,8 @@ we need to know what the ultimate root parent to determine
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>namespace</span> <span class='kw'>==</span> <span class='st'>'topic'</span>) <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span>(<span class='fu'>desc</span>(<span class='no'>is_parent</span>), <span class='no'>name</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 8
 #&gt;      id name        namespace description     deleted children is_parent parent
-#&gt;   &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;           &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;      &lt;dbl&gt;
-#&gt; 1    10 Parent top… topic     Has children    FALSE   &lt;dbl [2… TRUE        1001
+#&gt;   &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;           &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;      &lt;dbl&gt;
+#&gt; 1    10 Parent top… topic     Has children    FALSE   &lt;int [2… TRUE        1001
 #&gt; 2    11 Child topi… topic     I am a child    FALSE   &lt;NULL&gt;   FALSE         10
 #&gt; 3    12 Child topi… topic     I am also a ch… FALSE   &lt;NULL&gt;   FALSE         10</div></pre>
   </div>

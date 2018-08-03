@@ -29,13 +29,17 @@
 #' or from a tibble containing an account code column, such as that returned
 #' by [account_list()].
 #'
-#' @param x An object to read logs from.
-#' @param from A date indicating from when to read dates.
+#' @param x               An object to read logs from.
+#' @param from            A date indicating from when to read dates.
+#' @param .show.progress  A logical indicating whether to show a progress bar or not.
+#'                        By default, this only shows a progress bar in interactive environments.
+#'                        Also, progress bars will only be shown if 3 or more accounts are
+#'                        being examined.
 #'
 #' @return A tibble of log information, including the user that perform the action, and how many
 #'         times the action was performed.
 #' @export
-logs <- function(x, from) {
+logs <- function(x, from, .show.progress) {
   UseMethod("logs")
 }
 
@@ -50,15 +54,30 @@ logs <- function(x, from) {
 #' logs("TEST01AA")
 #' }
 #'
-logs.character <- function(x, from = (Sys.Date() %m-% months(1))) {
+logs.character <- function(x,
+                           from = (Sys.Date() %m-% months(1)),
+                           .show.progress = interactive()) {
   assert_that(lubridate::is.Date(from))
   assert_that(from <= Sys.Date(), msg = "`from` cannot be after today")
 
   if (length(x) > 1) {
+    pb <- list(tick = function(...) {})
+    if (length(x) >= 3 && .show.progress) {
+      pb <- progress::progress_bar$new(
+        format = "  logs for :code [:bar] :percent eta: :eta",
+        total = length(x)
+      )
+    }
+
+    pb$tick(tokens = list(code = "starting"), len = 0)
+
     return(
-      map_df(x, ~ logs(.x, from = from) %>%
-               mutate(account = .x) %>%
-               select(account, everything()))
+      map_df(x, function(code) {
+        on.exit(pb$tick(tokens = list(code = code)))
+        logs(code, from = from, .show.progress = .show.progress) %>%
+               mutate(account = code) %>%
+               select(account, everything())
+      })
     )
   }
 
@@ -113,8 +132,10 @@ logs.character <- function(x, from = (Sys.Date() %m-% months(1))) {
 #'   logs()
 #' }
 #'
-logs.brandseyer2.account <- function(x, from = (Sys.Date() %m-% months(1))) {
-  account_code(x) %>% logs(from = from)
+logs.brandseyer2.account <- function(x,
+                                     from = (Sys.Date() %m-% months(1)),
+                                     .show.progress = interactive()) {
+  account_code(x) %>% logs(from = from, .show.progress = .show.progress)
 }
 
 #' @describeIn logs
@@ -129,9 +150,11 @@ logs.brandseyer2.account <- function(x, from = (Sys.Date() %m-% months(1))) {
 #' account("TEST01AA", "TEST02AA") %>%
 #'   logs()
 #' }
-logs.list <- function(x, from = (Sys.Date() %m-% months(1))) {
+logs.list <- function(x,
+                      from = (Sys.Date() %m-% months(1)),
+                      .show.progress = interactive()) {
   x %>%
-    map_df(~ logs(.x, from = from) %>%
+    map_df(~ logs(.x, from = from, .show.progress = .show.progress) %>%
              mutate(account = account_code(.x)) %>%
              select(account, everything()))
 }
@@ -146,10 +169,12 @@ logs.list <- function(x, from = (Sys.Date() %m-% months(1))) {
 #' account_list() %>%
 #'   logs()
 #' }
-logs.data.frame <- function(x, from = (Sys.Date() %m-% months(1))) {
+logs.data.frame <- function(x,
+                            from = (Sys.Date() %m-% months(1)),
+                            .show.progress = interactive()) {
   assert_that(x %has_name% 'account',
               msg = "No account code column present in `x`")
 
   x$account %>%
-    logs(from = from)
+    logs(from = from, .show.progress = .show.progress)
 }

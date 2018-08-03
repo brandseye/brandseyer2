@@ -88,7 +88,7 @@
       <h1>brandseyer2</h1>
                         <h4 class="author">Constance Neeser</h4>
             
-            <h4 class="date">2018-08-02</h4>
+            <h4 class="date">2018-08-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/brandseye/brandseyer2/blob/master/vignettes/brandseyer2.Rmd"><code>vignettes/brandseyer2.Rmd</code></a></small>
       <div class="hidden name"><code>brandseyer2.Rmd</code></div>
@@ -343,15 +343,15 @@ A plot of data pulled from the api
 <p>A very useful thing that the query language provides us, is the ability to compare sub-groups of mentions using sub-filters. For example, if we want to find mentions inside and outside of Africa, we could so as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"QUIR01BA"</span>, <span class="st">"BEUB03AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published inthelast week and relevancy isnt irrelevant"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/compare_mentions.html">compare_mentions</a></span>(<span class="dt">africa =</span> <span class="st">"location is 'ZA'"</span>, <span class="dt">elsewhere =</span> <span class="st">"location isnt 'ZA'"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/compare_mentions.html">compare_mentions</a></span>(<span class="dt">africa =</span> <span class="st">"location is 'africa'"</span>, <span class="dt">elsewhere =</span> <span class="st">"location isnt 'africa'"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/count_mentions.html">count_mentions</a></span>()
 <span class="co">#&gt; # A tibble: 4 x 3</span>
 <span class="co">#&gt;   account  comparison mentionCount</span>
 <span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;             &lt;int&gt;</span>
-<span class="co">#&gt; 1 QUIR01BA africa              101</span>
-<span class="co">#&gt; 2 QUIR01BA elsewhere          7865</span>
-<span class="co">#&gt; 3 BEUB03AA africa             8226</span>
-<span class="co">#&gt; 4 BEUB03AA elsewhere           252</span></code></pre></div>
+<span class="co">#&gt; 1 QUIR01BA africa              184</span>
+<span class="co">#&gt; 2 QUIR01BA elsewhere          7139</span>
+<span class="co">#&gt; 3 BEUB03AA africa             7850</span>
+<span class="co">#&gt; 4 BEUB03AA elsewhere           295</span></code></pre></div>
 <p>We have provided two seperate sub-filters, one labeled ‘africa’, one labeled ‘elsewhere’. Notice that these labels have now appeared in the result table, once for each account that we are querying.</p>
 </div>
 <div class="footnotes">

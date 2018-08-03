@@ -377,15 +377,15 @@ to find mentions inside and outside of Africa, we could so as follows:
 ```{r, eval = FALSE}
 account("QUIR01BA", "BEUB03AA") %>% 
   filter_mentions("published inthelast week and relevancy isnt irrelevant") %>% 
-  compare_mentions(africa = "location is 'ZA'", elsewhere = "location isnt 'ZA'") %>% 
+  compare_mentions(africa = "location is 'africa'", elsewhere = "location isnt 'africa'") %>% 
   count_mentions()
 #> # A tibble: 4 x 3
 #>   account  comparison mentionCount
 #>   <chr>    <chr>             <int>
-#> 1 QUIR01BA africa              101
-#> 2 QUIR01BA elsewhere          7865
-#> 3 BEUB03AA africa             8226
-#> 4 BEUB03AA elsewhere           252
+#> 1 QUIR01BA africa              184
+#> 2 QUIR01BA elsewhere          7139
+#> 3 BEUB03AA africa             7850
+#> 4 BEUB03AA elsewhere           295
 ```
 
 We have provided two seperate sub-filters, one labeled 'africa', one labeled 'elsewhere'. 

@@ -4,8 +4,9 @@
 \alias{query}
 \title{Create a query for mentions or counts}
 \usage{
-query(accounts = NULL, brands = NULL, timezones = NULL, filter = NULL,
-  comparison = NULL, fields = NULL, grouping = NULL, ordering = NULL)
+query(accounts = NULL, brands = NULL, timezones = NULL,
+  filter = NULL, comparison = NULL, fields = NULL, grouping = NULL,
+  ordering = NULL)
 }
 \arguments{
 \item{accounts}{A character vector of accounts to use.}

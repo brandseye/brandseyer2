@@ -7,10 +7,10 @@
 \usage{
 update_mentions(x, filter, auto.confirm = FALSE, ...)
 
-\method{update_mentions}{brandseyer2.account.v4}(x, filter, auto.confirm, ...,
-  relevancy, relevancyVerified, addTags, removeTags, sentiment,
-  sentimentVerified, media, gender, language, race, addPhrases, removePhrases,
-  addCrowdJobs, removeCrowdJobs, updateAuthor, location)
+\method{update_mentions}{brandseyer2.account.v4}(x, filter, auto.confirm,
+  ..., relevancy, relevancyVerified, addTags, removeTags, sentiment,
+  sentimentVerified, media, gender, language, race, addPhrases,
+  removePhrases, addCrowdJobs, removeCrowdJobs, updateAuthor, location)
 }
 \arguments{
 \item{x}{The account object.}
@@ -64,8 +64,6 @@ Nothing
 \description{
 This function lets you update data that is stored on a mention.
 For instance, you can add and rmeove tags from mentions.
-
-Updates mentions for an account object
 }
 \section{Methods (by class)}{
 \itemize{

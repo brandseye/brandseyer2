@@ -11,7 +11,8 @@
 
 \method{tags}{list}(x, ...)
 
-\method{tags}{data.frame}(x, ..., ac = attr(x, "account"), na.rm = TRUE)
+\method{tags}{data.frame}(x, ..., ac = attr(x, "account"),
+  na.rm = TRUE)
 
 tags(x, ...)
 }

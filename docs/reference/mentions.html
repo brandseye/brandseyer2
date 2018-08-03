@@ -183,6 +183,15 @@ See the filter vignette for details.</p></td>
 
     <p>We cannot read data from older, V3 accounts / APIs.</p>
     
+    <h2 class="hasAnchor" id="availability-of-content"><a class="anchor" href="#availability-of-content"></a>Availability of content</h2>
+
+    
+    <p>Tweets, by default, will be given with no content, only
+URIs and IDs. This is per our agreement with twitter. Twitter
+does provide an API for obtaining tweet content using tweet IDs.</p>
+<p>If you fetch mentions and choose not to select the <code>site</code> field
+(selected by default), all mentions may contain no data.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='tags()'>tags()</a> to fetch tag information from mentions.</p>
@@ -210,6 +219,8 @@ See the filter vignette for details.</p></td>
       <li><a href="#methods-by-class-">Methods (by class)</a></li>
 
       <li><a href="#note">Note</a></li>
+
+      <li><a href="#availability-of-content">Availability of content</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

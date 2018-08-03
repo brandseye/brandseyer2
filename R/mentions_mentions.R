@@ -24,6 +24,15 @@
 #'
 #' This provides access to an account's mentions.
 #'
+#' @section Availability of content:
+#'
+#' Tweets, by default, will be given with no content, only
+#' URIs and IDs. This is per our agreement with twitter. Twitter
+#' does provide an API for obtaining tweet content using tweet IDs.
+#'
+#' If you fetch mentions and choose not to select the `site` field
+#' (selected by default), all mentions may contain no data.
+#'
 #' @note We cannot read data from older, V3 accounts / APIs.
 #'
 #' @param x An account object
@@ -219,6 +228,7 @@ list_to_v4_mentions <- function(data, is_staff = am_i_brandseye()) {
   if (!is_staff) {
     if (!("site" %in% names(result))) {
       # Can't determine data, so remove everything.
+      rlang::warn("No `site` field selected. No mention content will be")
       result %<>%
         mutate_at(vars(contains('extract'), contains('Html'), contains('content'), matches('title')),
                   funs(ifelse(TRUE, NA, .)))

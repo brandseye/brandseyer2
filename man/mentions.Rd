@@ -40,6 +40,17 @@ This provides access to an account's mentions.
 \note{
 We cannot read data from older, V3 accounts / APIs.
 }
+\section{Availability of content}{
+
+
+Tweets, by default, will be given with no content, only
+URIs and IDs. This is per our agreement with twitter. Twitter
+does provide an API for obtaining tweet content using tweet IDs.
+
+If you fetch mentions and choose not to select the \code{site} field
+(selected by default), all mentions may contain no data.
+}
+
 \examples{
 
 # Reading data from a single account

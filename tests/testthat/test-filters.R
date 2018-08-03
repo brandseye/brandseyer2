@@ -96,6 +96,19 @@ test_that("Can select fields", {
 test_that("Can add subfilters", {
   q <- to_query(account("TEST01AA")) %>% compare_mentions(one = "one", two = "two", "three")
   expect_equal(q$comparison, list(one = "one", two = "two", "three"))
+
+  q <- account("TEST01AA") %>% compare_mentions(one = "1", two = "2", "3")
+  expect_equal(q$comparison, list(one = "1", two = "2", "3"))
+
+  q <- list(v4account, account("TEST01AA")) %>% compare_mentions(one = "4", two = "5", "6")
+  expect_equal(q$comparison, list(one = "4", two = "5", "6"))
+})
+
+test_that("Filtering with a V3 account removes it", {
+  expect_warning(account("TEST01AA", "TEST02AA") %>% filter_mentions("today"),
+                 regexp = "V4")
+  q <- suppressWarnings(account("TEST01AA", "TEST02AA") %>% filter_mentions("today"))
+  expect_equal(q$accounts, "TEST01AA")
 })
 
 test_that("Can merge queries", {

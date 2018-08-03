@@ -48,6 +48,69 @@ test_that("Can parse a minimal list of mention data", {
   expect_equal(m[[2, "mediaLinks"]], tibble::tibble(url = NA, mimeType = NA))
 })
 
+test_that("Only mash can see certain fields", {
+  data <- list(
+    list(id = "one",
+         sentiment = 0L,
+         published = "2017-11-21T21:37:35.000+0000",
+         site = 'twitter.com',
+         extract = "extract",
+         postExtract = 'extract',
+         postExtractHtml = 'extract',
+         extractHtml = 'extract',
+         combinedHtml = 'extract',
+         content = 'extract',
+         contentHtml = 'extract'
+    ),
+    list(id = "two",
+         sentiment = 1L,
+         site = 'facebook.com',
+         extract = "extract",
+         postExtract = 'extract',
+         postExtractHtml = 'extract',
+         extractHtml = 'extract',
+         combinedHtml = 'extract',
+         content = 'extract',
+         contentHtml = 'extract'
+    )
+  )
+
+  admin <- brandseyer2:::list_to_v4_mentions(data, TRUE)
+  expect_equal(admin$extract, c("extract", "extract"))
+  expect_equal(admin$postExtract, c("extract", "extract"))
+  expect_equal(admin$postExtractHtml, c("extract", "extract"))
+  expect_equal(admin$extractHtml, c("extract", "extract"))
+  expect_equal(admin$combinedHtml, c("extract", "extract"))
+  expect_equal(admin$content, c("extract", "extract"))
+  expect_equal(admin$contentHtml, c("extract", "extract"))
+
+  regular <- brandseyer2:::list_to_v4_mentions(data, FALSE)
+  expect_equal(regular$extract, c(NA, "extract"))
+  expect_equal(regular$postExtract, c(NA, "extract"))
+  expect_equal(regular$postExtractHtml, c(NA, "extract"))
+  expect_equal(regular$extractHtml, c(NA, "extract"))
+  expect_equal(regular$combinedHtml, c(NA, "extract"))
+  expect_equal(regular$content, c(NA, "extract"))
+  expect_equal(regular$contentHtml, c(NA, "extract"))
+})
+
+test_that("if site not included, no data returned", {
+  data <- list(
+    list(id = "one",
+         sentiment = 0L,
+         published = "2017-11-21T21:37:35.000+0000",
+         extract = "extract"
+    )
+  )
+
+  admin <- brandseyer2:::list_to_v4_mentions(data, TRUE)
+  expect_equal(admin$extract, "extract")
+
+  regular <- brandseyer2:::list_to_v4_mentions(data, FALSE)
+  expect_equal(regular$extract, NA)
+
+})
+
 test_that("Always needs a filter to get mentions", {
   expect_error(account("TEST01AA") %>% mentions(), "*filter*")
   expect_error(account("TEST01AA") %>% mentions(filter = ""), "*filter*")

@@ -217,9 +217,16 @@ list_to_v4_mentions <- function(data, is_staff = am_i_brandseye()) {
 
   # Ensure that only brandseye staff sees twitter content.
   if (!is_staff) {
-    result %<>%
-      mutate_at(vars(contains('extract'), contains('Html'), contains('content'), matches('title')),
-                funs(ifelse(site == 'twitter.com', NA, .)))
+    if (!("site" %in% names(result))) {
+      # Can't determine data, so remove everything.
+      result %<>%
+        mutate_at(vars(contains('extract'), contains('Html'), contains('content'), matches('title')),
+                  funs(ifelse(TRUE, NA, .)))
+    } else {
+      result %<>%
+        mutate_at(vars(contains('extract'), contains('Html'), contains('content'), matches('title')),
+                  funs(ifelse(site == 'twitter.com', NA, .)))
+    }
   }
 
   result

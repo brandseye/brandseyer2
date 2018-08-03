@@ -29,7 +29,7 @@ test_that("Can parse a minimal list of mention data", {
     )
   )
 
-  m <- brandseyer2:::list_to_v4_mentions(data)
+  m <- brandseyer2:::list_to_v4_mentions(data, TRUE)
   expect_equal(nrow(m), 2)
   expect_equal(m[[1, "id"]] , "one")
   expect_equal(m[[1, "brands"]], c(1, 2))
@@ -62,7 +62,7 @@ test_that("Can read mention data for an account", {
 })
 
 test_that("Can handle reading no data", {
-  result <- brandseyer2:::list_to_v4_mentions(list())
+  result <- brandseyer2:::list_to_v4_mentions(list(), TRUE)
 
   expect_equal(result, tibble::tibble())
 })

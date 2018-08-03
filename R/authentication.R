@@ -109,6 +109,18 @@ whoami <- function(raise_error = FALSE) {
   pkg.env$authentication
 }
 
+#' Are you authorised as a BrandsEye staff member?
+#'
+#' Returns `TRUE` if and only if you are a BrandsEye staff.
+#'
+#' @return A logical value.
+#' @export
+am_i_brandseye <- function() {
+  credentials <- whoami()
+  if (is.null(credentials)) return(FALSE);
+  credentials$admin %||% FALSE
+}
+
 #' Returns the file name in which you can save your authentication information.
 #' @export
 authentication_filename <- function() {

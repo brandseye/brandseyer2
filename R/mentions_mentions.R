@@ -155,12 +155,14 @@ mentions.brandseyer2.account.v3 <- function(x, filter, select, ...) {
 #' This takes list data returned from the API and extracts
 #' information for the mention table.
 #'
-#' @param data List data, as possibly returned from \code{link{read_data}}().
+#' @param data      List data, as possibly returned from \code{link{read_data}}().
+#' @param is_staff  A logical. TRUE iff the user is a staff member.
 #'
 #' @return A tibble of mention data.
-list_to_v4_mentions <- function(data) {
+list_to_v4_mentions <- function(data, is_staff = am_i_brandseye()) {
   # for devtools::check
   published <- NULL; pickedUp <- NULL; updated <- NULL;
+  site <- NULL; . <- NULL;
 
   # We want to figure out a list of fields.
   list.fields <- c("brands", "tags", "mediaLinks", "phrases")
@@ -212,6 +214,13 @@ list_to_v4_mentions <- function(data) {
   if (result %has_name% "published") result <- result %>% mutate(published = lubridate::ymd_hms(published))
   if (result %has_name% "pickedUp") result <- result %>% mutate(pickedUp = lubridate::ymd_hms(pickedUp))
   if (result %has_name% "updated") result <- result %>% mutate(updated = lubridate::ymd_hms(updated))
+
+  # Ensure that only brandseye staff sees twitter content.
+  if (!is_staff) {
+    result %<>%
+      mutate_at(vars(contains('extract'), contains('Html'), contains('content'), matches('title')),
+                funs(ifelse(site == 'twitter.com', NA, .)))
+  }
 
   result
 }

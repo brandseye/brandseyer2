@@ -4,10 +4,12 @@
 \alias{list_to_v4_mentions}
 \title{Format list data as a tibble}
 \usage{
-list_to_v4_mentions(data)
+list_to_v4_mentions(data, is_staff = am_i_brandseye())
 }
 \arguments{
 \item{data}{List data, as possibly returned from \code{link{read_data}}().}
+
+\item{is_staff}{A logical. TRUE iff the user is a staff member.}
 }
 \value{
 A tibble of mention data.

@@ -22,7 +22,9 @@
 #' Finding retrosends for accounts
 #'
 #' [logs_retrosent()] can be used to find retrosends that have occurred
-#' for a particular [account()] or list of accounts.
+#' for a particular [account()] or list of accounts. If you want
+#' to specify a date range, use [logs()] and pipe its results
+#' through to [logs_retrosent()].
 #'
 #' @param x                A data frame of logs, or an account object (or list of account objects)
 #' @param ...              Extra arguments

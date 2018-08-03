@@ -2,6 +2,7 @@
 
 * The filter language is available.
 * `logs()` now shows a progress bar in interactive settings.
+* `logs_retrosent()` now makes account retrosend data available.
 
 # brandseyer2 0.0.1.9010
 

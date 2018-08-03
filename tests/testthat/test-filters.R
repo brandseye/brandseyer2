@@ -97,3 +97,29 @@ test_that("Can add subfilters", {
   q <- to_query(account("TEST01AA")) %>% compare_mentions(one = "one", two = "two", "three")
   expect_equal(q$comparison, list(one = "one", two = "two", "three"))
 })
+
+test_that("Can merge queries", {
+  q1 <- account("TEST01AA") %>%
+    filter_mentions("today") %>%
+    compare_mentions(one = "one", two = "two") %>%
+    group_mentions_by(published1) %>%
+    with_order(order1) %>%
+    with_fields(field1)
+
+  q2 <- to_query(v4account) %>%
+    filter_mentions("tomorrow") %>%
+    compare_mentions(three = "three") %>%
+    group_mentions_by(published2) %>%
+    with_order(order2) %>%
+    with_fields(field2)
+
+  q <- brandseyer2:::merge_query(q1, q2)
+
+  expect_equal(q$accounts, c("TEST01AA", "TEST03AA"))
+  expect_equal(map_int(q$brands, "id"), c(2, 1, 10))
+  expect_equal(q$timezone, c("Africa/Johannesburg", "Africa/Johannesburg"))
+  expect_equal(q$grouping, "published1")
+  expect_equal(q$comparison, list(one = "one", two = "two"))
+  expect_equal(q$fields, "field1")
+  expect_equal(q$ordering, "order1")
+})

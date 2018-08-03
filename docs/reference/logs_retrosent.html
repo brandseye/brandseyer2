@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read account logs — logs • brandseyer2</title>
+<title>Finding retrosends for accounts — logs_retrosent • brandseyer2</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,10 @@
 
 
 
-<meta property="og:title" content="Read account logs — logs" />
+<meta property="og:title" content="Finding retrosends for accounts — logs_retrosent" />
 
-<meta property="og:description" content="Returns a tibble of logs for the account, in the last period stated." />
+<meta property="og:description" content="logs_retrosent() can be used to find retrosends that have occurred
+for a particular account() or list of accounts." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -118,111 +119,74 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read account logs</h1>
-    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/account_logs.R'><code>R/account_logs.R</code></a></small>
-    <div class="hidden name"><code>logs.Rd</code></div>
+    <h1>Finding retrosends for accounts</h1>
+    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/account_logs_retrosent.R'><code>R/account_logs_retrosent.R</code></a></small>
+    <div class="hidden name"><code>logs_retrosent.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Returns a tibble of logs for the account, in the last period stated.</p>
+    <p><code>logs_retrosent()</code> can be used to find retrosends that have occurred
+for a particular <code><a href='account.html'>account()</a></code> or list of accounts.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>logs</span>(<span class='no'>x</span>, <span class='no'>from</span>, <span class='no'>.show.progress</span>)
-
-<span class='co'># S3 method for character</span>
-<span class='fu'>logs</span>(<span class='no'>x</span>, <span class='kw'>from</span> <span class='kw'>=</span> (<span class='fu'>Sys.Date</span>() <span class='kw'>%m-%</span> <span class='fu'>months</span>(<span class='fl'>1</span>)),
-  <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())
-
-<span class='co'># S3 method for brandseyer2.account</span>
-<span class='fu'>logs</span>(<span class='no'>x</span>, <span class='kw'>from</span> <span class='kw'>=</span> (<span class='fu'>Sys.Date</span>() <span class='kw'>%m-%</span> <span class='fu'>months</span>(<span class='fl'>1</span>)),
-  <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())
-
-<span class='co'># S3 method for list</span>
-<span class='fu'>logs</span>(<span class='no'>x</span>, <span class='kw'>from</span> <span class='kw'>=</span> (<span class='fu'>Sys.Date</span>() <span class='kw'>%m-%</span> <span class='fu'>months</span>(<span class='fl'>1</span>)),
-  <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())
+    <pre class="usage"><span class='fu'>logs_retrosent</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for data.frame</span>
-<span class='fu'>logs</span>(<span class='no'>x</span>, <span class='kw'>from</span> <span class='kw'>=</span> (<span class='fu'>Sys.Date</span>() <span class='kw'>%m-%</span> <span class='fu'>months</span>(<span class='fl'>1</span>)),
-  <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())</pre>
+<span class='fu'>logs_retrosent</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for character</span>
+<span class='fu'>logs_retrosent</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())
+
+<span class='co'># S3 method for brandseyer2.account</span>
+<span class='fu'>logs_retrosent</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for list</span>
+<span class='fu'>logs_retrosent</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object to read logs from.</p></td>
+      <td><p>A data frame of logs, or an account object (or list of account objects)</p></td>
     </tr>
     <tr>
-      <th>from</th>
-      <td><p>A date indicating from when to read dates.</p></td>
+      <th>...</th>
+      <td><p>Extra arguments</p></td>
     </tr>
     <tr>
       <th>.show.progress</th>
-      <td><p>A logical indicating whether to show a progress bar or not.
-By default, this only shows a progress bar in interactive environments.
-Also, progress bars will only be shown if 3 or more accounts are
-being examined.</p></td>
+      <td><p>When reading logs, whether to show a progress bar or not. See <code><a href='logs.html'>logs()</a></code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble of log information, including the user that perform the action, and how many
-times the action was performed.</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Logs can be read from various different kinds of object. An <code><a href='account.html'>account()</a></code>
-object is the most basic, although logs can also be read from a list of
-account objects (in which case the returned tibble will include an account code column),
-or from a tibble containing an account code column, such as that returned
-by <code><a href='account_list.html'>account_list()</a></code>.</p>
+    <p>A tibble giving retrosend information, such as the crowd, priority and filter used.</p>
     
     <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
 
     <ul>
-<li><p><code>character</code>: Reach for an account code character vector.</p></li>
-<li><p><code>brandseyer2.account</code>: For <code><a href='account.html'>account()</a></code> objects.</p></li>
-<li><p><code>list</code>: For a list of accounts</p></li>
-<li><p><code>data.frame</code>: Read for a data frame, such as returned by <code><a href='account_list.html'>account_list()</a></code></p></li>
-</ul>
-    
-    <h2 class="hasAnchor" id="useful-logging-functions"><a class="anchor" href="#useful-logging-functions"></a>Useful logging functions</h2>
-
-    
-    <ul>
-<li><p><code><a href='logs_retrosent.html'>logs_retrosent()</a></code> filters log information to find retrosend specific information.</p></li>
+<li><p><code>data.frame</code>: Reading from a data.frame or tibble of log information, such as that given
+by <code><a href='logs.html'>logs()</a></code>.</p></li>
+<li><p><code>character</code>: From a vector of account codes.</p></li>
+<li><p><code>brandseyer2.account</code>: From an account object</p></li>
+<li><p><code>list</code>: From a list of account objects.</p></li>
 </ul>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 </div><span class='co'># NOT RUN {</span>
-<span class='co'># Defaults to the last month of data</span>
-<span class='fu'>logs</span>(<span class='st'>"TEST01AA"</span>)
-
-<span class='co'># The last week</span>
-<span class='fu'>logs</span>(<span class='st'>"TEST01AA"</span>, <span class='fu'>Sys.Date</span>() - <span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/period.html'>weeks</a></span>(<span class='fl'>1</span>))
-
-<span class='co'># The last day</span>
-<span class='fu'>logs</span>(<span class='st'>"TEST01AA"</span>, <span class='fu'>Sys.Date</span>() - <span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/period.html'>days</a></span>(<span class='fl'>1</span>))
-<span class='co'># }</span><div class='input'>
-
-</div><span class='co'># NOT RUN {</span>
-<span class='co'># Read logs for an account</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>logs</span>()
-<span class='co'># }</span><div class='input'>
+  <span class='fu'>logs_retrosent</span>()
 
-</div><span class='co'># NOT RUN {</span>
-<span class='co'># Read for a list of accounts</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>logs</span>()
-<span class='co'># }</span><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='account_list.html'>account_list</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>logs</span>()
+  <span class='fu'><a href='logs.html'>logs</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'>logs_retrosent</span>()
+
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -232,11 +196,7 @@ by <code><a href='account_list.html'>account_list()</a></code>.</p>
       
       <li><a href="#value">Value</a></li>
 
-      <li><a href="#details">Details</a></li>
-
       <li><a href="#methods-by-class-">Methods (by class)</a></li>
-
-      <li><a href="#useful-logging-functions">Useful logging functions</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

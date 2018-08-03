@@ -57,10 +57,24 @@ by \code{\link[=account_list]{account_list()}}.
 \item \code{data.frame}: Read for a data frame, such as returned by \code{\link[=account_list]{account_list()}}
 }}
 
+\section{Useful logging functions}{
+
+\itemize{
+\item \code{\link[=logs_retrosent]{logs_retrosent()}} filters log information to find retrosend specific information.
+}
+}
+
 \examples{
 
 \dontrun{
+# Defaults to the last month of data
 logs("TEST01AA")
+
+# The last week
+logs("TEST01AA", Sys.Date() - lubridate::weeks(1))
+
+# The last day
+logs("TEST01AA", Sys.Date() - lubridate::days(1))
 }
 
 

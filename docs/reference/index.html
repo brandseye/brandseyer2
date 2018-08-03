@@ -212,6 +212,48 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="account_api_version.html">account_api_version()</a></code> </p>
+        </td>
+        <td><p>Get the version of the API the account uses</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="account_code.html">account_code()</a></code> </p>
+        </td>
+        <td><p>Get an account's code</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="account_list.html">account_list()</a></code> </p>
+        </td>
+        <td><p>List all accounts available to you</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="account_manager.html">account_manager()</a></code> </p>
+        </td>
+        <td><p>See your account manager</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="account_name.html">account_name()</a></code> </p>
+        </td>
+        <td><p>Get an account's name</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="account_timezone.html">account_timezone()</a></code> </p>
+        </td>
+        <td><p>Get an account's timezone</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="account_type.html">account_type()</a></code> </p>
+        </td>
+        <td><p>Get an account's type</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="brands.html">brands()</a></code> </p>
         </td>
         <td><p>Fetch brand information</p></td>
@@ -260,57 +302,15 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="logs.html">logs()</a></code> </p>
-        </td>
-        <td><p>Read account logs</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="users.html">users()</a></code> </p>
         </td>
         <td><p>Get users for an account</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="account_api_version.html">account_api_version()</a></code> </p>
+          <p><code><a href="logs.html">logs()</a></code> </p>
         </td>
-        <td><p>Get the version of the API the account uses</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="account_code.html">account_code()</a></code> </p>
-        </td>
-        <td><p>Get an account's code</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="account_list.html">account_list()</a></code> </p>
-        </td>
-        <td><p>List all accounts available to you</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="account_manager.html">account_manager()</a></code> </p>
-        </td>
-        <td><p>See your account manager</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="account_name.html">account_name()</a></code> </p>
-        </td>
-        <td><p>Get an account's name</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="account_timezone.html">account_timezone()</a></code> </p>
-        </td>
-        <td><p>Get an account's timezone</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="account_type.html">account_type()</a></code> </p>
-        </td>
-        <td><p>Get an account's type</p></td>
+        <td><p>Read account logs</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -421,6 +421,26 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
+          <h2 id="section-working-with-account-logs" class="hasAnchor"><a href="#section-working-with-account-logs" class="anchor"></a>Working with account logs</h2>
+          <p class="section-desc"><p>Most actions on user accounts are logged. brandseyer2 provides various functions to read and filter account logs, starting with the all encompassing <a href="logs.html">logs()</a> function, which returns all the logs in a time period for the account.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="logs.html">logs()</a></code> </p>
+        </td>
+        <td><p>Read account logs</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="logs_retrosent.html">logs_retrosent()</a></code> </p>
+        </td>
+        <td><p>Finding retrosends for accounts</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
           <h2 id="section-account-dashboards" class="hasAnchor"><a href="#section-account-dashboards" class="anchor"></a>Account dashboards</h2>
           <p class="section-desc"><p>In <a href="https://analyse.brandseye.com">Analyse</a>, BrandsEye’s analysis tool, people can set up dashboards to query our data. We have various functions that help you to read data from the dashboards, their various sub-sections, an the metrics that they contain.</p></p>
         </th>
@@ -456,6 +476,7 @@
       <li><a href="#section-accounts">Accounts</a></li>
       <li><a href="#section-accessing-mentions">Accessing mentions</a></li>
       <li><a href="#section-a-query-language-filtering-and-grouping-your-mentions">A query language: filtering and grouping your mentions</a></li>
+      <li><a href="#section-working-with-account-logs">Working with account logs</a></li>
       <li><a href="#section-account-dashboards">Account dashboards</a></li>
     </ul>
   </div>

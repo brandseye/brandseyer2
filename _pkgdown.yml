@@ -35,6 +35,7 @@ reference:
     contents:
       - account
       - is_account
+      - starts_with("account_")
       - brands
       - root_brands
       - phrases
@@ -43,9 +44,8 @@ reference:
       - topic_trees
       - create_tags
       - with_tag_parents
-      - logs
       - users
-      - starts_with("account_")
+      - logs
   - title: "Accessing mentions"
     desc: >
       Mentions make up the raw data that we store for you. Sentiment
@@ -82,6 +82,15 @@ reference:
       - with_order
       - is_query
       - to_query
+  - title: "Working with account logs"
+    desc: >
+      Most actions on user accounts are logged. brandseyer2 provides various
+      functions to read and filter account logs, starting with the
+      all encompassing [logs()](logs.html) function, which returns all the logs
+      in a time period for the account.
+    contents:
+      - logs
+      - starts_with("logs_")
   - title: "Account dashboards"
     desc: >
       In [Analyse](https://analyse.brandseye.com), BrandsEye's analysis tool,

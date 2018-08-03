@@ -39,6 +39,10 @@
 #' @return A tibble of log information, including the user that perform the action, and how many
 #'         times the action was performed.
 #' @export
+#'
+#' @section Useful logging functions:
+#'
+#' - [logs_retrosent()] filters log information to find retrosend specific information.
 logs <- function(x, from, .show.progress) {
   UseMethod("logs")
 }
@@ -51,7 +55,14 @@ logs <- function(x, from, .show.progress) {
 #' @examples
 #'
 #' \dontrun{
+#' # Defaults to the last month of data
 #' logs("TEST01AA")
+#'
+#' # The last week
+#' logs("TEST01AA", Sys.Date() - lubridate::weeks(1))
+#'
+#' # The last day
+#' logs("TEST01AA", Sys.Date() - lubridate::days(1))
 #' }
 #'
 logs.character <- function(x,

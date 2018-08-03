@@ -14,6 +14,20 @@ test_that("Can create an account structure", {
   v3_account <<- create_account(v3_data)
   expect_s3_class(v3_account, "brandseyer2.account.v3")
   expect_s3_class(v3_account, "brandseyer2.account")
+
+  acs <- account("TEST01AA")
+  expect_s3_class(acs, "brandseyer2.account")
+
+  acs <- account("TEST01AA", "TEST02AA")
+  expect_equal(length(acs), 2)
+
+  acs <- tibble::tibble(account = c("TEST01AA", "TEST02AA")) %>%
+    account()
+  expect_equal(length(acs), 2)
+
+  expect_error(tibble::tibble(bob = c("TEST01AA", "TEST02AA")) %>% account(),
+               regexp = "No `account` column")
+
 })
 
 # -----------------------------------------------

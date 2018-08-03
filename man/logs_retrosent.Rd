@@ -30,7 +30,9 @@ A tibble giving retrosend information, such as the crowd, priority and filter us
 }
 \description{
 \code{\link[=logs_retrosent]{logs_retrosent()}} can be used to find retrosends that have occurred
-for a particular \code{\link[=account]{account()}} or list of accounts.
+for a particular \code{\link[=account]{account()}} or list of accounts. If you want
+to specify a date range, use \code{\link[=logs]{logs()}} and pipe its results
+through to \code{\link[=logs_retrosent]{logs_retrosent()}}.
 }
 \section{Methods (by class)}{
 \itemize{
@@ -55,5 +57,9 @@ account_list() \%>\%
   logs() \%>\%
   logs_retrosent()
 
+# Pull date for a particular time range
+account("TEST01AA") \%>\%
+  logs(Sys.Date() - lubridate::weeks(1)) \%>\%
+  logs_retrosent()
 }
 }

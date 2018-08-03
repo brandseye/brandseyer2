@@ -44,6 +44,10 @@
 #'   logs() %>%
 #'   logs_retrosent()
 #'
+#' # Pull date for a particular time range
+#' account("TEST01AA") %>%
+#'   logs(Sys.Date() - lubridate::weeks(1)) %>%
+#'   logs_retrosent()
 #' }
 logs_retrosent <- function(x, ...) {
   UseMethod("logs_retrosent")
@@ -65,12 +69,10 @@ logs_retrosent.data.frame <- function(x, ...) {
     filter(startsWith(description, "Sending ")) %>%
     mutate(crowd = stringr::str_extract(description, "crowd \\d+") %>%
              stringr::str_split("\\s+") %>%
-             pluck(1, 2) %>%
-             as.integer(),
+             map_int(~ as.integer(.x[[2]])),
            priority = stringr::str_extract(description, "\\w+ priority") %>%
              stringr::str_split("\\s+") %>%
-             pluck(1, 1) %>%
-             toupper(),
+             map_chr(~ toupper(.x[[1]])),
            filter = stringr::str_extract(description, ":\\s+.*") %>%
              stringr::str_split_fixed("\\s+", 2) %>%
              .[, 2]) %>%

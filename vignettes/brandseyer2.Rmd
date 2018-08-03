@@ -205,10 +205,16 @@ account("TEST01AA") %>%
   root_brands()
 ```
 
+## Tags
+
+We introduce tags early, since topics are just tags.
 
 ## Topics
 
-## Tags
+What are they? Why are they important? How does BE create these?
+
+How do you know what topics are available on your brands? Look at topic
+trees. Then see what topic trees are children of that. 
 
 # Working with mentions
 

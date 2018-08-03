@@ -16,11 +16,23 @@ knitr::opts_chunk$set(
 )
 ```
 
+- We probably need a vignette describing what a mention looks like. Although grouse 
+  documentation?
+
+# Introduction
+
+This is an introduction
+
 This will provide an introduction to filtering for data in BrandsEye
 
 BrandsEye's API supports a small language to help you select exactly the mentions
 that you want to select. You'll do this with the help of the `mentions()` function,
-which always expects a filter.
+which always expects a filter. You can also count and aggregate mention data using
+`count_mentions()`. We also have a query language, that this will introduce a bit of.
+
+Combined with [dplyr][dplyr][^1] for manipulating data, [ggplot2][ggplot2][^2] for visualising data, 
+and [readr][readr][^3]
+for exporting data, brandseyer2 is a powerful tool for examining social media data. 
 
 ```{r}
 library(brandseyer2)
@@ -29,3 +41,79 @@ account("TEST01AA") %>%
   mentions(filter = "published inthelast week")  
 ```
 
+# Filtering
+
+## Dates
+
+Dates first, since this allows people to constrain data, rather than get everything.
+How do they cancel if they're accidently pulling more than they want to? 
+
+- Published date is the important one
+- How to filter on hours. 
+- Addendum: picked up date, updated date, what are these.
+
+### Grouping by date
+
+- hour
+- day
+- week
+- month 
+- year
+
+
+## Selecting mentions
+
+- By ID
+- by conversation ID
+
+## Relevancy
+
+> Relevancy isnt irrelevant 
+
+## Sentiment 
+
+## Tags
+
+We introduce tags early, since topics are just tags.
+
+## Topics
+
+## Data verification
+
+> process is verified
+
+> crowdVerified is true
+
+What's the difference, and when to use which. 
+
+## Location
+
+- Filtering by continents and large geographic regions.
+- Filtering by country
+- Filtering by country region / province / state.
+- Filtering by city
+
+Analyse is required to get all of these names.
+
+## Language
+
+## Gender
+
+## Author information
+
+## Finding replies and reshares
+
+
+[^1]: [dplyr][dplyr] is an amazing library for manipulating data. After downloading
+data using brandseyer2, it allows you to reshape the data to fit your needs.
+
+[^2]: [ggplot2][ggplot2] is a rich visualisation library for R. After pulling data
+from brandseyer2, ggplot2 is a great tool for visualising the data.
+
+[^3]: [readr][readr] is a library for reading and writing CSV data. R has a rich ecosystem
+for importing and exporting data, with other libraries providing support for Excel and Google Sheets.
+
+
+[dplyr]: https://dplyr.tidyverse.org/
+[ggplot2]: https://ggplot2.tidyverse.org/
+[readr]: https://readr.tidyverse.org/

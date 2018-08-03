@@ -69,7 +69,7 @@ logs_retrosent.data.frame <- function(x, ...) {
     filter(startsWith(description, "Sending ")) %>%
     mutate(crowd = stringr::str_extract(description, "crowd \\d+") %>%
              stringr::str_split("\\s+") %>%
-             map_int(~ as.integer(.x[[2]])),
+             map_int(~(if (length(.x) == 2) as.integer(.x[[2]]) else NA)),
            priority = stringr::str_extract(description, "\\w+ priority") %>%
              stringr::str_split("\\s+") %>%
              map_chr(~ toupper(.x[[1]])),

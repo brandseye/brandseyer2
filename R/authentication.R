@@ -90,9 +90,12 @@ format.brandseye.auth <- function(x, ...) {
 
 #' Returns your current authentication credentials.
 #'
-#' @details
 #' If you need to authenticate yourself, you can do this
-#' with the [authenticate()] function.
+#' with the [authenticate()] function. [am_i_brandseye()]
+#' is a useful method for determining if you're a staff member
+#' or not. The `raise_error` method makes [whoami()] an easy
+#' way to determine if the user is authenticated, and to raise
+#' an error if not.
 #'
 #' @param raise_error If this is set to `TRUE`, the function
 #'                    will raise an error instead of returning NULL if you

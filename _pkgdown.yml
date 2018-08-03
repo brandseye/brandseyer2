@@ -27,6 +27,7 @@ reference:
     contents:
       - authenticate
       - whoami
+      - am_i_brandseye
   - title: "Accounts"
     desc: >
       These functions allow you to determine what accounts you have

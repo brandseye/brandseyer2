@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Format list data as a tibble — list_to_v4_mentions • brandseyer2</title>
+<title>Are you authorised as a BrandsEye staff member? — am_i_brandseye • brandseyer2</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,9 @@
 
 
 
-<meta property="og:title" content="Format list data as a tibble — list_to_v4_mentions" />
+<meta property="og:title" content="Are you authorised as a BrandsEye staff member? — am_i_brandseye" />
 
-<meta property="og:description" content="This takes list data returned from the API and extracts
-information for the mention table." />
+<meta property="og:description" content="Returns TRUE if and only if you are a BrandsEye staff." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -119,43 +118,28 @@ information for the mention table." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Format list data as a tibble</h1>
-    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/mentions_mentions.R'><code>R/mentions_mentions.R</code></a></small>
-    <div class="hidden name"><code>list_to_v4_mentions.Rd</code></div>
+    <h1>Are you authorised as a BrandsEye staff member?</h1>
+    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/authentication.R'><code>R/authentication.R</code></a></small>
+    <div class="hidden name"><code>am_i_brandseye.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This takes list data returned from the API and extracts
-information for the mention table.</p>
+    <p>Returns <code>TRUE</code> if and only if you are a BrandsEye staff.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>list_to_v4_mentions</span>(<span class='no'>data</span>, <span class='kw'>is_staff</span> <span class='kw'>=</span> <span class='fu'><a href='am_i_brandseye.html'>am_i_brandseye</a></span>())</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>data</th>
-      <td><p>List data, as possibly returned from <code>link{read_data}</code>().</p></td>
-    </tr>
-    <tr>
-      <th>is_staff</th>
-      <td><p>A logical. TRUE iff the user is a staff member.</p></td>
-    </tr>
-    </table>
-    
+    <pre class="usage"><span class='fu'>am_i_brandseye</span>()</pre>
+        
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble of mention data.</p>
+    <p>A logical value.</p>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
           </ul>

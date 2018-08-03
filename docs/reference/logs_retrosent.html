@@ -33,7 +33,9 @@
 <meta property="og:title" content="Finding retrosends for accounts — logs_retrosent" />
 
 <meta property="og:description" content="logs_retrosent() can be used to find retrosends that have occurred
-for a particular account() or list of accounts." />
+for a particular account() or list of accounts. If you want
+to specify a date range, use logs() and pipe its results
+through to logs_retrosent()." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -127,7 +129,9 @@ for a particular account() or list of accounts." />
     <div class="ref-description">
     
     <p><code>logs_retrosent()</code> can be used to find retrosends that have occurred
-for a particular <code><a href='account.html'>account()</a></code> or list of accounts.</p>
+for a particular <code><a href='account.html'>account()</a></code> or list of accounts. If you want
+to specify a date range, use <code><a href='logs.html'>logs()</a></code> and pipe its results
+through to <code>logs_retrosent()</code>.</p>
     
     </div>
 
@@ -187,6 +191,10 @@ by <code><a href='logs.html'>logs()</a></code>.</p></li>
   <span class='fu'><a href='logs.html'>logs</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>logs_retrosent</span>()
 
+<span class='co'># Pull date for a particular time range</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='logs.html'>logs</a></span>(<span class='fu'>Sys.Date</span>() - <span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/period.html'>weeks</a></span>(<span class='fl'>1</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'>logs_retrosent</span>()
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

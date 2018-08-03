@@ -16,11 +16,12 @@ Returns \code{NULL} if you are not logged in,
 otherwise returns your current authentication credentials.
 }
 \description{
-Returns your current authentication credentials.
-}
-\details{
 If you need to authenticate yourself, you can do this
-with the \code{\link[=authenticate]{authenticate()}} function.
+with the \code{\link[=authenticate]{authenticate()}} function. \code{\link[=am_i_brandseye]{am_i_brandseye()}}
+is a useful method for determining if you're a staff member
+or not. The \code{raise_error} method makes \code{\link[=whoami]{whoami()}} an easy
+way to determine if the user is authenticated, and to raise
+an error if not.
 }
 \author{
 Constance Neeser

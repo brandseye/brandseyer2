@@ -32,7 +32,12 @@
 
 <meta property="og:title" content="Returns your current authentication credentials. — whoami" />
 
-<meta property="og:description" content="Returns your current authentication credentials." />
+<meta property="og:description" content="If you need to authenticate yourself, you can do this
+with the authenticate() function. am_i_brandseye()
+is a useful method for determining if you're a staff member
+or not. The raise_error method makes whoami() an easy
+way to determine if the user is authenticated, and to raise
+an error if not." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -125,7 +130,12 @@
 
     <div class="ref-description">
     
-    <p>Returns your current authentication credentials.</p>
+    <p>If you need to authenticate yourself, you can do this
+with the <code><a href='authenticate.html'>authenticate()</a></code> function. <code><a href='am_i_brandseye.html'>am_i_brandseye()</a></code>
+is a useful method for determining if you're a staff member
+or not. The <code>raise_error</code> method makes <code>whoami()</code> an easy
+way to determine if the user is authenticated, and to raise
+an error if not.</p>
     
     </div>
 
@@ -147,11 +157,6 @@ are not authenticated.</p></td>
     <p>Returns <code>NULL</code> if you are not logged in,
 otherwise returns your current authentication credentials.</p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>If you need to authenticate yourself, you can do this
-with the <code><a href='authenticate.html'>authenticate()</a></code> function.</p>
-    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -160,8 +165,6 @@ with the <code><a href='authenticate.html'>authenticate()</a></code> function.</
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
           </ul>
 
     <h2>Author</h2>

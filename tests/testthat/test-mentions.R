@@ -72,3 +72,48 @@ test_that("Error reported for reaching v3 accounts", {
 
   expect_error(mentions(data, "published inthelast week"), regexp = "only supports V4 accounts")
 })
+
+test_that("Can annotate mentions with tags", {
+  m <- tibble::tribble(
+    ~id,     ~tags,
+    "1-1",   c(1L, 2L),
+    "1-2",   NULL,
+    "1-3",   1L
+  )
+
+  attr(m, "account") <- account("TEST01AA")
+
+  t <- m %>% tags()
+
+  expect_equal(nrow(t), 3)
+  expect_equal(t$id, c("1-1", "1-1", "1-3"))
+  expect_equal(t$tag.id, c(1, 2, 1))
+  expect_equal(names(t),
+               c("id", "tag.id", "name", "namespace",
+                 "description", "deleted", "children", "is_parent"))
+})
+
+test_that("Can annotate mentions with topics", {
+  m <- tibble::tribble(
+    ~id,     ~tags,
+    "1-1",   c(11L, 12L),  # topics
+    "1-2",   NULL,
+    "1-3",   1L            # regular tag
+  )
+
+  attr(m, "account") <- account("TEST01AA")
+
+  t <- m %>% topics()
+  t_full <- m %>% topics(na.rm = FALSE)
+
+  expect_equal(nrow(t), 2)
+  expect_equal(t$id, c("1-1", "1-1"))
+  expect_equal(t$topic.id, c(11, 12))
+  expect_equal(names(t),
+               c("id", "topic.id", "name", "namespace",
+                 "description", "deleted", "children", "is_parent"))
+
+  expect_equal(nrow(t_full), 4)
+  expect_equal(t_full$id, c("1-1", "1-1", "1-2", "1-3"))
+  expect_equal(t_full$topic.id, c(11, 12, NA, NA))
+})

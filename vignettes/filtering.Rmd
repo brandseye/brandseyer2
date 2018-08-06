@@ -87,7 +87,9 @@ You can test this out now, using either analyse or brandseyer2.
 
 ### Trying this out
 
-#### In analyse.
+#### In analyse
+
+The brand selector.
 
 #### Using brandseyer2
 
@@ -182,6 +184,11 @@ We introduce tags early, since topics are just tags.
 > crowdVerified is true
 
 What's the difference, and when to use which. 
+
+## Things that should always be in filters
+
+- brands
+- topic trees?
 
 ## Location
 

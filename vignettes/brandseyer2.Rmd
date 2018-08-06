@@ -400,3 +400,10 @@ that we are querying.
 
 
 [^1]: [dplyr](https://dplyr.tidyverse.org/) is a great library for working with and manipulating your data sets. brandseyer2 is built around some patterns that you will find in dplyr itself.
+
+# What to read next
+
+If you would like a more in-depth understanding of filtering, 
+see our [filtering vignette](filtering.html). Our [Cookbook](cookbook.html)
+contains a lot of small scripts to perform specific tasks that you may find
+useful.

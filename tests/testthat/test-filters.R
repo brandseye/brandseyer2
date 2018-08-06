@@ -39,6 +39,8 @@ test_that("Can create a query object from an account", {
   expect_equal(q$ordering, NULL)
   expect_equal(is_query(q), TRUE)
   expect_equal(is_query("bob"), FALSE)
+
+  expect_equal(map_int(get_query_brands(q), "id"), c(2, 1))
 })
 
 test_that("Query for a V3 account is null", {
@@ -113,6 +115,8 @@ test_that("Can add an account", {
 
   q <- to_query(v4account) %>% with_account(account("TEST01AA"))
   expect_equal(q$accounts, c("TEST03AA", "TEST01AA"))
+
+  expect_equal(get_query_accounts(q) %>% as.vector(), c("TEST03AA", "TEST01AA"))
 })
 
 test_that("Filtering with a V3 account removes it", {

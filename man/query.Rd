@@ -41,8 +41,6 @@ The advantage of using query and its various verbs is that it handles
 adding root brands to your filter for you, as well as filtering out
 mentions using older versions of the API, or who have no brands altogether.
 
-You can print out the brands in a query using \code{\link[=get_query_brands]{get_query_brands()}}.
-
 Of special note, V4 accounts will not be added to a query.
 }
 \section{Query verbs}{
@@ -57,6 +55,15 @@ in a query sentence.
 \item \code{\link[=with_fields]{with_fields()}} lets you select extra information fields, such as OTS, or engagement.
 \item \code{\link[=with_order]{with_order()}} lets you order the results.
 }
+}
+
+\section{Accessors}{
+
+
+\code{\link[=get_query_brands]{get_query_brands()}} returns a list of \code{\link[=filter_brand]{filter_brand()}} objects. This
+prints nicely, for examining all brands in a query.
+\code{\link[=get_query_accounts]{get_query_accounts()}} returns a vector of account codes. This prints
+nicely, for examining all accounts involved in a query.
 }
 
 \examples{

@@ -2,6 +2,7 @@
 
 * Now has a `with_account()` verb for the filter language.
 * Added a way to nicely see all brands in a query: `get_query_brands()`.
+* Added a way to nicely see all accounts in a query: `get_query_accounts()`.
 
 # brandseyer2 0.0.1.9011
 

@@ -32,8 +32,6 @@
 #' adding root brands to your filter for you, as well as filtering out
 #' mentions using older versions of the API, or who have no brands altogether.
 #'
-#' You can print out the brands in a query using [get_query_brands()].
-#'
 #' Of special note, V4 accounts will not be added to a query.
 #'
 #' @section Query verbs:
@@ -46,6 +44,13 @@
 #' - [compare_mentions()] lets you count and compare mentions from subfilters.
 #' - [with_fields()] lets you select extra information fields, such as OTS, or engagement.
 #' - [with_order()] lets you order the results.
+#'
+#' @section Accessors:
+#'
+#' [get_query_brands()] returns a list of [filter_brand()] objects. This
+#' prints nicely, for examining all brands in a query.
+#' [get_query_accounts()] returns a vector of account codes. This prints
+#' nicely, for examining all accounts involved in a query.
 #'
 #' @param accounts   A character vector of accounts to use.
 #' @param brands     A list of brands to query against.
@@ -204,5 +209,39 @@ format.brandseyer2.query.brand_list <- function(x, ...) {
 
 #' @export
 print.brandseyer2.query.brand_list <- function(x, ...) {
+  cat(format(x))
+}
+
+#' See the accounts in a query.
+#'
+#' Returns a vector of account codes in a query. Ideal for
+#' printing all accounts being queried in large queries.
+#'
+#' @param query A [query()] object.
+#'
+#' @return A vector of account codes.
+#' @export
+#'
+#' @examples
+#'
+#' q <- account("TEST01AA") %>%
+#'   filter_mentions("published inthelast week")
+#' get_query_accounts(q)
+#'
+get_query_accounts <- function(query) {
+  l <- rep(query$accounts %||% list(), 1)
+  class(l) <- c("brandseyer2.query.account_list", class(l))
+  l
+}
+
+#' @export
+format.brandseyer2.query.account_list <- function(x, ...) {
+  if (length(x) == 0) return(paste(clisymbols::symbol$bullet, "No accounts"))
+  map(x, ~ glue::glue("{clisymbols::symbol$bullet} {.x}")) %>%
+    stringr::str_flatten(collapse = "\n")
+}
+
+#' @export
+print.brandseyer2.query.account_list <- function(x, ...) {
   cat(format(x))
 }

@@ -45,6 +45,95 @@ account("TEST01AA") %>%
 
 ## Dates
 
+All mentions are published at a particular date and time. This is the most important
+thing that you can filter on: the publication date. Most questions that we want to answer
+usually have a constrained time period. For example,
+
+> what was the sentiment towards our brand _last month_?
+
+or
+
+> how did sentiment change towards our brand over Christmas last year compared to Christmas
+the year before?
+
+The `published` field allows us to filter on mentions by their date of publication. For example,
+
+> published after '2018/01/01'
+
+will filter for mentions that are published _on or after_ the 1st of January, 2018. Note
+that mentions published on the first are also included by the filter.
+
+> published before '2018/02/01'
+
+filters for mentions published strictly before the 1st of February, 2018. It _does not_
+include mentions from the 1st of February. 
+
+These two filters can be combined using the word `and`, like so:
+
+> published after '2018/01/01' and published before '2018/02/01'
+
+Some things to notice in this filter: it's made up of two _sub-filters_, the 
+_after_ bit, and the _before_ bit. These have been combined using an `and`. Dates
+themselves are quoted in single-quotes, like so: '2018/01/01'. 
+
+Only mentions for which are published both after 2018/01/01 _and_ before 2018/02/02,
+will be selected by this filter. In other words, this filter selects mentions published
+during the month of January. 
+
+We will have more to say about the connector `and` in a later section of this guide.
+
+You can test this out now, using either analyse or brandseyer2.
+
+
+### Trying this out
+
+#### In analyse.
+
+#### Using brandseyer2
+
+All of our examples, going forward, will assume that you have access to 
+your accounts, and that you're using brandseyer2. We won't do anything fancy,
+just the bare minimum brandseyer2 to demonstrate the data.
+
+```{r, eval = FALSE}
+mentions <- account("QUIR01BA") %>% 
+  filter_mentions("published after '2018/01/01' and published before '2018/02/01'" ) %>% 
+  count_mentions
+  
+mentions
+#> # A tibble: 1 x 1
+#>   mentionCount
+#>          <int>
+#> 1        36592
+```
+
+So, we have 36 592 mentions published in the month of January.
+
+### Relative dates
+
+The filter language provides some convenient shortcuts. A common one is
+to find mentions from the last week
+
+> published inthelast week
+
+Notice that `inthelast` is written as one word. 
+
+Similarly, we can find mentions
+
+- published inthelast hour
+- published inthelast 24hours
+- published inthelast day
+- published inthelast week
+- published inthelast month 
+- published inthelast quarter
+- published inthelast year
+
+
+
+
+
+
+
 Dates first, since this allows people to constrain data, rather than get everything.
 How do they cancel if they're accidently pulling more than they want to? 
 

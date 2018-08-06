@@ -122,12 +122,79 @@
 <div id="dates" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dates" class="anchor"></a>Dates</h2>
+<p>All mentions are published at a particular date and time. This is the most important thing that you can filter on: the publication date. Most questions that we want to answer usually have a constrained time period. For example,</p>
+<blockquote>
+<p>what was the sentiment towards our brand <em>last month</em>?</p>
+</blockquote>
+<p>or</p>
+<blockquote>
+<p>how did sentiment change towards our brand over Christmas last year compared to Christmas the year before?</p>
+</blockquote>
+<p>The <code>published</code> field allows us to filter on mentions by their date of publication. For example,</p>
+<blockquote>
+<p>published after ‘2018/01/01’</p>
+</blockquote>
+<p>will filter for mentions that are published <em>on or after</em> the 1st of January, 2018. Note that mentions published on the first are also included by the filter.</p>
+<blockquote>
+<p>published before ‘2018/02/01’</p>
+</blockquote>
+<p>filters for mentions published strictly before the 1st of February, 2018. It <em>does not</em> include mentions from the 1st of February.</p>
+<p>These two filters can be combined using the word <code>and</code>, like so:</p>
+<blockquote>
+<p>published after ‘2018/01/01’ and published before ‘2018/02/01’</p>
+</blockquote>
+<p>Some things to notice in this filter: it’s made up of two <em>sub-filters</em>, the <em>after</em> bit, and the <em>before</em> bit. These have been combined using an <code>and</code>. Dates themselves are quoted in single-quotes, like so: ‘2018/01/01’.</p>
+<p>Only mentions for which are published both after 2018/01/01 <em>and</em> before 2018/02/02, will be selected by this filter. In other words, this filter selects mentions published during the month of January.</p>
+<p>We will have more to say about the connector <code>and</code> in a later section of this guide.</p>
+<p>You can test this out now, using either analyse or brandseyer2.</p>
+<div id="trying-this-out" class="section level3">
+<h3 class="hasAnchor">
+<a href="#trying-this-out" class="anchor"></a>Trying this out</h3>
+<div id="in-analyse-" class="section level4">
+<h4 class="hasAnchor">
+<a href="#in-analyse-" class="anchor"></a>In analyse.</h4>
+</div>
+<div id="using-brandseyer2" class="section level4">
+<h4 class="hasAnchor">
+<a href="#using-brandseyer2" class="anchor"></a>Using brandseyer2</h4>
+<p>All of our examples, going forward, will assume that you have access to your accounts, and that you’re using brandseyer2. We won’t do anything fancy, just the bare minimum brandseyer2 to demonstrate the data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mentions &lt;-<span class="st"> </span><span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"QUIR01BA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published after '2018/01/01' and published before '2018/02/01'"</span> ) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>count_mentions
+  
+mentions
+<span class="co">#&gt; # A tibble: 1 x 1</span>
+<span class="co">#&gt;   mentionCount</span>
+<span class="co">#&gt;          &lt;int&gt;</span>
+<span class="co">#&gt; 1        36592</span></code></pre></div>
+<p>So, we have 36 592 mentions published in the month of January.</p>
+</div>
+</div>
+<div id="relative-dates" class="section level3">
+<h3 class="hasAnchor">
+<a href="#relative-dates" class="anchor"></a>Relative dates</h3>
+<p>The filter language provides some convenient shortcuts. A common one is to find mentions from the last week</p>
+<blockquote>
+<p>published inthelast week</p>
+</blockquote>
+<p>Notice that <code>inthelast</code> is written as one word.</p>
+<p>Similarly, we can find mentions</p>
+<ul>
+<li>published inthelast hour</li>
+<li>published inthelast 24hours</li>
+<li>published inthelast day</li>
+<li>published inthelast week</li>
+<li>published inthelast month</li>
+<li>published inthelast quarter</li>
+<li>published inthelast year</li>
+</ul>
 <p>Dates first, since this allows people to constrain data, rather than get everything. How do they cancel if they’re accidently pulling more than they want to?</p>
 <ul>
 <li>Published date is the important one</li>
 <li>How to filter on hours.</li>
 <li>Addendum: picked up date, updated date, what are these.</li>
 </ul>
+</div>
 <div id="grouping-by-date" class="section level3">
 <h3 class="hasAnchor">
 <a href="#grouping-by-date" class="anchor"></a>Grouping by date</h3>

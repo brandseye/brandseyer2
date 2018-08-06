@@ -87,6 +87,53 @@ with_account_impl.list <- function(.account, .query) {
 
 
 #----------------------------------------------------------
+# Selecting brands
+
+with_brands <- function(.account, selector) {
+  UseMethod("with_brands")
+}
+
+with_brands.brandseyer2.account <- function(.account, selector) {
+  with_brands(list(.account), selector)
+}
+
+with_brands.list <- function(.account, selector) {
+  b <- with_brands_impl(selector, account(.account))
+  brands <- filter_brand_from_df(account_code(.account), b)
+
+  if (interactive() && nrow(b) > 0) {
+    message(paste("Selecting brands:", map(brands, purrr::partial(format, colour = FALSE))))
+  }
+
+  if (interactive() && nrow(b) == 0) {
+    rlang::warn(glue::glue("No brands matched brand selector {selector}"))
+  }
+
+  q <- map(.account, to_query) %>% reduce(merge_query)
+  q$brands <- brands
+  q
+}
+
+with_brands_impl <- function(selector, account) {
+  UseMethod("with_brands_impl")
+}
+
+with_brands_impl.numeric <- function(selector, account) {
+  account %>%
+    brands() %>%
+    filter(id == selector)
+}
+
+with_brands_impl.character <- function(selector, account) {
+  # For devtools::check
+  name <- NULL;
+
+  account %>%
+    brands() %>%
+    filter(grepl(selector, name))
+}
+
+#----------------------------------------------------------
 # Filtering mentions
 
 

@@ -131,6 +131,12 @@ account.brandseyer2.account <- function(codes, ...) {
   return(codes)
 }
 
+#' @export
+account.list <- function(codes, ...) {
+  codes %>%
+    map(account)
+}
+
 
 #' @export
 accounts <- account

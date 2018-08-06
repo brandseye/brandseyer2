@@ -68,7 +68,15 @@ How do they cancel if they're accidently pulling more than they want to?
 
 ## Relevancy
 
-> Relevancy isnt irrelevant 
+> Relevancy isnt irrelevant
+
+## Joining together statements
+
+- What is `AND`? Both things must be true.
+- What is `OR`? Either things must be true.  
+- It's not English! There's a distinct meaning.
+- This is called _Boolean Logic_, or _Boolean Algebra_[^4], after George Boole, a 
+  mathematician who published in the 1800s on logic and "rules of thought".
 
 ## Sentiment 
 
@@ -99,6 +107,13 @@ Analyse is required to get all of these names.
 
 ## Gender
 
+## Joining together statements revisted
+
+Now that we have more statements, we can give more examples. 
+
+- Precedence.
+- Bracketing.
+
 ## Author information
 
 ## Finding replies and reshares
@@ -113,6 +128,7 @@ from brandseyer2, ggplot2 is a great tool for visualising the data.
 [^3]: [readr][readr] is a library for reading and writing CSV data. R has a rich ecosystem
 for importing and exporting data, with other libraries providing support for Excel and Google Sheets.
 
+[^4]: You can ead more about Boolean Logic on [Wikipedia](https://en.wikipedia.org/wiki/Boolean_algebra).
 
 [dplyr]: https://dplyr.tidyverse.org/
 [ggplot2]: https://ggplot2.tidyverse.org/

@@ -41,6 +41,8 @@ The advantage of using query and its various verbs is that it handles
 adding root brands to your filter for you, as well as filtering out
 mentions using older versions of the API, or who have no brands altogether.
 
+You can print out the brands in a query using \code{\link[=get_query_brands]{get_query_brands()}}.
+
 Of special note, V4 accounts will not be added to a query.
 }
 \section{Query verbs}{

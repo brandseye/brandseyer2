@@ -32,6 +32,8 @@
 #' adding root brands to your filter for you, as well as filtering out
 #' mentions using older versions of the API, or who have no brands altogether.
 #'
+#' You can print out the brands in a query using [get_query_brands()].
+#'
 #' Of special note, V4 accounts will not be added to a query.
 #'
 #' @section Query verbs:
@@ -171,3 +173,36 @@ format.brandseyer2.query <- function(x, ...) {
 }
 
 
+#' See brands in a query
+#'
+#' Returns a list of brands in a query. It is useful for
+#' interactively displaying all the brands in a large query.
+#'
+#' @param query A [query()] object.
+#'
+#' @return A list of brands.
+#' @export
+#'
+#' @examples
+#'
+#' q <- account("TEST01AA") %>%
+#'   filter_mentions("published in thelast week")
+#' get_query_brands(q)
+#'
+get_query_brands <- function(query) {
+  l <- rep(query$brands %||% list(), 1)
+  class(l) <- c("brandseyer2.query.brand_list", class(l))
+  l
+}
+
+#' @export
+format.brandseyer2.query.brand_list <- function(x, ...) {
+  if (length(x) == 0) return(paste(clisymbols::symbol$bullet, "No brands"))
+  map(x, ~ glue::glue("{clisymbols::symbol$bullet} {format(.x)}")) %>%
+    stringr::str_flatten(collapse = "\n")
+}
+
+#' @export
+print.brandseyer2.query.brand_list <- function(x, ...) {
+  cat(format(x))
+}

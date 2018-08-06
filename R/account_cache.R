@@ -31,8 +31,8 @@ cache_account <- function(account) {
   account
 }
 
-cache_is_expired <- function(account, duration = lubridate::duration(1, "minutes")) {
-  Sys.time() - account$accessed > lubridate::duration(1, "minutes")
+cache_is_expired <- function(account, duration = lubridate::duration(5, "minutes")) {
+  Sys.time() - account$accessed > duration
 }
 
 remove_from_cache <- function(code) {
@@ -42,7 +42,7 @@ remove_from_cache <- function(code) {
     rm(code, envir = pkg.accounts)
   }
 
-  account
+  invisible()
 }
 
 get_cached_account <- function(code) {
@@ -50,8 +50,7 @@ get_cached_account <- function(code) {
   get(code, envir = pkg.accounts)
 }
 
-clear_cache <- function(account) {
-  message("Removing old accounts")
+clear_cache <- function() {
   ls(pkg.accounts) %>%
     map(function(code) {
       if (cached_account_exists(code)) {

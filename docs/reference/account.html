@@ -134,7 +134,8 @@ performing actions on in brandseyer2.</p>
     <pre class="usage"><span class='fu'>account</span>(<span class='no'>codes</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for character</span>
-<span class='fu'>account</span>(<span class='no'>codes</span>, <span class='no'>...</span>, <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())
+<span class='fu'>account</span>(<span class='no'>codes</span>, <span class='no'>...</span>, <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>(),
+  <span class='kw'>.ignore.cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># S3 method for data.frame</span>
 <span class='fu'>account</span>(<span class='no'>codes</span>, <span class='no'>...</span>, <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())</pre>
@@ -158,6 +159,11 @@ be shown or not. By default, it will only be shown on interactive sessions.
 Further, no matter this parameter's value, the bar will only be shown
 when fetching account information for more than five accounts.</p></td>
     </tr>
+    <tr>
+      <th>.ignore.cache</th>
+      <td><p>Causes <code>account()</code> to always fetch account data from BrandsEye,
+even if the account cache has data stored.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -180,6 +186,16 @@ of account objects to act on.</p>
 should have an <code>account</code> column holding the account's code.
 <code><a href='account_list.html'>account_list()</a></code> is a function that returns just such a data.frame.</p></li>
 </ul>
+    
+    <h2 class="hasAnchor" id="caching-account-information"><a class="anchor" href="#caching-account-information"></a>Caching account information</h2>
+
+    
+    <p>Account information is by default cached for one minute per account. In
+other words, while the first call to <code>account()</code> to find information for
+a particular account will spend time on network comms, for the next five minutes
+the same call to <code>account()</code> performs no network comms.</p>
+<p>Please note that it may cause stale data to be returned. See the <code>.ignore.cache</code>
+parameter.</p>
     
     <h2 class="hasAnchor" id="interactive-use"><a class="anchor" href="#interactive-use"></a>Interactive use</h2>
 
@@ -239,6 +255,8 @@ can control this behaviour using the <code>.show.progress</code> parameter.</p>
       <li><a href="#details">Details</a></li>
 
       <li><a href="#methods-by-class-">Methods (by class)</a></li>
+
+      <li><a href="#caching-account-information">Caching account information</a></li>
 
       <li><a href="#interactive-use">Interactive use</a></li>
 

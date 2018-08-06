@@ -81,6 +81,8 @@ create_tags.brandseyer2.account <- function(x, name, description) {
                      method = "POST",
                      json = json)
 
+  remove_from_cache(account_code(x))
+
   data %>%
     map_df(~tibble(
       id = .x$id,

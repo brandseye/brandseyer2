@@ -35,7 +35,7 @@ pkg.accounts <- new.env()   # account information that we've fetched.
 #'
 #' Account information is by default cached for one minute per account. In
 #' other words, while the first call to [account()] to find information for
-#' a particular account will spend time on network comms, for the next minute
+#' a particular account will spend time on network comms, for the next five minutes
 #' the same call to [account()] performs no network comms.
 #'
 #' Please note that it may cause stale data to be returned. See the `.ignore.cache`
@@ -97,7 +97,6 @@ account.character <- function(codes, ...,
                               .show.progress = interactive(),
                               .ignore.cache = FALSE) {
   codes <- c(codes, ...)
-  clear_cache()
 
   if (length(codes) > 1) {
     # Set up the progress bar.

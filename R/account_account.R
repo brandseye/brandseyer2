@@ -19,6 +19,8 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+pkg.accounts <- new.env()   # account information that we've fetched.
+
 #' Access account information
 #'
 #' Returns an account object, representing the account that you're
@@ -28,6 +30,16 @@
 #' a single account code as an argument. You can also pass in multiple
 #' account codes, or even a vector of account codes, to be given a list
 #' of account objects to act on.
+#'
+#' @section Caching account information:
+#'
+#' Account information is by default cached for one minute per account. In
+#' other words, while the first call to [account()] to find information for
+#' a particular account will spend time on network comms, for the next minute
+#' the same call to [account()] performs no network comms.
+#'
+#' Please note that it may cause stale data to be returned. See the `.ignore.cache`
+#' parameter.
 #'
 #' @param codes A vector of one or more account codes, or possibly
 #'              a tibble (with an `account` column, such as from [account_list()])
@@ -60,6 +72,8 @@ account <- function(codes, ...) {
 #'        be shown or not. By default, it will only be shown on interactive sessions.
 #'        Further, no matter this parameter's value, the bar will only be shown
 #'        when fetching account information for more than five accounts.
+#' @param .ignore.cache Causes [account()] to always fetch account data from BrandsEye,
+#'        even if the account cache has data stored.
 #'
 #' @section Interactive use:
 #'
@@ -79,8 +93,11 @@ account <- function(codes, ...) {
 #'
 #' # Read accounts from a vector
 #' account(c("TEST01AA", "TEST02AA"))
-account.character <- function(codes, ..., .show.progress = interactive()) {
+account.character <- function(codes, ...,
+                              .show.progress = interactive(),
+                              .ignore.cache = FALSE) {
   codes <- c(codes, ...)
+  clear_cache()
 
   if (length(codes) > 1) {
     # Set up the progress bar.
@@ -107,8 +124,14 @@ account.character <- function(codes, ..., .show.progress = interactive()) {
     }
   }
 
+  if (!.ignore.cache && cached_account_exists(codes)) {
+    ac <- get_cached_account(codes)
+    if (!cache_is_expired(ac)) return(ac)
+  }
+
   read_account(codes) %>%
-    create_account()
+    create_account() %>%
+    cache_account()
 }
 
 #' @describeIn account
@@ -144,7 +167,8 @@ accounts <- account
 # Given a data list, this will create the appropriate data structure.
 create_account <- function(data) {
   storage_class <- paste0("brandseyer2.account.", tolower(data$storage))
-  structure(data,
+  # Also store the time that we last accessed this data.
+  structure(c(list(accessed = Sys.time()), data),
             class = c(storage_class, "brandseyer2.account"))
 }
 

@@ -9,7 +9,8 @@
 \usage{
 account(codes, ...)
 
-\method{account}{character}(codes, ..., .show.progress = interactive())
+\method{account}{character}(codes, ..., .show.progress = interactive(),
+  .ignore.cache = FALSE)
 
 \method{account}{data.frame}(codes, ..., .show.progress = interactive())
 }
@@ -23,6 +24,9 @@ a tibble (with an \code{account} column, such as from \code{\link[=account_list]
 be shown or not. By default, it will only be shown on interactive sessions.
 Further, no matter this parameter's value, the bar will only be shown
 when fetching account information for more than five accounts.}
+
+\item{.ignore.cache}{Causes \code{\link[=account]{account()}} to always fetch account data from BrandsEye,
+even if the account cache has data stored.}
 }
 \value{
 An account object if one account code is given, or a list of account objects,
@@ -46,6 +50,18 @@ of account objects to act on.
 should have an \code{account} column holding the account's code.
 \code{\link[=account_list]{account_list()}} is a function that returns just such a data.frame.
 }}
+
+\section{Caching account information}{
+
+
+Account information is by default cached for one minute per account. In
+other words, while the first call to \code{\link[=account]{account()}} to find information for
+a particular account will spend time on network comms, for the next minute
+the same call to \code{\link[=account]{account()}} performs no network comms.
+
+Please note that it may cause stale data to be returned. See the \code{.ignore.cache}
+parameter.
+}
 
 \section{Interactive use}{
 

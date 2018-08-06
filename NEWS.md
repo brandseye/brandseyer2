@@ -1,5 +1,7 @@
 # brandseyer2 0.0.1.9012
 
+* Now has a `with_account()` verb for the filter language.
+
 # brandseyer2 0.0.1.9011
 
 * The filter language is available.

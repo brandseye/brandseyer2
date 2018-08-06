@@ -76,6 +76,7 @@ reference:
       guide discusses this in more detail.
     contents:
       - query
+      - with_account
       - filter_mentions
       - group_mentions_by
       - compare_mentions

@@ -104,6 +104,17 @@ test_that("Can add subfilters", {
   expect_equal(q$comparison, list(one = "4", two = "5", "6"))
 })
 
+test_that("Can add an account", {
+  q <- to_query(v4account) %>% with_account("TEST01AA")
+  expect_equal(q$accounts, c("TEST03AA", "TEST01AA"))
+
+  q <- v4account %>% with_account("TEST01AA")
+  expect_equal(q$accounts, c("TEST03AA", "TEST01AA"))
+
+  q <- to_query(v4account) %>% with_account(account("TEST01AA"))
+  expect_equal(q$accounts, c("TEST03AA", "TEST01AA"))
+})
+
 test_that("Filtering with a V3 account removes it", {
   expect_warning(account("TEST01AA", "TEST02AA") %>% filter_mentions("today"),
                  regexp = "V4")

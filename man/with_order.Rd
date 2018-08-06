@@ -31,7 +31,7 @@ account("TEST01AA") \%>\%
 }
 \seealso{
 Other verbs for the query language: \code{\link[=group_mentions_by]{group_mentions_by()}},
-\code{\link[=compare_mentions]{compare_mentions()}}, \code{\link[=filter_mentions]{filter_mentions()}}, \code{\link[=filter_mentions]{filter_mentions()}}
+\code{\link[=compare_mentions]{compare_mentions()}}, \code{\link[=filter_mentions]{filter_mentions()}}, \code{\link[=filter_mentions]{filter_mentions()}}, \code{\link[=with_account]{with_account()}}.
 
 \code{\link[=query]{query()}} is a way to manually create queries.
 }

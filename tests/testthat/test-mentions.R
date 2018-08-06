@@ -106,7 +106,7 @@ test_that("if site not included, no data returned", {
   admin <- brandseyer2:::list_to_v4_mentions(data, TRUE)
   expect_equal(admin$extract, "extract")
 
-  regular <- brandseyer2:::list_to_v4_mentions(data, FALSE)
+  regular <- suppressWarnings(brandseyer2:::list_to_v4_mentions(data, FALSE))
   expect_equal(regular$extract, NA)
 
 })

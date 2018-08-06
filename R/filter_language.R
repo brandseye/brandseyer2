@@ -20,6 +20,73 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #----------------------------------------------------------
+# Adding brands
+
+#' Add accounts to a query.
+#'
+#' [with_account()] lets you add additional accounts to a [query()]. It's
+#' root brands and timezone are added, as appropriate. This is
+#' part of the [query()] language.
+#'
+#' @param .query   A [query()] or [account()] to which to add this account.
+#' @param account  The [account()] to add.
+#'
+#' @return A [query()] object
+#' @export
+#'
+#' @seealso
+#'
+#' Other verbs for the query language: [group_mentions_by()],
+#' [compare_mentions()], [with_fields()], [with_order()]
+#'
+#' [query()] is a way to manually create queries.
+#'
+#' @examples
+#'
+#' \dontrun{
+#' account("TEST01AA") %>%
+#'   filter_mentions("published inthelast week") %>%
+#'   with_account("TEST03AA")
+#'
+#' account("TEST01AA") %>%
+#'   filter_mentions("published inthelast week") %>%
+#'   with_account(account("TEST03AA"))
+#' }
+with_account <- function(.query, account) {
+  UseMethod("with_account")
+}
+
+#' @export
+with_account.brandseyer2.query <- function(.query, account) {
+  with_account_impl(account, .query)
+}
+
+#' @export
+with_account.brandseyer2.account <- function(.query, account) {
+  with_account_impl(account, to_query(.query))
+}
+
+with_account_impl <- function(.account, .query) {
+  UseMethod("with_account_impl")
+}
+
+with_account_impl.character <- function(.account, .query) {
+  account(.account) %>%
+    with_account_impl(.query)
+}
+
+with_account_impl.brandseyer2.account <- function(.account, .query) {
+  merge_query(.query, to_query(.account))
+}
+
+with_account_impl.list <- function(.account, .query) {
+  .account %>%
+    map(to_query) %>%
+    reduce(merge_query)
+}
+
+
+#----------------------------------------------------------
 # Filtering mentions
 
 
@@ -38,7 +105,7 @@
 #' @seealso
 #'
 #' Other verbs for the query language: [group_mentions_by()],
-#' [compare_mentions()], [with_fields()], [with_order()]
+#' [compare_mentions()], [with_fields()], [with_order()], [with_account()].
 #'
 #' [query()] is a way to manually create queries.
 #'
@@ -97,7 +164,7 @@ filter_mentions.brandseyer2.query <- function(.account, filter) {
 #' @seealso
 #'
 #' Other verbs for the query language: [group_mentions_by()],
-#' [filter_mentions()], [with_fields()], [with_order()]
+#' [filter_mentions()], [with_fields()], [with_order()], [with_account()].
 #'
 #' [query()] is a way to manually create queries.
 #'
@@ -161,7 +228,7 @@ compare_mentions_impl <- function(query, comparison) {
 #' @seealso
 #'
 #' Other verbs for the query language: [group_mentions_by()],
-#' [compare_mentions()], [with_fields()], [with_order()]
+#' [compare_mentions()], [with_fields()], [with_order()], [with_account()].
 #'
 #' [query()] is a way to manually create queries.
 #'
@@ -224,7 +291,7 @@ group_mentions_by_impl <- function(query, groupBy) {
 #' @seealso
 #'
 #' Other verbs for the query language: [group_mentions_by()],
-#' [compare_mentions()], [filter_mentions()], [with_order()]
+#' [compare_mentions()], [filter_mentions()], [with_order()], [with_account()].
 #'
 #' [query()] is a way to manually create queries.
 #'
@@ -288,7 +355,7 @@ with_fields_impl <- function(query, fields) {
 #' @seealso
 #'
 #' Other verbs for the query language: [group_mentions_by()],
-#' [compare_mentions()], [filter_mentions()], [filter_mentions()]
+#' [compare_mentions()], [filter_mentions()], [filter_mentions()], [with_account()].
 #'
 #' [query()] is a way to manually create queries.
 #'

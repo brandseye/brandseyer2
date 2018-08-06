@@ -109,7 +109,9 @@ mentions
 #> 1        36592
 ```
 
-So, we have 36 592 mentions published in the month of January.
+So, we have 36 592 mentions published in the month of January. Instead of counting
+the mentions with `count_mentions()`, you could instead use `mentions()`
+to pull a table of all of these mentions.
 
 ### Relative dates
 

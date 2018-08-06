@@ -85,6 +85,7 @@ reference:
       - is_query
       - to_query
       - get_query_brands
+      - get_query_accounts
   - title: "Working with account logs"
     desc: >
       Most actions on user accounts are logged. brandseyer2 provides various

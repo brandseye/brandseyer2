@@ -144,7 +144,7 @@ test_that("Can merge queries", {
   q <- brandseyer2:::merge_query(q1, q2)
 
   expect_equal(q$accounts, c("TEST01AA", "TEST03AA"))
-  expect_equal(map_int(q$brands, "id"), c(2, 1, 10))
+  expect_equal(map_int(q$brands, "id"), c(2L, 1L, 10L))
   expect_equal(q$timezone, c("Africa/Johannesburg", "Africa/Johannesburg"))
   expect_equal(q$grouping, "published1")
   expect_equal(q$comparison, list(one = "one", two = "two"))

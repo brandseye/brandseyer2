@@ -10,4 +10,5 @@
 #' @importFrom assertthat is.string
 #' @importFrom lubridate %m-%
 #' @importFrom magrittr %<>%
+#' @importFrom glue glue
 NULL

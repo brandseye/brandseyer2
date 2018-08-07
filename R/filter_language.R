@@ -89,6 +89,8 @@ with_account_impl.list <- function(.account, .query) {
 #----------------------------------------------------------
 # Selecting brands
 
+# Messages won't be show non-interactive. Can be suppressed
+# when interactive.
 with_brands <- function(.account, selector) {
   UseMethod("with_brands")
 }
@@ -97,16 +99,32 @@ with_brands.brandseyer2.account <- function(.account, selector) {
   with_brands(list(.account), selector)
 }
 
+with_brands.brandseyer2.query <- function(.account, selector) {
+  get_query_accounts(.account) %>%
+    account() %>%
+    with_brands(selector)
+}
+
 with_brands.list <- function(.account, selector) {
   b <- with_brands_impl(selector, account(.account))
   brands <- filter_brand_from_df(account_code(.account), b)
 
+  # Provide information about what changed.
   if (interactive() && nrow(b) > 0) {
-    message(paste("Selecting brands:", map(brands, purrr::partial(format, colour = FALSE))))
+    m <- glue("Selecting brands: ",
+              map_chr(brands, partial(format, colour = FALSE)) %>%
+                stringr::str_flatten(", "))
+
+    if (nchar(m) > cli::console_width()) {
+      acs <- map(brands, ~ .x$code) %>% unique() %>% length()
+      m <- glue("Selected {length(brands)} brands across {acs} accounts")
+    }
+
+    message(m)
   }
 
   if (interactive() && nrow(b) == 0) {
-    rlang::warn(glue::glue("No brands matched brand selector {selector}"))
+    rlang::warn(glue("No brands matched brand selector {selector}"))
   }
 
   q <- map(.account, to_query) %>% reduce(merge_query)
@@ -453,23 +471,23 @@ with_order_impl <- function(query, fields) {
 # This filters out accounts that we can't query on,
 # and provides nice, grouped, warning messages.
 filter_and_warn_v4 <- function(accounts) {
-  bad_version <- keep(accounts, ~ account_api_version(.x) != 'V4')
-  bad_brand <- keep(accounts, ~ nrow(root_brands(.x)) == 0)
-
-  if (rlang::is_empty(bad_version) && rlang::is_empty(bad_brand))
-    return(accounts)
+  bad_version <- c()
+  good <- list()
+  for (account in accounts) {
+    if (account_api_version(account) != 'V4')
+      bad_version <- c(bad_version, account_code(account))
+    else
+      good <- c(list(account), good)
+  }
 
   if (!rlang::is_empty(bad_version)) {
     message <- bad_version %>%
-      map(account_code) %>%
       stringr::str_flatten(collapse = ", ") %>%
-      { glue::glue("The following accounts are not V4: {.}. Ignoring them.")}
-
-
+      { glue("The following accounts are not V4: {.}. Ignoring them.")}
 
     if (rlang::is_string(message))
       rlang::warn(message)
   }
 
-  keep(accounts, ~ account_api_version(.x) == 'V4')
+  good
 }

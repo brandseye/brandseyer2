@@ -49,7 +49,6 @@ to_count_filter <- function(query, code) {
   brands <- purrr::keep(query$brands, ~ .x$code == code)
   if (length(brands) == 0) return(NULL)
 
-
   brand_portion <- brands %>%
     map_int(~.x$id) %>%
     map_chr(~ glue::glue("brand isorchildof {.x}")) %>%

@@ -273,16 +273,26 @@ count_mentions.brandseyer2.query <- function(.account, ...,
 
   pb$tick(0, tokens = list(code = "starting"))
 
+  no_filters <- list()
+  on.exit({
+    if (length(no_filters) > 0)
+      rlang::warn(glue::glue(stringr::str_flatten(no_filters, ", "), " has no filters (and possibly no brands) from the query"))
+  })
+
   purrr::map2_df(.account$accounts, .account$timezones, function(code, timezone) {
     on.exit(pb$tick(tokens = list(code = code)))
     filters <- to_count_filter(.account, code)
+
     if (length(filters) == 1) {
       return(get(code, filters, timezone))
+    }
+
+    if (length(filters) == 0) {
+      no_filters <<- c(code, no_filters)
     }
 
     purrr::map2_df(filters, names(filters), function(filter, comparison) {
       get(code, filter, timezone, comparison)
     })
   })
-
 }

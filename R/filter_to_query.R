@@ -44,9 +44,6 @@ to_query.brandseyer2.account <- function(x) {
   }
 
   brands <- filter_brand_from_df(account_code(x), x %>% root_brands())
-  if (rlang::is_empty(brands)) {
-    rlang::warn(glue::glue("Account {account_code(x)} has no root brands. Ignoring."))
-  }
 
   query(accounts = account_code(x),
         brands = brands,

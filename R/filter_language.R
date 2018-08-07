@@ -471,18 +471,5 @@ filter_and_warn_v4 <- function(accounts) {
       rlang::warn(message)
   }
 
-
-  if (!rlang::is_empty(bad_brand)) {
-    message <- bad_brand %>%
-      map(account_code) %>%
-      stringr::str_flatten(collapse = ", ") %>%
-      { glue::glue("The following accounts have no root brands: {.}. Ignoring them.")}
-
-
-
-    if (rlang::is_string(message))
-      rlang::warn(message)
-  }
-
-  keep(accounts, ~ account_api_version(.x) == 'V4' && nrow(root_brands(.x)) != 0)
+  keep(accounts, ~ account_api_version(.x) == 'V4')
 }

@@ -1,5 +1,7 @@
 # brandseyer2 0.0.1.9013
 
+* Filtering of accounts with no brands now occurs at the `count_mentions()` level.
+
 # brandseyer2 0.0.1.9012
 
 * Now has a `with_account()` verb for the filter language.

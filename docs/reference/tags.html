@@ -63,7 +63,7 @@ mentions." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9012</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9013</span>
       </span>
     </div>
 
@@ -192,14 +192,14 @@ tags. Note that topics are stored in the 'topics' namespace.</p>
 <span class='co'># See what namespaces are in your account</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>tags</span>() <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>namespace</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/select'>select</a></span>(<span class='no'>namespace</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>table</span>()</div><div class='output co'>#&gt; .
 #&gt;        tag      topic topic_tree 
 #&gt;          2          3          1 </div><div class='input'>
 <span class='co'># Find topics</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>tags</span>() <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>namespace</span> <span class='kw'>==</span> <span class='st'>"topic"</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 7
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/filter'>filter</a></span>(<span class='no'>namespace</span> <span class='kw'>==</span> <span class='st'>"topic"</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 7
 #&gt;      id name          namespace description       deleted children  is_parent
 #&gt;   &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;             &lt;lgl&gt;   &lt;list&gt;    &lt;lgl&gt;    
 #&gt; 1    10 Parent topic  topic     Has children      FALSE   &lt;int [2]&gt; TRUE     

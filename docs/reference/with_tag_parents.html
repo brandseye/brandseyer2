@@ -64,7 +64,7 @@ we need to know what the ultimate root parent to determine
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9012</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9013</span>
       </span>
     </div>
 
@@ -182,8 +182,8 @@ we need to know what the ultimate root parent to determine
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='tags.html'>tags</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>with_tag_parents</span>(<span class='fl'>1001</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>namespace</span> <span class='kw'>==</span> <span class='st'>'topic'</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span>(<span class='fu'>desc</span>(<span class='no'>is_parent</span>), <span class='no'>name</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 8
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/filter'>filter</a></span>(<span class='no'>namespace</span> <span class='kw'>==</span> <span class='st'>'topic'</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/arrange'>arrange</a></span>(<span class='fu'>desc</span>(<span class='no'>is_parent</span>), <span class='no'>name</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 8
 #&gt;      id name        namespace description     deleted children is_parent parent
 #&gt;   &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;           &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;      &lt;dbl&gt;
 #&gt; 1    10 Parent top… topic     Has children    FALSE   &lt;int [2… TRUE        1001

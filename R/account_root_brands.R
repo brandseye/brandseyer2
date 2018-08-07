@@ -109,7 +109,7 @@ root_brands.data.frame <- function(x, includeDeleted = FALSE, includeArchived = 
 root_brands.brandseyer2.account <- function(x, includeDeleted = FALSE, includeArchived = FALSE,
                                             short = TRUE) {
   x %>%
-    brands(short = FALSE) %>%
+    brands(short = short) %>%
     root_brands(includeDeleted = includeDeleted,
                 includeArchived = includeArchived,
                 short = short)
@@ -122,6 +122,6 @@ root_brands.brandseyer2.account <- function(x, includeDeleted = FALSE, includeAr
 #' @export
 root_brands.list <- function(x, includeDeleted = FALSE, includeArchived = FALSE, short = TRUE) {
   x %>%
-    brands(short = FALSE) %>%
+    brands(short = short) %>%
     root_brands(includeDeleted = includeDeleted, includeArchived = includeArchived, short = short)
 }

@@ -31,7 +31,7 @@ test_that("Can create a query object from an account", {
   q <- to_query(account("TEST01AA"))
 
   expect_equal(q$accounts, c("TEST01AA"))
-  expect_equal(map_int(q$brands, "id"), c(2, 1))
+  expect_equal(map_int(q$brands, "id"), c(1, 2))
   expect_equal(q$timezone, "Africa/Johannesburg")
   expect_equal(q$grouping, NULL)
   expect_equal(q$comparison, NULL)
@@ -40,7 +40,7 @@ test_that("Can create a query object from an account", {
   expect_equal(is_query(q), TRUE)
   expect_equal(is_query("bob"), FALSE)
 
-  expect_equal(map_int(get_query_brands(q), "id"), c(2, 1))
+  expect_equal(map_int(get_query_brands(q), "id"), c(1, 2))
 })
 
 test_that("Query for a V3 account is null", {
@@ -144,7 +144,7 @@ test_that("Can merge queries", {
   q <- brandseyer2:::merge_query(q1, q2)
 
   expect_equal(q$accounts, c("TEST01AA", "TEST03AA"))
-  expect_equal(map_int(q$brands, "id"), c(2L, 1L, 10L))
+  expect_equal(map_int(q$brands, "id"), c(1L, 2L, 10L))
   expect_equal(q$timezone, c("Africa/Johannesburg", "Africa/Johannesburg"))
   expect_equal(q$grouping, "published1")
   expect_equal(q$comparison, list(one = "one", two = "two"))

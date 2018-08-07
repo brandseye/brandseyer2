@@ -200,17 +200,17 @@ or tibble of mention data.</p></td>
 <span class='co'># Find deleted parent brands</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>brands</span>() <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/filter'>filter</a></span>(<span class='fu'>is.na</span>(<span class='no'>parent</span>), <span class='no'>deleted</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 5
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>is.na</span>(<span class='no'>parent</span>), <span class='no'>deleted</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 5
 #&gt;      id name       parent deleted archived           
 #&gt;   &lt;int&gt; &lt;chr&gt;       &lt;int&gt; &lt;lgl&gt;   &lt;dttm&gt;             
 #&gt; 1     5 So deleted     NA TRUE    NA                 </div><div class='input'>
 <span class='co'># Fetch phrases without using `phrases``</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>brands</span>(<span class='kw'>short</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/select'>select</a></span>(<span class='no'>id</span>, <span class='no'>phrases</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/select'>rename</a></span>(<span class='kw'>brand.id</span> <span class='kw'>=</span> <span class='no'>id</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>id</span>, <span class='no'>phrases</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>rename</a></span>(<span class='kw'>brand.id</span> <span class='kw'>=</span> <span class='no'>id</span>) <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>tidyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/tidyr/topics/unnest'>unnest</a></span>(<span class='no'>phrases</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/select'>rename</a></span>(<span class='kw'>phrase.id</span> <span class='kw'>=</span> <span class='no'>id</span>)</div><div class='output co'>#&gt; # A tibble: 9 x 5
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>rename</a></span>(<span class='kw'>phrase.id</span> <span class='kw'>=</span> <span class='no'>id</span>)</div><div class='output co'>#&gt; # A tibble: 9 x 5
 #&gt;   brand.id phrase.id query      inactive deleted
 #&gt;      &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;lgl&gt;  
 #&gt; 1        1         1 brand      FALSE    TRUE   

@@ -78,4 +78,5 @@ query(accounts = c("TEST01AA", "TEST02AA"),
 You can test if an object is a \code{\link[=query]{query()}} object using \code{\link[=is_query]{is_query()}}.
 \code{\link[=to_count_filter]{to_count_filter()}} will allow you to convert a \code{\link[=query]{query()}} to
 a vector of filters appropriate for use on \code{\link[=count_mentions]{count_mentions()}}.
+\code{\link[=to_mention_filter]{to_mention_filter()}} is similar, but for the \code{\link[=mentions]{mentions()}} function.
 }

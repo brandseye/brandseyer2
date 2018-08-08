@@ -69,6 +69,7 @@
 #' You can test if an object is a [query()] object using [is_query()].
 #' [to_count_filter()] will allow you to convert a [query()] to
 #' a vector of filters appropriate for use on [count_mentions()].
+#' [to_mention_filter()] is similar, but for the [mentions()] function.
 #'
 #' @examples
 #'

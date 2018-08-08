@@ -20,21 +20,21 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-# returns NULL if there are no brands.
 
-
-#' Converts a query to a vector of filters for counting by.
+#' Converts a query to a vector of filters
 #'
-#' [to_count_filter()] converts a [query()] to a vector
-#' of filters appropriate for counting by. An account code
+#' [to_count_filter()] and [to_mention_filter()] converts a [query()] to a vector
+#' of filters appropriate for either counting or fetching mentions. An account code
 #' is specified to choose a filter for a specific account.
-#' Each filter is required to perform all of the count operations
-#' being requested by the query for an individual account.
+#' Each filter is required to perform all of the count operations or
+#' to fetch all of the queried data.
+#'
+#' @family query conversion functions
 #'
 #' @param query A [query()] object.
 #' @param code  The account we want filters for.
 #'
-#' @return A vector of characters.
+#' @return A vector of characters. Returns NULL if there are no brands.
 #' @export
 #'
 #' @examples

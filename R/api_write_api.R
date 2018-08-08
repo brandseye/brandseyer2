@@ -30,8 +30,6 @@
 #' @param query An httr query list
 #'
 #' @return the json content
-#'
-#' @author Constance Neeser
 write_api <- function(endpoint, method = "PUT", json = NULL, query = list()) {
   assert_that(is.string(endpoint))
   assert_that(method %in% c("PUT"))
@@ -44,4 +42,24 @@ write_api <- function(endpoint, method = "PUT", json = NULL, query = list()) {
                     body = json, encode="json")
   check_errors(data)
   invisible()
+}
+
+#' @describeIn write_api
+#'
+#' Write's data to the API with the query as form encoded
+#' parameters.
+write_api_form <- function(endpoint, method = "PUT", query = list()) {
+  assert_that(is.string(endpoint))
+  assert_that(method %in% c("PUT", "POST"))
+  auth = whoami(raise_error = TRUE)
+
+  method <- if (method == "PUT") httr::PUT else httr::POST
+
+  url = paste0("https://api.brandseye.com/", endpoint)
+  data <- method(url,
+                 httr::authenticate("API_KEY", auth$key),
+                 query = query,
+                 encode="form")
+  check_errors(data)
+  return(httr::content(data))
 }

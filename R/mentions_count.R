@@ -92,6 +92,12 @@ count_mentions.brandseyer2.account.v4 <- function(.account,
 
 
 
+#' @export
+count_mentions.brandseyer2.account.v3 <- function(.account, filter, ...) {
+  abort("brandseyer2 only supports V4 accounts.")
+}
+
+
 #' @describeIn count_mentions
 #'
 #' Allows you to fetch mentions using raw fields. All fields are dynamically
@@ -166,8 +172,9 @@ count_mentions.character <- function(.account,
     query$tagNamespace = tagNamespace
   }
 
-  data <- read_api(endpoint = paste0("v4/accounts/", .account, "/mentions/count"),
-                   query = query)
+  data <- write_api_form(endpoint = paste0("v4/accounts/", .account, "/mentions/count"),
+                         method = "POST",
+                         query = query)
 
   process <- function(row) {
     as.tibble(row %>% imap(function(data, index) {
@@ -255,7 +262,7 @@ count_mentions.brandseyer2.query <- function(.account, ...,
       results
     },
     brandseye_api_error = function(e) {
-      rlang::warn(glue::glue("{code}: {e$message}"))
+      rlang::warn(glue("{code}: {e$message}"))
       tibble::tibble()
     },
     error = function(e) {
@@ -275,8 +282,16 @@ count_mentions.brandseyer2.query <- function(.account, ...,
 
   no_filters <- list()
   on.exit({
-    if (length(no_filters) > 0)
-      rlang::warn(glue::glue(stringr::str_flatten(no_filters, ", "), " has no filters (and possibly no brands) from the query"))
+    if (length(no_filters) > 0) {
+      message <- glue("No filters (and possibly no brands) from the query for ", stringr::str_flatten(no_filters, ", "))
+      if (nchar(message) > cli::console_width()) {
+        message <- glue("No filters (and possibly no brands) from the query for ",
+                        stringr::str_flatten(utils::head(no_filters, 2), ", "),
+                        " and {length(no_filters)} others.")
+      }
+      rlang::warn(message)
+    }
+
   })
 
   purrr::map2_df(.account$accounts, .account$timezones, function(code, timezone) {

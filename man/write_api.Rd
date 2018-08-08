@@ -2,9 +2,12 @@
 % Please edit documentation in R/api_write_api.R
 \name{write_api}
 \alias{write_api}
+\alias{write_api_form}
 \title{Write arbitrary data to our api.}
 \usage{
 write_api(endpoint, method = "PUT", json = NULL, query = list())
+
+write_api_form(endpoint, method = "PUT", query = list())
 }
 \arguments{
 \item{endpoint}{The endpoint that you would like to access}
@@ -22,6 +25,9 @@ the json content
 This reads arbitrary data from our api, including mention
 data.
 }
-\author{
-Constance Neeser
-}
+\section{Functions}{
+\itemize{
+\item \code{write_api_form}: Write's data to the API with the query as form encoded
+parameters.
+}}
+

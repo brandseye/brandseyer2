@@ -485,9 +485,16 @@ filter_and_warn_v4 <- function(accounts) {
       stringr::str_flatten(collapse = ", ") %>%
       { glue("The following accounts are not V4: {.}. Ignoring them.")}
 
-    if (rlang::is_string(message))
-      rlang::warn(message)
+    if (nchar(message) > cli::console_width())
+      message <- bad_version %>%
+        utils::head(2) %>%
+        stringr::str_flatten(collapse = ", ") %>%
+        { glue("The following accounts are not V4: {.} and {length(bad_version) - 2} others. Ignoring them.")}
+
+    rlang::warn(message)
   }
+
+
 
   good
 }

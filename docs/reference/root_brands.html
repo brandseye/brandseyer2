@@ -193,27 +193,27 @@ the tibble returned from <code><a href='brands.html'>brands()</a></code> does.</
 <span class='co'># Get root brands for an account</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>root_brands</span>()</div><div class='output co'>#&gt; # A tibble: 2 x 4
-#&gt;      id name            deleted archived           
-#&gt;   &lt;int&gt; &lt;chr&gt;           &lt;lgl&gt;   &lt;dttm&gt;             
-#&gt; 1     2 Sibling Brand   FALSE   NA                 
-#&gt; 2     1 Your Brand Here FALSE   NA                 </div><div class='input'>
+#&gt;      id name            deleted archived
+#&gt;   &lt;int&gt; &lt;chr&gt;           &lt;lgl&gt;      &lt;dbl&gt;
+#&gt; 1     1 Your Brand Here FALSE         NA
+#&gt; 2     2 Sibling Brand   FALSE         NA</div><div class='input'>
 <span class='co'># Get root brands from a tibble or data.frame</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='brands.html'>brands</a></span>(<span class='kw'>short</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>root_brands</span>()</div><div class='output co'>#&gt; <span class='message'>Joining, by = "id"</span></div><div class='output co'>#&gt; # A tibble: 3 x 5
-#&gt;   account     id name               deleted archived           
-#&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;              &lt;lgl&gt;   &lt;dttm&gt;             
-#&gt; 1 TEST01AA     2 Sibling Brand      FALSE   NA                 
-#&gt; 2 TEST02AA   100 The Best of Brands FALSE   NA                 
-#&gt; 3 TEST01AA     1 Your Brand Here    FALSE   NA                 </div><div class='input'>
+#&gt;   account     id name               deleted archived
+#&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;              &lt;lgl&gt;      &lt;dbl&gt;
+#&gt; 1 TEST01AA     2 Sibling Brand      FALSE         NA
+#&gt; 2 TEST02AA   100 The Best of Brands FALSE         NA
+#&gt; 3 TEST01AA     1 Your Brand Here    FALSE         NA</div><div class='input'>
 <span class='co'># Show fuller root brand information</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>root_brands</span>(<span class='kw'>short</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 12
-#&gt;      id parent name  tier  deleted schema filter topic_tree_id sentimentRate
-#&gt;   &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;lgl&gt;   &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt;         &lt;dbl&gt;
-#&gt; 1     2     NA Sibl… TOPI… FALSE   b0000… locat…           100           0.8
-#&gt; 2     1     NA Your… ESSE… FALSE   &lt;NA&gt;   &lt;NA&gt;              NA           0  
-#&gt; # ... with 3 more variables: topicRate &lt;dbl&gt;, archived &lt;dttm&gt;, phrases &lt;list&gt;</div></pre>
+#&gt;      id parent name  tier  deleted schema filter topic_tree_id sentiment_rate
+#&gt;   &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;lgl&gt;   &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+#&gt; 1     2     NA Sibl… TOPI… FALSE   b0000… locat…           100            0.8
+#&gt; 2     1     NA Your… ESSE… FALSE   &lt;NA&gt;   &lt;NA&gt;              NA            0  
+#&gt; # ... with 3 more variables: topic_rate &lt;dbl&gt;, archived &lt;dbl&gt;, phrases &lt;list&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

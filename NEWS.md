@@ -1,5 +1,7 @@
 # brandseyer2 0.0.1.9014
 
+* Now uses POST to fetch mentions from `mentions()`
+
 # brandseyer2 0.0.1.9013
 
 * Filtering of accounts with no brands now occurs at the `count_mentions()` level.

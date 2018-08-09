@@ -267,6 +267,7 @@ read_data <- function(x, query) {
 
   # Read from a live account.
 
-  read_api(endpoint = paste0("v4/accounts/", code, "/mentions"),
-           query = query)
+  write_api_form(endpoint = paste0("v4/accounts/", code, "/mentions/list"),
+                 method = "POST",
+                 query = query)
 }

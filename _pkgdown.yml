@@ -80,7 +80,7 @@ reference:
       - filter_mentions
       - group_mentions_by
       - compare_mentions
-      - with_fields
+      - with_mention_fields
       - with_mention_order
       - is_query
       - to_query

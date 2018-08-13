@@ -43,7 +43,7 @@
 #' - [group_mentions_by()] lets you group mentions when counting.
 #' - [compare_mentions()] lets you count and compare mentions from subfilters.
 #' - [with_fields()] lets you select extra information fields, such as OTS, or engagement.
-#' - [with_order()] lets you order the results.
+#' - [with_mention_order()] lets you order the results.
 #'
 #' @section Accessors:
 #'

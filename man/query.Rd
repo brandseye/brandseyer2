@@ -53,7 +53,7 @@ in a query sentence.
 \item \code{\link[=group_mentions_by]{group_mentions_by()}} lets you group mentions when counting.
 \item \code{\link[=compare_mentions]{compare_mentions()}} lets you count and compare mentions from subfilters.
 \item \code{\link[=with_fields]{with_fields()}} lets you select extra information fields, such as OTS, or engagement.
-\item \code{\link[=with_order]{with_order()}} lets you order the results.
+\item \code{\link[=with_mention_order]{with_mention_order()}} lets you order the results.
 }
 }
 

@@ -37,7 +37,7 @@
 #' @seealso
 #'
 #' Other verbs for the query language: [group_mentions_by()],
-#' [compare_mentions()], [with_fields()], [with_order()]
+#' [compare_mentions()], [with_fields()], [with_mention_order()]
 #'
 #' [query()] is a way to manually create queries.
 #'
@@ -170,7 +170,7 @@ with_brands_impl.character <- function(selector, account) {
 #' @seealso
 #'
 #' Other verbs for the query language: [group_mentions_by()],
-#' [compare_mentions()], [with_fields()], [with_order()], [with_account()].
+#' [compare_mentions()], [with_fields()], [with_mention_order()], [with_account()].
 #'
 #' [query()] is a way to manually create queries.
 #'
@@ -229,7 +229,7 @@ filter_mentions.brandseyer2.query <- function(.account, filter) {
 #' @seealso
 #'
 #' Other verbs for the query language: [group_mentions_by()],
-#' [filter_mentions()], [with_fields()], [with_order()], [with_account()].
+#' [filter_mentions()], [with_fields()], [with_mention_order()], [with_account()].
 #'
 #' [query()] is a way to manually create queries.
 #'
@@ -293,7 +293,7 @@ compare_mentions_impl <- function(query, comparison) {
 #' @seealso
 #'
 #' Other verbs for the query language: [group_mentions_by()],
-#' [compare_mentions()], [with_fields()], [with_order()], [with_account()].
+#' [compare_mentions()], [with_fields()], [with_mention_order()], [with_account()].
 #'
 #' [query()] is a way to manually create queries.
 #'
@@ -356,7 +356,7 @@ group_mentions_by_impl <- function(query, groupBy) {
 #' @seealso
 #'
 #' Other verbs for the query language: [group_mentions_by()],
-#' [compare_mentions()], [filter_mentions()], [with_order()], [with_account()].
+#' [compare_mentions()], [filter_mentions()], [with_mention_order()], [with_account()].
 #'
 #' [query()] is a way to manually create queries.
 #'
@@ -405,7 +405,7 @@ with_fields_impl <- function(query, fields) {
 
 #' Order results from fetching or counting mentions
 #'
-#' [with_order()] allows you to specify the order of returned
+#' [with_mention_order()] allows you to specify the order of returned
 #' mentions or the order of counted mentions. This does not
 #' preclude you from reordering mentions using [dplyr::arrange()].
 #' This is part of the [query()] language.
@@ -429,37 +429,37 @@ with_fields_impl <- function(query, fields) {
 #' account("TEST01AA") %>%
 #'   filter_mentions("published inthelast week") %>%
 #'   group_mentions_by(mentionCount, totalOTS) %>%
-#'   with_order(totalOTS)
-with_order <- function(.account, ..., .envir) {
-  UseMethod("with_order")
+#'   with_mention_order(totalOTS)
+with_mention_order <- function(.account, ..., .envir) {
+  UseMethod("with_mention_order")
 }
 
 #' @export
-with_order.brandseyer2.account <- function(.account, ..., .envir = parent.frame()) {
+with_mention_order.brandseyer2.account <- function(.account, ..., .envir = parent.frame()) {
   fields <- get_name_list(deparse(substitute(c(...))), env = .envir)
 
   .account %>%
     to_query %>%
-    with_order_impl(fields)
+    with_mention_order_impl(fields)
 }
 
 #' @export
-with_order.list <- function(.account, ..., .envir = parent.frame()) {
+with_mention_order.list <- function(.account, ..., .envir = parent.frame()) {
   fields <- get_name_list(deparse(substitute(c(...))), env = .envir)
   .account %>%
     filter_and_warn_v4() %>%
     map(to_query) %>%
     purrr::reduce(merge_query) %>%
-    with_order_impl(fields)
+    with_mention_order_impl(fields)
 }
 
 #' @export
-with_order.brandseyer2.query <- function(.account, ..., .envir = parent.frame()) {
+with_mention_order.brandseyer2.query <- function(.account, ..., .envir = parent.frame()) {
   fields <- get_name_list(deparse(substitute(c(...))), env = .envir)
-  with_order_impl(.account, fields)
+  with_mention_order_impl(.account, fields)
 }
 
-with_order_impl <- function(query, fields) {
+with_mention_order_impl <- function(query, fields) {
   query <- copy_query(query)
   query$ordering <- fields
   query

@@ -74,13 +74,13 @@ test_that("Can group a query", {
 })
 
 test_that("Can order a query", {
-  q <- to_query(account("TEST01AA")) %>% with_order(bob, bobette)
+  q <- to_query(account("TEST01AA")) %>% with_mention_order(bob, bobette)
   expect_equal(q$ordering, c("bob", "bobette"))
 
-  q <- account("TEST01AA") %>% with_order(alice)
+  q <- account("TEST01AA") %>% with_mention_order(alice)
   expect_equal(q$ordering, "alice")
 
-  q <- list(v4account, account("TEST01AA")) %>% with_order(published, tag)
+  q <- list(v4account, account("TEST01AA")) %>% with_mention_order(published, tag)
   expect_equal(q$ordering, c("published", "tag"))
 })
 
@@ -131,14 +131,14 @@ test_that("Can merge queries", {
     filter_mentions("today") %>%
     compare_mentions(one = "one", two = "two") %>%
     group_mentions_by(published1) %>%
-    with_order(order1) %>%
+    with_mention_order(order1) %>%
     with_fields(field1)
 
   q2 <- to_query(v4account) %>%
     filter_mentions("tomorrow") %>%
     compare_mentions(three = "three") %>%
     group_mentions_by(published2) %>%
-    with_order(order2) %>%
+    with_mention_order(order2) %>%
     with_fields(field2)
 
   q <- brandseyer2:::merge_query(q1, q2)

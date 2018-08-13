@@ -29,7 +29,7 @@ account("TEST01AA", "TEST02AA") \%>\%
 }
 \seealso{
 Other verbs for the query language: \code{\link[=group_mentions_by]{group_mentions_by()}},
-\code{\link[=compare_mentions]{compare_mentions()}}, \code{\link[=with_fields]{with_fields()}}, \code{\link[=with_order]{with_order()}}, \code{\link[=with_account]{with_account()}}.
+\code{\link[=compare_mentions]{compare_mentions()}}, \code{\link[=with_fields]{with_fields()}}, \code{\link[=with_mention_order]{with_mention_order()}}, \code{\link[=with_account]{with_account()}}.
 
 \code{\link[=query]{query()}} is a way to manually create queries.
 }

@@ -81,7 +81,7 @@ reference:
       - group_mentions_by
       - compare_mentions
       - with_fields
-      - with_order
+      - with_mention_order
       - is_query
       - to_query
       - get_query_brands

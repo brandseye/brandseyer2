@@ -66,7 +66,9 @@ account <- function(codes, ...) {
 
 #' @describeIn account
 #'
-#' Fetch counts for one or more account codes given as a character vector.
+#' Fetch accounts for one or more account codes given as a character vector.
+#' Account codes are unique identifiers for your accounts, and can
+#' be obtained from your account manager or by using `account_list()`.
 #'
 #' @param .show.progress A logical indicating whether a progress bar should
 #'        be shown or not. By default, it will only be shown on interactive sessions.
@@ -114,6 +116,9 @@ account.character <- function(codes, ...,
       account(code)
     }))
   }
+
+  # Normalise codes
+  codes %<>% stringr::str_trim() %>% toupper()
 
   # See if we have any internal data that we can load
   if (startsWith(codes, "TEST") && nchar(codes) == 8) {

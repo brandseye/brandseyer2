@@ -44,7 +44,9 @@ of account objects to act on.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{character}: Fetch counts for one or more account codes given as a character vector.
+\item \code{character}: Fetch accounts for one or more account codes given as a character vector.
+Account codes are unique identifiers for your accounts, and can
+be obtained from your account manager or by using \code{account_list()}.
 
 \item \code{data.frame}: Get account information from a data.frame. The data.frame
 should have an \code{account} column holding the account's code.

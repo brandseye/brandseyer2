@@ -48,6 +48,11 @@
 #' account("TEST01AA") %>%
 #'   logs(Sys.Date() - lubridate::weeks(1)) %>%
 #'   logs_retrosent()
+#'
+#' # Pull data from a particular date up to today.
+#' account("TEST01AA") %>%
+#'   logs(lubridate::ymd("2018/08/01")) %>%
+#'   logs_retrosent()
 #' }
 logs_retrosent <- function(x, ...) {
   UseMethod("logs_retrosent")

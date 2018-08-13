@@ -40,6 +40,12 @@ test_that("Can detect if something is an account object", {
 
 # -----------------------------------------------
 
+test_that("Can get account data if the code is weirdly formatted", {
+  expect_equal(is_account(account(" tEst01Aa       ")), TRUE)
+})
+
+# -----------------------------------------------
+
 test_that("Can read account code", {
   expect_equal(account_code(v3_account), "BETE01AA")
 })

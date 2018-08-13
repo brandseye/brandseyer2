@@ -1,5 +1,9 @@
 # brandseyer2 0.0.1.9016
 
+* Renamed `with_order()` to `with_mention_order()` to avoid conflicts with dplyr.
+* Renamed `with_fields()` to `with_mention_fields()` to be consistent with the `with_mention_order()`
+  rename.
+
 # brandseyer2 0.0.1.9015
 
 * `account()` is now fairly flexible with the formatting of account codes.

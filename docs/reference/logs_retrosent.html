@@ -64,7 +64,7 @@ through to logs_retrosent()." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9014</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9015</span>
       </span>
     </div>
 
@@ -195,6 +195,11 @@ by <code><a href='logs.html'>logs()</a></code>.</p></li>
 <span class='co'># Pull date for a particular time range</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='logs.html'>logs</a></span>(<span class='fu'>Sys.Date</span>() - <span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/period.html'>weeks</a></span>(<span class='fl'>1</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'>logs_retrosent</span>()
+
+<span class='co'># Pull data from a particular date up to today.</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='logs.html'>logs</a></span>(<span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span>(<span class='st'>"2018/08/01"</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'>logs_retrosent</span>()
 <span class='co'># }</span></pre>
   </div>

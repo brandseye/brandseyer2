@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9014</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9015</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <h1>brandseyer2</h1>
                         <h4 class="author">Constance Neeser</h4>
             
-            <h4 class="date">2018-08-09</h4>
+            <h4 class="date">2018-08-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/brandseye/brandseyer2/blob/master/vignettes/brandseyer2.Rmd"><code>vignettes/brandseyer2.Rmd</code></a></small>
       <div class="hidden name"><code>brandseyer2.Rmd</code></div>
@@ -192,13 +192,13 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/brands.html">brands</a></span>()
 <span class="co">#&gt; # A tibble: 5 x 5</span>
-<span class="co">#&gt;      id name                    parent deleted    archived</span>
-<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;                    &lt;int&gt; &lt;lgl&gt;         &lt;dbl&gt;</span>
-<span class="co">#&gt; 1     1 Your Brand Here             NA FALSE           NA </span>
-<span class="co">#&gt; 2     2 Sibling Brand               NA FALSE           NA </span>
-<span class="co">#&gt; 3     5 So deleted                  NA TRUE            NA </span>
-<span class="co">#&gt; 4     6 Brand of Christmas Past     NA FALSE   1516710018.</span>
-<span class="co">#&gt; 5     3 Niece Brand                  2 FALSE           NA</span></code></pre></div>
+<span class="co">#&gt;      id name                    parent deleted archived           </span>
+<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;                    &lt;int&gt; &lt;lgl&gt;   &lt;dttm&gt;             </span>
+<span class="co">#&gt; 1     1 Your Brand Here             NA FALSE   NA                 </span>
+<span class="co">#&gt; 2     2 Sibling Brand               NA FALSE   NA                 </span>
+<span class="co">#&gt; 3     5 So deleted                  NA TRUE    NA                 </span>
+<span class="co">#&gt; 4     6 Brand of Christmas Past     NA FALSE   2018-01-23 12:20:18</span>
+<span class="co">#&gt; 5     3 Niece Brand                  2 FALSE   NA</span></code></pre></div>
 <p>These tibbles can become a bit tight to display all of the data that you may want to see. If you are using RStudio, you can always pipe the results in to View(). Otherwise, you can subselect for the data you want using standard dplyr<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> functions.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Find brand IDs and names</span>
 <span class="kw">library</span>(dplyr)
@@ -221,10 +221,10 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/root_brands.html">root_brands</a></span>()
 <span class="co">#&gt; # A tibble: 2 x 4</span>
-<span class="co">#&gt;      id name            deleted archived</span>
-<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;           &lt;lgl&gt;      &lt;dbl&gt;</span>
-<span class="co">#&gt; 1     1 Your Brand Here FALSE         NA</span>
-<span class="co">#&gt; 2     2 Sibling Brand   FALSE         NA</span></code></pre></div>
+<span class="co">#&gt;      id name            deleted archived           </span>
+<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;           &lt;lgl&gt;   &lt;dttm&gt;             </span>
+<span class="co">#&gt; 1     2 Sibling Brand   FALSE   NA                 </span>
+<span class="co">#&gt; 2     1 Your Brand Here FALSE   NA</span></code></pre></div>
 </div>
 <div id="tags" class="section level2">
 <h2 class="hasAnchor">
@@ -309,7 +309,7 @@ A plot of data pulled from the api
 <span class="st">  </span><span class="kw"><a href="../reference/group_mentions_by.html">group_mentions_by</a></span>(published)
 <span class="co">#&gt; BrandsEye Query</span>
 <span class="co">#&gt;   accounts:  TEST01AA</span>
-<span class="co">#&gt;   brands:    TEST01AA:1[Your Brand Here], TEST01AA:2[Sibling Brand]</span>
+<span class="co">#&gt;   brands:    TEST01AA:2[Sibling Brand], TEST01AA:1[Your Brand Here]</span>
 <span class="co">#&gt;   timezones: Africa/Johannesburg</span>
 <span class="co">#&gt;   filter:    published inthelast week and relevancy isnt irrelevant</span>
 <span class="co">#&gt;   grouping:  published</span>
@@ -319,7 +319,7 @@ A plot of data pulled from the api
 <span class="st">  </span><span class="kw"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published inthelast week and relevancy isnt irrelevant"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/group_mentions_by.html">group_mentions_by</a></span>(published) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/to_count_filter.html">to_count_filter</a></span>(<span class="st">"TEST01AA"</span>)
-<span class="co">#&gt; (published inthelast week and relevancy isnt irrelevant) and (brand isorchildof 1 or brand isorchildof 2)</span></code></pre></div>
+<span class="co">#&gt; (published inthelast week and relevancy isnt irrelevant) and (brand isorchildof 2 or brand isorchildof 1)</span></code></pre></div>
 <p>Notice that the <em>group by</em> doesn’t occur in the filter: this is additional data sent to the API when we request the data. This full filter is, however, sent to the API. It’s also an appropriate filter for use in Analyse or anywhere else that a filter is accepted.</p>
 <p>A useful thing that the filter allows us to do is to count data across multiple accounts at a time. For example, you across two specific brands:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"QUIR01BA"</span>, <span class="st">"BEUB03AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>

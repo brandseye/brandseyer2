@@ -37,7 +37,7 @@
 #' @seealso
 #'
 #' Other verbs for the query language: [group_mentions_by()],
-#' [compare_mentions()], [with_fields()], [with_mention_order()]
+#' [compare_mentions()], [with_mention_fields()], [with_mention_order()]
 #'
 #' [query()] is a way to manually create queries.
 #'
@@ -170,7 +170,7 @@ with_brands_impl.character <- function(selector, account) {
 #' @seealso
 #'
 #' Other verbs for the query language: [group_mentions_by()],
-#' [compare_mentions()], [with_fields()], [with_mention_order()], [with_account()].
+#' [compare_mentions()], [with_mention_fields()], [with_mention_order()], [with_account()].
 #'
 #' [query()] is a way to manually create queries.
 #'
@@ -229,7 +229,7 @@ filter_mentions.brandseyer2.query <- function(.account, filter) {
 #' @seealso
 #'
 #' Other verbs for the query language: [group_mentions_by()],
-#' [filter_mentions()], [with_fields()], [with_mention_order()], [with_account()].
+#' [filter_mentions()], [with_mention_fields()], [with_mention_order()], [with_account()].
 #'
 #' [query()] is a way to manually create queries.
 #'
@@ -293,7 +293,7 @@ compare_mentions_impl <- function(query, comparison) {
 #' @seealso
 #'
 #' Other verbs for the query language: [group_mentions_by()],
-#' [compare_mentions()], [with_fields()], [with_mention_order()], [with_account()].
+#' [compare_mentions()], [with_mention_fields()], [with_mention_order()], [with_account()].
 #'
 #' [query()] is a way to manually create queries.
 #'
@@ -342,7 +342,7 @@ group_mentions_by_impl <- function(query, groupBy) {
 
 #' Select extra data when fetching or counting mentions
 #'
-#' [with_fields()] allows you to fetch additional data fields on mentions,
+#' [with_mention_fields()] allows you to fetch additional data fields on mentions,
 #' or to count additional fields when counting mentions. This is part of the
 #' [query()] language.
 #'
@@ -364,37 +364,37 @@ group_mentions_by_impl <- function(query, groupBy) {
 #'
 #' account("TEST01AA") %>%
 #'   filter_mentions("published inthelast week") %>%
-#'   with_fields(mentionCount, totalOTS)
-with_fields <- function(.account, ..., .envir) {
-  UseMethod("with_fields")
+#'   with_mention_fields(mentionCount, totalOTS)
+with_mention_fields <- function(.account, ..., .envir) {
+  UseMethod("with_mention_fields")
 }
 
 #' @export
-with_fields.brandseyer2.account <- function(.account, ..., .envir = parent.frame()) {
+with_mention_fields.brandseyer2.account <- function(.account, ..., .envir = parent.frame()) {
   fields <- get_name_list(deparse(substitute(c(...))), env = .envir)
 
   .account %>%
     to_query %>%
-    with_fields_impl(fields)
+    with_mention_fields_impl(fields)
 }
 
 #' @export
-with_fields.list <- function(.account, ..., .envir = parent.frame()) {
+with_mention_fields.list <- function(.account, ..., .envir = parent.frame()) {
   fields <- get_name_list(deparse(substitute(c(...))), env = .envir)
   .account %>%
     filter_and_warn_v4() %>%
     map(to_query) %>%
     purrr::reduce(merge_query) %>%
-    with_fields_impl(fields)
+    with_mention_fields_impl(fields)
 }
 
 #' @export
-with_fields.brandseyer2.query <- function(.account, ..., .envir = parent.frame()) {
+with_mention_fields.brandseyer2.query <- function(.account, ..., .envir = parent.frame()) {
   fields <- get_name_list(deparse(substitute(c(...))), env = .envir)
-  with_fields_impl(.account, fields)
+  with_mention_fields_impl(.account, fields)
 }
 
-with_fields_impl <- function(query, fields) {
+with_mention_fields_impl <- function(query, fields) {
   query <- copy_query(query)
   query$fields <- fields
   query

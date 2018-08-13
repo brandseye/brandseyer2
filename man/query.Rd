@@ -52,7 +52,7 @@ in a query sentence.
 \item \code{\link[=filter_mentions]{filter_mentions()}} lets you choose what mentions to count or fetch.
 \item \code{\link[=group_mentions_by]{group_mentions_by()}} lets you group mentions when counting.
 \item \code{\link[=compare_mentions]{compare_mentions()}} lets you count and compare mentions from subfilters.
-\item \code{\link[=with_fields]{with_fields()}} lets you select extra information fields, such as OTS, or engagement.
+\item \code{\link[=with_mention_fields]{with_mention_fields()}} lets you select extra information fields, such as OTS, or engagement.
 \item \code{\link[=with_mention_order]{with_mention_order()}} lets you order the results.
 }
 }

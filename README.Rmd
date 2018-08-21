@@ -33,7 +33,7 @@ this over the previous version of the API, available at [GitHub][brandseyer].
 The goal of this version of the library is:
 
 - to fully support our new API, 
-- to better support the tidy universe of libraries,
+- to better support the [tidyverse][tidyverse] set of libraries,
 - and to have a test suite.
 
 There may be breaking changes to some methods in future updates, before the version 1.0.0 release,
@@ -78,3 +78,4 @@ the license files for details.
 [brandseyer]: https://github.com/brandseye/brandseyer  "The original brandseyer library"
 [R]: http://www.r-project.org/
 [brandseye]: http://www.brandseye.com
+[tidyverse]: https://www.tidyverse.org/

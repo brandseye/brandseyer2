@@ -145,10 +145,14 @@ with_brands_impl.numeric <- function(selector, account) {
 with_brands_impl.character <- function(selector, account) {
   # For devtools::check
   name <- NULL;
+  selector %<>%
+    stringr::str_replace_all("\\s+", "\\\\s*") %>%
+    stringr::str_replace_all("\\(", "\\\\(") %>%
+    stringr::str_replace_all("\\)", "\\\\)")
 
   account %>%
     brands() %>%
-    filter(grepl(selector, name))
+    filter(grepl(selector, name, ignore.case = TRUE))
 }
 
 #----------------------------------------------------------

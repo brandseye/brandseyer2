@@ -14,7 +14,7 @@ This version of the library is still in its early stages, but is usable, and is 
 The goal of this version of the library is:
 
 -   to fully support our new API,
--   to better support the tidy universe of libraries,
+-   to better support the [tidyverse](https://www.tidyverse.org/) set of libraries,
 -   and to have a test suite.
 
 There may be breaking changes to some methods in future updates, before the version 1.0.0 release, After that, we expect that the API should be fairly stable.

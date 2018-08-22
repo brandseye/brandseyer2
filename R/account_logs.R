@@ -102,7 +102,7 @@ logs.character <- function(x,
         userName = .x$userName,
         date = lubridate::ymd_hms(.x$date),
         description = .x$description,
-        repeatCount = .x$repeatCount %||% NA
+        timesDone = .x$repeatCount %||% 1
       ))
   }
 

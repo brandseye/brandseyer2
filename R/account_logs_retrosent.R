@@ -68,9 +68,9 @@ logs_retrosent.data.frame <- function(x, ...) {
   # For devtools
 
   . <- NULL; description <- NULL; userId <- NULL; userName <- NULL;
-  crowd <- NULL; priority <- NULL;
+  crowd <- NULL; priority <- NULL; requested <- NULL; sent <- NULL;
 
-  x %>%
+  filters <- x %>%
     filter(startsWith(description, "Sending ")) %>%
     mutate(crowd = stringr::str_extract(description, "crowd \\d+") %>%
              stringr::str_split("\\s+") %>%
@@ -83,6 +83,40 @@ logs_retrosent.data.frame <- function(x, ...) {
              .[, 2]) %>%
     mutate(filter = ifelse(nchar(filter) == 0, NA, filter)) %>%
     select(matches("account"), userId, userName, date, crowd, priority, filter)
+
+  amounts <- x %>%
+    filter(startsWith(description, "Retrosend request:")) %>%
+    mutate(requested = stringr::str_extract(description, "\\d+/\\d+") %>%
+             stringr::str_split("/") %>%
+             map_int(~(if (length(.x) == 2) as.integer(.x[[2]]) else NA)),
+           sent = stringr::str_extract(description, "\\d+/\\d+") %>%
+             stringr::str_split("/") %>%
+             map_int(~(if (length(.x) == 2) as.integer(.x[[1]]) else NA))) %>%
+    select(matches("account"), userId, date, requested, sent)
+
+  # Now, for each log line, we want to match up the number of requested
+  # mentions to be sent, and the number of actual mentions sent. These are logged
+  # by a different service, so their time stamps are out of joint.
+  filters$sent <- as.integer(NA)
+  filters$requested <- as.integer(NA)
+  has_accounts <- has_name(filters, "account")
+  for (i in seq_along(filters)) {
+    d <- filters$date[i]
+    u <- filters$userId[i]
+    ac <- if (has_accounts) filters$account[i] else NA
+
+    match <- amounts
+    if (has_accounts) match <- amounts %>% filter(account == ac)
+    match <- match %>%
+      filter(userId == u, date >= d, abs(date - d) < lubridate::dseconds(30))
+
+    if (nrow(match) == 1) {
+      filters$sent[i] = match$sent[1]
+      filters$requested[i] = match$requested[1]
+    }
+  }
+
+  filters
 }
 
 #' @describeIn logs_retrosent

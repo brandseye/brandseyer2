@@ -28,6 +28,8 @@ logs_retrosent(x, ...)
 }
 \value{
 A tibble giving retrosend information, such as the crowd, priority and filter used.
+The \code{requested} column is the number of mentions requested to be sent to the crowd,
+while the \code{sent} column is the number actually sent.
 }
 \description{
 \code{\link[=logs_retrosent]{logs_retrosent()}} can be used to find retrosends that have occurred

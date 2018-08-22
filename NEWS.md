@@ -1,5 +1,8 @@
 # brandseyer2 0.0.1.9017
 
+* The table returned by `logs()` has renamed `repeatCount` to `timesDone` for clarity.
+* `logs_retrosent()` now includes `requested` and `sent` amounts.
+
 # brandseyer2 0.0.1.9016
 
 * Renamed `with_order()` to `with_mention_order()` to avoid conflicts with dplyr.

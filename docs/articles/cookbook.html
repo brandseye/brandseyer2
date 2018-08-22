@@ -108,7 +108,7 @@
 <div id="finding-topics-for-mentions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#finding-topics-for-mentions" class="anchor"></a>Finding topics for mentions</h2>
-<p>Sometimes you may want to get a clean data set of mentions, and the topics on them. This small script will write out a CSV giving, for each topic on a mention, a row with the mention ID, topic ID, and topic name. It reads all the mentions matching a filter, asking for only the mentions’ IDs and tags. Then, using <code><a href="../reference/topics.html">topics()</a></code>, it gets all the topic data for the mentions. Next, it uses <code><a href="http://www.rdocumentation.org/packages/dplyr/topics/select">dplyr::select()</a></code> to choose only some interesting columns to keep. Finaly, it saves the data, using <code><a href="http://www.rdocumentation.org/packages/readr/topics/write_delim">readr::write_csv()</a></code>.</p>
+<p>Sometimes you may want to get a clean data set of mentions, and the topics on them. This small script will write out a CSV giving, for each topic on a mention, a row with the mention ID, topic ID, and topic name. It reads all the mentions matching a filter, asking for only the mentions’ IDs and tags. Then, using <code><a href="../reference/topics.html">topics()</a></code>, it gets all the topic data for the mentions. Next, it uses <code><a href="http://dplyr.tidyverse.org/reference/select.html">dplyr::select()</a></code> to choose only some interesting columns to keep. Finaly, it saves the data, using <code><a href="http://www.rdocumentation.org/packages/readr/topics/write_delim">readr::write_csv()</a></code>.</p>
 <div id="the-recipe" class="section level3">
 <h3 class="hasAnchor">
 <a href="#the-recipe" class="anchor"></a>The Recipe</h3>
@@ -122,7 +122,7 @@ filter &lt;-<span class="st"> "published inthelast week and brand isorchildof 46
 mentions_with_topics &lt;-<span class="st"> </span><span class="kw"><a href="../reference/account.html">account</a></span>(code) <span class="op">%&gt;%</span><span class="st">         </span><span class="co"># Get the account</span>
 <span class="st">  </span><span class="kw"><a href="../reference/mentions.html">mentions</a></span>(filter, <span class="dt">select =</span> <span class="kw">c</span>(id, tags)) <span class="op">%&gt;%</span><span class="st">      </span><span class="co"># Ask for the mentions (but only their IDs and tags)</span>
 <span class="st">  </span><span class="kw"><a href="../reference/topics.html">topics</a></span>() <span class="op">%&gt;%</span><span class="st">                                    </span><span class="co"># From the mentions, get specific topics</span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/select">select</a></span>(id, topic.id, name)                      <span class="co"># Select only some interesting columns</span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(id, topic.id, name)                      <span class="co"># Select only some interesting columns</span>
 
 
 <span class="kw"><a href="http://www.rdocumentation.org/packages/readr/topics/write_delim">write_csv</a></span>(mentions_with_topics, <span class="st">"topics.csv"</span>)</code></pre></div>
@@ -164,11 +164,11 @@ filter &lt;-<span class="st"> "published inthelast week and brand isorchildof 46
 mentions_with_topics &lt;-<span class="st"> </span><span class="kw"><a href="../reference/account.html">account</a></span>(code) <span class="op">%&gt;%</span><span class="st">         </span><span class="co"># Get the account</span>
 <span class="st">  </span><span class="kw"><a href="../reference/mentions.html">mentions</a></span>(filter, <span class="dt">select =</span> <span class="kw">c</span>(id, tags)) <span class="op">%&gt;%</span><span class="st">      </span><span class="co"># Ask for the mentions (but only their IDs and tags)</span>
 <span class="st">  </span><span class="kw"><a href="../reference/topics.html">topics</a></span>() <span class="op">%&gt;%</span><span class="st">                                    </span><span class="co"># From the mentions, get specific topics</span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/select">select</a></span>(id, topic.id, name)
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(id, topic.id, name)
 
 topics_per_mention &lt;-<span class="st"> </span>mentions_with_topics <span class="op">%&gt;%</span><span class="st">   </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/group_by">group_by</a></span>(id) <span class="op">%&gt;%</span><span class="st">                </span><span class="co"># For each mention</span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/summarise">summarise</a></span>(<span class="dt">count =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/n">n</a></span>())          <span class="co"># Count the number of mentions</span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(id) <span class="op">%&gt;%</span><span class="st">                </span><span class="co"># For each mention</span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="dt">count =</span> <span class="kw"><a href="http://dplyr.tidyverse.org/reference/n.html">n</a></span>())          <span class="co"># Count the number of mentions</span>
 
 average_topics &lt;-<span class="st"> </span><span class="kw">sum</span>(topics_per_mention<span class="op">$</span>count) <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(topics_per_mention)
 <span class="kw">message</span>(glue<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/glue/topics/glue">glue</a></span>(<span class="st">"The average number of topics per mention is {round(average_topics, 2)}"</span>))</code></pre></div>
@@ -189,7 +189,7 @@ average_topics &lt;-<span class="st"> </span><span class="kw">sum</span>(topics_
 
 <span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/topic_trees.html">topic_trees</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/select">select</a></span>(id, name)
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(id, name)
 <span class="co">#&gt; # A tibble: 1 x 2</span>
 <span class="co">#&gt;      id name          </span>
 <span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;         </span>
@@ -203,8 +203,8 @@ average_topics &lt;-<span class="st"> </span><span class="kw">sum</span>(topics_
 <span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/tags.html">tags</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/with_tag_parents.html">with_tag_parents</a></span>(<span class="dv">1001</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(namespace <span class="op">==</span><span class="st"> 'topic'</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/arrange">arrange</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/desc">desc</a></span>(is_parent), name)</code></pre></div>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(namespace <span class="op">==</span><span class="st"> 'topic'</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="kw"><a href="http://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(is_parent), name)</code></pre></div>
 </div>
 <div id="the-outcome-1" class="section level3">
 <h3 class="hasAnchor">

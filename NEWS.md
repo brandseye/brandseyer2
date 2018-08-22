@@ -2,6 +2,7 @@
 
 * The table returned by `logs()` has renamed `repeatCount` to `timesDone` for clarity.
 * `logs_retrosent()` now includes `requested` and `sent` amounts.
+* `rules()` is available to list rules in an account.
 
 # brandseyer2 0.0.1.9016
 

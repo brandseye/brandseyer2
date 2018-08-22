@@ -47,6 +47,7 @@ reference:
       - with_tag_parents
       - users
       - logs
+      - rules
   - title: "Accessing mentions"
     desc: >
       Mentions make up the raw data that we store for you. Sentiment

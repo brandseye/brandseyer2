@@ -100,4 +100,6 @@ account(c("TEST01AA", "TEST02AA"))
 \code{\link[=logs]{logs()}} to read the account's logs.
 
 \code{\link[=users]{users()}} to see what users have access to the account.
+
+\code{\link[=rules]{rules()}} for the list of rules applied to mentions in the account.
 }

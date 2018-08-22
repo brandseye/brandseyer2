@@ -31,6 +31,8 @@
 #' @param .show.progress   When reading logs, whether to show a progress bar or not. See [logs()].
 #'
 #' @return A tibble giving retrosend information, such as the crowd, priority and filter used.
+#'         The `requested` column is the number of mentions requested to be sent to the crowd,
+#'         while the `sent` column is the number actually sent.
 #' @export
 #'
 #' @examples

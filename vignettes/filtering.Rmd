@@ -34,6 +34,9 @@ Combined with [dplyr][dplyr][^1] for manipulating data, [ggplot2][ggplot2][^2] f
 and [readr][readr][^3]
 for exporting data, brandseyer2 is a powerful tool for examining social media data. 
 
+Filtering is selecting individual mentions to make up a data set, either to be returned
+directly using the `mentions()` function, or for counting and aggregating using `count_mentions()`. 
+
 ```{r}
 library(brandseyer2)
 
@@ -173,6 +176,15 @@ How do they cancel if they're accidently pulling more than they want to?
 
 ## Sentiment 
 
+Mentions by themselves are not always interesting. Mentions, as handled by BrandsEye, relate 
+towards something that we name a _brand_. This is not necessarily a brand in the strict sense of the 
+word. It certainly could be, but in this case, it's the entity or concept or thing that the mention
+is related towards. 
+
+It is also, importantly, the thing that we measure sentiment towards. 
+
+Sentiment doesn't exist in a vacuum, it is usually related to something. 
+
 ## Tags
 
 We introduce tags early, since topics are just tags.
@@ -215,6 +227,11 @@ Now that we have more statements, we can give more examples.
 ## Author information
 
 ## Finding replies and reshares
+
+## Handling conversations
+
+While we've so far dealt with filtering individual mentions, we can also filter
+whole conversations. 
 
 
 [^1]: [dplyr][dplyr] is an amazing library for manipulating data. After downloading

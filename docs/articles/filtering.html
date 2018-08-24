@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9017</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9018</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <h1>Filtering</h1>
                         <h4 class="author">Constance Neeser</h4>
             
-            <h4 class="date">2018-08-22</h4>
+            <h4 class="date">2018-08-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/brandseye/brandseyer2/blob/master/vignettes/filtering.Rmd"><code>vignettes/filtering.Rmd</code></a></small>
       <div class="hidden name"><code>filtering.Rmd</code></div>
@@ -107,6 +107,7 @@
 <p>This will provide an introduction to filtering for data in BrandsEye</p>
 <p>BrandsEye’s API supports a small language to help you select exactly the mentions that you want to select. You’ll do this with the help of the <code><a href="../reference/mentions.html">mentions()</a></code> function, which always expects a filter. You can also count and aggregate mention data using <code><a href="../reference/count_mentions.html">count_mentions()</a></code>. We also have a query language, that this will introduce a bit of.</p>
 <p>Combined with <a href="https://dplyr.tidyverse.org/">dplyr</a><a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> for manipulating data, <a href="https://ggplot2.tidyverse.org/">ggplot2</a><a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> for visualising data, and <a href="https://readr.tidyverse.org/">readr</a><a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> for exporting data, brandseyer2 is a powerful tool for examining social media data.</p>
+<p>Filtering is selecting individual mentions to make up a data set, either to be returned directly using the <code><a href="../reference/mentions.html">mentions()</a></code> function, or for counting and aggregating using <code><a href="../reference/count_mentions.html">count_mentions()</a></code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(brandseyer2)
 
 <span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
@@ -237,6 +238,9 @@ mentions
 <div id="sentiment" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sentiment" class="anchor"></a>Sentiment</h2>
+<p>Mentions by themselves are not always interesting. Mentions, as handled by BrandsEye, relate towards something that we name a <em>brand</em>. This is not necessarily a brand in the strict sense of the word. It certainly could be, but in this case, it’s the entity or concept or thing that the mention is related towards.</p>
+<p>It is also, importantly, the thing that we measure sentiment towards.</p>
+<p>Sentiment doesn’t exist in a vacuum, it is usually related to something.</p>
 </div>
 <div id="tags" class="section level2">
 <h2 class="hasAnchor">
@@ -302,6 +306,11 @@ mentions
 <h2 class="hasAnchor">
 <a href="#finding-replies-and-reshares" class="anchor"></a>Finding replies and reshares</h2>
 </div>
+<div id="handling-conversations" class="section level2">
+<h2 class="hasAnchor">
+<a href="#handling-conversations" class="anchor"></a>Handling conversations</h2>
+<p>While we’ve so far dealt with filtering individual mentions, we can also filter whole conversations.</p>
+</div>
 </div>
 <div class="footnotes">
 <hr>
@@ -337,6 +346,7 @@ mentions
       <li><a href="#joining-together-statements-revisted">Joining together statements revisted</a></li>
       <li><a href="#author-information">Author information</a></li>
       <li><a href="#finding-replies-and-reshares">Finding replies and reshares</a></li>
+      <li><a href="#handling-conversations">Handling conversations</a></li>
       </ul>
 </li>
       </ul>

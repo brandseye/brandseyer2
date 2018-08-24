@@ -1,5 +1,7 @@
 # brandseyer2 0.0.1.9018
 
+* `rules()` have better support for `tidyr::unnest()`. 
+
 # brandseyer2 0.0.1.9017
 
 * The table returned by `logs()` has renamed `repeatCount` to `timesDone` for clarity.

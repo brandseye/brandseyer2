@@ -131,7 +131,7 @@ rules.character <- function(x, .show.progress = interactive()) {
   data <- read_mash(paste0("accounts/", x, "/rules"))
 
   macros <- map(data, function(d) {
-    if (is.null(d$macro)) return(tibble())
+    if (is.null(d$macro)) return(tibble(id = NA, name = NA, attributes = NA))
     tibble(
       id = d$macro$id,
       name = d$macro$name,

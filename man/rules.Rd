@@ -55,6 +55,12 @@ by \code{\link[=account_list]{account_list()}}.
 \dontrun{
 account("TEST01AA") \%>\%
   rules()
+
+# Expand the macro section of the tibble to easily
+# see how rules effect mentions
+account("TEST01AA") \%>\%
+  rules() \%>\%
+  tidyr::unnest()
 }
 \dontrun{
 account("TEST01AA", "TEST02AA") \%>\%

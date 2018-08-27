@@ -31,7 +31,7 @@ cache_account <- function(account) {
   account
 }
 
-cache_is_expired <- function(account, duration = lubridate::duration(5, "minutes")) {
+cache_is_expired <- function(account, duration = lubridate::duration(10, "minutes")) {
   Sys.time() - account$accessed > duration
 }
 

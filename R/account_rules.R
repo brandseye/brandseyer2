@@ -51,6 +51,12 @@ rules <- function(x, .show.progress) {
 #' \dontrun{
 #' account("TEST01AA") %>%
 #'   rules()
+#'
+#' # Expand the macro section of the tibble to easily
+#' # see how rules effect mentions
+#' account("TEST01AA") %>%
+#'   rules() %>%
+#'   tidyr::unnest()
 #' }
 rules.brandseyer2.account <- function(x, .show.progress = interactive()) {
   x %>%

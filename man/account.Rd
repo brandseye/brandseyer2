@@ -58,7 +58,7 @@ should have an \code{account} column holding the account's code.
 
 Account information is by default cached for one minute per account. In
 other words, while the first call to \code{\link[=account]{account()}} to find information for
-a particular account will spend time on network comms, for the next five minutes
+a particular account will spend time on network comms, for the next ten minutes
 the same call to \code{\link[=account]{account()}} performs no network comms.
 
 Please note that it may cause stale data to be returned. See the \code{.ignore.cache}

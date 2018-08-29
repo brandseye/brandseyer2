@@ -187,6 +187,12 @@ by <code><a href='account_list.html'>account_list()</a></code>.</p>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>rules</span>()
+
+<span class='co'># Expand the macro section of the tibble to easily</span>
+<span class='co'># see how rules effect mentions</span>
+<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>rules</span>() <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>tidyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/tidyr/topics/unnest'>unnest</a></span>()
 <span class='co'># }</span><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>rules</span>()

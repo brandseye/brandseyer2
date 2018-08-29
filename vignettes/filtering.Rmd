@@ -166,6 +166,14 @@ How do they cancel if they're accidently pulling more than they want to?
 
 > Relevancy isnt irrelevant
 
+# Filter Patterns
+
+## Basic structure of a statement
+
+There are three parts to a filter: a field, an operator, and a value.
+The field is a part of a mention. 
+The operator looks different depending on whether it's a number or text.
+
 ## Joining together statements
 
 - What is `AND`? Both things must be true.
@@ -173,6 +181,8 @@ How do they cancel if they're accidently pulling more than they want to?
 - It's not English! There's a distinct meaning.
 - This is called _Boolean Logic_, or _Boolean Algebra_[^4], after George Boole, a 
   mathematician who published in the 1800s on logic and "rules of thought".
+  
+# More filtering
 
 ## Sentiment 
 

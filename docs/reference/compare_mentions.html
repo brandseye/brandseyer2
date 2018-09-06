@@ -63,7 +63,7 @@ is part of the query() language." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9018</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9019</span>
       </span>
     </div>
 
@@ -133,7 +133,9 @@ is part of the <code><a href='query.html'>query()</a></code> language.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>compare_mentions</span>(<span class='no'>.account</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>compare_mentions</span>(<span class='no'>.account</span>, <span class='no'>...</span>)
+
+<span class='fu'>compare_mentions_raw</span>(<span class='no'>.account</span>, <span class='no'>comparisons</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -147,11 +149,20 @@ is part of the <code><a href='query.html'>query()</a></code> language.</p>
       <td><p>A named set of sub-filters, such as
 <code>positive = sentiment = 1</code>. See the examples.</p></td>
     </tr>
+    <tr>
+      <th>comparisons</th>
+      <td><p>A named list of comparison subfilters.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code><a href='query.html'>query()</a></code> object.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>compare_mentions_raw()</code> allows you to construct a list
+of comparison filters programmatically, and apply them to the query.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -164,11 +175,17 @@ is part of the <code><a href='query.html'>query()</a></code> language.</p>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>compare_mentions</span>(<span class='kw'>enterprise</span> <span class='kw'>=</span> <span class='st'>"media is enterprise"</span>,
-                   <span class='kw'>consume</span> <span class='kw'>=</span> <span class='st'>"media is consumer"</span>)</div><div class='output co'>#&gt; BrandsEye Query
+                   <span class='kw'>consumer</span> <span class='kw'>=</span> <span class='st'>"media is consumer"</span>)</div><div class='output co'>#&gt; BrandsEye Query
 #&gt;   accounts:	TEST01AA
 #&gt;   brands:	TEST01AA:1[Your Brand Here], TEST01AA:2[Sibling Brand]
 #&gt;   timezones:	Africa/Johannesburg
-#&gt;   comparison:	media is enterprise, media is consumer </div></pre>
+#&gt;   comparison:	media is enterprise, media is consumer </div><div class='input'><span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>compare_mentions_raw</span>(<span class='fu'>list</span>(<span class='kw'>enterprise</span> <span class='kw'>=</span> <span class='st'>"media is ENTERPRISE"</span>,
+                            <span class='kw'>consumer</span> <span class='kw'>=</span> <span class='st'>"media is CONSUMER"</span>))</div><div class='output co'>#&gt; BrandsEye Query
+#&gt;   accounts:	TEST01AA
+#&gt;   brands:	TEST01AA:1[Your Brand Here], TEST01AA:2[Sibling Brand]
+#&gt;   timezones:	Africa/Johannesburg
+#&gt;   comparison:	media is ENTERPRISE, media is CONSUMER </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -176,6 +193,8 @@ is part of the <code><a href='query.html'>query()</a></code> language.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

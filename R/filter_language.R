@@ -241,7 +241,7 @@ filter_mentions.brandseyer2.query <- function(.account, filter) {
 #'
 #' account("TEST01AA") %>%
 #'   compare_mentions(enterprise = "media is enterprise",
-#'                    consume = "media is consumer")
+#'                    consumer = "media is consumer")
 compare_mentions <- function(.account, ...) {
   UseMethod("compare_mentions")
 }
@@ -278,6 +278,44 @@ compare_mentions_impl <- function(query, comparison) {
   query$comparison <- comparison
   query
 }
+
+#' @rdname compare_mentions
+#'
+#' @param comparisons A named list of comparison subfilters.
+#'
+#' @details [compare_mentions_raw()] allows you to construct a list
+#' of comparison filters programmatically, and apply them to the query.
+#'
+#' @export
+#'
+#' @examples
+#' account("TEST01AA") %>%
+#'   compare_mentions_raw(list(enterprise = "media is ENTERPRISE",
+#'                             consumer = "media is CONSUMER"))
+compare_mentions_raw <- function(.account, comparisons) {
+  UseMethod("compare_mentions_raw")
+}
+
+#' @export
+compare_mentions_raw.brandseyer2.account <- function(.account, comparisons) {
+  to_query(.account) %>%
+    compare_mentions_impl(comparisons)
+}
+
+#' @export
+compare_mentions_raw.list <- function(.account, comparisons) {
+  .account %>%
+    filter_and_warn_v4() %>%
+    map(to_query) %>%
+    purrr::reduce(merge_query) %>%
+    compare_mentions_impl(comparisons)
+}
+
+#' @export
+compare_mentions_raw.brandseyer2.query <- function(.account, comparisons) {
+  compare_mentions_impl(.account, comparisons)
+}
+
 
 #----------------------------------------------------------
 # Grouping mentions

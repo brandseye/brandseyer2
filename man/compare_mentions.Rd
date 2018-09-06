@@ -2,15 +2,20 @@
 % Please edit documentation in R/filter_language.R
 \name{compare_mentions}
 \alias{compare_mentions}
+\alias{compare_mentions_raw}
 \title{Compare mentions using sub-filters when counting them}
 \usage{
 compare_mentions(.account, ...)
+
+compare_mentions_raw(.account, comparisons)
 }
 \arguments{
 \item{.account}{An account or \code{\link[=query]{query()}} object.}
 
 \item{...}{A named set of sub-filters, such as
 \code{positive = sentiment = 1}. See the examples.}
+
+\item{comparisons}{A named list of comparison subfilters.}
 }
 \value{
 A \code{\link[=query]{query()}} object.
@@ -20,11 +25,18 @@ A \code{\link[=query]{query()}} object.
 sub-filters when counting them using \code{\link[=count_mentions]{count_mentions()}}. This
 is part of the \code{\link[=query]{query()}} language.
 }
+\details{
+\code{\link[=compare_mentions_raw]{compare_mentions_raw()}} allows you to construct a list
+of comparison filters programmatically, and apply them to the query.
+}
 \examples{
 
 account("TEST01AA") \%>\%
   compare_mentions(enterprise = "media is enterprise",
-                   consume = "media is consumer")
+                   consumer = "media is consumer")
+account("TEST01AA") \%>\%
+  compare_mentions_raw(list(enterprise = "media is ENTERPRISE",
+                            consumer = "media is CONSUMER"))
 }
 \seealso{
 Other verbs for the query language: \code{\link[=group_mentions_by]{group_mentions_by()}},

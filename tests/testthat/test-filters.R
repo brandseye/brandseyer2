@@ -106,6 +106,17 @@ test_that("Can add subfilters", {
   expect_equal(q$comparison, list(one = "4", two = "5", "6"))
 })
 
+test_that("Can add subfilters programmatically", {
+  q <- to_query(account("TEST01AA")) %>% compare_mentions_raw(list(one = "one", two = "two", "three"))
+  expect_equal(q$comparison, list(one = "one", two = "two", "three"))
+
+  q <- account("TEST01AA") %>% compare_mentions_raw(list(one = "1", two = "2", "3"))
+  expect_equal(q$comparison, list(one = "1", two = "2", "3"))
+
+  q <- list(v4account, account("TEST01AA")) %>% compare_mentions_raw(list(one = "4", two = "5", "6"))
+  expect_equal(q$comparison, list(one = "4", two = "5", "6"))
+})
+
 test_that("Can add an account", {
   q <- to_query(v4account) %>% with_account("TEST01AA")
   expect_equal(q$accounts, c("TEST03AA", "TEST01AA"))

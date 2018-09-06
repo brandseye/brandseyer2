@@ -1,5 +1,7 @@
 # brandseyer2 0.0.1.9019
 
+* Added `compare_mentions_raw()` to dynamically add sub-filters to queries.
+
 # brandseyer2 0.0.1.9018
 
 * `rules()` have better support for `tidyr::unnest()`. 

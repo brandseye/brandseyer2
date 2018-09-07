@@ -1,5 +1,7 @@
 # brandseyer2 0.0.1.9020
 
+* `topic_tree()` returns more exact data.
+
 # brandseyer2 0.0.1.9019
 
 * Added `compare_mentions_raw()` to dynamically add sub-filters to queries.

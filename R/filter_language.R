@@ -178,6 +178,17 @@ with_brands_impl.character <- function(selector, account) {
 #'
 #' [query()] is a way to manually create queries.
 #'
+#' @section Data models:
+#'
+#' The filter language often uses IDs to represent countries, languages, and so on.
+#' These can be found by using either the filter panel in [Analyse](https://analyse.brandseye.com),
+#' or the data model functions.
+#'
+#' - [data_model_countries()]
+#' - [data_model_languages()]
+#' - [data_model_currencies()]
+#' - [data_model_networks()]
+#'
 #' @examples
 #'
 #' account("TEST01AA") %>%

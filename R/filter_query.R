@@ -45,6 +45,17 @@
 #' - [with_mention_fields()] lets you select extra information fields, such as OTS, or engagement.
 #' - [with_mention_order()] lets you order the results.
 #'
+#' @section Data models:
+#'
+#' The filter language often uses IDs to represent countries, languages, and so on.
+#' These can be found by using either the filter panel in [Analyse](https://analyse.brandseye.com),
+#' or the data model functions.
+#'
+#' - [data_model_countries()]
+#' - [data_model_languages()]
+#' - [data_model_currencies()]
+#' - [data_model_networks()]
+#'
 #' @section Accessors:
 #'
 #' [get_query_brands()] returns a list of [filter_brand()] objects. This

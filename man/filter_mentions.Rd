@@ -19,6 +19,20 @@ A query object
 to occur on only those mentions matching the filter. This is
 part of the \code{\link[=query]{query()}} language.
 }
+\section{Data models}{
+
+
+The filter language often uses IDs to represent countries, languages, and so on.
+These can be found by using either the filter panel in \href{https://analyse.brandseye.com}{Analyse},
+or the data model functions.
+\itemize{
+\item \code{\link[=data_model_countries]{data_model_countries()}}
+\item \code{\link[=data_model_languages]{data_model_languages()}}
+\item \code{\link[=data_model_currencies]{data_model_currencies()}}
+\item \code{\link[=data_model_networks]{data_model_networks()}}
+}
+}
+
 \examples{
 
 account("TEST01AA") \%>\%

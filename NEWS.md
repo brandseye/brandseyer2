@@ -1,6 +1,7 @@
 # brandseyer2 0.0.1.9020
 
 * `topic_tree()` returns more exact data.
+* Added a series of functions to examine the data models used in the filter language.
 
 # brandseyer2 0.0.1.9019
 

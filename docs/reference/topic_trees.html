@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9019</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9020</span>
       </span>
     </div>
 
@@ -161,15 +161,15 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>topic_trees</span>()</div><div class='output co'>#&gt; # A tibble: 1 x 7
-#&gt;      id name          namespace  description         deleted children is_parent
-#&gt;   &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;               &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;    
-#&gt; 1  1001 Tree of Topi… topic_tree Topics come from h… FALSE   &lt;int [1… TRUE     </div><div class='input'>
+  <span class='fu'>topic_trees</span>()</div><div class='output co'>#&gt; # A tibble: 1 x 5
+#&gt;      id name           description           deleted children 
+#&gt;   &lt;int&gt; &lt;chr&gt;          &lt;chr&gt;                 &lt;lgl&gt;   &lt;list&gt;   
+#&gt; 1  1001 Tree of Topics Topics come from here FALSE   &lt;int [1]&gt;</div><div class='input'>
 <span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'>topic_trees</span>()</div><div class='output co'>#&gt; # A tibble: 1 x 8
-#&gt;   account     id name      namespace description     deleted children is_parent
-#&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;           &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;    
-#&gt; 1 TEST01AA  1001 Tree of … topic_tr… Topics come fr… FALSE   &lt;int [1… TRUE     </div></pre>
+  <span class='fu'>topic_trees</span>()</div><div class='output co'>#&gt; # A tibble: 1 x 6
+#&gt;   account     id name           description           deleted children 
+#&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;                 &lt;lgl&gt;   &lt;list&gt;   
+#&gt; 1 TEST01AA  1001 Tree of Topics Topics come from here FALSE   &lt;int [1]&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

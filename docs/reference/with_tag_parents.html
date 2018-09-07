@@ -64,7 +64,7 @@ we need to know what the ultimate root parent to determine
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9019</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9020</span>
       </span>
     </div>
 
@@ -173,10 +173,10 @@ we need to know what the ultimate root parent to determine
 #&gt; 6  1001 Tree of T… topic_tree Topics come fr… FALSE   &lt;int [1… TRUE          NA</div><div class='input'>
 <span class='co'># See what root brands we have</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='topic_trees.html'>topic_trees</a></span>()</div><div class='output co'>#&gt; # A tibble: 1 x 7
-#&gt;      id name          namespace  description         deleted children is_parent
-#&gt;   &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;               &lt;lgl&gt;   &lt;list&gt;   &lt;lgl&gt;    
-#&gt; 1  1001 Tree of Topi… topic_tree Topics come from h… FALSE   &lt;int [1… TRUE     </div><div class='input'>
+  <span class='fu'><a href='topic_trees.html'>topic_trees</a></span>()</div><div class='output co'>#&gt; # A tibble: 1 x 5
+#&gt;      id name           description           deleted children 
+#&gt;   &lt;int&gt; &lt;chr&gt;          &lt;chr&gt;                 &lt;lgl&gt;   &lt;list&gt;   
+#&gt; 1  1001 Tree of Topics Topics come from here FALSE   &lt;int [1]&gt;</div><div class='input'>
 <span class='co'># Tag 1001 is a topic tree. Let's find</span>
 <span class='co'># topics, with parents, that are part of this tree.</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>

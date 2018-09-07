@@ -44,7 +44,7 @@ topic_trees <- function(x, ...) {
 #'   topic_trees()
 topic_trees.brandseyer2.account <- function(x, ...) {
   # For devtools::check
-  namespace <- NULL
+  namespace <- NULL; is_parent <- NULL;
 
   x %>%
     tags() %>%

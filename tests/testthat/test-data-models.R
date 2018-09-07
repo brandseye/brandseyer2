@@ -1,24 +1,6 @@
 context("test-data-models")
 library(brandseyer2)
 
-test_that("Can read currencies", {
-  mockr::with_mock(
-    read_api = function(endpoint) {
-      jsonlite::fromJSON(
-        '[{
-          "id": "USD",
-          "label": "US Dollar"
-         }]', simplifyVector = FALSE
-      )
-    }, {
-      d <- data_model_currencies()
-      expect_equal(nrow(d), 1)
-      expect_equal(d$id, 'USD')
-      expect_equal(d$name, 'US Dollar')
-    }
-  )
-})
-
 test_that("Can read languages", {
   mockr::with_mock(
     read_api = function(endpoint) {

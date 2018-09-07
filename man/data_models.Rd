@@ -4,7 +4,6 @@
 \alias{data_models}
 \alias{data_model_countries}
 \alias{data_model_categories}
-\alias{data_model_currencies}
 \alias{data_model_languages}
 \alias{data_model_networks}
 \title{Explore the API data models}
@@ -12,8 +11,6 @@
 data_model_countries()
 
 data_model_categories()
-
-data_model_currencies()
 
 data_model_languages()
 
@@ -33,9 +30,6 @@ Our media types are listed in \code{\link[=data_model_categories]{data_model_cat
 \code{ENTERPRISE} represents mentions coming from the brand itself
 (i.e., the brand that the mention is matched against), while
 \code{CONSUMER} are most other people. \code{PRESS} represents media sources.
-
-Our various currencies are listed using \code{\link[=data_model_currencies]{data_model_currencies()}}.
-These are the 3-letter ISO 4217 codes.
 
 We use 2-letter ISO 639-1 codes to represent
 our languages, which are listed using \code{\link[=data_model_languages]{data_model_languages()}}.

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Filter for only specific mentions — filter_mentions • brandseyer2</title>
+<title>Explore the API data models — data_models • brandseyer2</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,11 +30,11 @@
 
 
 
-<meta property="og:title" content="Filter for only specific mentions — filter_mentions" />
+<meta property="og:title" content="Explore the API data models — data_models" />
 
-<meta property="og:description" content="filter_mentions() causes counting and mention operations
-to occur on only those mentions matching the filter. This is
-part of the query() language." />
+<meta property="og:description" content="Provides a table of values and the IDs that represent
+them in the filter language. For instance, country names and the
+codes used to represent them." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -120,78 +120,49 @@ part of the query() language." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Filter for only specific mentions</h1>
-    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/filter_language.R'><code>R/filter_language.R</code></a></small>
-    <div class="hidden name"><code>filter_mentions.Rd</code></div>
+    <h1>Explore the API data models</h1>
+    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/data_models.R'><code>R/data_models.R</code></a></small>
+    <div class="hidden name"><code>data_models.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p><code>filter_mentions()</code> causes counting and mention operations
-to occur on only those mentions matching the filter. This is
-part of the <code><a href='query.html'>query()</a></code> language.</p>
+    <p>Provides a table of values and the IDs that represent
+them in the filter language. For instance, country names and the
+codes used to represent them.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>filter_mentions</span>(<span class='no'>.account</span>, <span class='no'>filter</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>.account</th>
-      <td><p>An account or <code><a href='query.html'>query()</a></code> object.</p></td>
-    </tr>
-    <tr>
-      <th>filter</th>
-      <td><p>A filter string.</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <pre class="usage"><span class='fu'>data_model_countries</span>()
 
-    <p>A query object</p>
-    
-    <h2 class="hasAnchor" id="data-models"><a class="anchor" href="#data-models"></a>Data models</h2>
+<span class='fu'>data_model_categories</span>()
 
-    
-    <p>The filter language often uses IDs to represent countries, languages, and so on.
-These can be found by using either the filter panel in <a href='https://analyse.brandseye.com'>Analyse</a>,
-or the data model functions.</p><ul>
-<li><p><code><a href='data_models.html'>data_model_countries()</a></code></p></li>
-<li><p><code><a href='data_models.html'>data_model_languages()</a></code></p></li>
-<li><p><code><a href='data_models.html'>data_model_networks()</a></code></p></li>
-</ul>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+<span class='fu'>data_model_languages</span>()
 
-    <div class='dont-index'><p>Other verbs for the query language: <code><a href='group_mentions_by.html'>group_mentions_by()</a></code>,
-<code><a href='compare_mentions.html'>compare_mentions()</a></code>, <code><a href='with_mention_fields.html'>with_mention_fields()</a></code>, <code><a href='with_mention_order.html'>with_mention_order()</a></code>, <code><a href='with_account.html'>with_account()</a></code>.</p>
-<p><code><a href='query.html'>query()</a></code> is a way to manually create queries.</p></div>
+<span class='fu'>data_model_networks</span>()</pre>
+        
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>data_model_countries()</code> supplies a tibble
+of country names and their ISO 3166-1 Alpha 2 country
+codes, as used in the filter language.</p>
+<p>Our media types are listed in <code>data_model_categories()</code>.
+<code>ENTERPRISE</code> represents mentions coming from the brand itself
+(i.e., the brand that the mention is matched against), while
+<code>CONSUMER</code> are most other people. <code>PRESS</code> represents media sources.</p>
+<p>We use 2-letter ISO 639-1 codes to represent
+our languages, which are listed using <code>data_model_languages()</code>.</p>
+<p>The <code>socialNetwork</code> field in the
+filter language takes IDs provided by <code>data_model_networks()</code>.</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>filter_mentions</span>(<span class='st'>"published inthelast week"</span>)</div><div class='output co'>#&gt; BrandsEye Query
-#&gt;   accounts:	TEST01AA
-#&gt;   brands:	TEST01AA:1[Your Brand Here], TEST01AA:2[Sibling Brand]
-#&gt;   timezones:	Africa/Johannesburg
-#&gt;   filter:	published inthelast week </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#data-models">Data models</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+      <li><a href="#details">Details</a></li>
+          </ul>
 
   </div>
 </div>

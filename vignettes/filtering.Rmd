@@ -1,7 +1,7 @@
 ---
 title: "Filtering"
 author: "Constance Neeser"
-date: "`r Sys.Date()`"
+date: "2018-09-07"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Filtering}
@@ -184,6 +184,37 @@ The operator looks different depending on whether it's a number or text.
   
 # More filtering
 
+## Where are mentions from?
+
+> Just give me things from twitter
+
+```
+socialNetwork is TWITTER
+```
+
+Social network codes can be obtained using `data_model_networks()`
+
+Currently, these are
+
+```{r, eval = FALSE}
+data_model_networks()
+#> # A tibble: 9 x 2
+#>   id          name       
+#>   <chr>       <chr>      
+#> 1 TWITTER     Twitter    
+#> 2 FACEBOOK    Facebook   
+#> 3 INSTAGRAM   Instagram  
+#> 4 GOOGLE_PLUS Google Plus
+#> 5 LINKEDIN    LinkedIn   
+#> 6 TUMBLR      Tumblr     
+#> 7 VK          VK         
+#> 8 YOUTUBE     YouTube    
+#> 9 TELEGRAM    Telegram
+```
+
+
+
+
 ## Sentiment 
 
 Mentions by themselves are not always interesting. Mentions, as handled by BrandsEye, relate 
@@ -194,6 +225,22 @@ is related towards.
 It is also, importantly, the thing that we measure sentiment towards. 
 
 Sentiment doesn't exist in a vacuum, it is usually related to something. 
+
+## Are things from the brand itself, consumers, or the press?
+
+```
+media is ENTERPRISE
+```
+
+We currently only have three main categories at the moment.
+
+| ID         | Meaning               |
+|-----------:|:----------------------|
+| ENTERPRISE | From the brand itself |
+| PRESS      | From a media source   |
+| CONSUMER   | From everyone else    |
+
+But you can list all the ones we recognise using `data_model_categories()`.
 
 ## Tags
 
@@ -221,6 +268,28 @@ What's the difference, and when to use which.
 - Filtering by country region / province / state.
 - Filtering by city
 
+We use two letter SO 3166-1 Alpha 2 country codes to represent
+the countries themselves. You can list them using `data_model_countries()`
+
+```{r, eval = FALSE}
+data_model_countries()
+#> # A tibble: 252 x 2
+#>    id    name               
+#>    <chr> <chr>              
+#>  1 AF    Afghanistan        
+#>  2 AX    Aland Islands      
+#>  3 AL    Albania            
+#>  4 DZ    Algeria            
+#>  5 AS    American Samoa     
+#>  6 AD    Andorra            
+#>  7 AO    Angola             
+#>  8 AI    Anguilla           
+#>  9 AQ    Antarctica         
+#> 10 AG    Antigua and Barbuda
+#> # ... with 242 more rows
+```
+
+
 Analyse is required to get all of these names.
 
 ## Language
@@ -233,6 +302,28 @@ Now that we have more statements, we can give more examples.
 
 - Precedence.
 - Bracketing.
+
+We use 2-letter ISO 639-1 codes to represent languages. You can
+list all the ones we understand using `data_model_languages()`:
+
+```{r, eval=FALSE}
+data_model_languages()
+#> # A tibble: 149 x 2
+#>    id    name     
+#>    <chr> <chr>    
+#>  1 ab    Abkhazian
+#>  2 aa    Afar     
+#>  3 af    Afrikaans
+#>  4 sq    Albanian 
+#>  5 am    Amharic  
+#>  6 ar    Arabic   
+#>  7 an    Aragonese
+#>  8 hy    Armenian 
+#>  9 as    Assamese 
+#> 10 ay    Aymara   
+#> # ... with 139 more rows
+```
+
 
 ## Author information
 

@@ -54,16 +54,6 @@ data_model_categories <- function() {
 #' @rdname data_models
 #' @export
 #'
-#' @details Our various currencies are listed using [data_model_currencies()].
-#' These are the 3-letter ISO 4217 codes.
-data_model_currencies <- function() {
-  read_api("/v4/data-model/currencies") %>%
-    map_df(~ tibble(id = .x$id, name = .x$label))
-}
-
-#' @rdname data_models
-#' @export
-#'
 #' @details We use 2-letter ISO 639-1 codes to represent
 #' our languages, which are listed using [data_model_languages()].
 data_model_languages <- function() {

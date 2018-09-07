@@ -248,12 +248,62 @@ mentions
 <div id="more-filtering" class="section level1">
 <h1 class="hasAnchor">
 <a href="#more-filtering" class="anchor"></a>More filtering</h1>
+<div id="where-are-mentions-from" class="section level2">
+<h2 class="hasAnchor">
+<a href="#where-are-mentions-from" class="anchor"></a>Where are mentions from?</h2>
+<blockquote>
+<p>Just give me things from twitter</p>
+</blockquote>
+<pre><code>socialNetwork is TWITTER</code></pre>
+<p>Social network codes can be obtained using <code><a href="../reference/data_models.html">data_model_networks()</a></code></p>
+<p>Currently, these are</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/data_models.html">data_model_networks</a></span>()
+<span class="co">#&gt; # A tibble: 9 x 2</span>
+<span class="co">#&gt;   id          name       </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;      </span>
+<span class="co">#&gt; 1 TWITTER     Twitter    </span>
+<span class="co">#&gt; 2 FACEBOOK    Facebook   </span>
+<span class="co">#&gt; 3 INSTAGRAM   Instagram  </span>
+<span class="co">#&gt; 4 GOOGLE_PLUS Google Plus</span>
+<span class="co">#&gt; 5 LINKEDIN    LinkedIn   </span>
+<span class="co">#&gt; 6 TUMBLR      Tumblr     </span>
+<span class="co">#&gt; 7 VK          VK         </span>
+<span class="co">#&gt; 8 YOUTUBE     YouTube    </span>
+<span class="co">#&gt; 9 TELEGRAM    Telegram</span></code></pre></div>
+</div>
 <div id="sentiment" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sentiment" class="anchor"></a>Sentiment</h2>
 <p>Mentions by themselves are not always interesting. Mentions, as handled by BrandsEye, relate towards something that we name a <em>brand</em>. This is not necessarily a brand in the strict sense of the word. It certainly could be, but in this case, it’s the entity or concept or thing that the mention is related towards.</p>
 <p>It is also, importantly, the thing that we measure sentiment towards.</p>
 <p>Sentiment doesn’t exist in a vacuum, it is usually related to something.</p>
+</div>
+<div id="are-things-from-the-brand-itself-consumers-or-the-press" class="section level2">
+<h2 class="hasAnchor">
+<a href="#are-things-from-the-brand-itself-consumers-or-the-press" class="anchor"></a>Are things from the brand itself, consumers, or the press?</h2>
+<pre><code>media is ENTERPRISE</code></pre>
+<p>We currently only have three main categories at the moment.</p>
+<table class="table">
+<thead><tr class="header">
+<th align="right">ID</th>
+<th align="left">Meaning</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">ENTERPRISE</td>
+<td align="left">From the brand itself</td>
+</tr>
+<tr class="even">
+<td align="right">PRESS</td>
+<td align="left">From a media source</td>
+</tr>
+<tr class="odd">
+<td align="right">CONSUMER</td>
+<td align="left">From everyone else</td>
+</tr>
+</tbody>
+</table>
+<p>But you can list all the ones we recognise using <code><a href="../reference/data_models.html">data_model_categories()</a></code>.</p>
 </div>
 <div id="tags" class="section level2">
 <h2 class="hasAnchor">
@@ -292,6 +342,22 @@ mentions
 <li>Filtering by country region / province / state.</li>
 <li>Filtering by city</li>
 </ul>
+<p>We use two letter SO 3166-1 Alpha 2 country codes to represent the countries themselves. You can list them using <code><a href="../reference/data_models.html">data_model_countries()</a></code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/data_models.html">data_model_countries</a></span>()
+<span class="co">#&gt; # A tibble: 252 x 2</span>
+<span class="co">#&gt;    id    name               </span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;              </span>
+<span class="co">#&gt;  1 AF    Afghanistan        </span>
+<span class="co">#&gt;  2 AX    Aland Islands      </span>
+<span class="co">#&gt;  3 AL    Albania            </span>
+<span class="co">#&gt;  4 DZ    Algeria            </span>
+<span class="co">#&gt;  5 AS    American Samoa     </span>
+<span class="co">#&gt;  6 AD    Andorra            </span>
+<span class="co">#&gt;  7 AO    Angola             </span>
+<span class="co">#&gt;  8 AI    Anguilla           </span>
+<span class="co">#&gt;  9 AQ    Antarctica         </span>
+<span class="co">#&gt; 10 AG    Antigua and Barbuda</span>
+<span class="co">#&gt; # ... with 242 more rows</span></code></pre></div>
 <p>Analyse is required to get all of these names.</p>
 </div>
 <div id="language" class="section level2">
@@ -310,6 +376,22 @@ mentions
 <li>Precedence.</li>
 <li>Bracketing.</li>
 </ul>
+<p>We use 2-letter ISO 639-1 codes to represent languages. You can list all the ones we understand using <code><a href="../reference/data_models.html">data_model_languages()</a></code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/data_models.html">data_model_languages</a></span>()
+<span class="co">#&gt; # A tibble: 149 x 2</span>
+<span class="co">#&gt;    id    name     </span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;    </span>
+<span class="co">#&gt;  1 ab    Abkhazian</span>
+<span class="co">#&gt;  2 aa    Afar     </span>
+<span class="co">#&gt;  3 af    Afrikaans</span>
+<span class="co">#&gt;  4 sq    Albanian </span>
+<span class="co">#&gt;  5 am    Amharic  </span>
+<span class="co">#&gt;  6 ar    Arabic   </span>
+<span class="co">#&gt;  7 an    Aragonese</span>
+<span class="co">#&gt;  8 hy    Armenian </span>
+<span class="co">#&gt;  9 as    Assamese </span>
+<span class="co">#&gt; 10 ay    Aymara   </span>
+<span class="co">#&gt; # ... with 139 more rows</span></code></pre></div>
 </div>
 <div id="author-information" class="section level2">
 <h2 class="hasAnchor">
@@ -357,7 +439,9 @@ mentions
 </li>
       <li>
 <a href="#more-filtering">More filtering</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#sentiment">Sentiment</a></li>
+<li><a href="#where-are-mentions-from">Where are mentions from?</a></li>
+      <li><a href="#sentiment">Sentiment</a></li>
+      <li><a href="#are-things-from-the-brand-itself-consumers-or-the-press">Are things from the brand itself, consumers, or the press?</a></li>
       <li><a href="#tags">Tags</a></li>
       <li><a href="#topics">Topics</a></li>
       <li><a href="#data-verification">Data verification</a></li>

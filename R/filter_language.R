@@ -186,7 +186,6 @@ with_brands_impl.character <- function(selector, account) {
 #'
 #' - [data_model_countries()]
 #' - [data_model_languages()]
-#' - [data_model_currencies()]
 #' - [data_model_networks()]
 #'
 #' @examples

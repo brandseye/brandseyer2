@@ -125,7 +125,8 @@ test_that("Can fetch topic_tree for an account", {
     topic_trees()
 
   expect_equal(nrow(tree), 1)
-  expect_equal(tree[[1, "namespace"]], "topic_tree")
+  expect_equal(tree[[1, "name"]], "Tree of Topics")
+  expect_equal(tree[[1, "id"]], 1001)
 })
 
 test_that("Can read an account's manager", {

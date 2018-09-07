@@ -48,7 +48,8 @@ topic_trees.brandseyer2.account <- function(x, ...) {
 
   x %>%
     tags() %>%
-    dplyr::filter(namespace == "topic_tree")
+    dplyr::filter(namespace == "topic_tree") %>%
+    dplyr::select(-namespace, -is_parent)
 }
 
 #' @describeIn topic_trees

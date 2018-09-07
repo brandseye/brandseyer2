@@ -43,6 +43,7 @@ Suggests:
     rmarkdown,
     brandseyer,
     readr,
-    ggplot2
+    ggplot2,
+    mockr
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)

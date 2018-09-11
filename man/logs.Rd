@@ -75,6 +75,10 @@ logs("TEST01AA", Sys.Date() - lubridate::weeks(1))
 
 # The last day
 logs("TEST01AA", Sys.Date() - lubridate::days(1))
+
+# The last three months
+library(lubridate)
+logs("TEST01AA", Sys.Date() \%m-\% months(1))
 }
 
 

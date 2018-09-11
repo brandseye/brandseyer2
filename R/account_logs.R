@@ -63,6 +63,10 @@ logs <- function(x, from, .show.progress) {
 #'
 #' # The last day
 #' logs("TEST01AA", Sys.Date() - lubridate::days(1))
+#'
+#' # The last three months
+#' library(lubridate)
+#' logs("TEST01AA", Sys.Date() %m-% months(1))
 #' }
 #'
 logs.character <- function(x,

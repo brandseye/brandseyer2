@@ -208,6 +208,10 @@ by <code><a href='account_list.html'>account_list()</a></code>.</p>
 
 <span class='co'># The last day</span>
 <span class='fu'>logs</span>(<span class='st'>"TEST01AA"</span>, <span class='fu'>Sys.Date</span>() - <span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/period.html'>days</a></span>(<span class='fl'>1</span>))
+
+<span class='co'># The last three months</span>
+<span class='fu'>library</span>(<span class='no'>lubridate</span>)
+<span class='fu'>logs</span>(<span class='st'>"TEST01AA"</span>, <span class='fu'>Sys.Date</span>() <span class='kw'>%m-%</span> <span class='fu'>months</span>(<span class='fl'>1</span>))
 <span class='co'># }</span><div class='input'>
 
 </div><span class='co'># NOT RUN {</span>

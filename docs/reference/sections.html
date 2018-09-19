@@ -62,7 +62,7 @@ this adds the section information to the tibble." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9020</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9021</span>
       </span>
     </div>
 
@@ -131,10 +131,11 @@ this adds the section information to the tibble.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>sections</span>(<span class='no'>x</span>, <span class='no'>d</span>, <span class='no'>unnest</span>)
+    <pre class="usage"><span class='fu'>sections</span>(<span class='no'>x</span>, <span class='no'>d</span>, <span class='no'>unnest</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for data.frame</span>
-<span class='fu'>sections</span>(<span class='no'>x</span>, <span class='no'>d</span>, <span class='kw'>unnest</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>sections</span>(<span class='no'>x</span>, <span class='no'>d</span>, <span class='kw'>unnest</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>,
+  <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -156,6 +157,17 @@ on section titles with.</p></td>
 appended as a list of tibbles, or whether they should be unnested
 in to the tibble itself, similar to having called <code><a href='http://www.rdocumentation.org/packages/tidyr/topics/unnest'>tidyr::unnest()</a></code>.</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Parameters for other methods</p></td>
+    </tr>
+    <tr>
+      <th>.show.progress</th>
+      <td><p>Whether to show a progress bar. By default, it will
+only show a progress bar if there are more than 5 sections
+being fetched, and the session is interactive.</p>
+<p>Get section information for a dashboard tibble.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -171,7 +183,7 @@ the <code><a href='dashboards.html'>dashboards()</a></code> documentation for mo
     <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
 
     <ul>
-<li><p><code>data.frame</code>: Get section information for a dashboard tibble.</p></li>
+<li><p><code>data.frame</code>:</p></li>
 </ul>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>

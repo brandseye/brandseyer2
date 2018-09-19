@@ -5,9 +5,10 @@
 \alias{sections.data.frame}
 \title{Give section information for a dashboard}
 \usage{
-sections(x, d, unnest)
+sections(x, d, unnest, ...)
 
-\method{sections}{data.frame}(x, d, unnest = FALSE)
+\method{sections}{data.frame}(x, d, unnest = FALSE, ...,
+  .show.progress = interactive())
 }
 \arguments{
 \item{x}{A tibble to get section information for.}
@@ -20,6 +21,14 @@ on section titles with.}
 \item{unnest}{A logical value indicating whether sections should be
 appended as a list of tibbles, or whether they should be unnested
 in to the tibble itself, similar to having called \code{\link[tidyr:unnest]{tidyr::unnest()}}.}
+
+\item{...}{Parameters for other methods}
+
+\item{.show.progress}{Whether to show a progress bar. By default, it will
+only show a progress bar if there are more than 5 sections
+being fetched, and the session is interactive.
+
+Get section information for a dashboard tibble.}
 }
 \value{
 The original tibble, but now with an additional section column.
@@ -35,7 +44,7 @@ the \code{dashboards()} documentation for more details.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{data.frame}: Get section information for a dashboard tibble.
+\item \code{data.frame}: 
 }}
 
 \examples{

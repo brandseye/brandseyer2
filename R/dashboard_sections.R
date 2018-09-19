@@ -36,6 +36,7 @@
 #' @param unnest A logical value indicating whether sections should be
 #'               appended as a list of tibbles, or whether they should be unnested
 #'               in to the tibble itself, similar to having called [tidyr::unnest()].
+#' @param ... Parameters for other methods
 #'
 #' @return The original tibble, but now with an additional section column.
 #' @export
@@ -62,16 +63,22 @@
 #'   dashboards(1) %>%
 #'   sections("where")
 #' }
-sections <- function(x, d, unnest) {
+sections <- function(x, d, unnest, ...) {
   UseMethod("sections")
 }
 
 #' @describeIn sections
 #'
+#' @param .show.progress Whether to show a progress bar. By default, it will
+#'                       only show a progress bar if there are more than 5 sections
+#'                       being fetched, and the session is interactive.
+#'
 #' Get section information for a dashboard tibble.
 #'
 #' @export
-sections.data.frame <- function(x, d, unnest = FALSE) {
+sections.data.frame <- function(x, d, unnest = FALSE,
+                                ...,
+                                .show.progress = interactive()) {
   assert_that(x %has_name% "id", msg = "No dashboard `id` column present")
 
   ac <- attr(x, "account")
@@ -81,9 +88,20 @@ sections.data.frame <- function(x, d, unnest = FALSE) {
   # For devtools::check
   title <- NULL; section.id <- NULL;
 
+  pb <- list(tick = function(...) {})
+  if (nrow(x) > 3 && .show.progress) {
+    pb <- progress::progress_bar$new(
+      format = "  sections for :code [:bar] :percent eta: :eta",
+      total = nrow(x)
+    )
+  }
+
+  pb$tick(0, tokens = list(code = account_code(ac)))
+
   d_missing <- missing(d)
   result <- x %>%
     mutate(sections = map(id, function(id) {
+      pb$tick(tokens = list(code = account_code(ac)))
       sections <- load_sections(ac, id)
       if (d_missing) return(sections)
 

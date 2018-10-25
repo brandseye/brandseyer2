@@ -42,7 +42,6 @@ Suggests:
     covr,
     knitr,
     rmarkdown,
-    brandseyer,
     readr,
     ggplot2,
     mockr

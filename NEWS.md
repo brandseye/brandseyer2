@@ -1,6 +1,7 @@
 # brandseyer2 0.0.1.9022
 
 *  `account_list()` now shows client code.
+*  Added function `account_client_code()` to get client code from account object.
 
 # brandseyer2 0.0.1.9021
 

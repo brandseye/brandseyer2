@@ -5,7 +5,8 @@ v3_data <- list(
   storage = "V3",
   name = "Test Account",
   code = "BETE01AA",
-  accountType = "INTERNAL"
+  accountType = "INTERNAL",
+  clientCode = "MKT001"
 )
 
 # -----------------------------------------------
@@ -48,6 +49,11 @@ test_that("Can get account data if the code is weirdly formatted", {
 
 test_that("Can read account code", {
   expect_equal(account_code(v3_account), "BETE01AA")
+})
+
+test_that("Can read account client code", {
+  expect_equal(account_client_code(v3_account), "MKT001")
+  expect_equal(account_client_code(test02aa), NA)
 })
 
 test_that("Can read account type", {

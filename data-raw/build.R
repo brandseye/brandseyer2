@@ -6,6 +6,7 @@ test01aa_data <- list(
   storage = "V4",
   name = "Test 1",
   code = "TEST01AA",
+  clientCode = "MKT001",
   timezone = "Africa/Johannesburg",
   accountType = "PAID",
   clientService = list(

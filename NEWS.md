@@ -1,5 +1,7 @@
 # brandseyer2 0.0.1.9022
 
+*  `account_list()` now shows client code.
+
 # brandseyer2 0.0.1.9021
 
 * `sections()` now shows a progress bar.

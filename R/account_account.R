@@ -52,6 +52,8 @@ pkg.accounts <- new.env()   # account information that we've fetched.
 #'
 #' @seealso [accounts()] is a synonym for `account`.
 #' @seealso [is_account()] to test if an object is an account object.
+#' @seealso [account_code()] to get the account code.
+#' @seealso [account_client_code()] to get the account client code.
 #' @seealso [tags()] to find tags in an account.
 #' @seealso [topics()] to find topics in an account.
 #' @seealso [create_tags()] to add more tags to an account.

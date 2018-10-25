@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read account rules — rules • brandseyer2</title>
+<title>Read online profiles for an accounts — profiles • brandseyer2</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,9 @@
 
 
 
-<meta property="og:title" content="Read account rules — rules" />
+<meta property="og:title" content="Read online profiles for an accounts — profiles" />
 
-<meta property="og:description" content="Returns a tibble of all the rules for an account. Rules are
-applied to mentions as they are received by BrandsEye." />
+<meta property="og:description" content="Returns a tibble of online profiles for the account." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -119,56 +118,56 @@ applied to mentions as they are received by BrandsEye." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read account rules</h1>
-    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/account_rules.R'><code>R/account_rules.R</code></a></small>
-    <div class="hidden name"><code>rules.Rd</code></div>
+    <h1>Read online profiles for an accounts</h1>
+    <small class="dont-index">Source: <a href='https://github.com/brandseye/brandseyer2/blob/master/R/account_profiles.R'><code>R/account_profiles.R</code></a></small>
+    <div class="hidden name"><code>profiles.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Returns a tibble of all the rules for an account. Rules are
-applied to mentions as they are received by BrandsEye.</p>
+    <p>Returns a tibble of online profiles for the account.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>rules</span>(<span class='no'>x</span>, <span class='no'>.show.progress</span>)
-
-<span class='co'># S3 method for brandseyer2.account</span>
-<span class='fu'>rules</span>(<span class='no'>x</span>, <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())
-
-<span class='co'># S3 method for list</span>
-<span class='fu'>rules</span>(<span class='no'>x</span>, <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())
-
-<span class='co'># S3 method for data.frame</span>
-<span class='fu'>rules</span>(<span class='no'>x</span>, <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())
+    <pre class="usage"><span class='fu'>profiles</span>(<span class='no'>x</span>, <span class='no'>.show.progress</span>)
 
 <span class='co'># S3 method for character</span>
-<span class='fu'>rules</span>(<span class='no'>x</span>, <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())</pre>
+<span class='fu'>profiles</span>(<span class='no'>x</span>, <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())
+
+<span class='co'># S3 method for brandseyer2.account</span>
+<span class='fu'>profiles</span>(<span class='no'>x</span>, <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())
+
+<span class='co'># S3 method for list</span>
+<span class='fu'>profiles</span>(<span class='no'>x</span>, <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())
+
+<span class='co'># S3 method for data.frame</span>
+<span class='fu'>profiles</span>(<span class='no'>x</span>, <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'>interactive</span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object to read logs from.</p></td>
+      <td><p>An object to read profiles from.</p></td>
     </tr>
     <tr>
       <th>.show.progress</th>
       <td><p>A logical indicating whether to show a progress bar or not.
 By default, this only shows a progress bar in interactive environments.
-Also, progress bars will only be shown if 5 or more accounts are
+Also, progress bars will only be shown if 3 or more accounts are
 being examined.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble of rule information,.</p>
+    <p>A tibble of log information, including the user that perform the action, and how many
+times the action was performed.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Rules can be read from various different kinds of object. An <code><a href='account.html'>account()</a></code>
-object is the most basic, although rules can also be read from a list of
+    <p>Online profiles can be read from various different kinds of object. An <code><a href='account.html'>account()</a></code>
+object is the most basic, although profiles can also be read from a list of
 account objects (in which case the returned tibble will include an account code column),
 or from a tibble containing an account code column, such as that returned
 by <code><a href='account_list.html'>account_list()</a></code>.</p>
@@ -176,33 +175,33 @@ by <code><a href='account_list.html'>account_list()</a></code>.</p>
     <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
 
     <ul>
-<li><p><code>brandseyer2.account</code>: For an <code><a href='account.html'>account()</a></code> object.</p></li>
-<li><p><code>list</code>: For a list of account objects.</p></li>
-<li><p><code>data.frame</code>: For a <code>data.frame</code> that contains an <code>account</code> column of account codes.</p></li>
-<li><p><code>character</code>: For a character vector</p></li>
+<li><p><code>character</code>: Reach for an account code character vector.</p></li>
+<li><p><code>brandseyer2.account</code>: For <code><a href='account.html'>account()</a></code> objects.</p></li>
+<li><p><code>list</code>: For a list of accounts</p></li>
+<li><p><code>data.frame</code>: Read for a data frame, such as returned by <code><a href='account_list.html'>account_list()</a></code></p></li>
 </ul>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>rules</span>()
+    <pre class="examples"><div class='input'>
+</div><span class='co'># NOT RUN {</span>
+<span class='co'># Read profiles for an account code</span>
+<span class='fu'>profiles</span>(<span class='st'>"TEST01AA"</span>)
+<span class='co'># }</span><div class='input'>
 
-<span class='co'># Expand the macro section of the tibble to easily</span>
-<span class='co'># see how rules effect mentions</span>
+</div><span class='co'># NOT RUN {</span>
+<span class='co'># Read profiles for an account</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>rules</span>() <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>tidyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/tidyr/topics/unnest'>unnest</a></span>()
-<span class='co'># }</span><span class='co'># NOT RUN {</span>
+  <span class='fu'>profiles</span>()
+<span class='co'># }</span><div class='input'>
+
+</div><span class='co'># NOT RUN {</span>
+<span class='co'># Read for a list of accounts</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>rules</span>()
+  <span class='fu'>profiles</span>()
 <span class='co'># }</span><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='account_list.html'>account_list</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>rules</span>()
-<span class='co'># }</span><div class='input'>
-</div><span class='co'># NOT RUN {</span>
-<span class='fu'>rules</span>(<span class='st'>"TEST01AA"</span>)
-<span class='fu'>rules</span>(<span class='fu'>c</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>))
+  <span class='fu'>profiles</span>()
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

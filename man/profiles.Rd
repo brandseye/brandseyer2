@@ -6,7 +6,7 @@
 \alias{profiles.brandseyer2.account}
 \alias{profiles.list}
 \alias{profiles.data.frame}
-\title{Read online profiles for an accounts}
+\title{Read online profiles for an account}
 \usage{
 profiles(x, .show.progress)
 

@@ -89,6 +89,10 @@ account(c("TEST01AA", "TEST02AA"))
 
 \code{\link[=is_account]{is_account()}} to test if an object is an account object.
 
+\code{\link[=account_code]{account_code()}} to get the account code.
+
+\code{\link[=account_client_code]{account_client_code()}} to get the account client code.
+
 \code{\link[=tags]{tags()}} to find tags in an account.
 
 \code{\link[=topics]{topics()}} to find topics in an account.

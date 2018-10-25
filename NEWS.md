@@ -1,5 +1,7 @@
 # brandseyer2 0.0.1.9023
 
+- `profiles()` added, which lets you pull online profiles for an account.
+
 # brandseyer2 0.0.1.9022
 
 *  `account_list()` now shows client code.

@@ -8,6 +8,7 @@ Description: BrandsEye is an opinion mining company. We track
   from R itself.
 Authors@R: c(
   person("Constance", "Neeser", email = "connie@brandseye.com", role = c("aut", "cre")),
+  person("Lara", "Basson", email = "lara@brandseye.com", role = c("aut")),
   person("BrandsEye", role = c("cph")))
 License: MIT + file LICENSE
 URL: https://brandseye.github.io/brandseyer2/, https://github.com/brandseye/brandseyer2

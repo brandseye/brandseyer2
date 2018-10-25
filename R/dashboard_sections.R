@@ -102,19 +102,19 @@ sections.data.frame <- function(x, d, unnest = FALSE,
   result <- x %>%
     mutate(sections = map(id, function(id) {
       pb$tick(tokens = list(code = account_code(ac)))
-      sections <- load_sections(ac, id)
-      if (d_missing) return(sections)
+      secs <- load_sections(ac, id)
+      if (d_missing) return(secs)
 
       if (is.character(d)) {
         return(
-          sections %>%
+          secs %>%
             filter(map_lgl(title, ~ any(stringr::str_detect(tolower(.x), tolower(d)))))
         )
       }
 
       if (is.numeric(d)) {
         return(
-          sections %>%
+          secs %>%
             filter(section.id %in% d)
         )
       }
@@ -128,8 +128,10 @@ sections.data.frame <- function(x, d, unnest = FALSE,
 load_sections <- function(x, d) {
   # For devtools::check
   section.id <- NULL; title <- NULL;
+
   read_mash(paste0("accounts/", account_code(x), "/reports/", d)) %>%
     pluck("sections") %>%
+    {if (is.null(.)) list(list(id = NA, filter = NA, title = NA)) else .} %>%
     map_df(function(section) {
       section[["compare"]] <- list(as_tibble(section[["compare"]] %||% NA))
       section[["metrics"]] <- list(section$widgets %>%

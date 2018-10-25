@@ -169,9 +169,8 @@ logs.list <- function(x,
                       from = (Sys.Date() %m-% months(1)),
                       .show.progress = interactive()) {
   x %>%
-    map_df(~ logs(.x, from = from, .show.progress = .show.progress) %>%
-             mutate(account = account_code(.x)) %>%
-             select(account, everything()))
+    account_code() %>%
+    logs()
 }
 
 #' @describeIn logs

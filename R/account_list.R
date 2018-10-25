@@ -40,6 +40,7 @@ account_list <- function(includeInactive = FALSE) {
     map_df(~tibble(
       account = .x$code,
       name = .x$name,
+      clientCode = .x$clientCode %||% NA,
       status =.x$status,
       onlyAdmin = .x$onlyAdminLogin %||% FALSE,
       findNewMentions = .x$findNewMentions %||% FALSE,

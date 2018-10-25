@@ -127,7 +127,7 @@ sections.data.frame <- function(x, d, unnest = FALSE,
 
 load_sections <- function(x, d) {
   # For devtools::check
-  section.id <- NULL; title <- NULL;
+  section.id <- NULL; title <- NULL; . <- NULL;
 
   read_mash(paste0("accounts/", account_code(x), "/reports/", d)) %>%
     pluck("sections") %>%

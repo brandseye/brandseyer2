@@ -48,6 +48,7 @@ reference:
       - users
       - logs
       - rules
+      - profiles
   - title: "Accessing mentions"
     desc: >
       Mentions make up the raw data that we store for you. Sentiment

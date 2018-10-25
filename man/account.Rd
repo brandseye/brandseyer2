@@ -106,4 +106,6 @@ account(c("TEST01AA", "TEST02AA"))
 \code{\link[=users]{users()}} to see what users have access to the account.
 
 \code{\link[=rules]{rules()}} for the list of rules applied to mentions in the account.
+
+\code{\link[=profiles]{profiles()}} for the list of online profiles for the account.
 }

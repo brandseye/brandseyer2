@@ -61,6 +61,7 @@ pkg.accounts <- new.env()   # account information that we've fetched.
 #' @seealso [logs()] to read the account's logs.
 #' @seealso [users()] to see what users have access to the account.
 #' @seealso [rules()] for the list of rules applied to mentions in the account.
+#' @seealso [profiles()] for the list of online profiles for the account.
 #'
 #' @export
 account <- function(codes, ...) {

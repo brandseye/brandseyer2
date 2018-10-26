@@ -1,5 +1,7 @@
 # brandseyer2 0.0.1.9024
 
+* `update_mentions()` now reports an error when attempting to update V3 accounts.
+
 # brandseyer2 0.0.1.9023
 
 - `profiles()` added, which lets you pull online profiles for an account.

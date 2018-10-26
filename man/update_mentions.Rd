@@ -63,7 +63,8 @@ Nothing
 }
 \description{
 This function lets you update data that is stored on a mention.
-For instance, you can add and rmeove tags from mentions.
+For instance, you can add and remove tags from mentions. See \code{\link[=create_tags]{create_tags()}}
+to add new tags to an account before adding them to mentions.
 }
 \section{Methods (by class)}{
 \itemize{

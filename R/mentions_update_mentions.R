@@ -22,7 +22,8 @@
 #' Update data stored on a mention
 #'
 #' This function lets you update data that is stored on a mention.
-#' For instance, you can add and rmeove tags from mentions.
+#' For instance, you can add and remove tags from mentions. See [`create_tags()`]
+#' to add new tags to an account before adding them to mentions.
 #'
 #' @param x The account object.
 #' @param filter Defines the mentions to update.

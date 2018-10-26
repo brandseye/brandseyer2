@@ -184,3 +184,8 @@ update_mentions.brandseyer2.account.v4 <- function(x, filter,
   write_api(endpoint, "PUT", json)
   invisible()
 }
+
+#' @export
+update_mentions.brandseyer2.account.v3 <- function(x, filter, auto.confirm = FALSE, ...) {
+  rlang::abort("brandseyer2 does not support updating v3 accounts. Please contact support@brandseye.com")
+}

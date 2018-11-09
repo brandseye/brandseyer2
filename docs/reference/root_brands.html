@@ -62,7 +62,7 @@ determine sentiment. Sentiment is always towards the brand." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9024</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9025</span>
       </span>
     </div>
 
@@ -208,12 +208,13 @@ the tibble returned from <code><a href='brands.html'>brands()</a></code> does.</
 #&gt; 3 TEST01AA     1 Your Brand Here    FALSE         NA</div><div class='input'>
 <span class='co'># Show fuller root brand information</span>
 <span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>root_brands</span>(<span class='kw'>short</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 12
-#&gt;      id parent name  tier  deleted schema filter topic_tree_id sentiment_rate
-#&gt;   &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;lgl&gt;   &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt;          &lt;dbl&gt;
-#&gt; 1     2     NA Sibl… TOPI… FALSE   b0000… locat…           100            0.8
-#&gt; 2     1     NA Your… ESSE… FALSE   &lt;NA&gt;   &lt;NA&gt;              NA            0  
-#&gt; # ... with 3 more variables: topic_rate &lt;dbl&gt;, archived &lt;dbl&gt;, phrases &lt;list&gt;</div></pre>
+  <span class='fu'>root_brands</span>(<span class='kw'>short</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 13
+#&gt;      id parent name  description tier  deleted schema filter topic_tree_id
+#&gt;   &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;lgl&gt;       &lt;chr&gt; &lt;lgl&gt;   &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt;
+#&gt; 1     2     NA Sibl… NA          TOPI… FALSE   b0000… locat…           100
+#&gt; 2     1     NA Your… NA          ESSE… FALSE   &lt;NA&gt;   &lt;NA&gt;              NA
+#&gt; # ... with 4 more variables: sentiment_rate &lt;dbl&gt;, topic_rate &lt;dbl&gt;,
+#&gt; #   archived &lt;dbl&gt;, phrases &lt;list&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

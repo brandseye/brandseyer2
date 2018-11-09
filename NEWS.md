@@ -1,5 +1,7 @@
 # brandseyer2 0.0.1.9025
 
+* `brands()` and `root_brands()` now provide brand descriptions.
+
 # brandseyer2 0.0.1.9024
 
 * `update_mentions()` now reports an error when attempting to update V3 accounts.

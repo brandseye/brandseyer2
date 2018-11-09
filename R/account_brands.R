@@ -54,6 +54,7 @@ brands.brandseyer2.account <- function(x, ..., short = TRUE) {
     brand_id <- c()
     brand_parent <- c()
     brand_name <- c()
+    brand_description <- c()
     brand_tier <- c()
     brand_deleted <- c()
     brand_schema <- c()
@@ -95,6 +96,7 @@ brands.brandseyer2.account <- function(x, ..., short = TRUE) {
       brand_id <- c(brand_id, brand$id)
       brand_parent <- c(brand_parent, parent)
       brand_name <- c(brand_name, brand$name)
+      if (!short) brand_description <- c(brand_description, purrr::pluck(brand, "description", "en") %||% NA)
       if (!short) brand_tier <- c(brand_tier, brand$tier %||% NA)
       brand_deleted <- c(brand_deleted, brand$deleted %||% FALSE)
       if (!short) brand_schema <- c(brand_schema, brand$schema %||% NA)
@@ -113,6 +115,7 @@ brands.brandseyer2.account <- function(x, ..., short = TRUE) {
         id = brand_id,
         parent = brand_parent,
         name = brand_name,
+        description = if (!short) brand_description else NA,
         tier = if (!short) brand_tier else NA,
         deleted = brand_deleted,
         schema = if (!short) brand_schema else NA,

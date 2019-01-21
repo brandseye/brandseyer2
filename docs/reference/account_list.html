@@ -62,7 +62,7 @@ this will show only active accounts." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9026</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1.9027</span>
       </span>
     </div>
 
@@ -131,7 +131,7 @@ this will show only active accounts.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>account_list</span>(<span class='kw'>includeInactive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>account_list</span>(<span class='kw'>includeInactive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>client</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -139,6 +139,10 @@ this will show only active accounts.</p>
     <tr>
       <th>includeInactive</th>
       <td><p>Set to <code>TRUE</code> if you would like inactive accounts to also be returned.</p></td>
+    </tr>
+    <tr>
+      <th>client</th>
+      <td><p>Optional. A character vector of client codes to find the accounts for those clients only.</p></td>
     </tr>
     </table>
     

@@ -1,5 +1,7 @@
 # brandseyer2 0.0.1.9026
 
+* The data returned by `tags()` now shows whether a tag is used for classification jobs or not.
+
 # brandseyer2 0.0.1.9025
 
 * `brands()` and `root_brands()` now provide brand descriptions.

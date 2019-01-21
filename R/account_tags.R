@@ -48,7 +48,8 @@ tags.brandseyer2.account <- function(x, ...) {
              name = d$name,
              namespace = d$namespace,
              description = d$description %||% NA,
-             deleted = d$deleted %||% FALSE
+             deleted = d$deleted %||% FALSE,
+             forClassification = d$forCrowdTopicList %||% FALSE
       )
     }) %>%
     mutate(children = map(x$tags, ~c(pluck(.x, "children"), recursive = TRUE)),

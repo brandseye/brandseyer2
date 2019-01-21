@@ -153,7 +153,7 @@ test_that("Can annotate mentions with tags", {
   expect_equal(t$tag.id, c(1, 2, 1))
   expect_equal(names(t),
                c("id", "tag.id", "name", "namespace",
-                 "description", "deleted", "children", "is_parent"))
+                 "description", "deleted", "forClassification", "children", "is_parent"))
 })
 
 test_that("Can annotate mentions with topics", {
@@ -174,7 +174,7 @@ test_that("Can annotate mentions with topics", {
   expect_equal(t$topic.id, c(11, 12))
   expect_equal(names(t),
                c("id", "topic.id", "name", "namespace",
-                 "description", "deleted", "children", "is_parent"))
+                 "description", "deleted", "forClassification", "children", "is_parent"))
 
   expect_equal(nrow(t_full), 4)
   expect_equal(t_full$id, c("1-1", "1-1", "1-2", "1-3"))

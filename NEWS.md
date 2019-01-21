@@ -1,5 +1,7 @@
 # brandseyer2 0.0.1.9027
 
+* `account_list()` can now find accounts for a particular client.
+
 # brandseyer2 0.0.1.9026
 
 * The data returned by `tags()` now shows whether a tag is used for classification jobs or not.

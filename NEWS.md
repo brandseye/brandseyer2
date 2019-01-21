@@ -1,3 +1,5 @@
+# brandseyer2 0.0.1.9026
+
 # brandseyer2 0.0.1.9025
 
 * `brands()` and `root_brands()` now provide brand descriptions.

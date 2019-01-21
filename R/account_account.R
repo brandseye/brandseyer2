@@ -187,10 +187,16 @@ print.brandseyer2.account <- function(x, ...) {
 
 #' @export
 format.brandseyer2.account <- function(x, ...) {
-  paste(
-    "BrandsEye Account", "\n",
-    crayon::silver(" Name:\t"), account_name(x), "\n",
-    crayon::silver(" Code:\t"), account_code(x)
-  )
+  result <- list("BrandsEye Account", "\n",
+       crayon::silver("   Name:  "), account_name(x), "\n",
+       crayon::silver("   Code:  "), account_code(x))
+
+  if (am_i_brandseye()) {
+    result <- c(result, list("\n",
+                             crayon::silver(" Client:  "), account_client_code(x)))
+  }
+
+  paste(result)
+
 }
 

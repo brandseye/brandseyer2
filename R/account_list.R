@@ -31,12 +31,13 @@
 #' to return information from across all accounts available to you.
 #'
 #' @param includeInactive Set to `TRUE` if you would like inactive accounts to also be returned.
+#' @param client Optional. A character vector of client codes to find the accounts for those clients only.
 #'
 #' @return A tibble of accounts available to you.
 #' @export
-account_list <- function(includeInactive = FALSE) {
+account_list <- function(includeInactive = FALSE, client = NULL) {
   query <- list(includeInactive = ifelse(includeInactive, "true", "false"))
-  read_mash("accounts", query = query) %>%
+  accounts <- read_mash("accounts", query = query) %>%
     map_df(~tibble(
       account = .x$code,
       name = .x$name,
@@ -48,4 +49,13 @@ account_list <- function(includeInactive = FALSE) {
       inactive = .x$inactive %||% FALSE,
       type = .x$accountType %||% NA
     ))
+
+  if (!is.null(client)) {
+    clientCode <- NULL # For devtools::check
+    accounts <- accounts %>%
+      filter(clientCode %in% client ) %>%
+      arrange(clientCode)
+  }
+
+  accounts
 }

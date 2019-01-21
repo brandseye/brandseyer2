@@ -4,10 +4,12 @@
 \alias{account_list}
 \title{List all accounts available to you}
 \usage{
-account_list(includeInactive = FALSE)
+account_list(includeInactive = FALSE, client = NULL)
 }
 \arguments{
 \item{includeInactive}{Set to \code{TRUE} if you would like inactive accounts to also be returned.}
+
+\item{client}{Optional. A character vector of client codes to find the accounts for those clients only.}
 }
 \value{
 A tibble of accounts available to you.

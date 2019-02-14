@@ -1,5 +1,7 @@
 # brandseyer2 0.0.1.9028
 
+`rules()` now returns the rule's active flag.
+
 # brandseyer2 0.0.1.9027
 
 * `account_list()` can now find accounts for a particular client.

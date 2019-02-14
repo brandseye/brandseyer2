@@ -151,7 +151,8 @@ rules.character <- function(x, .show.progress = interactive()) {
       name = .x$name,
       action = .x$action,
       filter = .x$filter,
-      priority = .x$priority
+      priority = .x$priority,
+      active = .x$active
     ))
 
   rules$macros <- macros

@@ -36,7 +36,7 @@ Imports:
     cli,
     progress,
     clisymbols
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Suggests: 
     testthat,
     covr,

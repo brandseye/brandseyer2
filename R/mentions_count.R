@@ -179,7 +179,16 @@ count_mentions.character <- function(.account,
   process <- function(row) {
     as.tibble(row %>% imap(function(data, index) {
       if (index %in% c("published", "pickedUp", "updated")) {
-        data <- if (nchar(data) > 10) lubridate::ymd_hm(data, tz = timezone) else lubridate::ymd(data, tz = timezone)
+        data <- if (nchar(data) > 10) lubridate::ymd_hm(data, tz = timezone) else lubridate::ymd(data, tz = timezone, truncated = 2)
+        # if (nchar(data) == 4) {
+        #   data <- lubridate::ymd(paste0(data, "0101"), tz = timezone)
+        # } else if (nchar(data) == 7) {
+        #   data <- lubridate::ymd(paste0(data, "-01"), tz = timezone)
+        # } else if (nchar(data) == 10) {
+        #   data <- lubridate::ymd(data, tz = timezone)
+        # } else {
+        #   data <- lubridate::ymd_hm(data, tz = timezone)
+        # }
       }
       d <- list()
       if (is.atomic(data)) d[[index]] = data

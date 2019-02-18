@@ -36,7 +36,8 @@
 #' @return A tibble of accounts available to you.
 #' @export
 account_list <- function(includeInactive = FALSE, client = NULL) {
-  query <- list(includeInactive = ifelse(includeInactive, "true", "false"))
+  query <- list(includeInactive = ifelse(includeInactive, "true", "false"),
+                includeClientService = TRUE)
   accounts <- read_mash("accounts", query = query) %>%
     map_df(~tibble(
       account = .x$code,
@@ -47,7 +48,8 @@ account_list <- function(includeInactive = FALSE, client = NULL) {
       findNewMentions = .x$findNewMentions %||% FALSE,
       offline = .x$offline %||% FALSE,
       inactive = .x$inactive %||% FALSE,
-      type = .x$accountType %||% NA
+      type = .x$accountType %||% NA,
+      clientService = if (!is.null(.x$clientService)) .x$clientService[['email']] else NA
     ))
 
   if (!is.null(client)) {

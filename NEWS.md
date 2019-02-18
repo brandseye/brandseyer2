@@ -2,6 +2,7 @@
 
 * Fixed a bug preventing `count_mentions()` from grouping by month.
 * Fixed a bug preventing the counting of mentions if timezone data is bad.
+* `account_list()` now returns client service data.
 
 
 # brandseyer2 0.0.1.9028

@@ -1,5 +1,7 @@
 # brandseyer2 0.0.1.9029
 
+* Fixed a bug preventing `count_mentions()` from grouping by month.
+
 # brandseyer2 0.0.1.9028
 
 `rules()` now returns the rule's active flag.

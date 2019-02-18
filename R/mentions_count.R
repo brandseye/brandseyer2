@@ -241,6 +241,10 @@ count_mentions.brandseyer2.query <- function(.account, ...,
 
   get <- function(code, filter, timezone, comparison = NULL) {
     tryCatch({
+      if (rlang::is_empty(grep(timezone, OlsonNames())) ) {
+        rlang::warn(glue::glue("Unable to find timezone {timezone} for {code}. Using UTC."))
+        timezone <- "UTC"
+      }
       results <- count_mentions(code,
                                 filter = filter,
                                 timezone = timezone,

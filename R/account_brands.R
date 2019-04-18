@@ -59,6 +59,7 @@ brands.brandseyer2.account <- function(x, ..., short = TRUE) {
     brand_deleted <- c()
     brand_schema <- c()
     brand_filter <- c()
+    brand_volume_limit <- c()
     brand_tt_id <- c()
     brand_sentiment_rate <- c()
     brand_topic_rate <- c()
@@ -101,6 +102,7 @@ brands.brandseyer2.account <- function(x, ..., short = TRUE) {
       brand_deleted <- c(brand_deleted, brand$deleted %||% FALSE)
       if (!short) brand_schema <- c(brand_schema, brand$schema %||% NA)
       if (!short) brand_filter <- c(brand_filter, brand$mentionFilter %||% NA)
+      if (!short) brand_volume_limit <- c(brand_volume_limit, as.integer(brand$volumeLimit %||% NA))
       if (!short) brand_tt_id <- c(brand_tt_id, brand$topicTreeId %||% NA)
       if (!short) brand_sentiment_rate <- c(brand_sentiment_rate, brand$crowdSamplePercentage %||% NA)
       if (!short) brand_topic_rate <-  c(brand_topic_rate, brand$crowdTopicPercentage %||% NA)
@@ -120,6 +122,7 @@ brands.brandseyer2.account <- function(x, ..., short = TRUE) {
         deleted = brand_deleted,
         schema = if (!short) brand_schema else NA,
         filter = if (!short) brand_filter else NA,
+        volume_limit = if (!short) brand_volume_limit else NA,
         topic_tree_id = if (!short) brand_tt_id else NA,
         sentiment_rate = if (!short) brand_sentiment_rate else NA,
         topic_rate = if (!short) brand_topic_rate else NA,

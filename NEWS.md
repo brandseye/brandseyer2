@@ -1,5 +1,7 @@
 # brandseyer2 0.0.1.9030
 
+* `root_brands()` can now return crowd volume limits
+
 # brandseyer2 0.0.1.9029
 
 * Fixed a bug preventing `count_mentions()` from grouping by month.

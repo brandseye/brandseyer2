@@ -1,4 +1,7 @@
-# brandseyer2 (development version)
+# brandseyer2 0.0.1.9031
+
+* Removed use of deprecated dplyr functions
+* Better handling of unrecognised timezones
 
 # brandseyer2 0.0.1.9030
 

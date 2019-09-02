@@ -231,11 +231,11 @@ list_to_v4_mentions <- function(data, is_staff = am_i_brandseye()) {
       rlang::warn("No `site` field selected. No mention content will be")
       result %<>%
         mutate_at(vars(contains('extract'), contains('Html'), contains('content'), matches('title')),
-                  funs(ifelse(TRUE, NA, .)))
+                  list(~ ifelse(TRUE, NA, .)))
     } else {
       result %<>%
         mutate_at(vars(contains('extract'), contains('Html'), contains('content'), matches('title')),
-                  funs(ifelse(site == 'twitter.com', NA, .)))
+                  list(~ ifelse(site == 'twitter.com', NA, .)))
     }
   }
 

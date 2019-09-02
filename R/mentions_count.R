@@ -179,7 +179,7 @@ count_mentions.character <- function(.account,
   process <- function(row) {
     as.tibble(row %>% imap(function(data, index) {
       if (index %in% c("published", "pickedUp", "updated")) {
-        data <- if (nchar(data) > 10) lubridate::ymd_hm(data, tz = timezone) else lubridate::ymd(data, tz = timezone, truncated = 2)
+        data <- if (nchar(data) > 10) lubridate::ymd_hm(data, tz = timezone) else lubridate::ymd(data, tz = timezone)
       }
       d <- list()
       if (is.atomic(data)) d[[index]] = data
@@ -241,10 +241,6 @@ count_mentions.brandseyer2.query <- function(.account, ...,
 
   get <- function(code, filter, timezone, comparison = NULL) {
     tryCatch({
-      if (rlang::is_empty(grep(timezone, OlsonNames())) ) {
-        rlang::warn(glue::glue("Unable to find timezone {timezone} for {code}. Using UTC."))
-        timezone <- "UTC"
-      }
       results <- count_mentions(code,
                                 filter = filter,
                                 timezone = timezone,

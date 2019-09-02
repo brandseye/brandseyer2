@@ -8,11 +8,13 @@
 
 <title>Find root brands in an account — root_brands • brandseyer2</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,11 +32,12 @@
 
 
 
-<meta property="og:title" content="Find root brands in an account — root_brands" />
 
+<meta property="og:title" content="Find root brands in an account — root_brands" />
 <meta property="og:description" content="Root brands are the brands around which we collect mentions, and
 determine sentiment. Sentiment is always towards the brand." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -64,7 +67,7 @@ determine sentiment. Sentiment is always towards the brand." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9030</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9031</span>
       </span>
     </div>
 
@@ -101,7 +104,6 @@ determine sentiment. Sentiment is always towards the brand." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/brandseye/brandseyer2">
@@ -127,10 +129,8 @@ determine sentiment. Sentiment is always towards the brand." />
     </div>
 
     <div class="ref-description">
-    
     <p>Root brands are the brands around which we collect mentions, and
 determine sentiment. Sentiment is always towards the brand.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>root_brands</span>(<span class='no'>x</span>, <span class='no'>includeDeleted</span>, <span class='no'>includeArchived</span>, <span class='no'>short</span>)
@@ -146,7 +146,7 @@ determine sentiment. Sentiment is always towards the brand.</p>
 <span class='co'># S3 method for list</span>
 <span class='fu'>root_brands</span>(<span class='no'>x</span>, <span class='kw'>includeDeleted</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>includeArchived</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>short</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -169,12 +169,11 @@ shows non-archived brands.</p></td>
       <td><p>Include only the most import bits of brand information, such as the name and ID.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A tibble containing rows only for the root brands of an account. Otherwise,
 like the table returned in <code><a href='brands.html'>brands()</a></code>.</p>
-    
     <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
 
     <ul>
@@ -184,11 +183,9 @@ the tibble returned from <code><a href='brands.html'>brands()</a></code> does.</
 <li><p><code>brandseyer2.account</code>: Returns root brand information from an account object.</p></li>
 <li><p><code>list</code>: Returns root brand information from a list of account objects.</p></li>
 </ul>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='brands.html'>brands()</a></code> for returning all brands in an account.</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -222,13 +219,9 @@ the tibble returned from <code><a href='brands.html'>brands()</a></code> does.</
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#methods-by-class-">Methods (by class)</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

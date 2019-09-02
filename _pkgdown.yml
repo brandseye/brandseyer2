@@ -68,7 +68,6 @@ reference:
       - phrases
       - count_mentions
       - update_mentions
-      - starts_with("mentions_")
   - title: "A query language: filtering and grouping your mentions"
     desc: >
       Often, when counting or fetching mentions, you may need to specify

@@ -8,11 +8,13 @@
 
 <title>List the dashboards in an account — dashboards • brandseyer2</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,13 +32,14 @@
 
 
 
-<meta property="og:title" content="List the dashboards in an account — dashboards" />
 
+<meta property="og:title" content="List the dashboards in an account — dashboards" />
 <meta property="og:description" content="In Analyse, BrandsEye's analysis tool,
 people can set up dashboards to query our data. This function exposese those
 dashboards as a tibble, allowing you to query sections, metrics and their
 associated filters." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -66,7 +69,7 @@ associated filters." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9030</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9031</span>
       </span>
     </div>
 
@@ -103,7 +106,6 @@ associated filters." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/brandseye/brandseyer2">
@@ -129,19 +131,17 @@ associated filters." />
     </div>
 
     <div class="ref-description">
-    
     <p>In <a href='https://analyse.brandseye.com'>Analyse</a>, BrandsEye's analysis tool,
 people can set up dashboards to query our data. This function exposese those
 dashboards as a tibble, allowing you to query sections, metrics and their
 associated filters.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>dashboards</span>(<span class='no'>x</span>, <span class='no'>d</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for brandseyer2.account</span>
 <span class='fu'>dashboards</span>(<span class='no'>x</span>, <span class='no'>d</span>, <span class='no'>section</span>, <span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -168,29 +168,25 @@ which sections to return, similarly to calling <code><a href='sections.html'>sec
 can use the special string <code>'.'</code> to select all sections.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A tibble of dashboard data.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Dashboards can be filtered in various ways. The second argument, <code>d</code>, can be
 either an integer or list of integers, specifying the particular dashboard
 IDs that are wanted. The second argument can also be a character vector,
 to give partial matches against dashboard names. Case is ignored.</p>
-    
     <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
 
     <ul>
 <li><p><code>brandseyer2.account</code>: Read dashboard data for an <code><a href='account.html'>account()</a></code> object.</p></li>
 </ul>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='sections.html'>sections()</a></code> to pull section information for a dashboard.</p>
 <p><code><a href='metrics.html'>metrics()</a></code> to pull metric information for sections.</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -221,15 +217,10 @@ to give partial matches against dashboard names. Case is ignored.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#methods-by-class-">Methods (by class)</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

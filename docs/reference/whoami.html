@@ -8,11 +8,13 @@
 
 <title>Returns your current authentication credentials. — whoami • brandseyer2</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,8 +32,8 @@
 
 
 
-<meta property="og:title" content="Returns your current authentication credentials. — whoami" />
 
+<meta property="og:title" content="Returns your current authentication credentials. — whoami" />
 <meta property="og:description" content="If you need to authenticate yourself, you can do this
 with the authenticate() function. am_i_brandseye()
 is a useful method for determining if you're a staff member
@@ -39,6 +41,7 @@ or not. The raise_error method makes whoami() an easy
 way to determine if the user is authenticated, and to raise
 an error if not." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -68,7 +71,7 @@ an error if not." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9030</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9031</span>
       </span>
     </div>
 
@@ -105,7 +108,6 @@ an error if not." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/brandseye/brandseyer2">
@@ -131,18 +133,16 @@ an error if not." />
     </div>
 
     <div class="ref-description">
-    
     <p>If you need to authenticate yourself, you can do this
 with the <code><a href='authenticate.html'>authenticate()</a></code> function. <code><a href='am_i_brandseye.html'>am_i_brandseye()</a></code>
 is a useful method for determining if you're a staff member
 or not. The <code>raise_error</code> method makes <code>whoami()</code> an easy
 way to determine if the user is authenticated, and to raise
 an error if not.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>whoami</span>(<span class='kw'>raise_error</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -153,21 +153,19 @@ will raise an error instead of returning NULL if you
 are not authenticated.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Returns <code>NULL</code> if you are not logged in,
 otherwise returns your current authentication credentials.</p>
-    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-          </ul>
+    </ul>
 
     <h2>Author</h2>
     <p>Constance Neeser</p>

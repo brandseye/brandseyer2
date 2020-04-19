@@ -7,10 +7,28 @@
 \usage{
 update_mentions(x, filter, auto.confirm = FALSE, ...)
 
-\method{update_mentions}{brandseyer2.account.v4}(x, filter, auto.confirm,
-  ..., relevancy, relevancyVerified, addTags, removeTags, sentiment,
-  sentimentVerified, media, gender, language, race, addPhrases,
-  removePhrases, addCrowdJobs, removeCrowdJobs, updateAuthor, location)
+\method{update_mentions}{brandseyer2.account.v4}(
+  x,
+  filter,
+  auto.confirm,
+  ...,
+  relevancy,
+  relevancyVerified,
+  addTags,
+  removeTags,
+  sentiment,
+  sentimentVerified,
+  media,
+  gender,
+  language,
+  race,
+  addPhrases,
+  removePhrases,
+  addCrowdJobs,
+  removeCrowdJobs,
+  updateAuthor,
+  location
+)
 }
 \arguments{
 \item{x}{The account object.}

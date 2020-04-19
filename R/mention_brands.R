@@ -40,7 +40,7 @@ brands.data.frame <- function(x, ..., ac = attr(x, "account")) {
 
   ts <- x %>%
     select(id, brands) %>%
-    unnest(brands = map(brands, ~ .x %||% NA))
+    unnest_legacy(brands = map(brands, ~ .x %||% NA))
 
   # For devtool::check
   parent <- NULL; name <- NULL; deleted <- NULL;

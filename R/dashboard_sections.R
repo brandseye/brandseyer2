@@ -35,7 +35,7 @@
 #'          on section titles with.
 #' @param unnest A logical value indicating whether sections should be
 #'               appended as a list of tibbles, or whether they should be unnested
-#'               in to the tibble itself, similar to having called [tidyr::unnest()].
+#'               in to the tibble itself, similar to having called [tidyr::unnest_legacy()].
 #' @param ... Parameters for other methods
 #'
 #' @return The original tibble, but now with an additional section column.
@@ -120,7 +120,7 @@ sections.data.frame <- function(x, d, unnest = FALSE,
       }
     }))
 
-  if (unnest) result <- result %>% unnest()
+  if (unnest) result <- result %>% unnest_legacy()
 
   result
 }

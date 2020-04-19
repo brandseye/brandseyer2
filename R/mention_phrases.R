@@ -35,7 +35,7 @@ phrases.data.frame <- function(x, ..., ac = attr(x, "account")) {
 
   ts <- x %>%
     select(id, phrases) %>%
-    unnest(phrases = map(phrases, ~ .x %||% NA))
+    unnest_legacy(phrases = map(phrases, ~ .x %||% NA))
 
   # For devtool::check
 

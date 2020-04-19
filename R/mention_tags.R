@@ -41,7 +41,7 @@ tags.data.frame <- function(x, ..., ac = attr(x, "account"), na.rm = TRUE) {
   ts <- x %>%
     select(id, tags) %>%
     arrange(desc(map_int(tags, ~length(.x)))) %>%
-    unnest(tags = map(tags, ~ .x %||% NA))
+    unnest_legacy(tags = map(tags, ~ .x %||% NA))
 
   # For devtools::check()
   tag.id <- NULL;

@@ -12,8 +12,7 @@
 
 \method{topics}{list}(x, ...)
 
-\method{topics}{data.frame}(x, ..., ac = attr(x, "account"),
-  na.rm = TRUE)
+\method{topics}{data.frame}(x, ..., ac = attr(x, "account"), na.rm = TRUE)
 
 topics(x, ...)
 }

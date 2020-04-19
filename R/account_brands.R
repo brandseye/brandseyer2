@@ -42,7 +42,7 @@
 #'   brands(short = FALSE) %>%
 #'   dplyr::select(id, phrases) %>%
 #'   dplyr::rename(brand.id = id) %>%
-#'   tidyr::unnest(phrases) %>%
+#'   tidyr::unnest_legacy(phrases) %>%
 #'   dplyr::rename(phrase.id = id)
 brands.brandseyer2.account <- function(x, ..., short = TRUE) {
 

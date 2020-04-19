@@ -9,14 +9,11 @@
 \usage{
 root_brands(x, includeDeleted, includeArchived, short)
 
-\method{root_brands}{data.frame}(x, includeDeleted = FALSE,
-  includeArchived = FALSE, short = TRUE)
+\method{root_brands}{data.frame}(x, includeDeleted = FALSE, includeArchived = FALSE, short = TRUE)
 
-\method{root_brands}{brandseyer2.account}(x, includeDeleted = FALSE,
-  includeArchived = FALSE, short = TRUE)
+\method{root_brands}{brandseyer2.account}(x, includeDeleted = FALSE, includeArchived = FALSE, short = TRUE)
 
-\method{root_brands}{list}(x, includeDeleted = FALSE,
-  includeArchived = FALSE, short = TRUE)
+\method{root_brands}{list}(x, includeDeleted = FALSE, includeArchived = FALSE, short = TRUE)
 }
 \arguments{
 \item{x}{The object to find root brands for.}

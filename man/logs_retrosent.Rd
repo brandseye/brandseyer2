@@ -12,8 +12,7 @@ logs_retrosent(x, ...)
 
 \method{logs_retrosent}{data.frame}(x, ...)
 
-\method{logs_retrosent}{character}(x, ...,
-  .show.progress = interactive())
+\method{logs_retrosent}{character}(x, ..., .show.progress = interactive())
 
 \method{logs_retrosent}{brandseyer2.account}(x, ...)
 

@@ -9,8 +9,7 @@
 \usage{
 account(codes, ...)
 
-\method{account}{character}(codes, ..., .show.progress = interactive(),
-  .ignore.cache = FALSE)
+\method{account}{character}(codes, ..., .show.progress = interactive(), .ignore.cache = FALSE)
 
 \method{account}{data.frame}(codes, ..., .show.progress = interactive())
 }

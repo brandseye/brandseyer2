@@ -9,16 +9,34 @@
 \usage{
 count_mentions(.account, ...)
 
-\method{count_mentions}{brandseyer2.account.v4}(.account, filter, ...,
-  groupBy = NULL, select = NULL, orderBy = NULL,
-  tagNamespace = NULL, .envir = parent.frame())
+\method{count_mentions}{brandseyer2.account.v4}(
+  .account,
+  filter,
+  ...,
+  groupBy = NULL,
+  select = NULL,
+  orderBy = NULL,
+  tagNamespace = NULL,
+  .envir = parent.frame()
+)
 
-\method{count_mentions}{character}(.account, filter, ...,
-  timezone = "Africa/Johannesburg", groupBy = NULL, select = NULL,
-  orderBy = NULL, tagNamespace = NULL)
+\method{count_mentions}{character}(
+  .account,
+  filter,
+  ...,
+  timezone = "Africa/Johannesburg",
+  groupBy = NULL,
+  select = NULL,
+  orderBy = NULL,
+  tagNamespace = NULL
+)
 
-\method{count_mentions}{brandseyer2.query}(.account, ...,
-  tagNamespace = NULL, .show.progress = interactive())
+\method{count_mentions}{brandseyer2.query}(
+  .account,
+  ...,
+  tagNamespace = NULL,
+  .show.progress = interactive()
+)
 }
 \arguments{
 \item{.account}{An account to read from}

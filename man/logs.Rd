@@ -10,17 +10,13 @@
 \usage{
 logs(x, from, .show.progress)
 
-\method{logs}{character}(x, from = (Sys.Date() \%m-\% months(1)),
-  .show.progress = interactive())
+\method{logs}{character}(x, from = (Sys.Date() \%m-\% months(1)), .show.progress = interactive())
 
-\method{logs}{brandseyer2.account}(x, from = (Sys.Date() \%m-\%
-  months(1)), .show.progress = interactive())
+\method{logs}{brandseyer2.account}(x, from = (Sys.Date() \%m-\% months(1)), .show.progress = interactive())
 
-\method{logs}{list}(x, from = (Sys.Date() \%m-\% months(1)),
-  .show.progress = interactive())
+\method{logs}{list}(x, from = (Sys.Date() \%m-\% months(1)), .show.progress = interactive())
 
-\method{logs}{data.frame}(x, from = (Sys.Date() \%m-\% months(1)),
-  .show.progress = interactive())
+\method{logs}{data.frame}(x, from = (Sys.Date() \%m-\% months(1)), .show.progress = interactive())
 }
 \arguments{
 \item{x}{An object to read logs from.}

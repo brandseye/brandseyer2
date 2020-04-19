@@ -7,8 +7,15 @@
 \usage{
 mentions(x, filter, select, ..., .envir)
 
-\method{mentions}{brandseyer2.account.v4}(x, filter, select = NULL, ...,
-  .envir = parent.frame(), orderBy = NULL, fetchGraph = FALSE)
+\method{mentions}{brandseyer2.account.v4}(
+  x,
+  filter,
+  select = NULL,
+  ...,
+  .envir = parent.frame(),
+  orderBy = NULL,
+  fetchGraph = FALSE
+)
 }
 \arguments{
 \item{x}{An account object}

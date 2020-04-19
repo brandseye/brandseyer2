@@ -23,7 +23,7 @@
 #'
 #' This provides easy access to metric information stored in the metric
 #' column of a tibble returned by [sections()] and [dashboards()]. It
-#' essentially uses [tidyr::unnest()] to clean up the table.
+#' essentially uses [tidyr::unnest_legacy()] to clean up the table.
 #'
 #' This provides an additional field not available in the original metric
 #' information called `filter`. This indicates the filter that the metric would have
@@ -65,7 +65,7 @@ metrics.data.frame <- function(x, m, collapse = TRUE, ...) {
   metric.type <- NULL; colour.index <- NULL; caption <- NULL;
 
   results <- x %>%
-    unnest(metrics) %>%
+    unnest_legacy(metrics) %>%
     mutate(filter = map2_chr(section.filter, metric.filter, function(s, m) {
       s <- if (is.na(s)) NULL else paste0("(", s, ")")
       m <- if (is.na(m)) NULL else m <- paste0("(", m, ")")

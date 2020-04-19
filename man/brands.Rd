@@ -60,7 +60,7 @@ account("TEST01AA") \%>\%
   brands(short = FALSE) \%>\%
   dplyr::select(id, phrases) \%>\%
   dplyr::rename(brand.id = id) \%>\%
-  tidyr::unnest(phrases) \%>\%
+  tidyr::unnest_legacy(phrases) \%>\%
   dplyr::rename(phrase.id = id)
 
 accounts(c("TEST01AA", "TEST02AA")) \%>\%

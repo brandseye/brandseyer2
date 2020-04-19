@@ -27,7 +27,7 @@ An unnested table of metrics.
 \description{
 This provides easy access to metric information stored in the metric
 column of a tibble returned by \code{\link[=sections]{sections()}} and \code{\link[=dashboards]{dashboards()}}. It
-essentially uses \code{\link[tidyr:unnest]{tidyr::unnest()}} to clean up the table.
+essentially uses \code{\link[tidyr:unnest_legacy]{tidyr::unnest_legacy()}} to clean up the table.
 }
 \details{
 This provides an additional field not available in the original metric

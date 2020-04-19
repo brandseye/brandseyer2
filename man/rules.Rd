@@ -60,7 +60,7 @@ account("TEST01AA") \%>\%
 # see how rules effect mentions
 account("TEST01AA") \%>\%
   rules() \%>\%
-  tidyr::unnest()
+  tidyr::unnest_legacy()
 }
 \dontrun{
 account("TEST01AA", "TEST02AA") \%>\%

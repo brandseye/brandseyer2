@@ -56,7 +56,7 @@ rules <- function(x, .show.progress) {
 #' # see how rules effect mentions
 #' account("TEST01AA") %>%
 #'   rules() %>%
-#'   tidyr::unnest()
+#'   tidyr::unnest_legacy()
 #' }
 rules.brandseyer2.account <- function(x, .show.progress = interactive()) {
   x %>%

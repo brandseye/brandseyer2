@@ -2,7 +2,7 @@
 #' @import dplyr
 #' @import purrr
 #' @importFrom tidyr nest
-#' @importFrom tidyr unnest
+#' @importFrom tidyr unnest_legacy
 #' @importFrom rlang abort
 #' @importFrom rlang is_installed
 #' @importFrom assertthat assert_that

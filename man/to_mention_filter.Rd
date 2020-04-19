@@ -28,6 +28,7 @@ account("TEST01AA") \%>\%
   to_mention_filter("TEST01AA")
 }
 \seealso{
-Other query conversion functions: \code{\link{to_count_filter}}
+Other query conversion functions: 
+\code{\link{to_count_filter}()}
 }
 \concept{query conversion functions}

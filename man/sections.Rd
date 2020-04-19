@@ -7,8 +7,7 @@
 \usage{
 sections(x, d, unnest, ...)
 
-\method{sections}{data.frame}(x, d, unnest = FALSE, ...,
-  .show.progress = interactive())
+\method{sections}{data.frame}(x, d, unnest = FALSE, ..., .show.progress = interactive())
 }
 \arguments{
 \item{x}{A tibble to get section information for.}
@@ -20,7 +19,7 @@ on section titles with.}
 
 \item{unnest}{A logical value indicating whether sections should be
 appended as a list of tibbles, or whether they should be unnested
-in to the tibble itself, similar to having called \code{\link[tidyr:unnest]{tidyr::unnest()}}.}
+in to the tibble itself, similar to having called \code{\link[tidyr:unnest_legacy]{tidyr::unnest_legacy()}}.}
 
 \item{...}{Parameters for other methods}
 

@@ -34,7 +34,7 @@ topics.data.frame <- function(x, ..., ac = attr(x, "account"), na.rm = TRUE) {
 
   ts <- x %>%
     select(id, tags) %>%
-    unnest(tags = map(tags, ~ .x %||% NA))
+    unnest_legacy(tags = map(tags, ~ .x %||% NA))
 
   # For devtools::check()
   namespace <- NULL; topic.id <- NULL;

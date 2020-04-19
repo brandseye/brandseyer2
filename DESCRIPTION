@@ -1,11 +1,9 @@
 Package: brandseyer2
 Version: 0.1.0
 Title: Provides access to data stored in a BrandsEye account
-Description: BrandsEye is an opinion mining company. We track 
-  what people are talking about in public social media data, and how 
-  people are feeling about this things. This 
-  library provides access to the data stored in BrandsEye account directly
-  from R itself.
+Description: This library provides access to the data stored in a BrandsEye account directly
+  from R itself. BrandsEye uses AI and human intelligence to filter unstructured
+  feedback for conversations that are high risk, high value, or urgent.
 Authors@R: c(
   person("Constance", "Neeser", email = "connie@brandseye.com", role = c("aut", "cre")),
   person("Lara", "Basson", email = "lara@brandseye.com", role = c("aut")),

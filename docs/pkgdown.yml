@@ -1,10 +1,11 @@
 pandoc: 2.3.1
-pkgdown: 1.3.0
+pkgdown: 1.5.1
 pkgdown_sha: ~
 articles:
   brandseyer2: brandseyer2.html
   cookbook: cookbook.html
   filtering: filtering.html
+last_built: 2020-04-19T16:26Z
 urls:
   reference: https://brandseye.github.io/brandseyer2//reference
   article: https://brandseye.github.io/brandseyer2//articles

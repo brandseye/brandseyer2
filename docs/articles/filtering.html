@@ -6,18 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Filtering • brandseyer2</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Filtering">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="brandseyer2">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9031</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9032</span>
       </span>
     </div>
 
@@ -38,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -69,8 +70,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/brandseye/brandseyer2">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/brandseye/brandseyer2/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -83,10 +84,11 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Filtering</h1>
+      <h1 data-toc-skip>Filtering</h1>
                         <h4 class="author">Constance Neeser</h4>
             
             <h4 class="date">2018-09-07</h4>
@@ -109,14 +111,14 @@
 <p>BrandsEye’s API supports a small language to help you select exactly the mentions that you want to select. You’ll do this with the help of the <code><a href="../reference/mentions.html">mentions()</a></code> function, which always expects a filter. You can also count and aggregate mention data using <code><a href="../reference/count_mentions.html">count_mentions()</a></code>. We also have a query language, that this will introduce a bit of.</p>
 <p>Combined with <a href="https://dplyr.tidyverse.org/">dplyr</a><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> for manipulating data, <a href="https://ggplot2.tidyverse.org/">ggplot2</a><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> for visualising data, and <a href="https://readr.tidyverse.org/">readr</a><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> for exporting data, brandseyer2 is a powerful tool for examining social media data.</p>
 <p>Filtering is selecting individual mentions to make up a data set, either to be returned directly using the <code><a href="../reference/mentions.html">mentions()</a></code> function, or for counting and aggregating using <code><a href="../reference/count_mentions.html">count_mentions()</a></code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(brandseyer2)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/mentions.html">mentions</a></span>(<span class="dt">filter =</span> <span class="st">"published inthelast week"</span>)  </a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co">#&gt; # A tibble: 1 x 7</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co">#&gt;   id    published           brands sentiment mediaLinks socialNetwork tags </span></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co">#&gt;   &lt;chr&gt; &lt;dttm&gt;              &lt;list&gt;     &lt;int&gt; &lt;list&gt;     &lt;chr&gt;         &lt;lis&gt;</span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">#&gt; 1 2-1   2018-03-03 21:37:35 &lt;int …         0 &lt;tibble [… TWITTER       &lt;int…</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">brandseyer2</span>)
+
+<span class="fu"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="../reference/mentions.html">mentions</a></span>(<span class="kw">filter</span> <span class="kw">=</span> <span class="st">"published inthelast week"</span>)
+<span class="co">#&gt; # A tibble: 1 x 7</span>
+<span class="co">#&gt;   id    published           brands   sentiment mediaLinks   socialNetwork tags  </span>
+<span class="co">#&gt;   &lt;chr&gt; &lt;dttm&gt;              &lt;list&gt;       &lt;int&gt; &lt;list&gt;       &lt;chr&gt;         &lt;list&gt;</span>
+<span class="co">#&gt; 1 2-1   2018-03-03 21:37:35 &lt;int [2…         0 &lt;tibble [1 … TWITTER       &lt;int …</span></pre></body></html></div>
 </div>
 <div id="filtering" class="section level1">
 <h1 class="hasAnchor">
@@ -161,15 +163,15 @@
 <h4 class="hasAnchor">
 <a href="#using-brandseyer2" class="anchor"></a>Using brandseyer2</h4>
 <p>All of our examples, going forward, will assume that you have access to your accounts, and that you’re using brandseyer2. We won’t do anything fancy, just the bare minimum brandseyer2 to demonstrate the data.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">mentions &lt;-<span class="st"> </span><span class="kw"><a href="../reference/account.html">account</a></span>(<span class="st">"QUIR01BA"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published after '2018/01/01' and published before '2018/02/01'"</span> ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">  </span>count_mentions</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">  </a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">mentions</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt;   mentionCount</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt;          &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; 1        36592</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">mentions</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/account.html">account</a></span>(<span class="st">"QUIR01BA"</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published after '2018/01/01' and published before '2018/02/01'"</span> ) <span class="kw">%&gt;%</span>
+  <span class="no">count_mentions</span>
+
+<span class="no">mentions</span>
+<span class="co">#&gt; # A tibble: 1 x 1</span>
+<span class="co">#&gt;   mentionCount</span>
+<span class="co">#&gt;          &lt;int&gt;</span>
+<span class="co">#&gt; 1        36592</span></pre></body></html></div>
 <p>So, we have 36 592 mentions published in the month of January. Instead of counting the mentions with <code><a href="../reference/count_mentions.html">count_mentions()</a></code>, you could instead use <code><a href="../reference/mentions.html">mentions()</a></code> to pull a table of all of these mentions.</p>
 </div>
 </div>
@@ -258,19 +260,19 @@
 <pre><code>socialNetwork is TWITTER</code></pre>
 <p>Social network codes can be obtained using <code><a href="../reference/data_models.html">data_model_networks()</a></code></p>
 <p>Currently, these are</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/data_models.html">data_model_networks</a></span>()</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; # A tibble: 9 x 2</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt;   id          name       </span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;      </span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; 1 TWITTER     Twitter    </span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; 2 FACEBOOK    Facebook   </span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; 3 INSTAGRAM   Instagram  </span></a>
-<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt; 4 GOOGLE_PLUS Google Plus</span></a>
-<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt; 5 LINKEDIN    LinkedIn   </span></a>
-<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt; 6 TUMBLR      Tumblr     </span></a>
-<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt; 7 VK          VK         </span></a>
-<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt; 8 YOUTUBE     YouTube    </span></a>
-<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; 9 TELEGRAM    Telegram</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/data_models.html">data_model_networks</a></span>()
+<span class="co">#&gt; # A tibble: 9 x 2</span>
+<span class="co">#&gt;   id          name       </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;      </span>
+<span class="co">#&gt; 1 TWITTER     Twitter    </span>
+<span class="co">#&gt; 2 FACEBOOK    Facebook   </span>
+<span class="co">#&gt; 3 INSTAGRAM   Instagram  </span>
+<span class="co">#&gt; 4 GOOGLE_PLUS Google Plus</span>
+<span class="co">#&gt; 5 LINKEDIN    LinkedIn   </span>
+<span class="co">#&gt; 6 TUMBLR      Tumblr     </span>
+<span class="co">#&gt; 7 VK          VK         </span>
+<span class="co">#&gt; 8 YOUTUBE     YouTube    </span>
+<span class="co">#&gt; 9 TELEGRAM    Telegram</span></pre></body></html></div>
 </div>
 <div id="sentiment" class="section level2">
 <h2 class="hasAnchor">
@@ -344,21 +346,21 @@
 <li>Filtering by city</li>
 </ul>
 <p>We use two letter SO 3166-1 Alpha 2 country codes to represent the countries themselves. You can list them using <code><a href="../reference/data_models.html">data_model_countries()</a></code></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="../reference/data_models.html">data_model_countries</a></span>()</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; # A tibble: 252 x 2</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt;    id    name               </span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;              </span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt;  1 AF    Afghanistan        </span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt;  2 AX    Aland Islands      </span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt;  3 AL    Albania            </span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt;  4 DZ    Algeria            </span></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt;  5 AS    American Samoa     </span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt;  6 AD    Andorra            </span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt;  7 AO    Angola             </span></a>
-<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt;  8 AI    Anguilla           </span></a>
-<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt;  9 AQ    Antarctica         </span></a>
-<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt; 10 AG    Antigua and Barbuda</span></a>
-<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt; # ... with 242 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="../reference/data_models.html">data_model_countries</a></span>()
+<span class="co">#&gt; # A tibble: 252 x 2</span>
+<span class="co">#&gt;    id    name               </span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;              </span>
+<span class="co">#&gt;  1 AF    Afghanistan        </span>
+<span class="co">#&gt;  2 AX    Aland Islands      </span>
+<span class="co">#&gt;  3 AL    Albania            </span>
+<span class="co">#&gt;  4 DZ    Algeria            </span>
+<span class="co">#&gt;  5 AS    American Samoa     </span>
+<span class="co">#&gt;  6 AD    Andorra            </span>
+<span class="co">#&gt;  7 AO    Angola             </span>
+<span class="co">#&gt;  8 AI    Anguilla           </span>
+<span class="co">#&gt;  9 AQ    Antarctica         </span>
+<span class="co">#&gt; 10 AG    Antigua and Barbuda</span>
+<span class="co">#&gt; # ... with 242 more rows</span></pre></body></html></div>
 <p>Analyse is required to get all of these names.</p>
 </div>
 <div id="language" class="section level2">
@@ -378,21 +380,21 @@
 <li>Bracketing.</li>
 </ul>
 <p>We use 2-letter ISO 639-1 codes to represent languages. You can list all the ones we understand using <code><a href="../reference/data_models.html">data_model_languages()</a></code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="../reference/data_models.html">data_model_languages</a></span>()</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="co">#&gt; # A tibble: 149 x 2</span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co">#&gt;    id    name     </span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;    </span></a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt;  1 ab    Abkhazian</span></a>
-<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt;  2 aa    Afar     </span></a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt;  3 af    Afrikaans</span></a>
-<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt;  4 sq    Albanian </span></a>
-<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt;  5 am    Amharic  </span></a>
-<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt;  6 ar    Arabic   </span></a>
-<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt;  7 an    Aragonese</span></a>
-<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt;  8 hy    Armenian </span></a>
-<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt;  9 as    Assamese </span></a>
-<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt; 10 ay    Aymara   </span></a>
-<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt; # ... with 139 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="../reference/data_models.html">data_model_languages</a></span>()
+<span class="co">#&gt; # A tibble: 149 x 2</span>
+<span class="co">#&gt;    id    name     </span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;    </span>
+<span class="co">#&gt;  1 ab    Abkhazian</span>
+<span class="co">#&gt;  2 aa    Afar     </span>
+<span class="co">#&gt;  3 af    Afrikaans</span>
+<span class="co">#&gt;  4 sq    Albanian </span>
+<span class="co">#&gt;  5 am    Amharic  </span>
+<span class="co">#&gt;  6 ar    Arabic   </span>
+<span class="co">#&gt;  7 an    Aragonese</span>
+<span class="co">#&gt;  8 hy    Armenian </span>
+<span class="co">#&gt;  9 as    Assamese </span>
+<span class="co">#&gt; 10 ay    Aymara   </span>
+<span class="co">#&gt; # ... with 139 more rows</span></pre></body></html></div>
 </div>
 <div id="author-information" class="section level2">
 <h2 class="hasAnchor">
@@ -419,49 +421,14 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#introduction">Introduction</a></li>
-      <li>
-<a href="#filtering">Filtering</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#dates">Dates</a></li>
-      <li><a href="#selecting-mentions">Selecting mentions</a></li>
-      <li><a href="#relevancy">Relevancy</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#filter-patterns">Filter Patterns</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#basic-structure-of-a-statement">Basic structure of a statement</a></li>
-      <li><a href="#joining-together-statements">Joining together statements</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#more-filtering">More filtering</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#where-are-mentions-from">Where are mentions from?</a></li>
-      <li><a href="#sentiment">Sentiment</a></li>
-      <li><a href="#are-things-from-the-brand-itself-consumers-or-the-press">Are things from the brand itself, consumers, or the press?</a></li>
-      <li><a href="#tags">Tags</a></li>
-      <li><a href="#topics">Topics</a></li>
-      <li><a href="#data-verification">Data verification</a></li>
-      <li><a href="#things-that-should-always-be-in-filters">Things that should always be in filters</a></li>
-      <li><a href="#location">Location</a></li>
-      <li><a href="#language">Language</a></li>
-      <li><a href="#gender">Gender</a></li>
-      <li><a href="#joining-together-statements-revisted">Joining together statements revisted</a></li>
-      <li><a href="#author-information">Author information</a></li>
-      <li><a href="#finding-replies-and-reshares">Finding replies and reshares</a></li>
-      <li><a href="#handling-conversations">Handling conversations</a></li>
-      </ul>
-</li>
-      </ul>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
+
 
 
       <footer><div class="copyright">
@@ -469,12 +436,14 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

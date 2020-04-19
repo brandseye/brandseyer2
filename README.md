@@ -1,33 +1,51 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-brandseyer2
-===========
 
-[![Travis build status](https://travis-ci.com/brandseye/brandseyer2.svg?branch=master)](https://travis-ci.com/brandseye/brandseyer2) [![Coverage status](https://codecov.io/gh/brandseye/brandseyer2/branch/master/graph/badge.svg)](https://codecov.io/github/brandseye/brandseyer2?branch=master)
+# brandseyer2
+
+<!-- badges: start --> [![R build
+status](https://github.com/brandseye/brandseyer2/workflows/R-CMD-check/badge.svg)](https://github.com/brandseye/brandseyer2/actions)
+<!-- badges: end -->
 
 brandseyer2 is a library for handling data in your BrandsEye account.
 
-[BrandsEye](http://www.brandseye.com) is an opinion mining company. We use a proprietary mix of artificial intelligence and crowdsourcing to mine online conversations for sentiment. While we have an analytics suite, and reporting service, we also provide an extensive API to access to the data that makes up your various BrandsEye accounts, and makes it easy to access the data outside of the BrandsEye application in any [R](http://www.r-project.org/) analyses that you might want to perform.
+[BrandsEye](http://www.brandseye.com) is an opinion mining company. We
+use a proprietary mix of artificial intelligence and crowdsourcing to
+mine online conversations for sentiment. While we have an analytics
+suite, and reporting service, we also provide an extensive API to access
+to the data that makes up your various BrandsEye accounts, and makes it
+easy to access the data outside of the BrandsEye application in any
+[R](http://www.r-project.org/) analyses that you might want to perform.
 
-This version of the library is still in its early stages, but is usable, and is the preferred way of getting data from the API. You should probably be using this over the previous version of the API, available at [GitHub](https://github.com/brandseye/brandseyer "The original brandseyer library").
+This version of the library is still in its early stages, but is usable,
+and is the preferred way of getting data from the API. You should
+probably be using this over the previous version of the API, available
+at
+[GitHub](https://github.com/brandseye/brandseyer "The original brandseyer library").
 
 The goal of this version of the library is:
 
--   to fully support our new API,
--   to better support the [tidyverse](https://www.tidyverse.org/) set of libraries,
--   and to have a test suite.
+  - to fully support our new API,
+  - to better support the [tidyverse](https://www.tidyverse.org/) set of
+    libraries,
+  - and to have a test suite.
 
-There may be breaking changes to some methods in future updates, before the version 1.0.0 release, After that, we expect that the API should be fairly stable.
+There may be breaking changes to some methods in future updates, before
+the version 1.0.0 release, After that, we expect that the API should be
+fairly stable.
 
-Getting started
-===============
+# Getting started
 
-After installing, you may find the [Getting Started](https://brandseye.github.io/brandseyer2/articles/brandseyer2.html) and [Cookbook](https://brandseye.github.io/brandseyer2/articles/cookbook.html) vignettes interesting to read or skim through.
+After installing, you may find the [Getting
+Started](https://brandseye.github.io/brandseyer2/articles/brandseyer2.html)
+and
+[Cookbook](https://brandseye.github.io/brandseyer2/articles/cookbook.html)
+vignettes interesting to read or skim through.
 
-Installing
-==========
+# Installing
 
-You can install the development version of this library using the `devtools` package:
+You can install the development version of this library using the
+`devtools` package:
 
 ``` r
 # Install the devtools package
@@ -41,14 +59,17 @@ install_github("brandseye/brandseyer2")
 library(brandseyer2)
 ```
 
-When using the development version from github, you should make sure that the build is passing before installing it. Check the build badge on the library's github page.
+When using the development version from github, you should make sure
+that the build is passing before installing it. Check the build badge on
+the library’s github page.
 
-Code of Conduct
-===============
+# Code of Conduct
 
-Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of
+Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree
+to abide by its terms.
 
-License
-=======
+# License
 
-This library is licensed under the MIT license, and is copyright Brandseye PTY (LTD). See the license files for details.
+This library is licensed under the MIT license, and is copyright
+Brandseye PTY (LTD). See the license files for details.

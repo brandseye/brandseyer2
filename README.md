@@ -7,6 +7,8 @@
 
 [![R build
 status](https://github.com/brandseye/brandseyer2/workflows/R-CMD-check/badge.svg)](https://github.com/brandseye/brandseyer2/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/brandseye/brandseyer2/branch/master/graph/badge.svg)](https://codecov.io/gh/brandseye/brandseyer2?branch=master)
 <!-- badges: end -->
 
 brandseyer2 is a library for handling data in your BrandsEye account.

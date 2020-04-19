@@ -1,3 +1,7 @@
+# brandseyer2 0.0.1.9032
+
+* Updated to use newer tidyr
+
 # brandseyer2 0.0.1.9031
 
 * Removed use of deprecated dplyr functions

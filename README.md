@@ -3,7 +3,9 @@
 
 # brandseyer2
 
-<!-- badges: start --> [![R build
+<!-- badges: start -->
+
+[![R build
 status](https://github.com/brandseye/brandseyer2/workflows/R-CMD-check/badge.svg)](https://github.com/brandseye/brandseyer2/actions)
 <!-- badges: end -->
 

@@ -31,6 +31,9 @@ pkg.env <- new.env()
                brandseye_auth_error = function(e) {
                  rlang::warn("Your saved authentication details are bad. Please reauthenticate. See brandseyer2::authenticate()")
                },
+               simpleError = function(e) {
+                 rlang::warn(stringr::str_c(e$message, ". You are not authenticated."))
+               },
                error = function(e) {
                  stop(e)
                })

@@ -19,3 +19,4 @@ jobs:
       - name: Upload coverage to Codecov  
         run: |
           Rscript -e 'remotes::install_github("r-lib/covr@gh-actions")'
+          Rscript -e 'covr::codecov()'

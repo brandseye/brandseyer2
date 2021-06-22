@@ -74,7 +74,7 @@ mentions." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ mentions." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -114,7 +114,7 @@ mentions." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/brandseye/brandseyer2/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -143,15 +143,15 @@ mentions.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for brandseyer2.account</span>
-<span class='fu'>tags</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'>tags</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for list</span>
-<span class='fu'>tags</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'>tags</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for data.frame</span>
-<span class='fu'>tags</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>ac</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>x</span>, <span class='st'>"account"</span>), <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>tags</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span>, ac <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"account"</span><span class='op'>)</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-<span class='fu'>tags</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>tags</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -192,51 +192,58 @@ tags. Note that topics are stored in the 'topics' namespace.</p>
     <div class='dont-index'><p><a href='account()'>account()</a> to fetch account data.</p>
 <p><a href='topics()'>topics()</a> to see just a list of topics.</p>
 <p><a href='mentions()'>mentions()</a> to query mention data.</p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Constance Neeser</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># See what namespaces are in your account</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>tags</span>() <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>namespace</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span>()</div><div class='output co'>#&gt; .
+<span class='fu'><a href='account.html'>account</a></span><span class='op'>(</span><span class='st'>"TEST01AA"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>tags</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>namespace</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; .
 #&gt;        tag      topic topic_tree 
 #&gt;          2          3          1 </div><div class='input'>
 <span class='co'># Find topics</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>tags</span>() <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>namespace</span> <span class='kw'>==</span> <span class='st'>"topic"</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 3 x 8</span><span>
+<span class='fu'><a href='account.html'>account</a></span><span class='op'>(</span><span class='st'>"TEST01AA"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>tags</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>namespace</span> <span class='op'>==</span> <span class='st'>"topic"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 3 x 8</span>
 #&gt;      id name   namespace description deleted forClassificati… children is_parent
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>    10 Paren… topic     Has childr… FALSE   FALSE            </span><span style='color: #949494;'>&lt;int [2</span><span>… TRUE     
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>    11 Child… topic     I am a chi… FALSE   FALSE            </span><span style='color: #949494;'>&lt;NULL&gt;</span><span>   FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>    12 Child… topic     I am also … FALSE   FALSE            </span><span style='color: #949494;'>&lt;NULL&gt;</span><span>   FALSE    </div><div class='input'>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;list&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    
+#&gt; <span style='color: #BCBCBC;'>1</span>    10 Paren… topic     Has childr… FALSE   FALSE            <span style='color: #949494;'>&lt;int [2</span>… TRUE     
+#&gt; <span style='color: #BCBCBC;'>2</span>    11 Child… topic     I am a chi… FALSE   FALSE            <span style='color: #949494;'>&lt;NULL&gt;</span>   FALSE    
+#&gt; <span style='color: #BCBCBC;'>3</span>    12 Child… topic     I am also … FALSE   FALSE            <span style='color: #949494;'>&lt;NULL&gt;</span>   FALSE    </div><div class='input'>
 
 <span class='co'># See the tags for multiple accounts at a time.</span>
-<span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'>tags</span>()</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 11 x 10</span><span>
-#&gt;    account    id name  namespace description deleted forClassificati… children
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> TEST01…     1 tag1  tag       </span><span style='color: #BB0000;'>NA</span><span>          FALSE   FALSE            </span><span style='color: #949494;'>&lt;NULL&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> TEST01…     2 tag2  tag       Deleted     TRUE    FALSE            </span><span style='color: #949494;'>&lt;NULL&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> TEST01…    10 Pare… topic     Has childr… FALSE   FALSE            </span><span style='color: #949494;'>&lt;int [2</span><span>…
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> TEST01…    11 Chil… topic     I am a chi… FALSE   FALSE            </span><span style='color: #949494;'>&lt;NULL&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> TEST01…    12 Chil… topic     I am also … FALSE   FALSE            </span><span style='color: #949494;'>&lt;NULL&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> TEST01…  </span><span style='text-decoration: underline;'>1</span><span>001 Tree… topic_tr… Topics com… FALSE   FALSE            </span><span style='color: #949494;'>&lt;int [1</span><span>…
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> TEST02…   101 tag1  tag       </span><span style='color: #BB0000;'>NA</span><span>          FALSE   FALSE            </span><span style='color: #949494;'>&lt;NULL&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> TEST02…   102 tag2  tag       Deleted     TRUE    FALSE            </span><span style='color: #949494;'>&lt;NULL&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> TEST02…  </span><span style='text-decoration: underline;'>1</span><span>010 Pare… topic     Has childr… FALSE   FALSE            </span><span style='color: #949494;'>&lt;dbl [2</span><span>…
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> TEST02…  </span><span style='text-decoration: underline;'>1</span><span>011 Chil… topic     I am a chi… FALSE   FALSE            </span><span style='color: #949494;'>&lt;NULL&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> TEST02…  </span><span style='text-decoration: underline;'>1</span><span>012 Chil… topic     I am also … FALSE   FALSE            </span><span style='color: #949494;'>&lt;NULL&gt;</span><span>  
-#&gt; </span><span style='color: #949494;'># … with 2 more variables: is_parent </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, ac </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span></div><div class='input'>
+<span class='fu'><a href='account.html'>accounts</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>tags</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 11 x 10</span>
+#&gt;    account     id name   namespace description deleted forClassificati… children
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;list&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'> 1</span> TEST01AA     1 tag1   tag       <span style='color: #BB0000;'>NA</span>          FALSE   FALSE            <span style='color: #949494;'>&lt;NULL&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'> 2</span> TEST01AA     2 tag2   tag       Deleted     TRUE    FALSE            <span style='color: #949494;'>&lt;NULL&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'> 3</span> TEST01AA    10 Paren… topic     Has childr… FALSE   FALSE            <span style='color: #949494;'>&lt;int [2</span>…
+#&gt; <span style='color: #BCBCBC;'> 4</span> TEST01AA    11 Child… topic     I am a chi… FALSE   FALSE            <span style='color: #949494;'>&lt;NULL&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'> 5</span> TEST01AA    12 Child… topic     I am also … FALSE   FALSE            <span style='color: #949494;'>&lt;NULL&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'> 6</span> TEST01AA  <span style='text-decoration: underline;'>1</span>001 Tree … topic_tr… Topics com… FALSE   FALSE            <span style='color: #949494;'>&lt;int [1</span>…
+#&gt; <span style='color: #BCBCBC;'> 7</span> TEST02AA   101 tag1   tag       <span style='color: #BB0000;'>NA</span>          FALSE   FALSE            <span style='color: #949494;'>&lt;NULL&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'> 8</span> TEST02AA   102 tag2   tag       Deleted     TRUE    FALSE            <span style='color: #949494;'>&lt;NULL&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'> 9</span> TEST02AA  <span style='text-decoration: underline;'>1</span>010 Paren… topic     Has childr… FALSE   FALSE            <span style='color: #949494;'>&lt;dbl [2</span>…
+#&gt; <span style='color: #BCBCBC;'>10</span> TEST02AA  <span style='text-decoration: underline;'>1</span>011 Child… topic     I am a chi… FALSE   FALSE            <span style='color: #949494;'>&lt;NULL&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'>11</span> TEST02AA  <span style='text-decoration: underline;'>1</span>012 Child… topic     I am also … FALSE   FALSE            <span style='color: #949494;'>&lt;NULL&gt;</span>  
+#&gt; <span style='color: #949494;'># … with 2 more variables: is_parent &lt;lgl&gt;, ac &lt;list&gt;</span></div><div class='input'>
 <span class='co'># Finding the tags that mentions matched.</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='mentions.html'>mentions</a></span>(<span class='st'>"published inthelast week"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>tags</span>()</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 9</span><span>
-#&gt;   id    tag.id name  namespace description deleted forClassificati… children
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 2-1        1 tag1  tag       </span><span style='color: #BB0000;'>NA</span><span>          FALSE   FALSE            </span><span style='color: #949494;'>&lt;NULL&gt;</span><span>  
-#&gt; </span><span style='color: #949494;'># … with 1 more variable: is_parent </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span></div></span></pre>
+<span class='fu'><a href='account.html'>account</a></span><span class='op'>(</span><span class='st'>"TEST01AA"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='mentions.html'>mentions</a></span><span class='op'>(</span><span class='st'>"published inthelast week"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>tags</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 9</span>
+#&gt;   id    tag.id name  namespace description deleted forClassification children
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;list&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'>1</span> 2-1        1 tag1  tag       <span style='color: #BB0000;'>NA</span>          FALSE   FALSE             <span style='color: #949494;'>&lt;NULL&gt;</span>  
+#&gt; <span style='color: #949494;'># … with 1 more variable: is_parent &lt;lgl&gt;</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -252,7 +259,7 @@ tags. Note that topics are stored in the 'topics' namespace.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

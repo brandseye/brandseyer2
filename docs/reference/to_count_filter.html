@@ -76,7 +76,7 @@ to fetch all of the queried data." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -84,7 +84,7 @@ to fetch all of the queried data." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -116,7 +116,7 @@ to fetch all of the queried data." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/brandseye/brandseyer2/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -146,7 +146,7 @@ Each filter is required to perform all of the count operations or
 to fetch all of the queried data.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>to_count_filter</span>(<span class='no'>query</span>, <span class='no'>code</span>)</pre>
+    <pre class="usage"><span class='fu'>to_count_filter</span><span class='op'>(</span><span class='va'>query</span>, <span class='va'>code</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -171,9 +171,10 @@ to fetch all of the queried data.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='filter_mentions.html'>filter_mentions</a></span>(<span class='st'>"published inthelast week"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>to_count_filter</span>(<span class='st'>"TEST01AA"</span>)</div><div class='output co'>#&gt; (published inthelast week) and (brand isorchildof 1 or brand isorchildof 2)</div></pre>
+<span class='fu'><a href='account.html'>account</a></span><span class='op'>(</span><span class='st'>"TEST01AA"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='filter_mentions.html'>filter_mentions</a></span><span class='op'>(</span><span class='st'>"published inthelast week"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>to_count_filter</span><span class='op'>(</span><span class='st'>"TEST01AA"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; (published inthelast week) and (brand isorchildof 1 or brand isorchildof 2)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -189,7 +190,7 @@ to fetch all of the queried data.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

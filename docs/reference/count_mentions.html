@@ -73,7 +73,7 @@ See the query() language to conveniently specify what to count." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@ See the query() language to conveniently specify what to count." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -113,7 +113,7 @@ See the query() language to conveniently specify what to count." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/brandseye/brandseyer2/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -140,39 +140,39 @@ See the query() language to conveniently specify what to count." />
 See the <code><a href='query.html'>query()</a></code> language to conveniently specify what to count.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>count_mentions</span>(<span class='no'>.account</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>count_mentions</span><span class='op'>(</span><span class='va'>.account</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for brandseyer2.account.v4</span>
-<span class='fu'>count_mentions</span>(
-  <span class='no'>.account</span>,
-  <span class='no'>filter</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>groupBy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>select</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>orderBy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>tagNamespace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>.envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)
+<span class='fu'>count_mentions</span><span class='op'>(</span>
+  <span class='va'>.account</span>,
+  <span class='va'>filter</span>,
+  <span class='va'>...</span>,
+  groupBy <span class='op'>=</span> <span class='cn'>NULL</span>,
+  select <span class='op'>=</span> <span class='cn'>NULL</span>,
+  orderBy <span class='op'>=</span> <span class='cn'>NULL</span>,
+  tagNamespace <span class='op'>=</span> <span class='cn'>NULL</span>,
+  .envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
 <span class='co'># S3 method for character</span>
-<span class='fu'>count_mentions</span>(
-  <span class='no'>.account</span>,
-  <span class='no'>filter</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>timezone</span> <span class='kw'>=</span> <span class='st'>"Africa/Johannesburg"</span>,
-  <span class='kw'>groupBy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>select</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>orderBy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>tagNamespace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)
+<span class='fu'>count_mentions</span><span class='op'>(</span>
+  <span class='va'>.account</span>,
+  <span class='va'>filter</span>,
+  <span class='va'>...</span>,
+  timezone <span class='op'>=</span> <span class='st'>"Africa/Johannesburg"</span>,
+  groupBy <span class='op'>=</span> <span class='cn'>NULL</span>,
+  select <span class='op'>=</span> <span class='cn'>NULL</span>,
+  orderBy <span class='op'>=</span> <span class='cn'>NULL</span>,
+  tagNamespace <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span>
 
 <span class='co'># S3 method for brandseyer2.query</span>
-<span class='fu'>count_mentions</span>(
-  <span class='no'>.account</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>tagNamespace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()
-)</pre>
+<span class='fu'>count_mentions</span><span class='op'>(</span>
+  <span class='va'>.account</span>,
+  <span class='va'>...</span>,
+  tagNamespace <span class='op'>=</span> <span class='cn'>NULL</span>,
+  .show.progress <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -249,29 +249,30 @@ vectors.</p></li>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 
 <span class='co'># Count all mentions in your account in the last year</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>count_mentions</span>(<span class='st'>"published inthelast year and brandisorchildof 1"</span>)
+<span class='fu'><a href='account.html'>account</a></span><span class='op'>(</span><span class='st'>"TEST01AA"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>count_mentions</span><span class='op'>(</span><span class='st'>"published inthelast year and brandisorchildof 1"</span><span class='op'>)</span>
 
 <span class='co'># Count all mentions in your account, grouping by publication date.</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>count_mentions</span>(<span class='st'>"published inthelast year and brandisorchildof 1"</span>, <span class='kw'>groupBy</span> <span class='kw'>=</span> <span class='no'>published</span>)
+<span class='fu'><a href='account.html'>account</a></span><span class='op'>(</span><span class='st'>"TEST01AA"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>count_mentions</span><span class='op'>(</span><span class='st'>"published inthelast year and brandisorchildof 1"</span>, groupBy <span class='op'>=</span> <span class='va'>published</span><span class='op'>)</span>
 
-}
+<span class='op'>}</span>
 
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-  <span class='fu'>count_mentions</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"published inthelast week"</span>, <span class='kw'>groupBy</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"published"</span>))
-}
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'>count_mentions</span><span class='op'>(</span><span class='st'>"TEST01AA"</span>, <span class='st'>"published inthelast week"</span>, groupBy <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"published"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
 
 
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='filter_mentions.html'>filter_mentions</a></span>(<span class='st'>"published inthelast week"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='group_mentions_by.html'>group_mentions_by</a></span>(<span class='no'>published</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>count_mentions</span>()
-}</div></pre>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'><a href='account.html'>account</a></span><span class='op'>(</span><span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='filter_mentions.html'>filter_mentions</a></span><span class='op'>(</span><span class='st'>"published inthelast week"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='group_mentions_by.html'>group_mentions_by</a></span><span class='op'>(</span><span class='va'>published</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>count_mentions</span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -287,7 +288,7 @@ vectors.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

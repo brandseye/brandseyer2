@@ -73,7 +73,7 @@ account. All of this information is included in brands()" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@ account. All of this information is included in brands()" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -113,7 +113,7 @@ account. All of this information is included in brands()" />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/brandseye/brandseyer2/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -137,19 +137,19 @@ account. All of this information is included in brands()" />
 
     <div class="ref-description">
     <p>Fetches phrase information, returned as a tibble, for the given
-account. All of this information is included in <code><a href='brands.html'>brands()</a></code></p>
+account. All of this information is included in <code><a href='brands.brandseyer2.account.html'>brands()</a></code></p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for brandseyer2.account</span>
-<span class='fu'>phrases</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'>phrases</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for list</span>
-<span class='fu'>phrases</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'>phrases</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for data.frame</span>
-<span class='fu'>phrases</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>ac</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>x</span>, <span class='st'>"account"</span>))
+<span class='fu'>phrases</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span>, ac <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"account"</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>phrases</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>phrases</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -184,38 +184,43 @@ object, or a tibble of mentions.</p></td>
 
     <p><code><a href='mentions.html'>mentions()</a></code> should be called with <code>select = "phrases"</code>
 to ensure that phrase information is returned with the mentions.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Constance Neeser</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Fetch phrases for a single account</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>phrases</span>()</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 5</span><span>
+<span class='fu'><a href='account.html'>account</a></span><span class='op'>(</span><span class='st'>"TEST01AA"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>phrases</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 5</span>
 #&gt;   phrase.id brand.id query      inactive deleted
-#&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>       102        5 branded    FALSE    FALSE  
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>       102        6 branded    FALSE    FALSE  
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>       101        5 brander    FALSE    FALSE  
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span>       101        6 brander    FALSE    FALSE  
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span>         5        3 niece      FALSE    FALSE  
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span>         3        2 sibling    FALSE    FALSE  
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span>         2        1 your brand FALSE    FALSE  
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span>         4        2 oh wow     TRUE     FALSE  
-#&gt; </span><span style='color: #BCBCBC;'>9</span><span>         1        1 brand      FALSE    TRUE   </div><div class='input'>
-<span class='fu'><a href='account.html'>accounts</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'>phrases</span>()</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 11 x 6</span><span>
+#&gt;       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'>1</span>       102        5 branded    FALSE    FALSE  
+#&gt; <span style='color: #BCBCBC;'>2</span>       102        6 branded    FALSE    FALSE  
+#&gt; <span style='color: #BCBCBC;'>3</span>       101        5 brander    FALSE    FALSE  
+#&gt; <span style='color: #BCBCBC;'>4</span>       101        6 brander    FALSE    FALSE  
+#&gt; <span style='color: #BCBCBC;'>5</span>         5        3 niece      FALSE    FALSE  
+#&gt; <span style='color: #BCBCBC;'>6</span>         3        2 sibling    FALSE    FALSE  
+#&gt; <span style='color: #BCBCBC;'>7</span>         2        1 your brand FALSE    FALSE  
+#&gt; <span style='color: #BCBCBC;'>8</span>         4        2 oh wow     TRUE     FALSE  
+#&gt; <span style='color: #BCBCBC;'>9</span>         1        1 brand      FALSE    TRUE   </div><div class='input'>
+<span class='fu'><a href='account.html'>accounts</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>phrases</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 11 x 6</span>
 #&gt;    account  phrase.id brand.id query      inactive deleted
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> TEST01AA       102        5 branded    FALSE    FALSE  
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> TEST01AA       102        6 branded    FALSE    FALSE  
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> TEST01AA       101        5 brander    FALSE    FALSE  
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> TEST01AA       101        6 brander    FALSE    FALSE  
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> TEST01AA         5        3 niece      FALSE    FALSE  
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> TEST01AA         3        2 sibling    FALSE    FALSE  
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> TEST01AA         2        1 your brand FALSE    FALSE  
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> TEST01AA         4        2 oh wow     TRUE     FALSE  
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> TEST01AA         1        1 brand      FALSE    TRUE   
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> TEST02AA       102      100 branded    FALSE    FALSE  
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> TEST02AA       101      100 brander    FALSE    FALSE  </div></span></pre>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'> 1</span> TEST01AA       102        5 branded    FALSE    FALSE  
+#&gt; <span style='color: #BCBCBC;'> 2</span> TEST01AA       102        6 branded    FALSE    FALSE  
+#&gt; <span style='color: #BCBCBC;'> 3</span> TEST01AA       101        5 brander    FALSE    FALSE  
+#&gt; <span style='color: #BCBCBC;'> 4</span> TEST01AA       101        6 brander    FALSE    FALSE  
+#&gt; <span style='color: #BCBCBC;'> 5</span> TEST01AA         5        3 niece      FALSE    FALSE  
+#&gt; <span style='color: #BCBCBC;'> 6</span> TEST01AA         3        2 sibling    FALSE    FALSE  
+#&gt; <span style='color: #BCBCBC;'> 7</span> TEST01AA         2        1 your brand FALSE    FALSE  
+#&gt; <span style='color: #BCBCBC;'> 8</span> TEST01AA         4        2 oh wow     TRUE     FALSE  
+#&gt; <span style='color: #BCBCBC;'> 9</span> TEST01AA         1        1 brand      FALSE    TRUE   
+#&gt; <span style='color: #BCBCBC;'>10</span> TEST02AA       102      100 branded    FALSE    FALSE  
+#&gt; <span style='color: #BCBCBC;'>11</span> TEST02AA       101      100 brander    FALSE    FALSE  </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -231,7 +236,7 @@ to ensure that phrase information is returned with the mentions.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

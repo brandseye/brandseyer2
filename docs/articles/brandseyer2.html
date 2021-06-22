@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -71,7 +71,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/brandseye/brandseyer2/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -85,13 +85,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="brandseyer2_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>brandseyer2</h1>
                         <h4 class="author">Constance Neeser</h4>
             
-            <h4 class="date">2020-04-19</h4>
+            <h4 class="date">2021-06-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/brandseye/brandseyer2/blob/master/vignettes/brandseyer2.Rmd"><code>vignettes/brandseyer2.Rmd</code></a></small>
       <div class="hidden name"><code>brandseyer2.Rmd</code></div>
@@ -119,16 +119,19 @@
 <a href="#authenticating-yourself" class="anchor"></a>Authenticating yourself</h1>
 <p>brandseyer2 provides API access to the BrandsEye API. In order to identify who you are, we provide our users with API keys on request. API keys are strings of randomly generated characters and numbers — they are difficult to guess, and very secure.</p>
 <p>You can contact your account manager to get your API key. Once you have your API key, the first step to using brandseyer2 is to authenticate yourself, which you can do as follows:</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">brandseyer2</span>)
-<span class="fu"><a href="../reference/authenticate.html">authenticate</a></span>(<span class="kw">key</span> <span class="kw">=</span> <span class="st">"&lt;my api key&gt;"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://brandseye.github.io/brandseyer2/">brandseyer2</a></span><span class="op">)</span>
+<span class="fu"><a href="../reference/authenticate.html">authenticate</a></span><span class="op">(</span>key <span class="op">=</span> <span class="st">"&lt;my api key&gt;"</span><span class="op">)</span></code></pre></div>
 <p>This will let brandseyer2 know who you are. If you don’t want to type this in every time that you use brandseyer2, you can tell brandseyer2 to save your api key.</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="../reference/authenticate.html">authenticate</a></span>(<span class="kw">key</span> <span class="kw">=</span> <span class="st">"&lt;my api key&gt;"</span>, <span class="kw">save</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/authenticate.html">authenticate</a></span><span class="op">(</span>key <span class="op">=</span> <span class="st">"&lt;my api key&gt;"</span>, save <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Now, every time the library is loaded, brandseyer2 will immediately start using the saved API key.</p>
 <p>Along with the <code>authenticate</code> function, you can also find out whose API key brandseyer2 is using:</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="../reference/whoami.html">whoami</a></span>()
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/whoami.html">whoami</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; BrandsEye Credentials</span>
 <span class="co">#&gt;   name:  Constance Neeser</span>
-<span class="co">#&gt;   email: connie@brandseye.com </span></pre></body></html></div>
+<span class="co">#&gt;   email: connie@brandseye.com </span></code></pre></div>
 <p>Now that you have authenticated yourself, you can begin to access your account information and mentions.</p>
 <div id="protecting-your-api-key" class="section level2">
 <h2 class="hasAnchor">
@@ -158,43 +161,49 @@
 <h1 class="hasAnchor">
 <a href="#working-with-accounts" class="anchor"></a>Working with accounts</h1>
 <p>As someone who works with BrandsEye tools, you have a collection of accounts that you have access to. You can find this collection of accounts using <code><a href="../reference/account_list.html">account_list()</a></code>, as follows:</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/account_list.html">account_list</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/account_list.html">account_list</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>This returns a tibble of accounts that are available to you. Importantly, it lets you find the account code (listed in the <code>account</code>, such as <code>TEST01AA</code> and <code>TEST02AA</code>) column that brandseyer2 uses to reference individual accounts.</p>
 <div id="referencing-an-account" class="section level2">
 <h2 class="hasAnchor">
 <a href="#referencing-an-account" class="anchor"></a>Referencing an account</h2>
 <p>Nearly all the functions in brandseyer2 needs an account reference. You can refer to any account using it’s account code and the <code><a href="../reference/account.html">account()</a></code> function. For example:</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co"># Get a reference to the account TEST01AA</span>
-<span class="fu"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>)
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Get a reference to the account TEST01AA</span>
+<span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="st">"TEST01AA"</span><span class="op">)</span>
 <span class="co">#&gt; BrandsEye Account </span>
 <span class="co">#&gt;     Name:   Test 1 </span>
 <span class="co">#&gt;     Code:   TEST01AA </span>
-<span class="co">#&gt;   Client:   MKT001</span></pre></body></html></div>
-<p>Many operations that you may want to perform will begin with finding an account reference, and then passing this on to other brandseyer2 functions using the pipe operator, <code><a href="../reference/pipe.html">%&gt;%</a></code>.</p>
+<span class="co">#&gt;   Client:   MKT001</span></code></pre></div>
+<p>Many operations that you may want to perform will begin with finding an account reference, and then passing this on to other brandseyer2 functions using the pipe operator, <code><a href="../reference/%&gt;%.html">%&gt;%</a></code>.</p>
 <p>Here are some examples to find the name, code, and account manager of your account:</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co"># Your account's name</span>
-<span class="fu"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/account_name.html">account_name</a></span>()
-<span class="co">#&gt; [1] "Test 1"</span></pre></body></html></div>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="co"># Your account code</span>
-<span class="fu"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/account_code.html">account_code</a></span>()
-<span class="co">#&gt; [1] "TEST01AA"</span></pre></body></html></div>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="co"># Your account manager.</span>
-<span class="fu"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/account_manager.html">account_manager</a></span>()
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Your account's name</span>
+<span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="st">"TEST01AA"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/account_name.html">account_name</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; [1] "Test 1"</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Your account code</span>
+<span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="st">"TEST01AA"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/account_code.html">account_code</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; [1] "TEST01AA"</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Your account manager.</span>
+<span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="st">"TEST01AA"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/account_manager.html">account_manager</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; BrandsEye Client Service</span>
 <span class="co">#&gt;   name:  Your Manager</span>
-<span class="co">#&gt;   email: noreply@brandseye.com</span></pre></body></html></div>
+<span class="co">#&gt;   email: noreply@brandseye.com</span></code></pre></div>
 </div>
 <div id="brands" class="section level2">
 <h2 class="hasAnchor">
 <a href="#brands" class="anchor"></a>Brands</h2>
 <p>Accounts are made up of <em>brands</em>. It is brands themselves that store individual <em>mentions</em> (such as tweets, facebook posts, and so on).</p>
 <p>A brand is usually something that you would like to track on social media, and measure sentiment towards. All sentiment on a mention is always towards the brand that the mention belongs to.</p>
-<p>You can find out what brands are in your account using the <code><a href="../reference/brands.html">brands()</a></code> function. Let’s have a look at what brands are in <em>TEST01AA</em>:</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/brands.html">brands</a></span>()
+<p>You can find out what brands are in your account using the <code><a href="../reference/brands.brandseyer2.account.html">brands()</a></code> function. Let’s have a look at what brands are in <em>TEST01AA</em>:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="st">"TEST01AA"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/brands.brandseyer2.account.html">brands</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 5 x 5</span>
 <span class="co">#&gt;      id name                    parent deleted    archived</span>
 <span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;                    &lt;int&gt; &lt;lgl&gt;         &lt;dbl&gt;</span>
@@ -202,14 +211,15 @@
 <span class="co">#&gt; 2     2 Sibling Brand               NA FALSE           NA </span>
 <span class="co">#&gt; 3     5 So deleted                  NA TRUE            NA </span>
 <span class="co">#&gt; 4     6 Brand of Christmas Past     NA FALSE   1516710018.</span>
-<span class="co">#&gt; 5     3 Niece Brand                  2 FALSE           NA</span></pre></body></html></div>
+<span class="co">#&gt; 5     3 Niece Brand                  2 FALSE           NA</span></code></pre></div>
 <p>These tibbles can become a bit tight to display all of the data that you may want to see. If you are using RStudio, you can always pipe the results in to View(). Otherwise, you can subselect for the data you want using standard dplyr<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> functions.</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co"># Find brand IDs and names</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Find brand IDs and names</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/brands.html">brands</a></span>() <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">id</span>, <span class="no">name</span>, <span class="no">parent</span>)
+<span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="st">"TEST01AA"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/brands.brandseyer2.account.html">brands</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">name</span>, <span class="va">parent</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 5 x 3</span>
 <span class="co">#&gt;      id name                    parent</span>
 <span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;                    &lt;int&gt;</span>
@@ -217,18 +227,20 @@
 <span class="co">#&gt; 2     2 Sibling Brand               NA</span>
 <span class="co">#&gt; 3     5 So deleted                  NA</span>
 <span class="co">#&gt; 4     6 Brand of Christmas Past     NA</span>
-<span class="co">#&gt; 5     3 Niece Brand                  2</span></pre></body></html></div>
+<span class="co">#&gt; 5     3 Niece Brand                  2</span></code></pre></div>
 <p>There, that’s better. Now you can see that your <em>TEST01AA</em> account is made out of three brands. We’ve also selected another column called <code>parent</code>. We’ve done this to show the hierarchical nature of brands: some brands are children of other brands. Setting up an account in this way can help you to organise the mentions that are collected in a brand around more specific themes.</p>
 <p>You can also discover this information for all the accounts that you have access to.</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"># Example here</pre></body></html></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Example here</span></code></pre></div>
 <p>Notice that one of our accounts have old brands that are no longer being used, and have been deleted. Also, we often want to find the top level brands that make up the main collections of mentions in an account. These “top level” brands are called <em>root brands</em>. We have a convenient function that finds the root brands currently in use in your account:</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="fu"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/root_brands.html">root_brands</a></span>()
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="st">"TEST01AA"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/root_brands.html">root_brands</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 2 x 4</span>
 <span class="co">#&gt;      id name            deleted archived</span>
 <span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;           &lt;lgl&gt;      &lt;dbl&gt;</span>
 <span class="co">#&gt; 1     1 Your Brand Here FALSE         NA</span>
-<span class="co">#&gt; 2     2 Sibling Brand   FALSE         NA</span></pre></body></html></div>
+<span class="co">#&gt; 2     2 Sibling Brand   FALSE         NA</span></code></pre></div>
 </div>
 <div id="tags" class="section level2">
 <h2 class="hasAnchor">
@@ -246,39 +258,43 @@
 <h1 class="hasAnchor">
 <a href="#working-with-mentions" class="anchor"></a>Working with mentions</h1>
 <p>Mentions can be read using the <code><a href="../reference/mentions.html">mentions()</a></code> function:</p>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fu"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/mentions.html">mentions</a></span>(<span class="kw">filter</span> <span class="kw">=</span> <span class="st">"published inthelast week"</span>)
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="st">"TEST01AA"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/mentions.html">mentions</a></span><span class="op">(</span>filter <span class="op">=</span> <span class="st">"published inthelast week"</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 7</span>
 <span class="co">#&gt;   id    published           brands   sentiment mediaLinks   socialNetwork tags  </span>
 <span class="co">#&gt;   &lt;chr&gt; &lt;dttm&gt;              &lt;list&gt;       &lt;int&gt; &lt;list&gt;       &lt;chr&gt;         &lt;list&gt;</span>
-<span class="co">#&gt; 1 2-1   2018-03-03 21:37:35 &lt;int [2…         0 &lt;tibble [1 … TWITTER       &lt;int …</span></pre></body></html></div>
+<span class="co">#&gt; 1 2-1   2018-03-03 21:37:35 &lt;int [2…         0 &lt;tibble [1 … TWITTER       &lt;int …</span></code></pre></div>
 </div>
 <div id="counting-mentions" class="section level1">
 <h1 class="hasAnchor">
 <a href="#counting-mentions" class="anchor"></a>Counting mentions</h1>
 <p>Mentions can be counted. The simplest way of doing this is with the <code><a href="../reference/count_mentions.html">count_mentions()</a></code> function, and using a query language designed to do this.</p>
 <p>Here is a simple query to count all mentions published the last week:</p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fu"><a href="../reference/account.html">account</a></span>(<span class="st">"QUIR01BA"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published inthelast week"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/count_mentions.html">count_mentions</a></span>()
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="st">"QUIR01BA"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/filter_mentions.html">filter_mentions</a></span><span class="op">(</span><span class="st">"published inthelast week"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/count_mentions.html">count_mentions</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 1</span>
 <span class="co">#&gt;   mentionCount</span>
 <span class="co">#&gt;          &lt;int&gt;</span>
-<span class="co">#&gt; 1         8907</span></pre></body></html></div>
+<span class="co">#&gt; 1         8907</span></code></pre></div>
 <p>More interestingly, we can count just the relevant mentions from the last week:</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu"><a href="../reference/account.html">account</a></span>(<span class="st">"QUIR01BA"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published inthelast week and relevancy isnt irrelevant"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/count_mentions.html">count_mentions</a></span>()
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="st">"QUIR01BA"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/filter_mentions.html">filter_mentions</a></span><span class="op">(</span><span class="st">"published inthelast week and relevancy isnt irrelevant"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/count_mentions.html">count_mentions</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 1</span>
 <span class="co">#&gt;   mentionCount</span>
 <span class="co">#&gt;          &lt;int&gt;</span>
-<span class="co">#&gt; 1         7918</span></pre></body></html></div>
+<span class="co">#&gt; 1         7918</span></code></pre></div>
 <p>If you would like to know more about filtering in particular, see our <a href="filtering.html">Filtering</a> vignette.</p>
 <p>Now, counting mentions becomes interesting when we begin to do things such as grouping mentions. For example, we can group mentions by the published date.</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="../reference/account.html">account</a></span>(<span class="st">"QUIR01BA"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published inthelast week and relevancy isnt irrelevant"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/group_mentions_by.html">group_mentions_by</a></span>(<span class="no">published</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/count_mentions.html">count_mentions</a></span>()
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="st">"QUIR01BA"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/filter_mentions.html">filter_mentions</a></span><span class="op">(</span><span class="st">"published inthelast week and relevancy isnt irrelevant"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/group_mentions_by.html">group_mentions_by</a></span><span class="op">(</span><span class="va">published</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/count_mentions.html">count_mentions</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 8 x 2</span>
 <span class="co">#&gt;   published           mentionCount</span>
 <span class="co">#&gt;   &lt;dttm&gt;                     &lt;int&gt;</span>
@@ -289,7 +305,7 @@
 <span class="co">#&gt; 5 2018-07-30 00:00:00         1389</span>
 <span class="co">#&gt; 6 2018-07-31 00:00:00         1214</span>
 <span class="co">#&gt; 7 2018-08-01 00:00:00         1124</span>
-<span class="co">#&gt; 8 2018-08-02 00:00:00          532</span></pre></body></html></div>
+<span class="co">#&gt; 8 2018-08-02 00:00:00          532</span></code></pre></div>
 <p>This is something that you could potentially chart, using a library such as <a href="http://ggplot2.org/">ggplot2</a>.</p>
 <div class="figure">
 <img src="brandseyer2_files/figure-html/unnamed-chunk-17-1.png" alt="A plot of data pulled from the api" width="480"><p class="caption">
@@ -297,20 +313,22 @@ A plot of data pulled from the api
 </p>
 </div>
 <p>One thing to take note of is that at no point have we specified what brands we want to use in the filter. This happens automatically: the query language selects all the root brands. You can easily examine this by leaving out the final step in the pipe chain above, like so:</p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu"><a href="../reference/account.html">account</a></span>(<span class="st">"QUIR01BA"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published inthelast week and relevancy isnt irrelevant"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/group_mentions_by.html">group_mentions_by</a></span>(<span class="no">published</span>)
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="st">"QUIR01BA"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/filter_mentions.html">filter_mentions</a></span><span class="op">(</span><span class="st">"published inthelast week and relevancy isnt irrelevant"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/group_mentions_by.html">group_mentions_by</a></span><span class="op">(</span><span class="va">published</span><span class="op">)</span>
 <span class="co">#&gt; BrandsEye Query</span>
 <span class="co">#&gt;   accounts:  QUIR01BA</span>
 <span class="co">#&gt;   brands:    35 brands selected</span>
 <span class="co">#&gt;   timezones: Africa/Johannesburg</span>
 <span class="co">#&gt;   filter:    published inthelast week and relevancy isnt irrelevant</span>
-<span class="co">#&gt;   grouping:  published</span></pre></body></html></div>
+<span class="co">#&gt;   grouping:  published</span></code></pre></div>
 <p>If you would like to see the filter being produced, you can do so using the <code><a href="../reference/to_count_filter.html">to_count_filter()</a></code> method. Let’s do this using an account with fewer root brands:</p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="co"># Let's see what the query looks like</span>
-<span class="fu"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published inthelast week and relevancy isnt irrelevant"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/group_mentions_by.html">group_mentions_by</a></span>(<span class="no">published</span>)
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Let's see what the query looks like</span>
+<span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="st">"TEST01AA"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/filter_mentions.html">filter_mentions</a></span><span class="op">(</span><span class="st">"published inthelast week and relevancy isnt irrelevant"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/group_mentions_by.html">group_mentions_by</a></span><span class="op">(</span><span class="va">published</span><span class="op">)</span>
 <span class="co">#&gt; BrandsEye Query</span>
 <span class="co">#&gt;   accounts:  TEST01AA</span>
 <span class="co">#&gt;   brands:    TEST01AA:1[Your Brand Here], TEST01AA:2[Sibling Brand]</span>
@@ -319,46 +337,49 @@ A plot of data pulled from the api
 <span class="co">#&gt;   grouping:  published</span>
 
 <span class="co"># And this is the filter</span>
-<span class="fu"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published inthelast week and relevancy isnt irrelevant"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/group_mentions_by.html">group_mentions_by</a></span>(<span class="no">published</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/to_count_filter.html">to_count_filter</a></span>(<span class="st">"TEST01AA"</span>)
-<span class="co">#&gt; (published inthelast week and relevancy isnt irrelevant) and (brand isorchildof 1 or brand isorchildof 2)</span></pre></body></html></div>
+<span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="st">"TEST01AA"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/filter_mentions.html">filter_mentions</a></span><span class="op">(</span><span class="st">"published inthelast week and relevancy isnt irrelevant"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/group_mentions_by.html">group_mentions_by</a></span><span class="op">(</span><span class="va">published</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/to_count_filter.html">to_count_filter</a></span><span class="op">(</span><span class="st">"TEST01AA"</span><span class="op">)</span>
+<span class="co">#&gt; (published inthelast week and relevancy isnt irrelevant) and (brand isorchildof 1 or brand isorchildof 2)</span></code></pre></div>
 <p>Notice that the <em>group by</em> doesn’t occur in the filter: this is additional data sent to the API when we request the data. This full filter is, however, sent to the API. It’s also an appropriate filter for use in Analyse or anywhere else that a filter is accepted.</p>
 <p>A useful thing that the filter allows us to do is to count data across multiple accounts at a time. For example, you across two specific brands:</p>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu"><a href="../reference/account.html">account</a></span>(<span class="st">"QUIR01BA"</span>, <span class="st">"BEUB03AA"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published inthelast week and relevancy isnt irrelevant"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/count_mentions.html">count_mentions</a></span>()
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="st">"QUIR01BA"</span>, <span class="st">"BEUB03AA"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/filter_mentions.html">filter_mentions</a></span><span class="op">(</span><span class="st">"published inthelast week and relevancy isnt irrelevant"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/count_mentions.html">count_mentions</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 2 x 2</span>
 <span class="co">#&gt;   account  mentionCount</span>
 <span class="co">#&gt;   &lt;chr&gt;           &lt;int&gt;</span>
 <span class="co">#&gt; 1 QUIR01BA         7951</span>
-<span class="co">#&gt; 2 BEUB03AA         8466</span></pre></body></html></div>
+<span class="co">#&gt; 2 BEUB03AA         8466</span></code></pre></div>
 <p>Again, you can group by any grouping field that you would want.</p>
 <p>You can also count across all accounts that are available to you:</p>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="fu"><a href="../reference/account_list.html">account_list</a></span>() <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/account.html">account</a></span>() <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published inthelast week and relevancy isnt irrelevant"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/count_mentions.html">count_mentions</a></span>()
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/account_list.html">account_list</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/filter_mentions.html">filter_mentions</a></span><span class="op">(</span><span class="st">"published inthelast week and relevancy isnt irrelevant"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/count_mentions.html">count_mentions</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 4 x 2</span>
 <span class="co">#&gt;   account  mentionCount</span>
 <span class="co">#&gt;   &lt;chr&gt;           &lt;int&gt;</span>
 <span class="co">#&gt; 1 QUIR01BA         7951</span>
 <span class="co">#&gt; 2 BEUB03AA         8466</span>
 <span class="co">#&gt; 3 TEST01AA         1234</span>
-<span class="co">#&gt; 4 TEST02AA         1234</span></pre></body></html></div>
+<span class="co">#&gt; 4 TEST02AA         1234</span></code></pre></div>
 <p>A very useful thing that the query language provides us, is the ability to compare sub-groups of mentions using sub-filters. For example, if we want to find mentions inside and outside of Africa, we could so as follows:</p>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="../reference/account.html">account</a></span>(<span class="st">"QUIR01BA"</span>, <span class="st">"BEUB03AA"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/filter_mentions.html">filter_mentions</a></span>(<span class="st">"published inthelast week and relevancy isnt irrelevant"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/compare_mentions.html">compare_mentions</a></span>(<span class="kw">africa</span> <span class="kw">=</span> <span class="st">"location is 'africa'"</span>, <span class="kw">elsewhere</span> <span class="kw">=</span> <span class="st">"location isnt 'africa'"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/count_mentions.html">count_mentions</a></span>()
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="st">"QUIR01BA"</span>, <span class="st">"BEUB03AA"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/filter_mentions.html">filter_mentions</a></span><span class="op">(</span><span class="st">"published inthelast week and relevancy isnt irrelevant"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/compare_mentions.html">compare_mentions</a></span><span class="op">(</span>africa <span class="op">=</span> <span class="st">"location is 'africa'"</span>, elsewhere <span class="op">=</span> <span class="st">"location isnt 'africa'"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/count_mentions.html">count_mentions</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 4 x 3</span>
 <span class="co">#&gt;   account  comparison mentionCount</span>
 <span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;             &lt;int&gt;</span>
 <span class="co">#&gt; 1 QUIR01BA africa              184</span>
 <span class="co">#&gt; 2 QUIR01BA elsewhere          7139</span>
 <span class="co">#&gt; 3 BEUB03AA africa             7850</span>
-<span class="co">#&gt; 4 BEUB03AA elsewhere           295</span></pre></body></html></div>
+<span class="co">#&gt; 4 BEUB03AA elsewhere           295</span></code></pre></div>
 <p>We have provided two seperate sub-filters, one labeled ‘africa’, one labeled ‘elsewhere’. Notice that these labels have now appeared in the result table, once for each account that we are querying.</p>
 </div>
 <div id="what-to-read-next" class="section level1">
@@ -369,7 +390,7 @@ A plot of data pulled from the api
 <div class="footnotes">
 <hr>
 <ol>
-<li id="fn1"><p><a href="https://dplyr.tidyverse.org/">dplyr</a> is a great library for working with and manipulating your data sets. brandseyer2 is built around some patterns that you will find in dplyr itself.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p><a href="https://dplyr.tidyverse.org/">dplyr</a> is a great library for working with and manipulating your data sets. brandseyer2 is built around some patterns that you will find in dplyr itself.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
   </div>
@@ -389,7 +410,7 @@ A plot of data pulled from the api
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

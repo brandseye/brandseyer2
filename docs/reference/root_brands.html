@@ -73,7 +73,7 @@ determine sentiment. Sentiment is always towards the brand." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@ determine sentiment. Sentiment is always towards the brand." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -113,7 +113,7 @@ determine sentiment. Sentiment is always towards the brand." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/brandseye/brandseyer2/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -140,16 +140,16 @@ determine sentiment. Sentiment is always towards the brand." />
 determine sentiment. Sentiment is always towards the brand.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>root_brands</span>(<span class='no'>x</span>, <span class='no'>includeDeleted</span>, <span class='no'>includeArchived</span>, <span class='no'>short</span>)
+    <pre class="usage"><span class='fu'>root_brands</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>includeDeleted</span>, <span class='va'>includeArchived</span>, <span class='va'>short</span><span class='op'>)</span>
 
 <span class='co'># S3 method for data.frame</span>
-<span class='fu'>root_brands</span>(<span class='no'>x</span>, <span class='kw'>includeDeleted</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>includeArchived</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>short</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>root_brands</span><span class='op'>(</span><span class='va'>x</span>, includeDeleted <span class='op'>=</span> <span class='cn'>FALSE</span>, includeArchived <span class='op'>=</span> <span class='cn'>FALSE</span>, short <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
 <span class='co'># S3 method for brandseyer2.account</span>
-<span class='fu'>root_brands</span>(<span class='no'>x</span>, <span class='kw'>includeDeleted</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>includeArchived</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>short</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>root_brands</span><span class='op'>(</span><span class='va'>x</span>, includeDeleted <span class='op'>=</span> <span class='cn'>FALSE</span>, includeArchived <span class='op'>=</span> <span class='cn'>FALSE</span>, short <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
 <span class='co'># S3 method for list</span>
-<span class='fu'>root_brands</span>(<span class='no'>x</span>, <span class='kw'>includeDeleted</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>includeArchived</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>short</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+<span class='fu'>root_brands</span><span class='op'>(</span><span class='va'>x</span>, includeDeleted <span class='op'>=</span> <span class='cn'>FALSE</span>, includeArchived <span class='op'>=</span> <span class='cn'>FALSE</span>, short <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -177,48 +177,54 @@ shows non-archived brands.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A tibble containing rows only for the root brands of an account. Otherwise,
-like the table returned in <code><a href='brands.html'>brands()</a></code>.</p>
+like the table returned in <code><a href='brands.brandseyer2.account.html'>brands()</a></code>.</p>
     <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
 
     
 <ul>
 <li><p><code>data.frame</code>: Find root brands from a <code>tibble</code> or <code>data.frame</code>. The data.frame
 should have  <code>id</code>, <code>parent</code>, and <code>deleted</code> columns, just as
-the tibble returned from <code><a href='brands.html'>brands()</a></code> does.</p></li>
+the tibble returned from <code><a href='brands.brandseyer2.account.html'>brands()</a></code> does.</p></li>
 <li><p><code>brandseyer2.account</code>: Returns root brand information from an account object.</p></li>
 <li><p><code>list</code>: Returns root brand information from a list of account objects.</p></li>
 </ul>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='brands.html'>brands()</a></code> for returning all brands in an account.</p></div>
+    <div class='dont-index'><p><code><a href='brands.brandseyer2.account.html'>brands()</a></code> for returning all brands in an account.</p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Constance Neeser</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Get root brands for an account</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>root_brands</span>()</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 2 x 4</span><span>
+<span class='fu'><a href='account.html'>account</a></span><span class='op'>(</span><span class='st'>"TEST01AA"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>root_brands</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 2 x 4</span>
 #&gt;      id name            deleted archived
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     1 Your Brand Here FALSE         </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>     2 Sibling Brand   FALSE         </span><span style='color: #BB0000;'>NA</span><span></div><div class='input'>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span>     1 Your Brand Here FALSE         <span style='color: #BB0000;'>NA</span>
+#&gt; <span style='color: #BCBCBC;'>2</span>     2 Sibling Brand   FALSE         <span style='color: #BB0000;'>NA</span></div><div class='input'>
 <span class='co'># Get root brands from a tibble or data.frame</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='brands.html'>brands</a></span>(<span class='kw'>short</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>root_brands</span>()</div><div class='output co'>#&gt; <span class='message'>Joining, by = "id"</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 5</span><span>
+<span class='fu'><a href='account.html'>account</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='brands.brandseyer2.account.html'>brands</a></span><span class='op'>(</span>short <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>root_brands</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Joining, by = "id"</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 3 x 5</span>
 #&gt;   account     id name               deleted archived
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> TEST01AA     2 Sibling Brand      FALSE         </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> TEST02AA   100 The Best of Brands FALSE         </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> TEST01AA     1 Your Brand Here    FALSE         </span><span style='color: #BB0000;'>NA</span><span></div><div class='input'>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> TEST01AA     2 Sibling Brand      FALSE         <span style='color: #BB0000;'>NA</span>
+#&gt; <span style='color: #BCBCBC;'>2</span> TEST02AA   100 The Best of Brands FALSE         <span style='color: #BB0000;'>NA</span>
+#&gt; <span style='color: #BCBCBC;'>3</span> TEST01AA     1 Your Brand Here    FALSE         <span style='color: #BB0000;'>NA</span></div><div class='input'>
 <span class='co'># Show fuller root brand information</span>
-<span class='fu'><a href='account.html'>account</a></span>(<span class='st'>"TEST01AA"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>root_brands</span>(<span class='kw'>short</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 2 x 14</span><span>
-#&gt;      id parent name  description tier  deleted schema filter volume_limit
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     2     </span><span style='color: #BB0000;'>NA</span><span> Sibl… </span><span style='color: #BB0000;'>NA</span><span>          TOPI… FALSE   b0000… locat…           </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>     1     </span><span style='color: #BB0000;'>NA</span><span> Your… </span><span style='color: #BB0000;'>NA</span><span>          ESSE… FALSE   </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #949494;'># … with 5 more variables: topic_tree_id </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, sentiment_rate </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,</span><span>
-#&gt; </span><span style='color: #949494;'>#   topic_rate </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, archived </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, phrases </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span></div></span></pre>
+<span class='fu'><a href='account.html'>account</a></span><span class='op'>(</span><span class='st'>"TEST01AA"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>root_brands</span><span class='op'>(</span>short <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 2 x 14</span>
+#&gt;      id parent name     description tier    deleted schema filter   volume_limit
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span>     2     <span style='color: #BB0000;'>NA</span> Sibling… <span style='color: #BB0000;'>NA</span>          TOPICS  FALSE   b0000… locatio…           <span style='color: #BB0000;'>NA</span>
+#&gt; <span style='color: #BCBCBC;'>2</span>     1     <span style='color: #BB0000;'>NA</span> Your Br… <span style='color: #BB0000;'>NA</span>          ESSENT… FALSE   <span style='color: #BB0000;'>NA</span>     <span style='color: #BB0000;'>NA</span>                 <span style='color: #BB0000;'>NA</span>
+#&gt; <span style='color: #949494;'># … with 5 more variables: topic_tree_id &lt;dbl&gt;, sentiment_rate &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   topic_rate &lt;dbl&gt;, archived &lt;dbl&gt;, phrases &lt;list&gt;</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -234,7 +240,7 @@ the tibble returned from <code><a href='brands.html'>brands()</a></code> does.</
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

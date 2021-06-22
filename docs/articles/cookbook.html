@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -71,7 +71,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/brandseye/brandseyer2/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -85,13 +85,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="cookbook_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>The brandseyer2 Cookbook</h1>
                         <h4 class="author">Constance Neeser</h4>
             
-            <h4 class="date">2020-04-19</h4>
+            <h4 class="date">2021-06-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/brandseye/brandseyer2/blob/master/vignettes/cookbook.Rmd"><code>vignettes/cookbook.Rmd</code></a></small>
       <div class="hidden name"><code>cookbook.Rmd</code></div>
@@ -111,43 +111,45 @@
 <div id="finding-topics-for-mentions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#finding-topics-for-mentions" class="anchor"></a>Finding topics for mentions</h2>
-<p>Sometimes you may want to get a clean data set of mentions, and the topics on them. This small script will write out a CSV giving, for each topic on a mention, a row with the mention ID, topic ID, and topic name. It reads all the mentions matching a filter, asking for only the mentions’ IDs and tags. Then, using <code><a href="../reference/topics.html">topics()</a></code>, it gets all the topic data for the mentions. Next, it uses <code><a href="https://dplyr.tidyverse.org/reference/select.html">dplyr::select()</a></code> to choose only some interesting columns to keep. Finaly, it saves the data, using <code><a href="https://readr.tidyverse.org/reference/write_delim.html">readr::write_csv()</a></code>.</p>
+<p>Sometimes you may want to get a clean data set of mentions, and the topics on them. This small script will write out a CSV giving, for each topic on a mention, a row with the mention ID, topic ID, and topic name. It reads all the mentions matching a filter, asking for only the mentions’ IDs and tags. Then, using <code><a href="../reference/topics.brandseyer2.account.html">topics()</a></code>, it gets all the topic data for the mentions. Next, it uses <code><a href="https://dplyr.tidyverse.org/reference/select.html">dplyr::select()</a></code> to choose only some interesting columns to keep. Finaly, it saves the data, using <code><a href="https://readr.tidyverse.org/reference/write_delim.html">readr::write_csv()</a></code>.</p>
 <div id="the-recipe" class="section level3">
 <h3 class="hasAnchor">
 <a href="#the-recipe" class="anchor"></a>The Recipe</h3>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">brandseyer2</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>, <span class="kw">warn.conflicts</span> <span class="kw">=</span> <span class="fl">FALSE</span>)            <span class="co"># For manipulating tables</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">readr</span>)                                    <span class="co"># For writing CSVs</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://brandseye.github.io/brandseyer2/">brandseyer2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>            <span class="co"># For manipulating tables</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span>                                    <span class="co"># For writing CSVs</span>
 
-<span class="no">code</span> <span class="kw">&lt;-</span> <span class="st">"BEUB03AA"</span>
-<span class="no">filter</span> <span class="kw">&lt;-</span> <span class="st">"published inthelast week and brand isorchildof 46334"</span>
+<span class="va">code</span> <span class="op">&lt;-</span> <span class="st">"BEUB03AA"</span>
+<span class="va">filter</span> <span class="op">&lt;-</span> <span class="st">"published inthelast week and brand isorchildof 46334"</span>
 
-<span class="no">mentions_with_topics</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/account.html">account</a></span>(<span class="no">code</span>) <span class="kw">%&gt;%</span>         <span class="co"># Get the account</span>
-  <span class="fu"><a href="../reference/mentions.html">mentions</a></span>(<span class="no">filter</span>, <span class="kw">select</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">id</span>, <span class="no">tags</span>)) <span class="kw">%&gt;%</span>      <span class="co"># Ask for the mentions (but only their IDs and tags)</span>
-  <span class="fu"><a href="../reference/topics.html">topics</a></span>() <span class="kw">%&gt;%</span>                                    <span class="co"># From the mentions, get specific topics</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">id</span>, <span class="no">topic.id</span>, <span class="no">name</span>)                      <span class="co"># Select only some interesting columns</span>
+<span class="va">mentions_with_topics</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="va">code</span><span class="op">)</span> <span class="op">%&gt;%</span>         <span class="co"># Get the account</span>
+  <span class="fu"><a href="../reference/mentions.html">mentions</a></span><span class="op">(</span><span class="va">filter</span>, select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">tags</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>      <span class="co"># Ask for the mentions (but only their IDs and tags)</span>
+  <span class="fu"><a href="../reference/topics.brandseyer2.account.html">topics</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>                                    <span class="co"># From the mentions, get specific topics</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">topic.id</span>, <span class="va">name</span><span class="op">)</span>                      <span class="co"># Select only some interesting columns</span>
 
 
-<span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span>(<span class="no">mentions_with_topics</span>, <span class="st">"topics.csv"</span>)</pre></body></html></div>
+<span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span><span class="va">mentions_with_topics</span>, <span class="st">"topics.csv"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="outcomes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#outcomes" class="anchor"></a>Outcomes</h3>
 <p>You can modify what columns you’d like kept in your CSV file by modifying the <code>select</code> line. And this is what some of the data looks like:</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r">#&gt; # A tibble: 2,475 x 3
-#&gt;    id          topic.id name                                              
-#&gt;    &lt;chr&gt;          &lt;int&gt; &lt;chr&gt;                                             
-#&gt;  1 46334-8933…    70331 Comparing (brands to brands) or comparing (brands…
-#&gt;  2 46334-8933…    69873 Ethics or reputation                              
-#&gt;  3 46334-8933…    71303 Transport experience                              
-#&gt;  4 46334-8933…    71359 Drivers                                           
-#&gt;  5 46334-8933…    69878 Accusations of unethical behavior                 
-#&gt;  6 46334-8933…    69873 Ethics or reputation                              
-#&gt;  7 46334-8933…    70331 Comparing (brands to brands) or comparing (brands…
-#&gt;  8 46334-8933…    69873 Ethics or reputation                              
-#&gt;  9 46334-8933…    70331 Comparing (brands to brands) or comparing (brands…
-#&gt; 10 46334-8933…    69873 Ethics or reputation                              
-#&gt; # ... with 2,465 more rows</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#&gt; # A tibble: 2,475 x 3</span>
+<span class="co">#&gt;    id          topic.id name                                              </span>
+<span class="co">#&gt;    &lt;chr&gt;          &lt;int&gt; &lt;chr&gt;                                             </span>
+<span class="co">#&gt;  1 46334-8933…    70331 Comparing (brands to brands) or comparing (brands…</span>
+<span class="co">#&gt;  2 46334-8933…    69873 Ethics or reputation                              </span>
+<span class="co">#&gt;  3 46334-8933…    71303 Transport experience                              </span>
+<span class="co">#&gt;  4 46334-8933…    71359 Drivers                                           </span>
+<span class="co">#&gt;  5 46334-8933…    69878 Accusations of unethical behavior                 </span>
+<span class="co">#&gt;  6 46334-8933…    69873 Ethics or reputation                              </span>
+<span class="co">#&gt;  7 46334-8933…    70331 Comparing (brands to brands) or comparing (brands…</span>
+<span class="co">#&gt;  8 46334-8933…    69873 Ethics or reputation                              </span>
+<span class="co">#&gt;  9 46334-8933…    70331 Comparing (brands to brands) or comparing (brands…</span>
+<span class="co">#&gt; 10 46334-8933…    69873 Ethics or reputation                              </span>
+<span class="co">#&gt; # ... with 2,465 more rows</span></code></pre></div>
 </div>
 </div>
 <div id="average-number-of-topics-per-mention" class="section level2">
@@ -157,66 +159,68 @@
 <div id="the-recipe-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#the-recipe-1" class="anchor"></a>The Recipe</h3>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">brandseyer2</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">readr</span>)
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://brandseye.github.io/brandseyer2/">brandseyer2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span>
 
-<span class="no">code</span> <span class="kw">&lt;-</span> <span class="st">"BEUB03AA"</span>
-<span class="no">filter</span> <span class="kw">&lt;-</span> <span class="st">"published inthelast week and brand isorchildof 46334"</span>
+<span class="va">code</span> <span class="op">&lt;-</span> <span class="st">"BEUB03AA"</span>
+<span class="va">filter</span> <span class="op">&lt;-</span> <span class="st">"published inthelast week and brand isorchildof 46334"</span>
 
-<span class="no">mentions_with_topics</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/account.html">account</a></span>(<span class="no">code</span>) <span class="kw">%&gt;%</span>         <span class="co"># Get the account</span>
-  <span class="fu"><a href="../reference/mentions.html">mentions</a></span>(<span class="no">filter</span>, <span class="kw">select</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">id</span>, <span class="no">tags</span>)) <span class="kw">%&gt;%</span>      <span class="co"># Ask for the mentions (but only their IDs and tags)</span>
-  <span class="fu"><a href="../reference/topics.html">topics</a></span>() <span class="kw">%&gt;%</span>                                    <span class="co"># From the mentions, get specific topics</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">id</span>, <span class="no">topic.id</span>, <span class="no">name</span>)
+<span class="va">mentions_with_topics</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="va">code</span><span class="op">)</span> <span class="op">%&gt;%</span>         <span class="co"># Get the account</span>
+  <span class="fu"><a href="../reference/mentions.html">mentions</a></span><span class="op">(</span><span class="va">filter</span>, select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">tags</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>      <span class="co"># Ask for the mentions (but only their IDs and tags)</span>
+  <span class="fu"><a href="../reference/topics.brandseyer2.account.html">topics</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>                                    <span class="co"># From the mentions, get specific topics</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">topic.id</span>, <span class="va">name</span><span class="op">)</span>
 
-<span class="no">topics_per_mention</span> <span class="kw">&lt;-</span> <span class="no">mentions_with_topics</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">id</span>) <span class="kw">%&gt;%</span>                <span class="co"># For each mention</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="kw">count</span> <span class="kw">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n.html">n</a></span>())          <span class="co"># Count the number of mentions</span>
+<span class="va">topics_per_mention</span> <span class="op">&lt;-</span> <span class="va">mentions_with_topics</span> <span class="op">%&gt;%</span>   
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">id</span><span class="op">)</span> <span class="op">%&gt;%</span>                <span class="co"># For each mention</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>          <span class="co"># Count the number of mentions</span>
 
-<span class="no">average_topics</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">topics_per_mention</span>$<span class="no">count</span>) / <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">topics_per_mention</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/message.html">message</a></span>(<span class="kw pkg">glue</span><span class="kw ns">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"The average number of topics per mention is {round(average_topics, 2)}"</span>))</pre></body></html></div>
+<span class="va">average_topics</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">topics_per_mention</span><span class="op">$</span><span class="va">count</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">topics_per_mention</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/message.html">message</a></span><span class="op">(</span><span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"The average number of topics per mention is {round(average_topics, 2)}"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="the-outcome" class="section level3">
 <h3 class="hasAnchor">
 <a href="#the-outcome" class="anchor"></a>The outcome</h3>
 <p>The recipe prints out the average</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r">#&gt; The average number of topics per mention is 2.84</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#&gt; The average number of topics per mention is 2.84</span></code></pre></div>
 </div>
 </div>
 <div id="find-the-parent-of-topics" class="section level2">
 <h2 class="hasAnchor">
 <a href="#find-the-parent-of-topics" class="anchor"></a>Find the parent of topics</h2>
 <p>BrandsEye topics can belong to more than one topic tree, and so can have more than one parent. When wanting to find the parent of a topic, you need to choose a topic tree to do this from. The easiest way to find topic trees is to use the <code><a href="../reference/topic_trees.html">topic_trees()</a></code> function, like so:</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">brandseyer2</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://brandseye.github.io/brandseyer2/">brandseyer2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/topic_trees.html">topic_trees</a></span>() <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">id</span>, <span class="no">name</span>)
+<span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="st">"TEST01AA"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/topic_trees.html">topic_trees</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">name</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 2</span>
 <span class="co">#&gt;      id name          </span>
 <span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;         </span>
-<span class="co">#&gt; 1  1001 Tree of Topics</span></pre></body></html></div>
+<span class="co">#&gt; 1  1001 Tree of Topics</span></code></pre></div>
 <div id="the-recipe-2" class="section level3">
 <h3 class="hasAnchor">
 <a href="#the-recipe-2" class="anchor"></a>The Recipe</h3>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">brandseyer2</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://brandseye.github.io/brandseyer2/">brandseyer2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/tags.html">tags</a></span>() <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/with_tag_parents.html">with_tag_parents</a></span>(<span class="fl">1001</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">namespace</span> <span class="kw">==</span> <span class="st">'topic'</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(<span class="no">is_parent</span>), <span class="no">name</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/account.html">account</a></span><span class="op">(</span><span class="st">"TEST01AA"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/tags.brandseyer2.account.html">tags</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/with_tag_parents.html">with_tag_parents</a></span><span class="op">(</span><span class="fl">1001</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">namespace</span> <span class="op">==</span> <span class="st">'topic'</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">is_parent</span><span class="op">)</span>, <span class="va">name</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="the-outcome-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#the-outcome-1" class="anchor"></a>The outcome</h3>
 <p>This produces a nicely sorted table of topics and parents, all in relation to the given topic tree. Notice that the topic tree itself won’t be in this table, since it is in its own <em>topic_tree</em> namespace.</p>
-<pre><code>#&gt; Source: local data frame [3 x 3]
-#&gt; Groups: &lt;by row&gt;
-#&gt; 
-#&gt; # A tibble: 3 x 3
+<pre><code>#&gt; # A tibble: 3 x 3
+#&gt; # Rowwise: 
 #&gt;      id name          parent
 #&gt;   &lt;int&gt; &lt;chr&gt;          &lt;dbl&gt;
 #&gt; 1    10 Parent topic    1001
@@ -242,7 +246,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

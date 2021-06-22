@@ -74,7 +74,7 @@ to add new tags to an account before adding them to mentions." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ to add new tags to an account before adding them to mentions." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -114,7 +114,7 @@ to add new tags to an account before adding them to mentions." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/brandseye/brandseyer2/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -142,31 +142,31 @@ For instance, you can add and remove tags from mentions. See <code><a href='crea
 to add new tags to an account before adding them to mentions.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>update_mentions</span>(<span class='no'>x</span>, <span class='no'>filter</span>, <span class='kw'>auto.confirm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>update_mentions</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>filter</span>, auto.confirm <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for brandseyer2.account.v4</span>
-<span class='fu'>update_mentions</span>(
-  <span class='no'>x</span>,
-  <span class='no'>filter</span>,
-  <span class='no'>auto.confirm</span>,
-  <span class='no'>...</span>,
-  <span class='no'>relevancy</span>,
-  <span class='no'>relevancyVerified</span>,
-  <span class='no'>addTags</span>,
-  <span class='no'>removeTags</span>,
-  <span class='no'>sentiment</span>,
-  <span class='no'>sentimentVerified</span>,
-  <span class='no'>media</span>,
-  <span class='no'>gender</span>,
-  <span class='no'>language</span>,
-  <span class='no'>race</span>,
-  <span class='no'>addPhrases</span>,
-  <span class='no'>removePhrases</span>,
-  <span class='no'>addCrowdJobs</span>,
-  <span class='no'>removeCrowdJobs</span>,
-  <span class='no'>updateAuthor</span>,
-  <span class='no'>location</span>
-)</pre>
+<span class='fu'>update_mentions</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  <span class='va'>filter</span>,
+  <span class='va'>auto.confirm</span>,
+  <span class='va'>...</span>,
+  <span class='va'>relevancy</span>,
+  <span class='va'>relevancyVerified</span>,
+  <span class='va'>addTags</span>,
+  <span class='va'>removeTags</span>,
+  <span class='va'>sentiment</span>,
+  <span class='va'>sentimentVerified</span>,
+  <span class='va'>media</span>,
+  <span class='va'>gender</span>,
+  <span class='va'>language</span>,
+  <span class='va'>race</span>,
+  <span class='va'>addPhrases</span>,
+  <span class='va'>removePhrases</span>,
+  <span class='va'>addCrowdJobs</span>,
+  <span class='va'>removeCrowdJobs</span>,
+  <span class='va'>updateAuthor</span>,
+  <span class='va'>location</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -272,6 +272,9 @@ gender, language or media.</p></td>
     <p>Setting <code>sentiment</code> and <code>relevancy</code> will affect crowd data. You should strongly think about
 setting <code>relevancyVerified</code> or <code>sentimentVerified</code> as appropriate, if you decide to edit
 <code>sentiment</code> or <code>relevancy</code>.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Constance Neeser</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -288,7 +291,7 @@ setting <code>relevancyVerified</code> or <code>sentimentVerified</code> as appr
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -73,7 +73,7 @@ performing actions on in brandseyer2." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brandseyer2</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@ performing actions on in brandseyer2." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -113,7 +113,7 @@ performing actions on in brandseyer2." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/brandseye/brandseyer2/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -140,13 +140,13 @@ performing actions on in brandseyer2." />
 performing actions on in brandseyer2.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>account</span>(<span class='no'>codes</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>account</span><span class='op'>(</span><span class='va'>codes</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for character</span>
-<span class='fu'>account</span>(<span class='no'>codes</span>, <span class='no'>...</span>, <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>(), <span class='kw'>.ignore.cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>account</span><span class='op'>(</span><span class='va'>codes</span>, <span class='va'>...</span>, .show.progress <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span>, .ignore.cache <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
 <span class='co'># S3 method for data.frame</span>
-<span class='fu'>account</span>(<span class='no'>codes</span>, <span class='no'>...</span>, <span class='kw'>.show.progress</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>())</pre>
+<span class='fu'>account</span><span class='op'>(</span><span class='va'>codes</span>, <span class='va'>...</span>, .show.progress <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -220,8 +220,8 @@ can control this behaviour using the <code>.show.progress</code> parameter.</p>
 <p><code><a href='is_account.html'>is_account()</a></code> to test if an object is an account object.</p>
 <p><code><a href='account_code.html'>account_code()</a></code> to get the account code.</p>
 <p><code><a href='account_client_code.html'>account_client_code()</a></code> to get the account client code.</p>
-<p><code><a href='tags.html'>tags()</a></code> to find tags in an account.</p>
-<p><code><a href='topics.html'>topics()</a></code> to find topics in an account.</p>
+<p><code><a href='tags.brandseyer2.account.html'>tags()</a></code> to find tags in an account.</p>
+<p><code><a href='topics.brandseyer2.account.html'>topics()</a></code> to find topics in an account.</p>
 <p><code><a href='create_tags.html'>create_tags()</a></code> to add more tags to an account.</p>
 <p><code><a href='topic_trees.html'>topic_trees()</a></code> to find the topic trees in an account.</p>
 <p><code><a href='logs.html'>logs()</a></code> to read the account's logs.</p>
@@ -232,36 +232,39 @@ can control this behaviour using the <code>.show.progress</code> parameter.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Read one account</span>
-<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>)</div><div class='output co'>#&gt; BrandsEye Account 
-#&gt;  <span style='color: #555555;'>   Name:  </span><span> Test 1 
-#&gt;  </span><span style='color: #555555;'>   Code:  </span><span> TEST01AA 
-#&gt;  </span><span style='color: #555555;'> Client:  </span><span> MKT001 </div><div class='input'>
+<span class='fu'>account</span><span class='op'>(</span><span class='st'>"TEST01AA"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; BrandsEye Account 
+#&gt;  <span style='color: #555555;'>   Name:  </span> Test 1 
+#&gt;  <span style='color: #555555;'>   Code:  </span> TEST01AA 
+#&gt;  <span style='color: #555555;'> Client:  </span> MKT001 </div><div class='input'>
 <span class='co'># Read two accounts</span>
-<span class='fu'>account</span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>)</div><div class='output co'>#&gt; [[1]]
+<span class='fu'>account</span><span class='op'>(</span><span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [[1]]
 #&gt; BrandsEye Account 
-#&gt;  </span><span style='color: #555555;'>   Name:  </span><span> Test 1 
-#&gt;  </span><span style='color: #555555;'>   Code:  </span><span> TEST01AA 
-#&gt;  </span><span style='color: #555555;'> Client:  </span><span> MKT001 
+#&gt;  <span style='color: #555555;'>   Name:  </span> Test 1 
+#&gt;  <span style='color: #555555;'>   Code:  </span> TEST01AA 
+#&gt;  <span style='color: #555555;'> Client:  </span> MKT001 
 #&gt; 
 #&gt; [[2]]
 #&gt; BrandsEye Account 
-#&gt;  </span><span style='color: #555555;'>   Name:  </span><span> Test 2 — Best Account 
-#&gt;  </span><span style='color: #555555;'>   Code:  </span><span> TEST02AA 
-#&gt;  </span><span style='color: #555555;'> Client:  </span><span> NA 
+#&gt;  <span style='color: #555555;'>   Name:  </span> Test 2 — Best Account 
+#&gt;  <span style='color: #555555;'>   Code:  </span> TEST02AA 
+#&gt;  <span style='color: #555555;'> Client:  </span> NA 
 #&gt; </div><div class='input'>
 <span class='co'># Read accounts from a vector</span>
-<span class='fu'>account</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span>))</div><div class='output co'>#&gt; [[1]]
+<span class='fu'>account</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"TEST01AA"</span>, <span class='st'>"TEST02AA"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [[1]]
 #&gt; BrandsEye Account 
-#&gt;  </span><span style='color: #555555;'>   Name:  </span><span> Test 1 
-#&gt;  </span><span style='color: #555555;'>   Code:  </span><span> TEST01AA 
-#&gt;  </span><span style='color: #555555;'> Client:  </span><span> MKT001 
+#&gt;  <span style='color: #555555;'>   Name:  </span> Test 1 
+#&gt;  <span style='color: #555555;'>   Code:  </span> TEST01AA 
+#&gt;  <span style='color: #555555;'> Client:  </span> MKT001 
 #&gt; 
 #&gt; [[2]]
 #&gt; BrandsEye Account 
-#&gt;  </span><span style='color: #555555;'>   Name:  </span><span> Test 2 — Best Account 
-#&gt;  </span><span style='color: #555555;'>   Code:  </span><span> TEST02AA 
-#&gt;  </span><span style='color: #555555;'> Client:  </span><span> NA 
-#&gt; </div></span></pre>
+#&gt;  <span style='color: #555555;'>   Name:  </span> Test 2 — Best Account 
+#&gt;  <span style='color: #555555;'>   Code:  </span> TEST02AA 
+#&gt;  <span style='color: #555555;'> Client:  </span> NA 
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -277,7 +280,7 @@ can control this behaviour using the <code>.show.progress</code> parameter.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

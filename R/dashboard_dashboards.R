@@ -89,7 +89,7 @@ dashboards.brandseyer2.account <- function(x, d,
     map_df(function(data) {
       lastUpdated <- data[["lastUpdatedBy"]]
       data[["lastUpdatedBy"]] <- lastUpdated$email
-      as.tibble(data)
+      as_tibble(data)
     })
 
   attr(result, "account") <- x

@@ -177,7 +177,7 @@ count_mentions.character <- function(.account,
                          query = query)
 
   process <- function(row) {
-    as.tibble(row %>% imap(function(data, index) {
+    as_tibble(row %>% imap(function(data, index) {
       if (index %in% c("published", "pickedUp", "updated")) {
         data <- if (nchar(data) > 10) lubridate::ymd_hm(data, tz = timezone) else lubridate::ymd(data, tz = timezone)
       }
@@ -195,13 +195,13 @@ count_mentions.character <- function(.account,
         if (!is.null(data$fullName)) d[[paste0(index, ".name")]] <- data$fullName
 
         # Clean up the object's data.
-        if (!is.null(data$labels)) data$labels <- list(as.tibble(data$labels) %>% tidyr::gather("language", "translation"))
-        if (!is.null(data$descriptions)) data$descriptions <- list(as.tibble(data$descriptions) %>% tidyr::gather("language", "translation"))
+        if (!is.null(data$labels)) data$labels <- list(as_tibble(data$labels) %>% tidyr::gather("language", "translation"))
+        if (!is.null(data$descriptions)) data$descriptions <- list(as_tibble(data$descriptions) %>% tidyr::gather("language", "translation"))
 
         # See if we want to add the data itself
         n <- names(data)
         if (length(n) != 2 || !"id" %in% n || !"name" %in% n) {
-          d[[index]] = list(as.tibble(data))
+          d[[index]] = list(as_tibble(data))
         }
       }
       d

@@ -1,3 +1,7 @@
+# brandseyer2 (development version)
+
+* Replace use of deprecated as.tibble with as_tibble
+
 # brandseyer2 0.1.0
 
 * Preparing for CRAN release.

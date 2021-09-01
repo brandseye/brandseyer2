@@ -89,6 +89,8 @@ dashboards.brandseyer2.account <- function(x, d,
     map_df(function(data) {
       lastUpdated <- data[["lastUpdatedBy"]]
       data[["lastUpdatedBy"]] <- lastUpdated$email
+      createdBy <- data[["createdBy"]]
+      data[["createdBy"]] <- createdBy$email
       as_tibble(data)
     })
 
